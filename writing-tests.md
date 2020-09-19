@@ -5,6 +5,12 @@ description: Writing Tests
 
 # Writing Tests
 
+- [Introduction](#introduction)
+- [API Reference](#api-reference)
+
+<a name="introduction"></a>
+## Introduction
+
 Pest makes it easy to write tests. This section illustrates how to write
 a simple test suite with Pest, and what are the conventions you should use.
 
@@ -35,6 +41,8 @@ it('has home', function () {
 
 > **Note**: Pest will only run a test file if its name ends with the suffix set in your `phpunit.xml`.
 
+<a name="api-reference"></a>
+## API Reference
 
 Now, on to the API reference. Pest offers you two functions to write your tests: `test()` & `it()`.
 Use the one that best fits your test naming convention, or both. They share the same behavior & syntax:

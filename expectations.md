@@ -63,7 +63,7 @@ expect($value)->// chain your checks here
 [`toMatchObject()`](#expect-toMatchObject)
 [`toEqual()`](#expect-toEqual)
 [`toEqualCanonicalizing()`](#expect-toEqualCanonicalizing)
-[`toEqualWithDelta(, float $delta)`](#expect-toEqualWithDelta)
+[`toEqualWithDelta()`](#expect-toEqualWithDelta)
 [`toBeInfinite()`](#expect-toBeInfinite)
 [`toBeInstanceOf()`](#expect-toBeInstanceOf)
 [`toBeInstanceOf()`](#expect-toBeInstanceOf)

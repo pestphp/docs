@@ -5,6 +5,11 @@ description: Skipping Tests
 
 # Skipping Tests
 
+- [Overview](#overview)
+
+<a name="overview"></a>
+## Overview
+
 During development, you may want to temporarily turn off a test. Rather than commenting it out,
 you can use the `skip` method.
 

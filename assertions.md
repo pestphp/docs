@@ -5,6 +5,12 @@ description: Assertions
 
 # Assertions
 
+- [Introduction](#introduction)
+- [Available Assertions](#available-assertions)
+
+<a name="introduction"></a>
+## Introduction
+
 By now you've caught a glimpse of some of the available assertions. They
 are the ones that actually perform the checks to ensure that things
 are going as planned.
@@ -18,6 +24,9 @@ it('asserts true is true', function () {
     $this->assertTrue(true);
 });
 ```
+
+<a name="available-assertions"></a>
+## Available Assertions
 
 For the full list of **assertions**, please refer to [PHPUnit Assertions](https://phpunit.readthedocs.io/en/9.0/assertions.html) documentation.
 
@@ -74,7 +83,5 @@ The `assertStringContainsString` asserts the given string exists.
 ```php
 $this->assertStringContainsString('Star', 'Star Wars');
 ```
-
-Remember, for the full list of **assertions**, please refer to [PHPUnit Assertions](https://phpunit.readthedocs.io/en/9.0/assertions.html) documentation.
 
 Next section: [Expectations →](/docs/expectations)

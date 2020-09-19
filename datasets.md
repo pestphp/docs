@@ -5,16 +5,29 @@ description: Datasets
 
 # Datasets
 
+- [Introduction](#introduction)
+- [Create Datasets](#create-datasets)
+    - [Inline Datasets](#inline-datasets)
+    - [Shared Datasets](#shared-datasets)
+    - [Lazy Datasets](#lazy-datasets)
+
+<a name="introduction"></a>
+## Introduction
+
 Datasets in Pest allows you to run the same test multiple times with
 different data. Also, the test description will contain information
 about the arguments used on each test.
 
 > This feature is most commonly known as Data Providers in PHPUnit.
 
+<a name="create-datasets"></a>
+## Create Datasets
+
 Now, in this section, we are going to cover the way you can create
 datasets in Pest.
 
-## Inline Datasets
+<a name="inline-datasets"></a>
+### Inline Datasets
 
 An inline `dataset` may be used for a single test only:
 ```php
@@ -36,8 +49,10 @@ it('has emails', function ($name, $email) {
     ['Other', 'other@example.com']
 ]);
 ```
+---
 
-## Shared Datasets
+<a name="shared-datasets"></a>
+### Shared Datasets
 
 If you want to keep your test files clean, you can use
 the `tests/Datasets` folder to place your datasets:
@@ -65,10 +80,10 @@ it('has emails', function ($email) {
     expect($email)->not->toBeEmpty();
 })->with('emails');
 ```
-
 ---
 
-## Lazy Datasets
+<a name="lazy-datasets"></a>
+### Lazy Datasets
 
 In both **inline** and **external** approaches, you may need to serve your
 data with PHP's generators to allow you to work with very large datasets

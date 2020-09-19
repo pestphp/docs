@@ -10,8 +10,10 @@ description: Installation
 	- [Installing Pest](#installing-pest)
 - [Setup Pest test suite.](#setup-pest-test-suite)
 
+<a name="installation"></a>
 ## Installation
 
+<a name="requirements"></a>
 ### Requirements
 
 > **Note:** Pest requires [PHP 7.3+](https://php.net/releases/) to work.
@@ -37,6 +39,7 @@ composer require phpunit/phpunit:"^9.0" --dev --update-with-dependencies
 composer require nunomaduro/collision:"^5.0" --dev --update-with-dependencies
 ```
 
+<a name="installing-pest"></a>
 ### Installing Pest
 
 Now you can require **Pest**:
@@ -45,6 +48,7 @@ Now you can require **Pest**:
 composer require pestphp/pest --dev
 ```
 
+<a name="setup-pest-test-suite"></a>
 ## Setup Pest test suite.
 
 Now, it's time to setup your Pest test suite.

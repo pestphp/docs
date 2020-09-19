@@ -5,11 +5,20 @@ description: Coverage
 
 # Coverage
 
+- [Introduction](#introduction)
+- [Extra Options](#extra-options)
+
+<a name="introduction"></a>
+## Introduction
+
 **Requires [XDEBUG 2.0+](https://xdebug.org/docs/install/)**, or [PCOV](https://github.com/krakjoe/pcov), or [PHPDBG](https://www.php.net/manual/en/book.phpdbg.php).
 
 Code coverage in Pest tells you which lines of code your test
 suite execute and which lines it doesn’t. Of course, PHPUnit
 offers you a beautiful section about this topic: [Code Coverage Analysis](https://phpunit.readthedocs.io/en/9.0/code-coverage-analysis.html).
+
+<a name="extra-options"></a>
+## Extra Options
 
 Now, in this section, we are going to see the extra options that Pest offers.
 

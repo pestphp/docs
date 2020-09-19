@@ -5,14 +5,21 @@ description: Setup and Teardown
 
 # Setup and Teardown
 
-- [Overview](#installation)
+- [Introduction](#introduction)
+- [Setup and Teardown](#setup-and-teardown)
+    - [Example](#example)
 
-<a name="overview"></a>
-## Overview
+<a name="introduction"></a>
+## Introduction
 
 In your tests, you may want to run some code before and after each test or
 file. In this section, we'll discuss the globally available
 functions that allow you to do that.
+
+<a name="setup-and-teardown"></a>
+## Setup and Teardown
+
+Here you can find a list available setup/teardown functions.
 
 ### `beforeEach()`
 
@@ -140,7 +147,8 @@ test('bar', function () {
 // afterAll
 ```
 
----
+<a name="example"></a>
+### Example
 
 To understand the order of execution of all those
 functions, let's take a look at the example below:
