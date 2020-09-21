@@ -7,15 +7,27 @@ section: content
 
 # Faker Plugin
 
+- [Introduction](#introduction)
+	- [Install](#install)
+- [Usage](#usage)
+
+<a name="introduction"></a>
+## Introduction
+
 The Faker Plugin for Pest provides additional functions for using the [Faker](https://github.com/fzaninotto/Faker) library.
 
 **Source code**: [github.com/pestphp/pest-plugin-faker](https://github.com/pestphp/pest-plugin-faker)
 
+<a name="install"></a>
+## Install
 Install the plugin using Composer:
 
 ```bash
 composer require pestphp/pest-plugin-faker --dev
 ```
+
+<a name="usage"></a>
+## Usage
 
 ### `faker()`
 

@@ -84,6 +84,8 @@ expect($value)->// chain your checks here
 [`toBeWritableDirectory()`](#expect-toBeWritableDirectory)
 [`toStartWith()`](#expect-toStartWith)
 [`toEndWith()`](#expect-toEndWith)
+[`toMatchConstraint()`](#expect-toMatchConstraint)
+toMatchConstraint
 </div>
 
 
@@ -463,5 +465,51 @@ Asserts that the value ends with the provided string:
 expect($content)->toEndWith('World');
 ```
 
+<a name="expect-toMatchConstraint"></a>
+### `toMatchConstraint(Constraint $constraint)`
+
+Asserts that the value matches a specificed [PHPUnit constraint](https://github.com/sebastianbergmann/phpunit/tree/master/src/Framework/Constraint):
+
+```php
+expect(true)->toMatchConstraint(new IsTrue());
+```
+
+Asserts that the value matches a complex group of constraints:
+
+```php
+expect(true)->toMatchConstraint(
+    $this->logicalAnd(
+         $this->logicalNot(new IsFalse()),
+         new IsType(IsType::TYPE_BOOL)
+    )
+);
+```
+
+Asserts that the value matches a custom constraint:
+
+```php
+expect('https://google.com')->toMatchConstraint(new IsValidUrlConstraint());
+class IsValidUrlConstraint extends \PHPUnit\Framework\Constraint
+{
+    public function toString()
+    {
+        return 'is a valid url';
+    }
+    protected function matches($other): bool
+    {
+        if (! is_string($other)) {
+            return false;
+        }
+        return preg_match(
+            Symfony\Component\Validator\Constraints\UrlValidator::PATTERN,
+            $other
+        ) > 0;
+    }
+}
+```
+
+> Custom constraints should extend `PHPUnit\Framework\Constraint`, and provide a `matches()` and `toString()` method, and optionally override the `evaluate()` method.
+
 
 Next section: [Setup And Teardown →](/docs/setup-and-teardown)
+
