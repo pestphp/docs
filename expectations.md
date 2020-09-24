@@ -85,7 +85,6 @@ expect($value)->// chain your checks here
 [`toStartWith()`](#expect-toStartWith)
 [`toEndWith()`](#expect-toEndWith)
 [`toMatchConstraint()`](#expect-toMatchConstraint)
-toMatchConstraint
 </div>
 
 
