@@ -84,7 +84,9 @@ expect($value)->// chain your checks here
 [`toBeWritableDirectory()`](#expect-toBeWritableDirectory)
 [`toStartWith()`](#expect-toStartWith)
 [`toEndWith()`](#expect-toEndWith)
+[`toMatch()`](#expect-toMatch)
 [`toMatchConstraint()`](#expect-toMatchConstraint)
+
 </div>
 
 
@@ -455,6 +457,15 @@ Asserts that the value starts with the provided string:
 expect($content)->toStartWith('Hello');
 ```
 
+<a name="expect-toMatch"></a>
+### `toMatch(string $expression)`
+
+Asserts that the value matches a regular expression:
+
+```php
+expect('Hello World')->toMatch('/^hello wo.*$/i');
+```
+
 <a name="expect-toEndWith"></a>
 ### `toEndWith(string $expected)`
 
@@ -470,12 +481,17 @@ expect($content)->toEndWith('World');
 Asserts that the value matches a specificed [PHPUnit constraint](https://github.com/sebastianbergmann/phpunit/tree/master/src/Framework/Constraint):
 
 ```php
+use PHPUnit\Framework\Constraint\IsTrue;
+
 expect(true)->toMatchConstraint(new IsTrue());
 ```
 
 Asserts that the value matches a complex group of constraints:
 
 ```php
+use PHPUnit\Framework\Constraint\IsFalse;
+use PHPUnit\Framework\Constraint\IsType;
+
 expect(true)->toMatchConstraint(
     $this->logicalAnd(
          $this->logicalNot(new IsFalse()),
@@ -488,7 +504,7 @@ Asserts that the value matches a custom constraint:
 
 ```php
 expect('https://google.com')->toMatchConstraint(new IsValidUrlConstraint());
-class IsValidUrlConstraint extends \PHPUnit\Framework\Constraint
+class IsValidUrlConstraint extends \PHPUnit\Framework\Constraint\Constraint
 {
     public function toString()
     {
@@ -507,7 +523,7 @@ class IsValidUrlConstraint extends \PHPUnit\Framework\Constraint
 }
 ```
 
-> Custom constraints should extend `PHPUnit\Framework\Constraint`, and provide a `matches()` and `toString()` method, and optionally override the `evaluate()` method.
+> Custom constraints should extend `PHPUnit\Framework\Constraint\Constraint`, and provide a `matches()` and `toString()` method, and optionally override the `evaluate()` method.
 
 
 Next section: [Setup And Teardown →](/docs/setup-and-teardown)

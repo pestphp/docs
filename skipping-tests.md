@@ -44,6 +44,8 @@ it('has home', function () {
 })->only();
 ```
 
+> Please be aware that `->only()` requires all tests to be written with Pest test functions in order to work correctly.
+
 ## Writing a Pending Test
 
 If you’d like to remind yourself to come back and write a test later, just
