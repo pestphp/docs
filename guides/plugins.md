@@ -5,9 +5,23 @@ description: The Plugin Creation Guide
 
 # Plugins
 
+- [Overview](#overview)
+- [Create Plugin](#create-plugin)
+    - [Setting up the plugin template](#setting-up-the-plugin-template)
+    - [Adding functions](#adding-functions)
+    - [Adding methods to `$this` / Higher Order methods](adding-methods)
+- [Tips & Tricks](#tips-tricks)
+    
+<a name="overview"></a>
+## Overview
+
 Plugins can extend Pest's functionality and are easy to write.
 
-## Setting up the plugin template
+<a name="create-plugin"></a>
+## Create Plugin
+
+<a name="setting-up-the-plugin-template"></a>
+### Setting up the plugin template
 
 To create your own plugin, it's easiest to start with the [pest-plugin-template](https://github.com/pestphp/pest-plugin-template).
 To create a new repository from it click on the "Use this template" button. Call it `pest-plugin-<yourpluginname>`.
@@ -16,7 +30,8 @@ Now clone the new repository to work on your plugin.
 
 Edit _composer.json_ and adjust the fields `name` and `description` to fit your plugin.
 
-## Adding functions
+<a name="adding-functions"></a>
+### Adding functions
 
 A plugin may integrate additional functions. These may be even external
 libraries. A good example is the [Faker plugin](https://github.com/pestphp/pest-plugin-faker),
@@ -70,7 +85,8 @@ To load our extension, we must add or adjust the `autoload` section in the `comp
 
 Any amount of further files can be added this way. They will be loaded automatically.
 
-## Adding methods to `$this` / Higher Order methods
+<a href="adding-methods"></a>
+### Adding methods to `$this` / Higher Order methods
 
 Methods can also be added for the `$this` variable inside closures, or to higher order tests.
 
@@ -134,6 +150,7 @@ for PSR-4 autoloading and tell it to load and run our `Plugin.php`:
     ...
 ```
 
+<a href="tips-tricks"></a>
 ## Tips & Tricks
 
 Inside functions, to access the current test case in your plugin, you can use the global function `test()`.

@@ -5,6 +5,11 @@ description: How to Install Pest on a Blank Project
 
 # Pest From Scratch
 
+- [Installation](#installation)
+    
+<a name="installation"></a>
+### Installation
+
 To install Pest on a new blank project, you just have to follow a few simple steps:
 
 > **Note:** Pest requires [PHP 7.3+](https://php.net/releases/) to work.

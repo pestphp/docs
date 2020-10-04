@@ -1,8 +1,6 @@
 ---
 title: Snapshots Plugin
 description: The Snapshots Plugin
-extends: _layouts.documentation
-section: content
 ---
 
 # Snapshots Plugin

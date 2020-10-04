@@ -5,11 +5,11 @@ description: Assertions
 
 # Assertions
 
-- [Introduction](#introduction)
+- [Overview](#overview)
 - [Available Assertions](#available-assertions)
 
-<a name="introduction"></a>
-## Introduction
+<a name="overview"></a>
+## Overview
 
 By now you've caught a glimpse of some of the available assertions. They
 are the ones that actually perform the checks to ensure that things

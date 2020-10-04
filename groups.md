@@ -5,6 +5,11 @@ description: Groups Of Tests
 
 # Groups Of Tests
 
+- [Overview](#overview)
+
+<a href="#overview"></a>
+## Overview
+
 Optionally, Pest allows you to assign tests to different groups with the `group` method. If you have a bunch of
 tests that are particularly slow, it might be good to add them all to the same group:
 

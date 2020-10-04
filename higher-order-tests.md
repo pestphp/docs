@@ -5,6 +5,11 @@ description: Higher Order Tests
 
 # Higher Order Tests
 
+- [Overview](#overview)
+
+<a href="#overview"></a>
+## Overview
+
 Pest also provides support for **higher order tests**, which are shortcuts for performing
 common actions while writing your tests.
 

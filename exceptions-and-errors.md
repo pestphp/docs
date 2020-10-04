@@ -5,6 +5,11 @@ description: Exceptions & Errors
 
 # Exceptions & Errors
 
+- [Overview](#overview)
+
+<a href="#overview"></a>
+## Overview
+
 Testing the behavior in PHP sometimes requires
 checking if an exception/error was thrown.
 

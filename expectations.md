@@ -5,11 +5,11 @@ description: Expectations
 
 # Expectations
 
-- [Introduction](#introduction)
+- [Overview](#overview)
 - [Available Expectations](#available-expectations)
 
-<a name="introduction"></a>
-## Introduction
+<a name="overview"></a>
+## Overview
 
 In addition to assertions, Pest offers you a set of expectations.
 These functions let you test your values against certain conditions.

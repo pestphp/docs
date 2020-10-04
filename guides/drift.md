@@ -5,14 +5,14 @@ description: The Drift migration tool guide.
 
 # Drift
 
-- [Introduction](#introduction)
+- [Overview](#overview)
     - [Installation](#installation)
 - [Uses](#uses)
     - [Migrate](#migrate)
     - [Polish](#polish)
 
-<a name="introduction"></a>
-## Introduction
+<a name="overview"></a>
+## Overview
 
 **WARNING: This is a 'work in progress'.**
 

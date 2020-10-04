@@ -5,11 +5,11 @@ description: Coverage
 
 # Coverage
 
-- [Introduction](#introduction)
+- [Overview](#overview)
 - [Extra Options](#extra-options)
 
-<a name="introduction"></a>
-## Introduction
+<a name="overview"></a>
+## Overview
 
 **Requires [XDEBUG 2.0+](https://xdebug.org/docs/install/)**, or [PCOV](https://github.com/krakjoe/pcov), or [PHPDBG](https://www.php.net/manual/en/book.phpdbg.php).
 

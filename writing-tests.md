@@ -5,11 +5,11 @@ description: Writing Tests
 
 # Writing Tests
 
-- [Introduction](#introduction)
+- [Overview](#overview)
 - [API Reference](#api-reference)
 
-<a name="introduction"></a>
-## Introduction
+<a name="overview"></a>
+## Overview
 
 Pest makes it easy to write tests. This section illustrates how to write
 a simple test suite with Pest, and what are the conventions you should use.

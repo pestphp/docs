@@ -5,9 +5,25 @@ description: The Laravel Guide
 
 # Laravel Guide
 
+- [Overview](#overview)
+    - [Installation](#installation)
+- [Artisan commands](#artisan-commands)
+    - [pest:install](#pest-install-command)
+    - [pest:test](#pest-test-command)
+    - [pest:dataset](#pest-dataset-command)
+- [Traits](#traits)
+- [Laravel Dusk](#laravel-dusk)
+- [Lumen](#lumen)
+    
+<a name="overview"></a>
+## Overview
+
 Although Pest is framework agnostic, it was built with Laravel in mind. In this guide,
 we will see how you can create tests with the elegance you expect, and
 the convenience you love.
+
+<a name="installation"></a>
+### Installation
 
 First, [install Pest](/docs/installation) in your Laravel application. Since Pest is a **progressive testing framework**,
 your current test suite will still work, even if you run it with the `./vendor/bin/pest` console command.
@@ -58,8 +74,10 @@ a Pest test suite.
 
 ---
 
+<a name="artisan-commands"></a>
 ## Artisan commands
 
+<a name="pest-install-command"></a>
 ### `pest:install`
 
 The `pest:install` Artisan command creates the `test/Pest.php` file in your tests folder:
@@ -71,6 +89,7 @@ php artisan pest:install
 As described on the [Underlying Test Case](/docs/underlying-test-case) section,
 the `Pest.php` file is the place where all your `uses` should live.
 
+<a name="pest-test-command"></a>
 ### `pest:test`
 
 The `pest:test <name>` Artisan command creates a new test in the `tests/Feature` folder:
@@ -86,6 +105,7 @@ given test under the `tests/Unit` folder:
 php artisan pest:test UsersTest --unit
 ```
 
+<a name="pest-dataset-command"></a>
 ### `pest:dataset`
 
 The `pest:dataset` Artisan command creates a new dataset in the `tests/Datasets` folder:
@@ -99,6 +119,7 @@ run the same test multiple times with different data.
 
 ---
 
+<a name="traits"></a>
 ## Traits
 
 As explained in the [Underlying Test Case](/docs/underlying-test-case) section, the usage
@@ -124,6 +145,7 @@ line in each of your tests by [binding it](/docs/underlying-test-case) in your `
 
 ---
 
+<a name="laravel-dusk"></a>
 ## Laravel Dusk
 
 Pest can also work seamlessly with [Laravel Dusk](https://laravel.com/docs/dusk).
@@ -171,6 +193,9 @@ Now, when you run `pest` you will see your Dusk tests as well.
 > **Note:** As for now, the Laravel plugin doesn't support Dusk's functions, so you'll have to use them with the `$this` variable as the example above shows.
 
 ---
+
+<a name="lumen"></a>
+## Lumen
 
 > **Note:** To run Pest on Lumen, you must first register the PestServiceProvider in bootstrap/app.php:
 

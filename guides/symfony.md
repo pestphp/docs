@@ -5,9 +5,18 @@ description: The Symfony Guide
 
 # Symfony Guide
 
+- [Overview](#overview)
+    - [Setup](#setup)
+    
+<a name="overview"></a>
+## Overview
+
 Pest was built to be framework agnostic, but as it's easily extendable, it works well in [Symfony](https://symfony.com) applications.
 
 Now, in this guide, we are going to transform a Symfony test into a Pest test.
+
+<a name="setup"></a>
+### Setup
 
 First, create the `tests/Pest.php` file, and add the following code:
 

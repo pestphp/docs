@@ -5,14 +5,14 @@ description: Datasets
 
 # Datasets
 
-- [Introduction](#introduction)
+- [Overview](#overview)
 - [Create Datasets](#create-datasets)
     - [Inline Datasets](#inline-datasets)
     - [Shared Datasets](#shared-datasets)
     - [Lazy Datasets](#lazy-datasets)
 
-<a name="introduction"></a>
-## Introduction
+<a name="overview"></a>
+## Overview
 
 Datasets in Pest allows you to run the same test multiple times with
 different data. Also, the test description will contain information

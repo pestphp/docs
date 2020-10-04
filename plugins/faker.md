@@ -7,12 +7,12 @@ section: content
 
 # Faker Plugin
 
-- [Introduction](#introduction)
-	- [Install](#install)
+- [Overview](#overview)
+	- [Installation](#installation)
 - [Usage](#usage)
 
-<a name="introduction"></a>
-## Introduction
+<a name="overview"></a>
+## Overview
 
 The Faker Plugin for Pest provides additional functions for using the [Faker](https://github.com/fzaninotto/Faker) library.
 
@@ -20,6 +20,7 @@ The Faker Plugin for Pest provides additional functions for using the [Faker](ht
 
 <a name="install"></a>
 ## Install
+
 Install the plugin using Composer:
 
 ```bash

@@ -1,21 +1,32 @@
 ---
 title: Global Assertions Plugin
 description: A plugin that adds global assertions back to Pest
-extends: _layouts.documentation
-section: content
 ---
 
 # Global Assertions Plugin
 
+- [Overview](#overview)
+	- [Installation](#installation)
+- [Usage](#usage)
+
+<a name="overview"></a>
+## Overview
+
 The Global Assertions Plugin for Pest provides global functions for assertions that were removed in v0.3
 
 **Source code**: [github.com/pestphp/pest-plugin-global-assertions](https://github.com/pestphp/pest-plugin-global-assertions)
+
+<a name="installation"></a>
+### Installation
 
 Install the plugin using Composer:
 
 ```bash
 composer require pestphp/pest-plugin-global-assertions --dev
 ```
+
+<a name="Usage"></a>
+## Usage
 
 This allows you to do the following, without calling the `$this` object. For a full list of available methods, please refer to [the compiled list](https://github.com/pestphp/pest-plugin-global-assertions/blob/main/src/compiled.php).
 

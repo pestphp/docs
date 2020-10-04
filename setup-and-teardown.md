@@ -5,12 +5,12 @@ description: Setup and Teardown
 
 # Setup and Teardown
 
-- [Introduction](#introduction)
+- [Overview](#overview)
 - [Setup and Teardown](#setup-and-teardown)
     - [Example](#example)
 
-<a name="introduction"></a>
-## Introduction
+<a name="overview"></a>
+## Overview
 
 In your tests, you may want to run some code before and after each test or
 file. In this section, we'll discuss the globally available

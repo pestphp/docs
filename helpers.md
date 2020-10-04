@@ -5,12 +5,19 @@ description: Custom Helpers
 
 # Custom helpers
 
+- [Overview](#overview)
+- [Usage](#usage)
+
+<a href="#overview"></a>
+## Overview
+
 While Pest is very powerful out-of-the-box, you may have some testing code specific to your
 project that you don't want to repeat in every test.
 
 Creating custom helpers can improve readability and reduce the amount of code of your test suite.
 
-## `tests/Helpers.php`
+<a href="#usage"></a>
+## Usage
 
 By default, Pest autoloads the `tests/Helpers.php` file. In this file,
 you can place your custom helpers. Of course, if those helpers are specific

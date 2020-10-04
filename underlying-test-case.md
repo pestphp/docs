@@ -5,6 +5,10 @@ description: Underlying Test Case
 
 # Underlying Test Case
 
+- [Overview](#overview)
+
+<a href="#overview"></a>
+## Overview
 The closure you provide to your test function is always bound to a specific
 test case class. By default, that class is `PHPUnit\Framework\TestCase`:
 

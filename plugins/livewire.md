@@ -1,8 +1,6 @@
 ---
 title: Livewire Plugin
 description: The Livewire Plugin
-extends: _layouts.documentation
-section: content
 ---
 
 # Livewire Plugin
