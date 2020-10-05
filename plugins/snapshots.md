@@ -5,6 +5,14 @@ description: The Snapshots Plugin
 
 # Snapshots Plugin
 
+- [Overview](#overview)
+	- [Installation](#installation)
+- [Usage](#usage)
+    - [`assertMatchesSnapshot()`](#assertMatchesSnapshot)
+
+<a name="overview"></a>
+## Overview
+
 The Snapshots Plugin for Pest adds [snapshot](https://github.com/spatie/phpunit-snapshot-assertions) testing capabilities to Pest.
 
 **Source code**: [github.com/spatie/pest-plugin-snapshots](https://github.com/spatie/pest-plugin-snapshots)
@@ -12,12 +20,18 @@ The Snapshots Plugin for Pest adds [snapshot](https://github.com/spatie/phpunit-
 Snapshot tests are a very useful tool whenever you want to make sure things don't change unexpectedly. Find more
 about snapshot testing here: [sebastiandedeyne.com/a-package-for-snapshot-testing-in-phpunit/](https://sebastiandedeyne.com/a-package-for-snapshot-testing-in-phpunit/)
 
+<a name="installation"></a>
+### Installation
 Install the plugin using Composer:
 
 ```bash
 composer require spatie/pest-plugin-snapshots --dev
 ```
 
+<a name="usage"></a>
+## Usage
+
+<a name="assertMatchesSnapshot"></a>
 ### `assertMatchesSnapshot()`
 
 The `assertMatchesSnapshot()` function asserts the given string matches the existing snapshot.

@@ -7,7 +7,7 @@ description: Groups Of Tests
 
 - [Overview](#overview)
 
-<a href="#overview"></a>
+<a name="overview"></a>
 ## Overview
 
 Optionally, Pest allows you to assign tests to different groups with the `group` method. If you have a bunch of

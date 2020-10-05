@@ -7,7 +7,7 @@ description: Higher Order Tests
 
 - [Overview](#overview)
 
-<a href="#overview"></a>
+<a name="overview"></a>
 ## Overview
 
 Pest also provides support for **higher order tests**, which are shortcuts for performing

@@ -5,15 +5,30 @@ description: The Livewire Plugin
 
 # Livewire Plugin
 
+- [Overview](#overview)
+	- [Installation](#installation)
+- [Usage](#usage)
+    - [`livewire()`](#livewire)
+
+<a name="overview"></a>
+## Overview
+
 The Livewire Plugin for Pest provides additional functions for testing your [Livewire](https://laravel-livewire.com/) components.
 
 **Source code**: [github.com/pestphp/pest-plugin-livewire](https://github.com/pestphp/pest-plugin-livewire)
+
+<a name="installation"></a>
+### Installation
 
 Install the plugin using Composer:
 ```bash
 composer require pestphp/pest-plugin-livewire --dev
 ```
 
+<a name="usage"></a>
+## Usage
+
+<a name="livewire"></a>
 ### `livewire()`
 
 You may use the `livewire` function to test your Livewire components:

@@ -7,7 +7,7 @@ description: Exceptions & Errors
 
 - [Overview](#overview)
 
-<a href="#overview"></a>
+<a name="overview"></a>
 ## Overview
 
 Testing the behavior in PHP sometimes requires

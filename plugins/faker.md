@@ -10,6 +10,7 @@ section: content
 - [Overview](#overview)
 	- [Installation](#installation)
 - [Usage](#usage)
+    - [`faker()`](#faker)
 
 <a name="overview"></a>
 ## Overview
@@ -30,6 +31,7 @@ composer require pestphp/pest-plugin-faker --dev
 <a name="usage"></a>
 ## Usage
 
+<a name="faker"></a>
 ### `faker()`
 
 The `faker()` function will create an instance of the Faker generator with the default locale (*en_US*).

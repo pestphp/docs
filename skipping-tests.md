@@ -6,6 +6,8 @@ description: Skipping Tests
 # Skipping Tests
 
 - [Overview](#overview)
+- [Running a single test](#running-single-test)
+- [Writing a Pending Test](#writing-pending-test)
 
 <a name="overview"></a>
 ## Overview
@@ -34,6 +36,7 @@ it('has home', function () {
 })->skip(true === true, 'Home page not available');
 ```
 
+<a name="running-single-test"></a>
 ## Running a single test
 
 If you’d like to run a single test to debug a problem, just use the following syntax:
@@ -46,6 +49,7 @@ it('has home', function () {
 
 > Please be aware that `->only()` requires all tests to be written with Pest test functions in order to work correctly.
 
+<a name="writing-pending-test"></a>
 ## Writing a Pending Test
 
 If you’d like to remind yourself to come back and write a test later, just

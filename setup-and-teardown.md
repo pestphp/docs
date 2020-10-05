@@ -7,7 +7,7 @@ description: Setup and Teardown
 
 - [Overview](#overview)
 - [Setup and Teardown](#setup-and-teardown)
-    - [Example](#example)
+- [Example](#example)
 
 <a name="overview"></a>
 ## Overview
@@ -148,7 +148,7 @@ test('bar', function () {
 ```
 
 <a name="example"></a>
-### Example
+## Example
 
 To understand the order of execution of all those
 functions, let's take a look at the example below:
