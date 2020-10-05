@@ -22,4 +22,4 @@ You found a bug? You have an idea to improve the Pest developer experience? You 
 
 To improve an existing documentation page, just click on the **Edit this page** link on the top right. It will lead you directly to the relevant `.md` file on the Github repository. Also, feel free to submit a new issue to propose new pages ideas.
 
-[Pest website GitHub repository →](https://github.com/pestphp/website)
+[Pest website GitHub repository →](https://github.com/pestphp/docs)
