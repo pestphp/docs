@@ -33,4 +33,4 @@
 - ## Get involved
 	- [Community](/docs/community)
 	- [Contribute](/docs/contribute)
-	- [Team](/team)
+	- [Team](team)
