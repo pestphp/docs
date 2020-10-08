@@ -14,7 +14,6 @@
 	- [Datasets](/docs/datasets)
 	- [Coverage](/docs/coverage)
 - ## Guides
-        - [Command Line](/docs/guides/command-line)
 	- [PHPUnit](/docs/guides/phpunit)
 	- [Drift](/docs/guides/drift)
 	- [Laravel](/docs/guides/laravel)
