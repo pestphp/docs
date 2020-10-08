@@ -1,5 +1,5 @@
 - ## Getting Started
-	- [Installation](/docs/installation)
+    - [Installation](/docs/installation)
 	- [Writing Tests](/docs/writing-tests)
 	- [Underlying Test Case](/docs/underlying-test-case)
 	- [Assertions](/docs/assertions)
@@ -14,7 +14,8 @@
 	- [Datasets](/docs/datasets)
 	- [Coverage](/docs/coverage)
 - ## Guides
-	- [PHPUnit](/docs/guides/phpunit)
+    - [Command Line](/docs/guides/command-line)
+	- [PHPUnit](/docs/guides/phpunit)	
 	- [Drift](/docs/guides/drift)
 	- [Laravel](/docs/guides/laravel)
 	- [Symfony](/docs/guides/symfony)
