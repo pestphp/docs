@@ -8,7 +8,9 @@ description: Underlying Test Case
 - [Overview](#overview)
 
 <a name="overview"></a>
+
 ## Overview
+
 The closure you provide to your test function is always bound to a specific
 test case class. By default, that class is `PHPUnit\Framework\TestCase`:
 
@@ -19,7 +21,7 @@ it('has home', function () {
     $this->assertTrue(true);
 
     // \PHPUnit\Framework\TestCase
-    echo get_class($this); 
+    echo get_class($this);
 });
 ```
 
@@ -66,7 +68,6 @@ uses(TestCase::class)->in('Feature');
 uses(RefreshDatabase::class)->in('Unit');
 ```
 
-
 To bind multiple classes and/or traits at once, group them in your `uses()` call like so:
 
 ```php
@@ -78,6 +79,48 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 // Uses the given test case and trait in the current folder recursively
 uses(TestCase::class, RefreshDatabase::class)->in(__DIR__);
 ```
+
+To override a property on the underlying testcase you can use the `with()` method on the result of a `uses()` call, and supply it with
+the name of the property you're extending, and a valid value for a property. You can also supply an array of property/value pairs to
+override multiple properties at once:
+
+```php
+<?php
+
+use App\Models\DatabaseMode;
+use Tests\TestCase;
+
+uses(TestCase::class)
+    ->with('appName', 'MyAwesomePestApp')
+    ->with([
+        'useDatabase'   => true,
+        'databaseMode'  => DatabaseMode::TRANSACTION,
+    ]);
+```
+
+For extending or overriding a method of the underlying testcase, call the `extends()` method on the result of a `uses()` call,
+and supply the method name and the new method expressed as an anonymous function. You can also supply an array of method/value
+sets for overriding multiple methods or chain extends call.
+
+```php
+<?php
+
+use App\Models\Role;
+use Tests\TestCase;
+
+uses(TestCase::class)
+    ->extends('createBill', function (string $name) {
+        $this->billService->create($name);
+    })
+    ->extends([
+        'getDefaultRole' => fn () => Role::USER,
+        'getSpecialRole' => fn () => Role::ADMIN,
+    ]);
+
+```
+
+The scope of the function is bound to the underlying testcase while running the test, so you're free to use `$this`, or call the original method
+by using `parent::methodName()`. Calling the parent method from static methods is currently not supported due to limitations within the PHP language itself.
 
 ## `tests/Pest.php`
 
@@ -95,4 +138,3 @@ phpunit.xml
 ```
 
 Next section: [Assertions →](/docs/assertions)
-
