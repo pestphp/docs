@@ -41,3 +41,5 @@ This option allows you to set a minimum required coverage value. If the coverage
 ### `--group`
 
 This option allows you to only run a specific list of [grouped tests](/docs/groups). This is a comma-separated list.
+
+Next section: [PHPUnit →](/docs/guides/phpunit)
