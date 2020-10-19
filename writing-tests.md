@@ -27,7 +27,7 @@ To write a test, create a file in the `Unit` or `Feature` directory,
 and make sure its filename ends with the `..Test.php` suffix.
 Then, all you need inside this file is a function which runs your test:
 
-```
+```php
 <?php
 test('has home', function () {
     // ..

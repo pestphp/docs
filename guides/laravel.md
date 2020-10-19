@@ -14,7 +14,7 @@ description: The Laravel Guide
 - [Traits](#traits)
 - [Laravel Dusk](#laravel-dusk)
 - [Lumen](#lumen)
-    
+
 <a name="overview"></a>
 ## Overview
 
@@ -125,7 +125,7 @@ run the same test multiple times with different data.
 As explained in the [Underlying Test Case](/docs/underlying-test-case) section, the usage
 of traits in Pest is possible with the `uses` function:
 
-```
+```php
 <?php
 
 use App\User;
@@ -169,7 +169,7 @@ Finally, instruct Pest to use `DuskTestCase` as the base test case for the `Brow
 use Tests\DuskTestCase;
 
 uses(DuskTestCase::class)->in('Browser');
-``` 
+```
 
 That's it! Now you can write Dusk tests using Pest's syntax:
 
@@ -199,7 +199,7 @@ Now, when you run `pest` you will see your Dusk tests as well.
 
 > **Note:** To run Pest on Lumen, you must first register the PestServiceProvider in bootstrap/app.php:
 
-```
+```php
 $app->register(Pest\Laravel\PestServiceProvider::class);
 ```
 

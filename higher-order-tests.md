@@ -35,7 +35,7 @@ Pest will properly delegate to any given method and its arguments of the test it
 The exact same rules apply to global functions like `beforeEach` or `afterEach`. Let's
 take a look at an example using the Laravel Framework:
 
-```
+```php
 beforeEach()->withoutMiddleware();
 
 it('has home')
