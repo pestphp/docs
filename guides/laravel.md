@@ -133,7 +133,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
 
-beforeEach(fn () => factory(User::class)->create());
+beforeEach(fn () => User::factory()->create());
 
 it('has users')->assertDatabaseHas('users', [
     'id' => 1,
