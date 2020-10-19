@@ -27,7 +27,7 @@ composer require pestphp/pest-plugin-global-assertions --dev
 ```
 
 - Alternative 2: migrate to `$this` calls, or to [expectation API](/docs/expectations/):
-```
+```php
 it('foo', function () {
     assertTrue(true); // won't work in 0.3
 
@@ -55,7 +55,7 @@ If you are using any official plugins, update them to `^0.2` in your `composer.j
 Any functions provided by official plugins are no longer available globally. Therefore, you need to
 import them. Here is an example:
 
-```
+```php
 use function Pest\Laravel\get;
 
 get('/')->assertSee('Laravel');
