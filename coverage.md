@@ -7,8 +7,8 @@ description: Coverage
 
 - [Overview](#overview)
 - [Extra Options](#extra-options)
-    - [`coverage`](#coverage)
-    - [`min`](#min)
+    - [`--coverage`](#coverage)
+    - [`--min`](#min)
 
 <a name="overview"></a>
 ## Overview
