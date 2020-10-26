@@ -5,16 +5,14 @@ description: Installation
 
 # Installation
 
-- [Installation](#installation)
-	- [Requirements](#requirements)
-	- [Installing Pest](#installing-pest)
-- [Setup Pest test suite.](#setup-pest-test-suite)
+- [Requirements](#requirements)
+- [Install Pest](#install-pest)
+- [Setup the test suite](#setup-the-test-suite)
+- [Run Pest](#run-pest)
 
-<a name="installation"></a>
-## Installation
 
 <a name="requirements"></a>
-### Requirements
+## Requirements
 
 > **Note:** Pest requires [PHP 7.3+](https://php.net/releases/) to work.
 
@@ -39,8 +37,8 @@ composer require phpunit/phpunit:"^9.3.10" --dev --update-with-dependencies
 composer require nunomaduro/collision:"^5.0" --dev --update-with-dependencies
 ```
 
-<a name="installing-pest"></a>
-### Installing Pest
+<a name="install-pest"></a>
+## Install Pest
 
 Now you can require **Pest**:
 
@@ -48,8 +46,8 @@ Now you can require **Pest**:
 composer require pestphp/pest --dev
 ```
 
-<a name="setup-pest-test-suite"></a>
-## Setup Pest test suite.
+<a name="setup-the-test-suite"></a>
+## Setup the test suite
 
 Now, it's time to setup your Pest test suite.
 
@@ -65,7 +63,8 @@ composer require pestphp/pest-plugin-laravel --dev && php artisan pest:install
 ./vendor/bin/pest --init
 ```
 
-### Run Pest
+<a name="run-pest"></a>
+## Run Pest
 
 
 Finally, you can run Pest directly from the command line:
