@@ -7,6 +7,8 @@ description: Coverage
 
 - [Overview](#overview)
 - [Extra Options](#extra-options)
+    - [`coverage`](#coverage)
+    - [`min`](#min)
 
 <a name="overview"></a>
 ## Overview
@@ -22,6 +24,7 @@ offers you a beautiful section about this topic: [Code Coverage Analysis](https:
 
 Now, in this section, we are going to see the extra options that Pest offers.
 
+<a name="coverage"></a>
 ### `--coverage`
 
 The `--coverage` option, gives you a human readable code coverage
@@ -36,6 +39,7 @@ directly on the console.
 Keep in mind: the percentage displayed concerns the number of lines
 of source code that has been tested/executed.
 
+<a name="min"></a>
 ### `--min`
 
 Of course, you can always combine the `--coverage` option
