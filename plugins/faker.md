@@ -15,7 +15,7 @@ section: content
 <a name="overview"></a>
 ## Overview
 
-The Faker Plugin for Pest provides additional functions for using the [Faker](https://github.com/fzaninotto/Faker) library.
+The Faker Plugin for Pest provides additional functions for using the [Faker](https://github.com/FakerPHP/Faker) library.
 
 **Source code**: [github.com/pestphp/pest-plugin-faker](https://github.com/pestphp/pest-plugin-faker)
 
@@ -59,6 +59,6 @@ it('generates a name using faker with locale', function () {
 });
 ```
 
-Finally, for the full list of available Faker methods, please refer to the [Faker documentation](https://github.com/fzaninotto/Faker#formatters).
+Finally, for the full list of available Faker methods, please refer to the [Faker documentation](https://github.com/FakerPHP/Faker#formatters).
 
 Next section: [Global Assertions →](/docs/plugins/global-assertions)
