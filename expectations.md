@@ -66,7 +66,7 @@ expect($value)->// chain your checks here
 [`toEqualWithDelta()`](#expect-toEqualWithDelta)
 [`toBeInfinite()`](#expect-toBeInfinite)
 [`toBeInstanceOf()`](#expect-toBeInstanceOf)
-[`toBeInstanceOf()`](#expect-toBeInstanceOf)
+[`toBeBool()`](#expect-toBeBool)
 [`toBeCallable()`](#expect-toBeCallable)
 [`toBeFloat()`](#expect-toBeFloat)
 [`toBeInt()`](#expect-toBeInt)
@@ -295,8 +295,8 @@ Asserts that the value is an array:
 expect($vegetables)->toBeArray();
 ```
 
-<a name="expect-toBeInstanceOf"></a>
-### `toBeInstanceOf()`
+<a name="expect-toBeBool"></a>
+### `toBeBool()`
 
 Asserts that the value is of type bool:
 
