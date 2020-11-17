@@ -48,7 +48,7 @@ it('can be decremented', function () {
 });
 ```
 
-Of course, the method `livewire()` can be equaly used in your higher order tests:
+Of course, the method `livewire()` can be equally used in your higher order tests:
 ```php
 it('can be incremented')
     ->livewire(Counter::class)
