@@ -60,6 +60,7 @@ expect($value)->// chain your checks here
 [`toContain()`](#expect-toContain)
 [`toHaveCount()`](#expect-toHaveCount)
 [`toHaveProperty()`](#expect-toHaveProperty)
+[`toMatchArray()`](#expect-toMatchArray)
 [`toMatchObject()`](#expect-toMatchObject)
 [`toEqual()`](#expect-toEqual)
 [`toEqualCanonicalizing()`](#expect-toEqualCanonicalizing)
@@ -209,6 +210,24 @@ Asserts that the `$value` contains the property `$name`:
 ```php
 expect($user)->toHaveProperty('name');
 expect($user)->toHaveProperty('name', 'Nuno');
+```
+
+<a name="expect-toMatchArray"></a>
+### `toMatchArray($array)`
+
+Asserts that the `$value` array matches the given `$array` subset.
+
+```php
+$user = [
+    'id'    => 1,
+    'name'  => 'Nuno',
+    'email' => 'enunomaduro@gmail.com',
+];
+
+expect($user)->toMatchArray([
+    'email' => 'enunomaduro@gmail.com',
+    'name' => 'Nuno'
+]);
 ```
 
 <a name="expect-toMatchObject"></a>
