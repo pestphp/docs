@@ -9,6 +9,7 @@ description: Coverage
 - [Extra Options](#extra-options)
     - [`--coverage`](#coverage)
     - [`--min`](#min)
+- [Filters](#filters)
 
 <a name="overview"></a>
 ## Overview
