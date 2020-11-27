@@ -52,4 +52,23 @@ for coverage results. If the thresholds are not met, Pest will return failure.
 
 ![Coverage Min](/assets/img/coverage-min.png)
 
+<a name="filters"></a>
+## Filters
+
+By default, the PHPUnit [configuration file generated](https://github.com/pestphp/pest-plugin-init/blob/master/stubs/phpunit.xml) by Pest initialisation will include directory coverage for the `app` and `src` directories.
+
+Although this covers most libraries and applications, you may need to add more directories to be covered. To do this, you'll need to add a new `<directory>` element inside the `coverage.include` section.
+
+If you are experiencing a `Coverage not found in path: vendor/pestphp/.temp/coverage.php` exception message, for example, if your code is under a `lib` directory, you'll need to apply the following change to your `phpunit.xml`.
+
+```diff
+<coverage processUncoveredFiles="true">
+    <include>
+        <directory suffix=".php">./app</directory>
+        <directory suffix=".php">./src</directory>
++       <directory suffix=".php">./lib</directory>
+    </include>
+</coverage>
+```
+
 Next section: [Command Line →](/docs/guides/command-line)
