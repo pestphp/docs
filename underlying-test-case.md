@@ -79,6 +79,14 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 uses(TestCase::class, RefreshDatabase::class)->in(__DIR__);
 ```
 
+In some cases it is not enough to just add the trait with `uses()` you can also call a function on the trait. 
+Can be done like this: 
+```php
+uses(CreatesApplication::class);
+beforeEach()
+    ->createApplication();
+```
+
 ## `tests/Pest.php`
 
 Please consider creating a file with the name `tests/Pest.php` on the
