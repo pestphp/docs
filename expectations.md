@@ -12,7 +12,7 @@ description: Expectations
 <a name="overview"></a>
 ## Overview
 
-> **Note**: The Expectation API can be used in regular PHPUnit projects. For that, you just have to run the following command in your terminal: `composer require pestphp/pest-plugin-expectations`.
+> **Note**: The Expectation API can be used in regular PHPUnit projects. For that, you just have to run the following command in your terminal: `composer require pestphp/pest-plugin-expectations --dev`.
 
 In addition to assertions, Pest offers you a set of expectations.
 These functions let you test your values against certain conditions.
