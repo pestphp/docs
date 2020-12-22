@@ -9,7 +9,7 @@ description: The Plugin Creation Guide
 - [Create Plugin](#create-plugin)
     - [Setting up the plugin template](#setting-up-the-plugin-template)
     - [Adding functions](#adding-functions)
-    - [Adding methods to `$this` / Higher Order methods](adding-methods)
+    - [Adding methods to `$this` / Higher Order methods](#adding-methods)
 - [Tips & Tricks](#tips-tricks)
     
 <a name="overview"></a>
@@ -85,7 +85,7 @@ To load our extension, we must add or adjust the `autoload` section in the `comp
 
 Any amount of further files can be added this way. They will be loaded automatically.
 
-<a href="adding-methods"></a>
+<a name="adding-methods"></a>
 ### Adding methods to `$this` / Higher Order methods
 
 Methods can also be added for the `$this` variable inside closures, or to higher order tests.
@@ -150,7 +150,7 @@ for PSR-4 autoloading and tell it to load and run our `Plugin.php`:
     ...
 ```
 
-<a href="tips-tricks"></a>
+<a name="tips-tricks"></a>
 ## Tips & Tricks
 
 Inside functions, to access the current test case in your plugin, you can use the global function `test()`.
