@@ -80,6 +80,7 @@ expect($value)->// chain your checks here
 [`toBeResource()`](#expect-toBeResource)
 [`toBeScalar()`](#expect-toBeScalar)
 [`toBeString()`](#expect-toBeString)
+[`toBeJson()`](#expect-toBeJson)
 [`toBeNan()`](#expect-toBeNan)
 [`toBeNull()`](#expect-toBeNull)
 [`toHaveKey()`](#expect-toHaveKey)
@@ -405,6 +406,15 @@ Asserts that the value is of type string:
 
 ```php
 expect($string)->toBeString();
+```
+
+<a name="expect-toBeJson"></a>
+### `toBeJson()`
+
+Asserts that the value is a JSON string:
+
+```php
+expect($string)->toBeJson();
 ```
 
 <a name="expect-toBeNan"></a>
