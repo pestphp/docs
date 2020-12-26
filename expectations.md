@@ -414,7 +414,7 @@ expect($string)->toBeString();
 Asserts that the value is a JSON string:
 
 ```php
-expect($string)->toBeJson();
+expect('{"hello":"world"}')->toBeJson();
 ```
 
 <a name="expect-toBeNan"></a>
