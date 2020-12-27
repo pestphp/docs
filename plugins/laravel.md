@@ -31,6 +31,12 @@ composer require pestphp/pest-plugin-laravel --dev
 
 Since Pest is a **progressive testing framework**, your current test suite will still work, even if you run it with the `./vendor/bin/pest` console command.
 
+<style>
+    .collection-method-list a {
+        display: block;
+    }
+</style>
+
 <a name="available-artisan-commands"></a>
 ## Available Artisan Commands
 
@@ -81,6 +87,12 @@ php artisan pest:dataset Emails
 
 As detailed on the [Datasets](/docs/datasets) section, datasets allow you to
 run the same test multiple times with different data.
+
+<style>
+    .collection-method-list a {
+        display: block;
+    }
+</style>
 
 <a name="available-functions"></a>
 ## Available functions

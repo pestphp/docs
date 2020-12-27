@@ -23,6 +23,11 @@ Install the plugin using Composer:
 ```bash
 composer require pestphp/pest-plugin-livewire --dev
 ```
+<style>
+    .collection-method-list a {
+        display: block;
+    }
+</style>
 
 <a name="available-functions"></a>
 ## Available functions

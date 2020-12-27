@@ -25,6 +25,12 @@ Install the plugin using Composer:
 composer require pestphp/pest-plugin-global-assertions --dev
 ```
 
+<style>
+    .collection-method-list a {
+        display: block;
+    }
+</style>
+
 <a name="available-functions"></a>
 ## Available functions
 

@@ -25,10 +25,14 @@ it('asserts true is true', function () {
 });
 ```
 
+<style>
+    .collection-method-list a {
+        display: block;
+    }
+</style>
+
 <a name="available-assertions"></a>
 ## Available Assertions
-
-For the full list of **assertions**, please refer to [PHPUnit Assertions](https://phpunit.readthedocs.io/en/9.0/assertions.html) documentation.
 
 <div class="collection-method-list" markdown="1">
 
@@ -40,6 +44,8 @@ For the full list of **assertions**, please refer to [PHPUnit Assertions](https:
 - [`assertStringContainsString()`](#assertStringContainsString)
 
 </div>
+
+For the full list of **assertions**, please refer to [PHPUnit Assertions](https://phpunit.readthedocs.io/en/9.0/assertions.html) documentation.
 
 <a name="assertTrue"></a>
 ### `assertTrue()`
