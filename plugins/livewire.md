@@ -34,7 +34,7 @@ composer require pestphp/pest-plugin-livewire --dev
 
 <div class="collection-method-list" markdown="1">
 
-- [`livewire()`](#livewire)
+[`livewire()`](#livewire)
 
 </div>
 

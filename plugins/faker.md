@@ -38,7 +38,7 @@ composer require pestphp/pest-plugin-faker --dev
 
 <div class="collection-method-list" markdown="1">
 
-- [`faker()`](#faker)
+[`faker()`](#faker)
 
 </div>
 
