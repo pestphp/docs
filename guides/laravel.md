@@ -13,7 +13,6 @@ description: The Laravel Guide
     - [pest:dataset](#pest-dataset-command)
 - [Traits](#traits)
 - [Laravel Dusk](#laravel-dusk)
-- [Lumen](#lumen)
 
 <a name="overview"></a>
 ## Overview
@@ -186,22 +185,12 @@ it('has homepage', function () {
 });
 ```
 
-> **Note:** You can still use Dusk's regular class-based syntax as you can do with any other tests. 
+> **Note:** You can still use Dusk's regular class-based syntax as you can do with any other tests.
 
 Now, when you run `pest` you will see your Dusk tests as well.
 
 > **Note:** As for now, the Laravel plugin doesn't support Dusk's functions, so you'll have to use them with the `$this` variable as the example above shows.
 
 ---
-
-<a name="lumen"></a>
-## Lumen
-
-> **Note:** To run Pest on Lumen, you must first register the PestServiceProvider in bootstrap/app.php:
-
-```php
-$app->register(Pest\Laravel\PestServiceProvider::class);
-```
-
 
 Next section: [Symfony →](/docs/guides/symfony)
