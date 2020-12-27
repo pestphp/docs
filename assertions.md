@@ -13,7 +13,7 @@ description: Assertions
     - [`assertEquals()`](#assertEquals)
     - [`assertEmpty()`](#assertEmpty)
     - [`assertStringContainsString()`](#assertStringContainsString)
-    
+
 <a name="overview"></a>
 ## Overview
 
@@ -95,5 +95,7 @@ The `assertStringContainsString` asserts the given string exists.
 ```php
 $this->assertStringContainsString('Star', 'Star Wars');
 ```
+
+---
 
 Next section: [Expectations →](/docs/expectations)

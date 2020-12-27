@@ -6,8 +6,8 @@ description: A plugin that adds global assertions back to Pest
 # Global Assertions Plugin
 
 - [Overview](#overview)
-	- [Installation](#installation)
-- [Usage](#usage)
+- [Installation](#installation)
+- [Available Functions](#available-functions)
 
 <a name="overview"></a>
 ## Overview
@@ -17,7 +17,7 @@ The Global Assertions Plugin for Pest provides global functions for assertions t
 **Source code**: [github.com/pestphp/pest-plugin-global-assertions](https://github.com/pestphp/pest-plugin-global-assertions)
 
 <a name="installation"></a>
-### Installation
+## Installation
 
 Install the plugin using Composer:
 
@@ -25,8 +25,8 @@ Install the plugin using Composer:
 composer require pestphp/pest-plugin-global-assertions --dev
 ```
 
-<a name="Usage"></a>
-## Usage
+<a name="available-functions"></a>
+## Available functions
 
 This allows you to do the following, without calling the `$this` object. For a full list of available methods, please refer to [the compiled list](https://github.com/pestphp/pest-plugin-global-assertions/blob/main/src/compiled.php).
 

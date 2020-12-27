@@ -25,5 +25,6 @@ You prefer small nuggets of content? Get the latest Pest related news and discov
 
 [Follow Pest on Twitter](https://twitter.com/pestphp)
 
+---
 
 You want to contribute to Pest? Head on to the next section: [Contribute →](/docs/contribute)

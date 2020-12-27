@@ -54,5 +54,6 @@ it('redirects to user profile', function () {
 
 > **TIP**: You can use custom helpers in higher order tests as if the helper was in the current test case.
 
-Next section: [Exceptions & Errors →](/docs/exceptions-and-errors)
+---
 
+Next section: [Exceptions & Errors →](/docs/exceptions-and-errors)

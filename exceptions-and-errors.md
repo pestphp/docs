@@ -29,4 +29,6 @@ it('throws exception', function () {
 })->throws(Exception::class, 'Something happened.');
 ```
 
+---
+
 Next section: [Groups Of Tests →](/docs/groups)

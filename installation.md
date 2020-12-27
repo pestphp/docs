@@ -34,4 +34,6 @@ php artisan pest:install
 
 ![Install](/assets/img/pestinstall.png)
 
+---
+
 On the next section, we are going to learn how to write tests with Pest: [Writing Tests →](/docs/writing-tests)

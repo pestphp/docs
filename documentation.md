@@ -13,20 +13,14 @@
 	- [Skipping Tests](/docs/skipping-tests)
 	- [Datasets](/docs/datasets)
 	- [Coverage](/docs/coverage)
-- ## Guides
-    - [Command Line](/docs/guides/command-line)
-	- [PHPUnit](/docs/guides/phpunit)	
-	- [Drift](/docs/guides/drift)
-	- [Laravel](/docs/guides/laravel)
-	- [Symfony](/docs/guides/symfony)
-	- [Pest From Scratch](/docs/guides/pest-from-scratch)
-	- [Creating Plugins](/docs/guides/plugins)
+	- [CLI Options](/docs/cli-options)
 - ## Plugins
 	- [Laravel](/docs/plugins/laravel)
 	- [Livewire](/docs/plugins/livewire)
 	- [Faker](/docs/plugins/faker)
 	- [Global Assertions](/docs/plugins/global-assertions)
 	- [Snapshots](/docs/plugins/snapshots)
+	- [Creating Plugins](/docs/plugins/creating-plugins)
 - ## More
 	- [Changelog](/docs/changelog)
 	- [Upgrade Guide](/docs/upgrade-guide)

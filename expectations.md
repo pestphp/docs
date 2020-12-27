@@ -575,4 +575,6 @@ test('numeric ranges', function () {
 
 Those custom expectations may be also placed in your `tests/Pest.php` file.
 
+---
+
 Next section: [Setup And Teardown →](/docs/setup-and-teardown)

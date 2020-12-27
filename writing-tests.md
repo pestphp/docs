@@ -83,7 +83,9 @@ Here is what this example test will return:
 ✓ it asserts true is true
 ```
 
-> **Note**: Notice how, when using the `it` function, your test name gets prepended with 'it' in the 
+> **Note**: Notice how, when using the `it` function, your test name gets prepended with 'it' in the
 returned description.
+
+---
 
 Next section: [Underlying Test Case →](/docs/underlying-test-case)

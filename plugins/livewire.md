@@ -6,8 +6,8 @@ description: The Livewire Plugin
 # Livewire Plugin
 
 - [Overview](#overview)
-	- [Installation](#installation)
-- [Usage](#usage)
+- [Installation](#installation)
+- [Available Functions](#available-functions)
     - [`livewire()`](#livewire)
 
 <a name="overview"></a>
@@ -18,15 +18,15 @@ The Livewire Plugin for Pest provides additional functions for testing your [Liv
 **Source code**: [github.com/pestphp/pest-plugin-livewire](https://github.com/pestphp/pest-plugin-livewire)
 
 <a name="installation"></a>
-### Installation
+## Installation
 
 Install the plugin using Composer:
 ```bash
 composer require pestphp/pest-plugin-livewire --dev
 ```
 
-<a name="usage"></a>
-## Usage
+<a name="available-functions"></a>
+## Available functions
 
 <a name="livewire"></a>
 ### `livewire()`
@@ -62,5 +62,7 @@ it('can be decremented')
 ```
 
 Finally, for the full list of available Livewire methods, please refer to the [Livewire documentation](https://laravel-livewire.com/docs/testing).
+
+---
 
 Next section: [Faker →](/docs/plugins/faker)

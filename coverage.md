@@ -72,4 +72,6 @@ If you are experiencing a `Coverage not found in path: vendor/pestphp/.temp/cove
 </coverage>
 ```
 
-Next section: [Command Line →](/docs/guides/command-line)
+---
+
+Next section: [CLI Options →](/docs/cli-options)

@@ -1,15 +1,15 @@
 ---
-title: Command Line Guide
+title: CLI Options
 description: Documentation of the available command line options.
 ---
 
-# Command Line Runner
+# CLI Options
 
-- [Introduction](#introduction)
-- [Available Command Line options](#available-options)
+- [Overview](#overview)
+- [Available Options](#available-options)
 
-<a name="introduction"></a>
-## Introduction
+<a name="overview"></a>
+## Overview
 
 The Pest command line runner has many available options that can make your testing experience easier.
 
@@ -41,4 +41,6 @@ This option allows you to set a minimum required coverage value. If the coverage
 
 This option allows you to only run a specific list of [grouped tests](/docs/groups). This is a comma-separated list.
 
-Next section: [PHPUnit →](/docs/guides/phpunit)
+---
+
+Next section: [Laravel Plugin →](/docs/plugins/laravel)

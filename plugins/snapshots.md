@@ -6,9 +6,17 @@ description: The Snapshots Plugin
 # Snapshots Plugin
 
 - [Overview](#overview)
-	- [Installation](#installation)
-- [Usage](#usage)
+- [Installation](#installation)
+- [Available Functions](#available-functions)
     - [`assertMatchesSnapshot()`](#assertMatchesSnapshot)
+    - [`assertMatchesFileHashSnapshot()`](#assertMatchesSnapshot)
+    - [`assertMatchesFileSnapshot()`](#assertMatchesSnapshot)
+    - [`assertMatchesHtmlSnapshot()`](#assertMatchesSnapshot)
+    - [`assertMatchesJsonSnapshot()`](#assertMatchesSnapshot)
+    - [`assertMatchesObjectSnapshot()`](#assertMatchesSnapshot)
+    - [`assertMatchesTextSnapshot()`](#assertMatchesSnapshot)
+    - [`assertMatchesXmlSnapshot()`](#assertMatchesSnapshot)
+    - [`assertMatchesYamlSnapshot()`](#assertMatchesSnapshot)
 
 <a name="overview"></a>
 ## Overview
@@ -66,4 +74,6 @@ Also, when you expect a changed value, you may need to run the `-d --update-snap
 ./vendor/bin/pest -d --update-snapshots
 ```
 
-Next section: [Changelog →](/docs/changelog)
+---
+
+Next section: [Creating plugins →](/docs/plugins/creating-plugins)

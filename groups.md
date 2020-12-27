@@ -51,5 +51,6 @@ running Pest on the command-line:
 You still need the `@group` [annotation](https://phpunit.readthedocs.io/en/latest/annotations.html) for them.
 Pest will understand it.
 
+---
 
 Next section: [Skipping Tests →](/docs/skipping-tests)

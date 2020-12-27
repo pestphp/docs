@@ -173,4 +173,6 @@ test('example 2', fn () => dump('test bar'));
 // "afterAll"
 ```
 
+---
+
 Next section: [Higher Order Tests →](/docs/higher-order-tests)

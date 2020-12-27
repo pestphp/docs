@@ -19,7 +19,7 @@ it('has home', function () {
     $this->assertTrue(true);
 
     // \PHPUnit\Framework\TestCase
-    echo get_class($this); 
+    echo get_class($this);
 });
 ```
 
@@ -94,5 +94,6 @@ tests
 phpunit.xml
 ```
 
-Next section: [Assertions →](/docs/assertions)
+---
 
+Next section: [Assertions →](/docs/assertions)

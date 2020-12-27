@@ -61,4 +61,6 @@ use function Pest\Laravel\get;
 get('/')->assertSee('Laravel');
 ```
 
+---
+
 Next section: [Community →](/docs/community)
