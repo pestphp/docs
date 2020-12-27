@@ -10,7 +10,7 @@ description: Installation
 1. First, install Pest via the [Composer](https://getcomposer.org) package manager:
 
 ```bash
-composer require pestphp/pest --dev --update-with-dependencies
+composer require pestphp/pest --dev --with-all-dependencies
 ```
 
 2. **On Laravel**, require the `pest-plugin-laravel` and run the `pest:install` _Artisan_ command:
