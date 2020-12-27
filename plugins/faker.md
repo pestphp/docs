@@ -10,7 +10,6 @@ section: content
 - [Overview](#overview)
 - [Installation](#installation)
 - [Available Functions](#available-functions)
-    - [`faker()`](#faker)
 
 <a name="overview"></a>
 ## Overview
@@ -31,6 +30,12 @@ composer require pestphp/pest-plugin-faker --dev
 <a name="available-functions"></a>
 ## Available functions
 
+<div class="collection-method-list" markdown="1">
+
+- [`faker()`](#faker)
+
+</div>
+
 <a name="faker"></a>
 ### `faker()`
 
@@ -41,6 +46,9 @@ use function Pest\Faker\faker;
 
 it('generates a name using faker', function () {
     $name = faker()->name;
+
+    // Same as:
+    $name = $this->faker()->name;
 
     assertIsString($name);
 });

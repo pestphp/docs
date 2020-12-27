@@ -8,15 +8,6 @@ description: The Snapshots Plugin
 - [Overview](#overview)
 - [Installation](#installation)
 - [Available Functions](#available-functions)
-    - [`assertMatchesSnapshot()`](#assertMatchesSnapshot)
-    - [`assertMatchesFileHashSnapshot()`](#assertMatchesSnapshot)
-    - [`assertMatchesFileSnapshot()`](#assertMatchesSnapshot)
-    - [`assertMatchesHtmlSnapshot()`](#assertMatchesSnapshot)
-    - [`assertMatchesJsonSnapshot()`](#assertMatchesSnapshot)
-    - [`assertMatchesObjectSnapshot()`](#assertMatchesSnapshot)
-    - [`assertMatchesTextSnapshot()`](#assertMatchesSnapshot)
-    - [`assertMatchesXmlSnapshot()`](#assertMatchesSnapshot)
-    - [`assertMatchesYamlSnapshot()`](#assertMatchesSnapshot)
 
 <a name="overview"></a>
 ## Overview
@@ -36,8 +27,22 @@ Install the plugin using Composer:
 composer require spatie/pest-plugin-snapshots --dev
 ```
 
-<a name="usage"></a>
-## Usage
+<a name="available-functions"></a>
+## Available functions
+
+<div class="collection-method-list" markdown="1">
+
+- [`assertMatchesSnapshot()`](#assertMatchesSnapshot)
+- [`assertMatchesFileHashSnapshot()`](#assertMatchesSnapshot)
+- [`assertMatchesFileSnapshot()`](#assertMatchesSnapshot)
+- [`assertMatchesHtmlSnapshot()`](#assertMatchesSnapshot)
+- [`assertMatchesJsonSnapshot()`](#assertMatchesSnapshot)
+- [`assertMatchesObjectSnapshot()`](#assertMatchesSnapshot)
+- [`assertMatchesTextSnapshot()`](#assertMatchesSnapshot)
+- [`assertMatchesXmlSnapshot()`](#assertMatchesSnapshot)
+- [`assertMatchesYamlSnapshot()`](#assertMatchesSnapshot)
+
+</div>
 
 <a name="assertMatchesSnapshot"></a>
 ### `assertMatchesSnapshot()`

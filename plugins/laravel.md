@@ -8,9 +8,6 @@ description: The Laravel Plugin
 - [Overview](#overview)
 - [Installation](#installation)
 - [Available Artisan commands](#available-artisan-commands)
-    - [`pest:install`](#artisan-pest-install)
-    - [`pest:test`](#artisan-pest-test)
-    - [`pest:dataset`](#artisan-pest-dataset)
 - [Available Functions](#available-functions)
 - [Using Test Traits](#using-test-traits)
 - [Tests without description](#tests-without-description)
@@ -36,6 +33,14 @@ Since Pest is a **progressive testing framework**, your current test suite will 
 
 <a name="available-artisan-commands"></a>
 ## Available Artisan Commands
+
+<div class="collection-method-list" markdown="1">
+
+- [`pest:install`](#artisan-pest-install)
+- [`pest:test`](#artisan-pest-test)
+- [`pest:dataset`](#artisan-pest-dataset)
+
+</div>
 
 <a name="artisan-pest-install"></a>
 ### `pest:install`

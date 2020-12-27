@@ -10,7 +10,6 @@ description: The Plugin Creation Guide
 - [Adding uses](#adding-uses)
 - [Adding functions](#adding-functions)
 - [Adding expectations](#adding-expectations)
-- [Tips & Tricks](#tips-tricks)
 
 <a name="overview"></a>
 ## Overview
@@ -122,6 +121,8 @@ function faker(string $locale = null): Generator
 }
 ```
 
+> Inside functions, to access the current test case in your plugin, you can use the global function `test()`.
+
 This provides a `faker()` function inside our tests, by creating an object and returning it.
 Now we can use `Faker` directly and easily in our tests:
 
@@ -163,6 +164,8 @@ expect()->extend('toBeWithinRange', function ($min, $max) {
 });
 ```
 
+> In expectation closures, the `$this` variable is also available to give you access the expectation value.
+
 Finally, to load our extension, we must add or adjust the `autoload` section in the `composer.json` to point to the files we want to load:
 
 ```json
@@ -174,14 +177,6 @@ Finally, to load our extension, we must add or adjust the `autoload` section in 
 ```
 
 Any amount of further files can be added this way. They will be loaded automatically.
-
-
-<a name="tips-tricks"></a>
-## Tips & Tricks
-
-Inside functions, to access the current test case in your plugin, you can use the global function `test()`.
-
-In traits, `$this` is also available to access the current test case.
 
 ---
 

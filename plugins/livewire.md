@@ -8,7 +8,6 @@ description: The Livewire Plugin
 - [Overview](#overview)
 - [Installation](#installation)
 - [Available Functions](#available-functions)
-    - [`livewire()`](#livewire)
 
 <a name="overview"></a>
 ## Overview
@@ -28,6 +27,12 @@ composer require pestphp/pest-plugin-livewire --dev
 <a name="available-functions"></a>
 ## Available functions
 
+<div class="collection-method-list" markdown="1">
+
+- [`livewire()`](#livewire)
+
+</div>
+
 <a name="livewire"></a>
 ### `livewire()`
 
@@ -39,10 +44,20 @@ it('can be incremented', function () {
     livewire(Counter::class)
         ->call('increment')
         ->assertSee(1);
+
+    // Same as:
+    $this->livewire(Counter::class)
+        ->call('increment')
+        ->assertSee(1);
 });
 
 it('can be decremented', function () {
     livewire(Counter::class)
+        ->call('decrement')
+        ->assertSee(-1);
+
+    // Same as:
+    $this->livewire(Counter::class)
         ->call('decrement')
         ->assertSee(-1);
 });
