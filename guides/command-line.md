@@ -23,9 +23,8 @@ Pest defers non-Pest-specific options to PHPUnit, so please refer to [the PHPUni
 This option allows you to initialise a standard Pest configuration, with the following files:
 
 - A `tests` directory.
-- A `phpunit.xml` configuration file.
-- A `tests/Pest.php` file, for configuring your testcases.
-- A `tests/Helpers.php` file, for configuring your [helpers](/docs/helpers).
+- A `phpunit.xml` file that contains the PHPUnit configuration file.
+- A `tests/Pest.php` file that contains the Pest configuration file.
 - A `tests/ExampleTest.php` file, with a default example test.
 
 ### `--coverage`

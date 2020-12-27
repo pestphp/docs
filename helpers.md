@@ -19,17 +19,13 @@ Creating custom helpers can improve readability and reduce the amount of code of
 <a name="usage"></a>
 ## Usage
 
-By default, Pest autoloads the `tests/Helpers.php` file. In this file,
+By default, Pest autoloads the `tests/Pest.php` file. In this file,
 you can place your custom helpers. Of course, if those helpers are specific
 to a test file, you can place them inside of that test file only.
 
 For example, imagine that you want to make a custom helper for the `actingAs` Laravel helper:
 ```php
-<?php // tests/Helpers.php
-
-namespace Tests;
-
-use Illuminate\Contracts\Auth\Authenticatable;
+<?php // tests/Pest.php
 
 /**
  * Set the currently logged in user for the application.
@@ -48,8 +44,6 @@ access to the current test case.
 Now, you can use the `actingAs` helper in your tests:
 ```php
 <?php
-
-use function Tests\actingAs;
 
 it('redirects to user profile', function () {
     $user = factory(User::class)->create();
