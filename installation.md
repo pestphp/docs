@@ -20,7 +20,7 @@ composer require pestphp/pest-plugin-laravel --dev
 php artisan pest:install
 ```
 
-3. **On other projects**, run the `pest --init` command:
+3. **On other projects**, create a `tests` folder and run the `pest --init` command:
 
 ```bash
 ./vendor/bin/pest --init
