@@ -25,12 +25,6 @@ it('asserts true is true', function () {
 });
 ```
 
-<style>
-    .collection-method-list a {
-        display: block;
-    }
-</style>
-
 <a name="available-assertions"></a>
 ## Available Assertions
 

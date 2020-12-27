@@ -39,12 +39,6 @@ Then, you can chain your check(s):
 expect($value)->// chain your checks here
 ```
 
-<style>
-    .collection-method-list a {
-        display: block;
-    }
-</style>
-
 <a name="available-expectations"></a>
 ## Available Expectations
 
