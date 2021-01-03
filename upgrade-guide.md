@@ -5,6 +5,18 @@ description: Upgrade Guide
 
 # Upgrade Guide
 
+## Upgrading To 1.0 From 0.3
+
+#### Estimated Upgrade Time: 1-2 Minutes
+
+> We attempt to document every possible breaking change. Since some of these breaking changes are in obscure parts of the framework only a portion of these changes may actually affect your application.
+
+### Updating Dependencies
+
+Update your `pestphp/pest` dependency to `^1.0` in your `composer.json` file.
+
+If you are using any official plugins, update them to `^1.0` in your `composer.json` file.
+
 ## Upgrading To 0.3 From 0.2
 
 #### Estimated Upgrade Time: 1-2 Minutes
