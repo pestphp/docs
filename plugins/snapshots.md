@@ -32,15 +32,15 @@ composer require spatie/pest-plugin-snapshots --dev
 
 <div class="collection-method-list" markdown="1">
 
-[`assertMatchesSnapshot()`](#assertMatchesSnapshot)
-[`assertMatchesFileHashSnapshot()`](#assertMatchesSnapshot)
-[`assertMatchesFileSnapshot()`](#assertMatchesSnapshot)
-[`assertMatchesHtmlSnapshot()`](#assertMatchesSnapshot)
-[`assertMatchesJsonSnapshot()`](#assertMatchesSnapshot)
-[`assertMatchesObjectSnapshot()`](#assertMatchesSnapshot)
-[`assertMatchesTextSnapshot()`](#assertMatchesSnapshot)
-[`assertMatchesXmlSnapshot()`](#assertMatchesSnapshot)
-[`assertMatchesYamlSnapshot()`](#assertMatchesSnapshot)
+- [`assertMatchesSnapshot()`](#assertMatchesSnapshot)
+- [`assertMatchesFileHashSnapshot()`](#assertMatchesSnapshot)
+- [`assertMatchesFileSnapshot()`](#assertMatchesSnapshot)
+- [`assertMatchesHtmlSnapshot()`](#assertMatchesSnapshot)
+- [`assertMatchesJsonSnapshot()`](#assertMatchesSnapshot)
+- [`assertMatchesObjectSnapshot()`](#assertMatchesSnapshot)
+- [`assertMatchesTextSnapshot()`](#assertMatchesSnapshot)
+- [`assertMatchesXmlSnapshot()`](#assertMatchesSnapshot)
+- [`assertMatchesYamlSnapshot()`](#assertMatchesSnapshot)
 
 </div>
 

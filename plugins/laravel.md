@@ -36,9 +36,9 @@ Since Pest is a **progressive testing framework**, your current test suite will 
 
 <div class="collection-method-list" markdown="1">
 
-[`pest:install`](#artisan-pest-install)
-[`pest:test`](#artisan-pest-test)
-[`pest:dataset`](#artisan-pest-dataset)
+- [`pest:install`](#artisan-pest-install)
+- [`pest:test`](#artisan-pest-test)
+- [`pest:dataset`](#artisan-pest-dataset)
 
 </div>
 

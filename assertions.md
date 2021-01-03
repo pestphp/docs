@@ -30,12 +30,12 @@ it('asserts true is true', function () {
 
 <div class="collection-method-list" markdown="1">
 
-[`assertTrue()`](#assertTrue)
-[`assertFalse()`](#assertFalse)
-[`assertCount()`](#assertCount)
-[`assertEquals()`](#assertEquals)
-[`assertEmpty()`](#assertEmpty)
-[`assertStringContainsString()`](#assertStringContainsString)
+- [`assertTrue()`](#assertTrue)
+- [`assertFalse()`](#assertFalse)
+- [`assertCount()`](#assertCount)
+- [`assertEquals()`](#assertEquals)
+- [`assertEmpty()`](#assertEmpty)
+- [`assertStringContainsString()`](#assertStringContainsString)
 
 </div>
 
