@@ -67,7 +67,7 @@ it('generates a name using faker with locale', function () {
 });
 ```
 
-Finally, for the full list of available Faker methods, please refer to the [Faker documentation](https://github.com/FakerPHP/Faker#formatters).
+Finally, for the full list of available Faker methods, please refer to the [Faker documentation](https://fakerphp.github.io).
 
 ---
 
