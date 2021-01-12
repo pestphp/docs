@@ -14,7 +14,7 @@ description: Custom Helpers
 While Pest is very powerful out-of-the-box, you may have some testing code specific to your
 project that you don't want to repeat in every test.
 
-Creating custom helpers can improve readability and reduce the amount of code of your test suite.
+Creating custom helpers can improve readability and reduce the amount of code in your test suite.
 
 <a name="usage"></a>
 ## Usage

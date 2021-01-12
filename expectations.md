@@ -262,7 +262,7 @@ The contents of `$value` and `$expected` are canonicalized before
 they are compared. For instance, when the two variables are arrays,
 then these arrays are sorted before they are compared.
 When they are objects, each object is converted to an array
-containing all private, protected and public attributes.
+containing all private, protected, and public attributes.
 
 ```php
 expect([4, 2, 1])->toEqualCanonicalizing([2, 4, 1]);
@@ -504,7 +504,7 @@ expect($content)->toEndWith('World');
 <a name="expect-toMatchConstraint"></a>
 ### `toMatchConstraint(Constraint $constraint)`
 
-Asserts that the value matches a specificed [PHPUnit constraint](https://github.com/sebastianbergmann/phpunit/tree/master/src/Framework/Constraint):
+Asserts that the value matches a specified [PHPUnit constraint](https://github.com/sebastianbergmann/phpunit/tree/master/src/Framework/Constraint):
 
 ```php
 use PHPUnit\Framework\Constraint\IsTrue;
