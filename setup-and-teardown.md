@@ -19,7 +19,7 @@ functions that allow you to do that.
 <a name="setup-and-teardown"></a>
 ## Setup and Teardown
 
-Here you can find a list available setup/teardown functions.
+Here you can find a list of available setup/teardown functions.
 
 ### `beforeEach()`
 

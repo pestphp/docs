@@ -1,6 +1,6 @@
 ---
 title: CLI Options
-description: Documentation of the available command line options.
+description: Documentation of the available command-line options.
 ---
 
 # CLI Options
@@ -20,7 +20,7 @@ Pest defers non-Pest-specific options to PHPUnit, so please refer to [the PHPUni
 
 ### `--init`
 
-This option allows you to initialise a standard Pest configuration, with the following files:
+This option allows you to initialize a standard Pest configuration, with the following files:
 
 - A `tests` directory.
 - A `phpunit.xml` file that contains the PHPUnit configuration file.

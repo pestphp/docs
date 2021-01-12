@@ -11,7 +11,7 @@ description: Groups Of Tests
 ## Overview
 
 Optionally, Pest allows you to assign tests to different groups with the `group` method. If you have a bunch of
-tests that are particularly slow, it might be good to add them all to the same group:
+particularly slow tests, it might be good to add them all to the same group:
 
 ```php
 it('has home', function () {
