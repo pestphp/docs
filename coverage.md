@@ -17,7 +17,7 @@ description: Coverage
 **Requires [XDEBUG 2.0+](https://xdebug.org/docs/install/)**, or [PCOV](https://github.com/krakjoe/pcov), or [PHPDBG](https://www.php.net/manual/en/book.phpdbg.php).
 
 Code coverage in Pest tells you which lines of code your test
-suite execute and which lines it doesn’t. Of course, PHPUnit
+suite executes and which lines it doesn’t. Of course, PHPUnit
 offers you a beautiful section about this topic: [Code Coverage Analysis](https://phpunit.readthedocs.io/en/9.0/code-coverage-analysis.html).
 
 <a name="extra-options"></a>
@@ -28,7 +28,7 @@ Now, in this section, we are going to see the extra options that Pest offers.
 <a name="coverage"></a>
 ### `--coverage`
 
-The `--coverage` option, gives you a human readable code coverage
+The `--coverage` option, gives you a human-readable code coverage
 directly on the console.
 
 ```
@@ -56,7 +56,7 @@ for coverage results. If the thresholds are not met, Pest will return failure.
 <a name="filters"></a>
 ## Filters
 
-By default, the PHPUnit [configuration file generated](https://github.com/pestphp/pest-plugin-init/blob/master/stubs/phpunit.xml) by Pest initialisation will include directory coverage for the `app` and `src` directories.
+By default, the PHPUnit [configuration file generated](https://github.com/pestphp/pest-plugin-init/blob/master/stubs/phpunit.xml) by Pest initialization will include directory coverage for the `app` and `src` directories.
 
 Although this covers most libraries and applications, you may need to add more directories to be covered. To do this, you'll need to add a new `<directory>` element inside the `coverage.include` section.
 
@@ -72,4 +72,6 @@ If you are experiencing a `Coverage not found in path: vendor/pestphp/.temp/cove
 </coverage>
 ```
 
-Next section: [Command Line →](/docs/guides/command-line)
+---
+
+Next section: [CLI Options →](/docs/cli-options)

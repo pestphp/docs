@@ -8,9 +8,8 @@ section: content
 # Faker Plugin
 
 - [Overview](#overview)
-	- [Installation](#installation)
-- [Usage](#usage)
-    - [`faker()`](#faker)
+- [Installation](#installation)
+- [Available Functions](#available-functions)
 
 <a name="overview"></a>
 ## Overview
@@ -19,8 +18,8 @@ The Faker Plugin for Pest provides additional functions for using the [Faker](ht
 
 **Source code**: [github.com/pestphp/pest-plugin-faker](https://github.com/pestphp/pest-plugin-faker)
 
-<a name="install"></a>
-## Install
+<a name="installation"></a>
+## Installation
 
 Install the plugin using Composer:
 
@@ -28,8 +27,14 @@ Install the plugin using Composer:
 composer require pestphp/pest-plugin-faker --dev
 ```
 
-<a name="usage"></a>
-## Usage
+<a name="available-functions"></a>
+## Available functions
+
+<div class="collection-method-list" markdown="1">
+
+- [`faker()`](#faker)
+
+</div>
 
 <a name="faker"></a>
 ### `faker()`
@@ -41,7 +46,10 @@ use function Pest\Faker\faker;
 
 it('generates a name using faker', function () {
     $name = faker()->name;
-    
+
+    // Same as:
+    $name = $this->faker()->name;
+
     assertIsString($name);
 });
 ```
@@ -54,11 +62,13 @@ use function Pest\Faker\faker;
 
 it('generates a name using faker with locale', function () {
     $name = faker('fr_FR')->name;
-    
+
     assertIsString($name);
 });
 ```
 
-Finally, for the full list of available Faker methods, please refer to the [Faker documentation](https://github.com/FakerPHP/Faker#formatters).
+Finally, for the full list of available Faker methods, please refer to the [Faker documentation](https://fakerphp.github.io).
+
+---
 
 Next section: [Global Assertions →](/docs/plugins/global-assertions)

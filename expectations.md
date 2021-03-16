@@ -12,6 +12,8 @@ description: Expectations
 <a name="overview"></a>
 ## Overview
 
+> **Note**: The Expectation API can be used in regular PHPUnit projects. For that, you just have to run the following command in your terminal: `composer require pestphp/pest-plugin-expectations --dev`.
+
 In addition to assertions, Pest offers you a set of expectations.
 These functions let you test your values against certain conditions.
 This API is inspired by [Jest](https://jestjs.io/docs/expect).
@@ -37,57 +39,52 @@ Then, you can chain your check(s):
 expect($value)->// chain your checks here
 ```
 
-<style>
-    .collection-method-list a {
-        display: block;
-    }
-</style>
-
 <a name="available-expectations"></a>
 ## Available Expectations
 
 <div class="collection-method-list" markdown="1">
 
-[`and($value)`](#expect-and)
-[`not`](#expect-not)
-[`toBe()`](#expect-toBe)
-[`toBeEmpty()`](#expect-toBeEmpty)
-[`toBeTrue()`](#expect-toBeTrue)
-[`toBeFalse()`](#expect-toBeFalse)
-[`toBeGreaterThan()`](#expect-toBeGreaterThan)
-[`toBeGreaterThanOrEqual()`](#expect-toBeGreaterThanOrEqual)
-[`toBeLessThan()`](#expect-toBeLessThan)
-[`toBeLessThanOrEqual()`](#expect-toBeLessThanOrEqual)
-[`toContain()`](#expect-toContain)
-[`toHaveCount()`](#expect-toHaveCount)
-[`toHaveProperty()`](#expect-toHaveProperty)
-[`toMatchArray()`](#expect-toMatchArray)
-[`toMatchObject()`](#expect-toMatchObject)
-[`toEqual()`](#expect-toEqual)
-[`toEqualCanonicalizing()`](#expect-toEqualCanonicalizing)
-[`toEqualWithDelta()`](#expect-toEqualWithDelta)
-[`toBeInfinite()`](#expect-toBeInfinite)
-[`toBeInstanceOf()`](#expect-toBeInstanceOf)
-[`toBeBool()`](#expect-toBeBool)
-[`toBeCallable()`](#expect-toBeCallable)
-[`toBeFloat()`](#expect-toBeFloat)
-[`toBeInt()`](#expect-toBeInt)
-[`toBeIterable()`](#expect-toBeIterable)
-[`toBeNumeric()`](#expect-toBeNumeric)
-[`toBeObject()`](#expect-toBeObject)
-[`toBeResource()`](#expect-toBeResource)
-[`toBeScalar()`](#expect-toBeScalar)
-[`toBeString()`](#expect-toBeString)
-[`toBeNan()`](#expect-toBeNan)
-[`toBeNull()`](#expect-toBeNull)
-[`toHaveKey()`](#expect-toHaveKey)
-[`toHaveKeys()`](#expect-toHaveKeys)
-[`toBeReadableDirectory()`](#expect-toBeReadableDirectory)
-[`toBeWritableDirectory()`](#expect-toBeWritableDirectory)
-[`toStartWith()`](#expect-toStartWith)
-[`toEndWith()`](#expect-toEndWith)
-[`toMatch()`](#expect-toMatch)
-[`toMatchConstraint()`](#expect-toMatchConstraint)
+- [`and($value)`](#expect-and)
+- [`not`](#expect-not)
+- [`toBe()`](#expect-toBe)
+- [`toBeEmpty()`](#expect-toBeEmpty)
+- [`toBeTrue()`](#expect-toBeTrue)
+- [`toBeFalse()`](#expect-toBeFalse)
+- [`toBeGreaterThan()`](#expect-toBeGreaterThan)
+- [`toBeGreaterThanOrEqual()`](#expect-toBeGreaterThanOrEqual)
+- [`toBeLessThan()`](#expect-toBeLessThan)
+- [`toBeLessThanOrEqual()`](#expect-toBeLessThanOrEqual)
+- [`toContain()`](#expect-toContain)
+- [`toHaveCount()`](#expect-toHaveCount)
+- [`toHaveProperty()`](#expect-toHaveProperty)
+- [`toMatchArray()`](#expect-toMatchArray)
+- [`toMatchObject()`](#expect-toMatchObject)
+- [`toEqual()`](#expect-toEqual)
+- [`toEqualCanonicalizing()`](#expect-toEqualCanonicalizing)
+- [`toEqualWithDelta()`](#expect-toEqualWithDelta)
+- [`toBeInfinite()`](#expect-toBeInfinite)
+- [`toBeInstanceOf()`](#expect-toBeInstanceOf)
+- [`toBeBool()`](#expect-toBeBool)
+- [`toBeCallable()`](#expect-toBeCallable)
+- [`toBeFloat()`](#expect-toBeFloat)
+- [`toBeInt()`](#expect-toBeInt)
+- [`toBeIterable()`](#expect-toBeIterable)
+- [`toBeNumeric()`](#expect-toBeNumeric)
+- [`toBeObject()`](#expect-toBeObject)
+- [`toBeResource()`](#expect-toBeResource)
+- [`toBeScalar()`](#expect-toBeScalar)
+- [`toBeString()`](#expect-toBeString)
+- [`toBeJson()`](#expect-toBeJson)
+- [`toBeNan()`](#expect-toBeNan)
+- [`toBeNull()`](#expect-toBeNull)
+- [`toHaveKey()`](#expect-toHaveKey)
+- [`toHaveKeys()`](#expect-toHaveKeys)
+- [`toBeReadableDirectory()`](#expect-toBeReadableDirectory)
+- [`toBeWritableDirectory()`](#expect-toBeWritableDirectory)
+- [`toStartWith()`](#expect-toStartWith)
+- [`toEndWith()`](#expect-toEndWith)
+- [`toMatch()`](#expect-toMatch)
+- [`toMatchConstraint()`](#expect-toMatchConstraint)
 
 </div>
 
@@ -265,7 +262,7 @@ The contents of `$value` and `$expected` are canonicalized before
 they are compared. For instance, when the two variables are arrays,
 then these arrays are sorted before they are compared.
 When they are objects, each object is converted to an array
-containing all private, protected and public attributes.
+containing all private, protected, and public attributes.
 
 ```php
 expect([4, 2, 1])->toEqualCanonicalizing([2, 4, 1]);
@@ -405,6 +402,15 @@ Asserts that the value is of type string:
 expect($string)->toBeString();
 ```
 
+<a name="expect-toBeJson"></a>
+### `toBeJson()`
+
+Asserts that the value is a JSON string:
+
+```php
+expect('{"hello":"world"}')->toBeJson();
+```
+
 <a name="expect-toBeNan"></a>
 ### `toBeNan()`
 
@@ -498,7 +504,7 @@ expect($content)->toEndWith('World');
 <a name="expect-toMatchConstraint"></a>
 ### `toMatchConstraint(Constraint $constraint)`
 
-Asserts that the value matches a specificed [PHPUnit constraint](https://github.com/sebastianbergmann/phpunit/tree/master/src/Framework/Constraint):
+Asserts that the value matches a specified [PHPUnit constraint](https://github.com/sebastianbergmann/phpunit/tree/master/src/Framework/Constraint):
 
 ```php
 use PHPUnit\Framework\Constraint\IsTrue;
@@ -562,5 +568,7 @@ test('numeric ranges', function () {
 ```
 
 Those custom expectations may be also placed in your `tests/Pest.php` file.
+
+---
 
 Next section: [Setup And Teardown →](/docs/setup-and-teardown)

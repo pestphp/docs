@@ -8,6 +8,45 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [v1.0.3 (2021-03-13)](https://github.com/pestphp/pest/compare/v1.0.2...v1.0.3)
+### Added
+- Support for test extensions ([#269](https://github.com/pestphp/pest/pull/269))
+
+## [v1.0.2 (2021-02-04)](https://github.com/pestphp/pest/compare/v1.0.1...v1.0.2)
+### Added
+- Support for PHPUnit 9.5.2 ([#267](https://github.com/pestphp/pest/pull/267))
+
+## [v1.0.1 (2021-01-18)](https://github.com/pestphp/pest/compare/v1.0.0...v1.0.1)
+### Added
+- Support for PHPUnit 9.5.1 ([#261](https://github.com/pestphp/pest/pull/261))
+
+### Fixed
+- Fix `TestCase@expect` PHPDoc tag ([#251](https://github.com/pestphp/pest/pull/251))
+
+## [v1.0.0 (2021-01-03)](https://github.com/pestphp/pest/compare/v0.3.19...v1.0.0)
+### Added
+- `pest:test --dusk` option ([#245](https://github.com/pestphp/pest/pull/245))
+
+### Changed
+- Stable version
+- Updates init structure ([#240](https://github.com/pestphp/pest/pull/240))
+
+## [v0.3.19 (2020-12-27)](https://github.com/pestphp/pest/compare/v0.3.18...v0.3.19)
+### Fixed
+- Fix binary path in `pest:dusk` command ([#239](https://github.com/pestphp/pest/pull/239))
+
+## [v0.3.18 (2020-12-26)](https://github.com/pestphp/pest/compare/v0.3.17...v0.3.18)
+### Added
+- `toBeJson()` expectation ([plugin-expectations#2](https://github.com/pestphp/pest-plugin-expectations/pull/2))
+
+## [v0.3.17 (2020-12-20)](https://github.com/pestphp/pest/compare/v0.3.16...v0.3.17)
+### Fixed
+- Class inheritance with `depends()` ([#236](https://github.com/pestphp/pest/pull/236))
+
+## [v0.3.16 (2020-12-13)](https://github.com/pestphp/pest/compare/v0.3.15...v0.3.16)
+### Changed
+- Moves expectation API for external plugin ([5d7f262](https://github.com/pestphp/pest/commit/5d7f262f4ab280a660a85900f402eebb23abfda8))
+
 ## [v0.3.15 (2020-12-04)](https://github.com/pestphp/pest/compare/v0.3.14...v0.3.15)
 ### Added
 - Support for PHPUnit 9.5.0 ([#234](https://github.com/pestphp/pest/pull/234))

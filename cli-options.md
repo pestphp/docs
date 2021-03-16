@@ -1,15 +1,15 @@
 ---
-title: Command Line Guide
-description: Documentation of the available command line options.
+title: CLI Options
+description: Documentation of the available command-line options.
 ---
 
-# Command Line Runner
+# CLI Options
 
-- [Introduction](#introduction)
-- [Available Command Line options](#available-options)
+- [Overview](#overview)
+- [Available Options](#available-options)
 
-<a name="introduction"></a>
-## Introduction
+<a name="overview"></a>
+## Overview
 
 The Pest command line runner has many available options that can make your testing experience easier.
 
@@ -20,12 +20,11 @@ Pest defers non-Pest-specific options to PHPUnit, so please refer to [the PHPUni
 
 ### `--init`
 
-This option allows you to initialise a standard Pest configuration, with the following files:
+This option allows you to initialize a standard Pest configuration, with the following files:
 
 - A `tests` directory.
-- A `phpunit.xml` configuration file.
-- A `tests/Pest.php` file, for configuring your testcases.
-- A `tests/Helpers.php` file, for configuring your [helpers](/docs/helpers).
+- A `phpunit.xml` file that contains the PHPUnit configuration file.
+- A `tests/Pest.php` file that contains the Pest configuration file.
 - A `tests/ExampleTest.php` file, with a default example test.
 
 ### `--coverage`
@@ -42,4 +41,6 @@ This option allows you to set a minimum required coverage value. If the coverage
 
 This option allows you to only run a specific list of [grouped tests](/docs/groups). This is a comma-separated list.
 
-Next section: [PHPUnit →](/docs/guides/phpunit)
+---
+
+Next section: [Laravel Plugin →](/docs/plugins/laravel)

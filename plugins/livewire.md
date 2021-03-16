@@ -6,9 +6,8 @@ description: The Livewire Plugin
 # Livewire Plugin
 
 - [Overview](#overview)
-	- [Installation](#installation)
-- [Usage](#usage)
-    - [`livewire()`](#livewire)
+- [Installation](#installation)
+- [Available Functions](#available-functions)
 
 <a name="overview"></a>
 ## Overview
@@ -18,15 +17,21 @@ The Livewire Plugin for Pest provides additional functions for testing your [Liv
 **Source code**: [github.com/pestphp/pest-plugin-livewire](https://github.com/pestphp/pest-plugin-livewire)
 
 <a name="installation"></a>
-### Installation
+## Installation
 
 Install the plugin using Composer:
 ```bash
 composer require pestphp/pest-plugin-livewire --dev
 ```
 
-<a name="usage"></a>
-## Usage
+<a name="available-functions"></a>
+## Available functions
+
+<div class="collection-method-list" markdown="1">
+
+- [`livewire()`](#livewire)
+
+</div>
 
 <a name="livewire"></a>
 ### `livewire()`
@@ -39,10 +44,20 @@ it('can be incremented', function () {
     livewire(Counter::class)
         ->call('increment')
         ->assertSee(1);
+
+    // Same as:
+    $this->livewire(Counter::class)
+        ->call('increment')
+        ->assertSee(1);
 });
 
 it('can be decremented', function () {
     livewire(Counter::class)
+        ->call('decrement')
+        ->assertSee(-1);
+
+    // Same as:
+    $this->livewire(Counter::class)
         ->call('decrement')
         ->assertSee(-1);
 });
@@ -62,5 +77,7 @@ it('can be decremented')
 ```
 
 Finally, for the full list of available Livewire methods, please refer to the [Livewire documentation](https://laravel-livewire.com/docs/testing).
+
+---
 
 Next section: [Faker →](/docs/plugins/faker)

@@ -25,7 +25,7 @@ phpunit.xml
 
 To write a test, create a file in the `Unit` or `Feature` directory,
 and make sure its filename ends with the `..Test.php` suffix.
-Then, all you need inside this file is a function which runs your test:
+Then, all you need inside this file is a function that runs your test:
 
 ```php
 <?php
@@ -83,7 +83,9 @@ Here is what this example test will return:
 ✓ it asserts true is true
 ```
 
-> **Note**: Notice how, when using the `it` function, your test name gets prepended with 'it' in the 
+> **Note**: Notice how, when using the `it` function, your test name gets prepended with 'it' in the
 returned description.
+
+---
 
 Next section: [Underlying Test Case →](/docs/underlying-test-case)

@@ -7,13 +7,7 @@ description: Assertions
 
 - [Overview](#overview)
 - [Available Assertions](#available-assertions)
-    - [`assertTrue()`](#assertTrue)
-    - [`assertFalse()`](#assertFalse)
-    - [`assertCount()`](#assertCount)
-    - [`assertEquals()`](#assertEquals)
-    - [`assertEmpty()`](#assertEmpty)
-    - [`assertStringContainsString()`](#assertStringContainsString)
-    
+
 <a name="overview"></a>
 ## Overview
 
@@ -33,6 +27,17 @@ it('asserts true is true', function () {
 
 <a name="available-assertions"></a>
 ## Available Assertions
+
+<div class="collection-method-list" markdown="1">
+
+- [`assertTrue()`](#assertTrue)
+- [`assertFalse()`](#assertFalse)
+- [`assertCount()`](#assertCount)
+- [`assertEquals()`](#assertEquals)
+- [`assertEmpty()`](#assertEmpty)
+- [`assertStringContainsString()`](#assertStringContainsString)
+
+</div>
 
 For the full list of **assertions**, please refer to [PHPUnit Assertions](https://phpunit.readthedocs.io/en/9.0/assertions.html) documentation.
 
@@ -95,5 +100,7 @@ The `assertStringContainsString` asserts the given string exists.
 ```php
 $this->assertStringContainsString('Star', 'Star Wars');
 ```
+
+---
 
 Next section: [Expectations →](/docs/expectations)

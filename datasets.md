@@ -103,4 +103,6 @@ it('has emails', function ($email) {
 });
 ```
 
+---
+
 Next section: [Coverage →](/docs/coverage)
