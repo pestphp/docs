@@ -21,8 +21,8 @@ suite executes and which lines it doesn’t. Of course, PHPUnit
 offers you a beautiful section about this topic: [Code Coverage Analysis](https://phpunit.readthedocs.io/en/9.0/code-coverage-analysis.html).
 
 > If you're running Xdebug you need to make sure that coverage is enabled in Xdebug. The easiest way to do this is to set the `XDEBUG_MODE` environment
-> variable to `coverage` before running your tests
-> `XDEBUG_MODE=coverage ./vendor/bin/pest --coverage`
+> variable to `coverage` before running your tests.
+> e.g. `XDEBUG_MODE=coverage ./vendor/bin/pest --coverage`
  
 <a name="extra-options"></a>
 ## Extra Options
