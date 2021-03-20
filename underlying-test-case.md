@@ -85,6 +85,7 @@ In some cases it is not enough to just add the trait with `uses()`, for these si
 uses(CreatesApplication::class);
 
 beforeEach()->createApplication();
+```
 
 ## `tests/Pest.php`
 
