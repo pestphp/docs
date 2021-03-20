@@ -93,7 +93,7 @@ root directory of your tests folder. No worries, that file
 is autoloaded automatically.
 It's an ideal place to recursively bind traits and classes to your tests with the `uses()` function.
 
-```
+```php
 tests
     - Unit/ComponentTest.php
     - Feature/HomeTest.php
