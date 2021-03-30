@@ -13,7 +13,7 @@ description: Assertions
 
 By now you've caught a glimpse of some available assertions. They
 are the ones that actually perform the checks to ensure that things
-are going as planned. foo
+are going as planned.
 
 Remember, the `$this` variable inside the given
 closure in tests is always bound to a Test Case class. Therefore
