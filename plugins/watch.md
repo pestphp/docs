@@ -23,7 +23,7 @@ fswatch --version
 composer require pestphp/pest-plugin-watch --dev
 ```
 
-This will add a new option to your Pest CLI so you can start watching any updates on your `tests/` folder.
+This will add a new `--watch` option to your Pest CLI so you can start watching any updates on your `tests/` folder.
 
 **Just start Pest with the following command:**
 
@@ -31,4 +31,4 @@ This will add a new option to your Pest CLI so you can start watching any update
 pest --watch # Night gathers, and now my watch begins
 ```
 
-Next section: [Changelog →](/docs/changelog)
+Next section: [Creating Plugins →](/docs/plugins/creating-plugins)

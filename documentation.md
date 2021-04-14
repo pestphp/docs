@@ -20,8 +20,8 @@
 	- [Faker](/docs/plugins/faker)
 	- [Global Assertions](/docs/plugins/global-assertions)
 	- [Snapshots](/docs/plugins/snapshots)
-	- [Creating Plugins](/docs/plugins/creating-plugins)
 	- [Watch](/docs/plugins/watch)
+	- [Creating Plugins](/docs/plugins/creating-plugins)
 - ## More
 	- [Changelog](/docs/changelog)
 	- [Upgrade Guide](/docs/upgrade-guide)

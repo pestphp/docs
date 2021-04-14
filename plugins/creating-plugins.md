@@ -180,4 +180,4 @@ Any amount of further files can be added this way. They will be loaded automatic
 
 ---
 
-Next section: [Watch Plugin →](/docs/plugins/watch)
+Next section: [Changelog →](/docs/changelog)
