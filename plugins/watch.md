@@ -58,7 +58,7 @@ By default, the Watch plugin observes the following directories:
 <a name="custom-directories"></a>
 ## Custom directories
 
-If you need to watch a custom set of directories, provide a comma-separated list to the `--watch` flag.
+If you need to watch a custom set of directories, just provide a comma-separated list to the `--watch` flag.
 
 Example:
 
