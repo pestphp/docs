@@ -5,9 +5,21 @@ description: The Watch Plugin
 
 # Watch Plugin
 
+- [Overview](#overview)
+- [Installation](#installation)
+- [Running Watch](#running-watch)
+- [Default directories](#default-directories)
+- [Custom directories](#custom-directories)
+
+<a name="overview"></a>
+## Overview
+
+The Watch plugin keeps an eye on your application and automatically runs your Pest tests when you change files inside specific [directories](#default-directories).
+
 > Note: This is still a development package and needs further testing.
 
-The Watch plugin for Pest keeps an eye on your `tests/`, `app/`, and `src/` directories by default and automatically run your Pest tests on file change.
+<a name="installation"></a>
+## Installation 
 
 Follow these two steps to install it:
 
@@ -23,18 +35,37 @@ fswatch --version
 composer require pestphp/pest-plugin-watch --dev
 ```
 
-This will add a new `--watch` option to your Pest CLI so you can start watching any updates to your code.
+Once the installation is finished, your Pest CLI will have a new `--watch`  option available.
 
-**Just start Pest with the following command:**
+<a name="running-watch"></a>
+## Running Watch
+
+Running `pest --watch` starts Pest in watch mode and, from this point on, any file modification inside the [directories](#default-directories) will trigger Pest to run your tests.
 
 ```bash
 pest --watch # Night gathers, and now my watch begins
 ```
 
-To watch a custom set of directories, provide a comma-separated list to the `--watch` flag as shown below:
+<a name="default-directories"></a>
+## Default directories
+
+By default, the Watch plugin observes the following directories:
+
+- `tests/`
+- `app/`
+- `src/`
+
+<a name="custom-directories"></a>
+## Custom directories
+
+If you need to watch a custom set of directories, just provide a comma-separated list to the `--watch` flag.
+
+Example:
 
 ```bash
-pest --watch=lib,tests
+pest --watch=app,routes,tests
 ```
+
+The command will watch the `app`, `routes`, and `tests` directories.
 
 Next section: [Creating Plugins →](/docs/plugins/creating-plugins)
