@@ -7,6 +7,7 @@ description: Setup and Teardown
 
 - [Overview](#overview)
 - [Setup and Teardown](#setup-and-teardown)
+- [Reusable (Shared) Setup and Teardown](#reusable-shared-setup-and-teardown)
 - [Example](#example)
 
 <a name="overview"></a>
@@ -147,6 +148,23 @@ test('bar', function () {
 // afterAll
 ```
 
+<a name="reusable-shared-setup-and-teardown"></a>
+## Reusable (Shared) Setup and Teardown
+
+At some point, you may need (or want) to share some kind of test scenario setup
+or teardown procedure. Doing this is very easy, using the exact same tools used
+in the previous section, only this time we combine it with the
+[`uses()` function](/docs/underlying-test-case#uses)!
+
+```php
+// Pest.php
+uses()->in('Feature/Dashboard')
+    ->beforeEach(fn () => $this->actingAs(User::first()));
+```
+
+**_All_ setup & teardown methods** described on this page are available for
+reuse/sharing like this! `beforeEach()` is only used as one example.
+
 <a name="example"></a>
 ## Example
 
@@ -171,6 +189,50 @@ test('example 2', fn () => dump('test bar'));
 // "test bar"
 // "afterEach"
 // "afterAll"
+```
+
+Again! Except this time we will use all the global (reusable/shared hooks) we
+possibly can, and combine them with the local hooks in the previous example to
+show execution order.
+
+```php
+// tests/Pest.php
+uses()
+    ->beforeAll(fn () => dump(1))
+    ->beforeEach(fn () => dump(2))
+    ->afterEach(fn () => dump(3))
+    ->afterAll(fn () => dump(4))
+    ->in('Unit');
+```
+
+```php
+// tests/Unit/MyTest.php
+uses()
+    ->beforeAll(fn () => dump('a'))
+    ->beforeEach(fn () => dump('b'))
+    ->afterEach(fn () => dump('c'))
+    ->afterAll(fn () => dump('d'));
+
+beforeAll(fn () => dump('i'));
+beforeEach(fn () => dump('ii'));
+afterEach(fn () => dump('iii'));
+afterAll(fn () => dump('iv'));
+
+test('order', fn () => dump('foo'));
+
+// 1
+// a
+// i
+// 2
+// b
+// ii
+// foo
+// 3
+// c
+// iii
+// 4
+// d
+// iv
 ```
 
 ---

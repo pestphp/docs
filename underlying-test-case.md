@@ -26,9 +26,10 @@ it('has home', function () {
 In real-world applications, you may have to change it, and for that, you
 can call the `uses` function:
 
+<a name="uses"></a>
 ### `uses()`
 
-The `uses` function binds a class and/or trait to your test files.
+The `uses` function binds a class, trait and/or closure to your test files.
 This is how you would bind a trait to your current file:
 
 ```php
@@ -40,7 +41,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 uses(RefreshDatabase::class);
 ```
 
-The `in()` function lets you use the given class and/or trait recursively inside the specified folder:
+The `in()` function lets you use the given class, trait, or closure recursively
+inside the specified folder:
 
 ```php
 <?php
@@ -64,6 +66,10 @@ uses(TestCase::class)->in('Feature');
 
 // Uses the given trait in the "Unit" folder recursively
 uses(RefreshDatabase::class)->in('Unit');
+
+// Uses the given `beforeEach` setup closure in the "Regression" folder recursively
+// the same can be done for `beforeall`, `afterEach` and `afterAll`
+uses()->beforeEach(fn () => dump('foo'))->in('Regression');
 ```
 
 
