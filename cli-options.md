@@ -43,4 +43,4 @@ This option allows you to only run a specific list of [grouped tests](/docs/grou
 
 ---
 
-Next section: [Laravel Plugin →](/docs/plugins/laravel)
+Next section: [Infection Support →](/docs/infection)
