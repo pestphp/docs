@@ -29,7 +29,10 @@ composer require infection/infection --dev
 Then, you can run Infection directly from the command line:
 
 ```bash
-vendor/bin/infection --test-framework=pest --show-mutations
+./vendor/bin/infection --test-framework=pest --show-mutations
+
+# With XDebug
+XDEBUG_MODE=coverage ./vendor/bin/infection --test-framework=pest --show-mutations
 ```
 
 ---
