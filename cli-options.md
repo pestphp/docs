@@ -43,4 +43,4 @@ This option allows you to only run a specific list of [grouped tests](/docs/grou
 
 ---
 
-Next section: [Infection Support →](/docs/infection)
+Next section: [Mutation Testing →](/docs/mutation-testing)
