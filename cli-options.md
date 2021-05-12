@@ -47,4 +47,4 @@ This option allows you to specify the directory that will be used to gather the 
 
 ---
 
-Next section: [Laravel Plugin →](/docs/plugins/laravel)
+Next section: [Mutation Testing →](/docs/mutation-testing)

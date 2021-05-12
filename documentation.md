@@ -14,6 +14,7 @@
 	- [Datasets](/docs/datasets)
 	- [Coverage](/docs/coverage)
 	- [CLI Options](/docs/cli-options)
+	- [Infection Support](/docs/infection)
 - ## Plugins
 	- [Laravel](/docs/plugins/laravel)
 	- [Livewire](/docs/plugins/livewire)
