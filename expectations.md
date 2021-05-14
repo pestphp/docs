@@ -45,6 +45,7 @@ expect($value)->// chain your checks here
 <div class="collection-method-list" markdown="1">
 
 - [`and($value)`](#expect-and)
+- [`each`](#expect-each)
 - [`not`](#expect-not)
 - [`toBe()`](#expect-toBe)
 - [`toBeEmpty()`](#expect-toBeEmpty)
@@ -96,6 +97,18 @@ Pass a new value to the `and` function to chain multiple expectations in a singl
 
 ```php
 expect($id)->toBe(14)->and($name)->toBe('Nuno');
+```
+
+<a name="expect-each"></a>
+### `each`
+
+Use the `each` modifier before a check to create an expectation on each item of the iterable "value".
+
+```php
+expect([1, 2, 3])->each->toBeInt();
+expect([1, 2, 3])->each->not->toBeString();
+
+expect([1, 2, 3])->each(fn ($number) => $number->toBeLessThan(4));
 ```
 
 <a name="expect-not"></a>
