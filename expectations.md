@@ -102,7 +102,7 @@ expect($id)->toBe(14)->and($name)->toBe('Nuno');
 <a name="expect-each"></a>
 ### `each`
 
-Use the `each` modifier on an expectation to create an expectation on each item of the given iterable "value".
+Use the `each` modifier to create an expectation on each item of the given iterable:
 
 ```php
 expect([1, 2, 3])->each->toBeInt();
