@@ -23,7 +23,7 @@ Although Pest is framework agnostic, it was built with Laravel in mind. The Lara
 <a name="installation"></a>
 ## Installation
 
-Install the plugin using Composer:
+Install the Laravel Plugin via the Composer package manager:
 
 ```bash
 composer require pestphp/pest-plugin-laravel --dev

@@ -14,10 +14,11 @@
 	- [Datasets](/docs/datasets)
 	- [Coverage](/docs/coverage)
 	- [CLI Options](/docs/cli-options)
-	- [Mutation Testing](/docs/mutation-testing)
 - ## Plugins
 	- [Laravel](/docs/plugins/laravel)
 	- [Livewire](/docs/plugins/livewire)
+	- [Mock](/docs/plugins/mock)
+	- [Mutation Testing](/docs/plugins/mutation-testing)
 	- [Faker](/docs/plugins/faker)
 	- [Global Assertions](/docs/plugins/global-assertions)
 	- [Snapshots](/docs/plugins/snapshots)

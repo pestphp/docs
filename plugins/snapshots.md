@@ -21,7 +21,8 @@ about snapshot testing here: [sebastiandedeyne.com/a-package-for-snapshot-testin
 
 <a name="installation"></a>
 ### Installation
-Install the plugin using Composer:
+
+Install the Snapshots Plugin via the Composer package manager:
 
 ```bash
 composer require spatie/pest-plugin-snapshots --dev

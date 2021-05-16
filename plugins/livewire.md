@@ -19,7 +19,8 @@ The Livewire Plugin for Pest provides additional functions for testing your [Liv
 <a name="installation"></a>
 ## Installation
 
-Install the plugin using Composer:
+Install the Livewire Plugin via the Composer package manager:
+
 ```bash
 composer require pestphp/pest-plugin-livewire --dev
 ```
@@ -80,4 +81,4 @@ Finally, for the full list of available Livewire methods, please refer to the [L
 
 ---
 
-Next section: [Faker →](/docs/plugins/faker)
+Next section: [Mock →](/docs/plugins/mock.md)

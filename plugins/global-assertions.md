@@ -19,7 +19,7 @@ The Global Assertions Plugin for Pest provides global functions for assertions t
 <a name="installation"></a>
 ## Installation
 
-Install the plugin using Composer:
+Install the Global Assertions Plugin via the Composer package manager:
 
 ```bash
 composer require pestphp/pest-plugin-global-assertions --dev

@@ -19,17 +19,15 @@ The Watch plugin keeps an eye on your application and automatically runs your Pe
 > Note: This is still a development package and needs further testing.
 
 <a name="installation"></a>
-## Installation 
+## Installation
 
-Follow these two steps to install it:
-
-1. [**Install fswatch**](https://github.com/emcrisostomo/fswatch#getting-fswatch) on your machine, or check if you already have it:
+First, [**install fswatch**](https://github.com/emcrisostomo/fswatch#getting-fswatch) on your machine, or check if you already have it:
 
 ```bash
 fswatch --version
 ```
 
-2. Install the Watch plugin using Composer:
+Then, install the Watch Plugin via the Composer package manager:
 
 ```bash
 composer require pestphp/pest-plugin-watch --dev

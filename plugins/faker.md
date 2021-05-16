@@ -21,7 +21,7 @@ The Faker Plugin for Pest provides additional functions for using the [Faker](ht
 <a name="installation"></a>
 ## Installation
 
-Install the plugin using Composer:
+Install the Faker Plugin via the Composer package manager:
 
 ```bash
 composer require pestphp/pest-plugin-faker --dev

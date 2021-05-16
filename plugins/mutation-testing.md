@@ -37,4 +37,4 @@ XDEBUG_MODE=coverage ./vendor/bin/infection --test-framework=pest --show-mutatio
 
 ---
 
-Next section: [Laravel Plugin →](/docs/plugins/laravel)
+Next section: [Faker Plugin →](/docs/plugins/faker)
