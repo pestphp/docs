@@ -8,7 +8,6 @@ description: The Mock Plugin
 - [Overview](#overview)
 - [Installation](#installation)
 - [Available Functions](#available-functions)
-- [Available Functions](#available-functions)
 
 <a name="overview"></a>
 ## Overview
