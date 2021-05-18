@@ -47,6 +47,7 @@ expect($value)->// chain your checks here
 - [`and($value)`](#expect-and)
 - [`each`](#expect-each)
 - [`not`](#expect-not)
+- [`sequence()`](#expect-sequence)
 - [`toBe()`](#expect-toBe)
 - [`toBeEmpty()`](#expect-toBeEmpty)
 - [`toBeTrue()`](#expect-toBeTrue)
@@ -118,6 +119,19 @@ Use the `not` modifier before a check to invert it:
 
 ```php
 expect($id)->not->toBe(14);
+```
+
+<a name="expect-sequence"></a>
+### `sequence`
+
+Use the `sequence` method to specify a sequential set of expectations for each item of the given iterable:
+
+```php
+expect([1, 2, 3])->sequence(
+    fn ($number) => $number->toBe(1),
+    fn ($number) => $number->toBe(2),
+    fn ($number) => $number->toBe(3),
+);
 ```
 
 <a name="expect-toBe"></a>
