@@ -21,6 +21,8 @@ In unit tests, mock objects simulate the behaviour of real objects. They are com
 <a name="installation"></a>
 ### Installation
 
+> **NOTE:** This plugin requires PHP 8 or later due to the use of named parameters.
+
 Install the Mock Plugin via the Composer package manager:
 
 ```bash
