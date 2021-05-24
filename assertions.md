@@ -39,7 +39,7 @@ it('asserts true is true', function () {
 
 </div>
 
-For the full list of **assertions**, please refer to [PHPUnit Assertions](https://phpunit.readthedocs.io/en/9.0/assertions.html) documentation.
+For the full list of **assertions**, please refer to [PHPUnit Assertions](https://phpunit.readthedocs.io/en/9.5/assertions.html) documentation.
 
 <a name="assertTrue"></a>
 ### `assertTrue()`
