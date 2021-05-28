@@ -45,7 +45,7 @@ Since Pest is a **progressive testing framework**, your current test suite will 
 <a name="artisan-pest-install"></a>
 ### `pest:install`
 
-The `pest:install` Artisan command creates the `test/Pest.php` file in your tests folder:
+The `pest:install` Artisan command creates the `tests/Pest.php` file in your tests folder:
 
 ```
 php artisan pest:install
