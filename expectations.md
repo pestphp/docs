@@ -134,6 +134,17 @@ expect([1, 2, 3])->sequence(
 );
 ```
 
+You can also use the `sequence` method with associative iterables. Each closure receives the value as an expectation for 
+the first argument, and the key as an expectation for the second argument: 
+
+```php
+expect(['hello' => 'world', 'foo' => 'bar', 'john' => 'doe'])->sequence(
+    fn ($value, $key) => $value->toEqual('hello'),
+    fn ($value, $key) => $key->toEqual('foo'),
+    fn ($value, $key) => $value->toBeString(),
+);
+```
+
 <a name="expect-toBe"></a>
 ### `toBe()`
 
