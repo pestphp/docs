@@ -45,6 +45,7 @@ expect($value)->// chain your checks here
 <div class="collection-method-list" markdown="1">
 
 - [`and($value)`](#expect-and)
+- [`dd()`](#expect-dd)
 - [`each`](#expect-each)
 - [`not`](#expect-not)
 - [`sequence()`](#expect-sequence)
@@ -98,6 +99,20 @@ Pass a new value to the `and` function to chain multiple expectations in a singl
 
 ```php
 expect($id)->toBe(14)->and($name)->toBe('Nuno');
+```
+
+<a name="expect-dd"></a>
+### `dd()`
+
+Dumps the current expectation value and ends the script:
+
+```php
+expect(14)->dd(); // 14
+
+expect([1, 2])->sequence(
+    fn ($number) => $number->toBe(1),
+    fn ($number) => $number->dd(), // 2
+);
 ```
 
 <a name="expect-each"></a>
