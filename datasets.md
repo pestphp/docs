@@ -10,7 +10,7 @@ description: Datasets
     - [Inline Datasets](#inline-datasets)
     - [Shared Datasets](#shared-datasets)
     - [Lazy Datasets](#lazy-datasets)
-    - [Combining Multiple Datasets](#matrix-datasets)
+    - [Combining Datasets](#combining-datasets)
 
 <a name="overview"></a>
 ## Overview
@@ -106,71 +106,26 @@ it('has emails', function ($email) {
 
 ---
 
-<a name="matrix-datasets"></a>
-### Combining multiple datasets
+<a name="combining-datasets"></a>
+### Combining datasets
 
-Multiple (both **inline** and **external**) datasets can be combined in order to generate a new dataset with a [cartesian product](https://en.wikipedia.org/wiki/Cartesian_product) approach. This means that you can obtain complex datasets with a simple approach:
+Both, **inline** and **external**, datasets can be combined to generate a new dataset with a [cartesian product](https://en.wikipedia.org/wiki/Cartesian_product) approach. This means that you can obtain complex datasets with a simple approach:
 
 ```php
-dataset('days_of_week', [
-    'Sunday',
+dataset('days_of_the_week', [
     'Monday',
     'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
+    // ...
 ]);
 
-it('can generate awesome code', function($developer, $dayOfWeek){
-    expect(new Developer($develoepr)->codeOn($dayOfWeek))->toBeAwesome();
+test('business hours', function($business, $day) {
+    expect($business)->isOpen($day)->toBeTrue();
 })->with([
-    'Nuno',  
-    'Owen',  
-    'Oliver',  
-    'Fabio',  
+    Bar::class,  
+    Restaurant::class,
 ])->with('days_of_week');
 ```
 
-this example wil result in executing the test with the following dataset:
-
-```
-[
-  ['Nuno', 'Sunday'],
-  ['Nuno', 'Monday'],
-  ['Nuno', 'Tuesday'],
-  
-   ...
-  
-  ['Owen', 'Tuesday'],
-  ['Owen', 'Monday'],
-  ['Owen', 'Tuesday'],
-  
-   ...
-  
-  ['Oliver', 'Tuesday'],
-  ['Oliver', 'Monday'],
-  ['Oliver', 'Tuesday'],
-  
-   ...and so on
-]
-```
-
-a more readable approach to combine multiple datasets (usually with small or named datasets) is to puth them in the same `with` method:
-
-```php
-it('can generate awesome code', function($developer, $dayOfWeek){
-    expect(new Developer($develoepr)->codeOn($dayOfWeek))->toBeAwesome();
-})->with('developers', 'days_of_week');
-```
-
-**bonus:** you are not limited to only two datasets, byt can combine any number of them 
-
-```php
-it('can generate awesome code, at any time, everywhere', function($developer, $dayOfWeek){
-    expect(new Developer($develoepr)->codeOn($dayOfWeek))->toBeAwesome();
-})->with('developers', 'days_of_week', 'hours_of_day', 'places');
-```
 ---
 
 Next section: [Coverage →](/docs/coverage)
