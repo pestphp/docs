@@ -44,11 +44,6 @@ expect($value)->// chain your checks here
 
 <div class="collection-method-list" markdown="1">
 
-- [`and($value)`](#expect-and)
-- [`dd()`](#expect-dd)
-- [`each`](#expect-each)
-- [`not`](#expect-not)
-- [`sequence()`](#expect-sequence)
 - [`toBe()`](#expect-toBe)
 - [`toBeEmpty()`](#expect-toBeEmpty)
 - [`toBeTrue()`](#expect-toBeTrue)
@@ -88,77 +83,13 @@ expect($value)->// chain your checks here
 - [`toEndWith()`](#expect-toEndWith)
 - [`toMatch()`](#expect-toMatch)
 - [`toMatchConstraint()`](#expect-toMatchConstraint)
+- [`and($value)`](#expect-and)
+- [`dd()`](#expect-dd)
+- [`each`](#expect-each)
+- [`not`](#expect-not)
+- [`sequence()`](#expect-sequence)
 
 </div>
-
-
-<a name="expect-and"></a>
-### `and($value)`
-
-Pass a new value to the `and` function to chain multiple expectations in a single test:
-
-```php
-expect($id)->toBe(14)->and($name)->toBe('Nuno');
-```
-
-<a name="expect-dd"></a>
-### `dd()`
-
-Dumps the current expectation value and ends the script:
-
-```php
-expect(14)->dd(); // 14
-
-expect([1, 2])->sequence(
-    fn ($number) => $number->toBe(1),
-    fn ($number) => $number->dd(), // 2
-);
-```
-
-<a name="expect-each"></a>
-### `each`
-
-Use the `each` modifier to create an expectation on each item of the given iterable:
-
-```php
-expect([1, 2, 3])->each->toBeInt();
-expect([1, 2, 3])->each->not->toBeString();
-
-expect([1, 2, 3])->each(fn ($number) => $number->toBeLessThan(4));
-```
-
-<a name="expect-not"></a>
-### `not`
-
-Use the `not` modifier before a check to invert it:
-
-```php
-expect($id)->not->toBe(14);
-```
-
-<a name="expect-sequence"></a>
-### `sequence`
-
-Use the `sequence` method to specify a sequential set of expectations for each item of the given iterable:
-
-```php
-expect([1, 2, 3])->sequence(
-    fn ($number) => $number->toBe(1),
-    fn ($number) => $number->toBe(2),
-    fn ($number) => $number->toBe(3),
-);
-```
-
-You can also use the `sequence` method with associative iterables. Each closure receives the value as an expectation for 
-the first argument, and the key as an expectation for the second argument: 
-
-```php
-expect(['hello' => 'world', 'foo' => 'bar', 'john' => 'doe'])->sequence(
-    fn ($value, $key) => $value->toEqual('hello'),
-    fn ($value, $key) => $key->toEqual('foo'),
-    fn ($value, $key) => $value->toBeString(),
-);
-```
 
 <a name="expect-toBe"></a>
 ### `toBe()`
@@ -603,6 +534,89 @@ class IsValidUrlConstraint extends \PHPUnit\Framework\Constraint\Constraint
 ```
 
 > Custom constraints should extend `PHPUnit\Framework\Constraint\Constraint`, and provide a `matches()` and `toString()` method, and optionally override the `evaluate()` method.
+
+
+<a name="expect-and"></a>
+### `and($value)`
+
+Pass a new value to the `and` function to chain multiple expectations in a single test:
+
+```php
+expect($id)->toBe(14)->and($name)->toBe('Nuno');
+```
+
+<a name="expect-dd"></a>
+### `dd()`
+
+Dumps the current expectation value and ends the script:
+
+```php
+expect(14)->dd(); // 14
+
+expect([1, 2])->sequence(
+    fn ($number) => $number->toBe(1),
+    fn ($number) => $number->dd(), // 2
+);
+```
+
+<a name="expect-each"></a>
+### `each`
+
+Use the `each` modifier to create an expectation on each item of the given iterable:
+
+```php
+expect([1, 2, 3])->each->toBeInt();
+expect([1, 2, 3])->each->not->toBeString();
+
+expect([1, 2, 3])->each(fn ($number) => $number->toBeLessThan(4));
+```
+
+<a name="expect-not"></a>
+### `not`
+
+Use the `not` modifier before a check to invert it:
+
+```php
+expect($id)->not->toBe(14);
+```
+
+<a name="expect-sequence"></a>
+### `sequence`
+
+Use the `sequence` method to specify a sequential set of expectations for each item of the given iterable:
+
+```php
+expect([1, 2, 3])->sequence(
+    fn ($number) => $number->toBe(1),
+    fn ($number) => $number->toBe(2),
+    fn ($number) => $number->toBe(3),
+);
+```
+
+You can also use the `sequence` method with associative iterables. Each closure receives the value as an expectation for 
+the first argument, and the key as an expectation for the second argument: 
+
+```php
+expect(['hello' => 'world', 'foo' => 'bar', 'john' => 'doe'])->sequence(
+    fn ($value, $key) => $value->toEqual('hello'),
+    fn ($value, $key) => $key->toEqual('foo'),
+    fn ($value, $key) => $value->toBeString(),
+);
+```
+
+<a name="expect-ray"></a>
+### `ray()`
+
+Debug the current expectation value with **[myray.app](https://myray.app/)**:
+
+```php
+expect(14)->ray(); // 14
+
+expect([1, 2])->sequence(
+    fn ($number) => $number->toBe(1),
+    fn ($number) => $number->ray(), // 2
+);
+```
 
 <a name="custom-expectations"></a>
 ## Custom Expectations
