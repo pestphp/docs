@@ -7,7 +7,7 @@ description: Skipping Tests
 
 - [Overview](#overview)
 - [Running a single test](#running-single-test)
-- [Writing a Pending Test](#writing-pending-test)
+- [Incomplete tests](#incomplete-tests)
 
 <a name="overview"></a>
 ## Overview
@@ -56,8 +56,8 @@ it('has home', function () {
 
 > Please be aware that `->only()` requires all tests to be written with Pest test functions to work correctly.
 
-<a name="writing-pending-test"></a>
-## Writing a Pending Test
+<a name="incomplete-tests"></a>
+## Incomplete tests
 
 If you’d like to remind yourself to come back and write a test later, just
 omit the closure expression to define a pending test:
@@ -66,7 +66,7 @@ omit the closure expression to define a pending test:
 it('has home');
 ```
 
-Behind the scenes, Pest will mark this test as risky as it does not perform any assertion.
+Behind the scenes, Pest will mark this test as incomplete.
 
 ---
 
