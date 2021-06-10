@@ -85,9 +85,10 @@ expect($value)->// chain your checks here
 - [`toMatchConstraint()`](#expect-toMatchConstraint)
 - [`and($value)`](#expect-and)
 - [`dd()`](#expect-dd)
-- [`each`](#expect-each)
-- [`not`](#expect-not)
+- [`each()`](#expect-each)
+- [`not()`](#expect-not)
 - [`sequence()`](#expect-sequence)
+- [`ray()`](#expect-ray)
 
 </div>
 
@@ -548,7 +549,7 @@ expect($id)->toBe(14)->and($name)->toBe('Nuno');
 <a name="expect-dd"></a>
 ### `dd()`
 
-Dumps the current expectation value and ends the script:
+Use the `dd` method to dumps the current expectation value and ends the script:
 
 ```php
 expect(14)->dd(); // 14
@@ -560,7 +561,7 @@ expect([1, 2])->sequence(
 ```
 
 <a name="expect-each"></a>
-### `each`
+### `each()`
 
 Use the `each` modifier to create an expectation on each item of the given iterable:
 
@@ -572,7 +573,7 @@ expect([1, 2, 3])->each(fn ($number) => $number->toBeLessThan(4));
 ```
 
 <a name="expect-not"></a>
-### `not`
+### `not()`
 
 Use the `not` modifier before a check to invert it:
 
@@ -581,7 +582,7 @@ expect($id)->not->toBe(14);
 ```
 
 <a name="expect-sequence"></a>
-### `sequence`
+### `sequence()`
 
 Use the `sequence` method to specify a sequential set of expectations for each item of the given iterable:
 
@@ -607,7 +608,7 @@ expect(['hello' => 'world', 'foo' => 'bar', 'john' => 'doe'])->sequence(
 <a name="expect-ray"></a>
 ### `ray()`
 
-Debug the current expectation value with **[myray.app](https://myray.app/)**:
+Use the `ray` method to debug the current expectation value with **[myray.app](https://myray.app/)**:
 
 ```php
 expect(14)->ray(); // 14
