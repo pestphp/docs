@@ -624,7 +624,7 @@ expect([1, 2])->sequence(
 
 ## Higher Order Expectations
 
-Pest also gives you the power to access properties and methods from the expectation value itself. As an example, imagine you're testing that a `User` can be created within your system. You might want to test that a variety of attributes have been stored correctly:
+Pest also gives you the power to access properties from `arrays` and `objects` - and even methods on `objects`. As an example, imagine you're testing that a `User` can be created within your system. You might want to test that a variety of attributes have been stored correctly:
 
 ```php
 expect($user->first_name)->toEqual('Nuno');
@@ -641,9 +641,15 @@ expect($user)
     ->withTitle('Mr')->toEqual('Mr Nuno Maduro');
 ```
 
-Pest takes care of retrieving the property or calling the method on the item under test - and can even pass parameters to methods.
+To see arrays in action, imagine you have a data set to perform assertions on:
 
-> Higher order expectations can be created for `arrays` and `objects`.
+```php
+expect(['name' => 'Nuno', 'companies' => ['Pest', 'Laravel']])
+    ->name->toEqual('Nuno')
+    ->companies->toHaveCount(2)->each->toBeString
+```
+
+Pest takes care of retrieving the property or calling the method on the item under test - and can even pass parameters to methods.
 
 Higher order expectations can be used with all of [Pest's expectations](#available-expectations). Which means you can create tests that are both powerful and elegant - even creating further higher order expectations within [`each()`](#expect-each) and [`sequence()`](#expect-sequence) closures:
 
