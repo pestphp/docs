@@ -57,7 +57,7 @@ test('some service', function () {
 
 When using the `expect(callable ...$methods)` method, you will be creating an expectation that each given method should be called at least once and return the given callable result.
 
-Of course, while the `expect(callable ...$methods)` method addresses most of the tradicional mocking needs, you may have more complex cases that require to use the underyling Mockery mock instance:
+Of course, while the `expect(callable ...$methods)` method addresses most of the traditional mocking needs, you may have more complex cases that require to use the underlying Mockery mock instance:
 
 ```php
 test('some service', function () {
