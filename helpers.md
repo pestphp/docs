@@ -56,4 +56,4 @@ it('redirects to user profile', function () {
 
 ---
 
-Next section: [Exceptions & Errors →](/docs/exceptions-and-errors)
+Next section: [IDE Plugins →](/docs/ide-plugins)
