@@ -13,7 +13,7 @@ Your help is welcome to make Pest even more robust.
 <a name="pest"></a>
 ## Pest
 
-Did you found a bug? You have an idea to improve the Pest developer experience? You should open a GitHub issue. And if you have a working solution, feel free to submit a pull request. All contributions are welcome.
+Did you find a bug? You have an idea to improve the Pest developer experience? You should open a GitHub issue. And if you have a working solution, feel free to submit a pull request. All contributions are welcome.
 
 [Pest GitHub repository →](https://github.com/pestphp/pest)
 
