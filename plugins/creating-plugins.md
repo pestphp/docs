@@ -31,8 +31,8 @@ Edit _composer.json_ and adjust the fields `name` and `description` to fit your 
 
 Methods can also be added for the `$this` variable inside closures, or to higher order tests.
 
-We are going to add a trait and tell Pest to use it. We are going to call our imaginery plugin `MyPlugin`.
-For writing your own plugin, choice your own name and make sure you adjust all occurences in the following code.
+We are going to add a trait and tell Pest to use it. We are going to call our imaginary plugin `MyPlugin`.
+For writing your own plugin, choice your own name and make sure you adjust all occurrences in the following code.
 
 First, let's create our trait directly in `src/MyPluginTrait.php`:
 

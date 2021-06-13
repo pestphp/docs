@@ -217,7 +217,7 @@ expect($user)->toMatchArray([
 <a name="expect-toMatchObject"></a>
 ### `toMatchObject($object)`
 
-Asserts that the `$value` object matches a subsetof the properties of an given `$object`:
+Asserts that the `$value` object matches a subset of the properties of a given `$object`:
 
 ```php
 $user = new stdClass();
