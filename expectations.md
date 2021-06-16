@@ -422,6 +422,19 @@ Asserts that the value array contains the provided `$key`:
 expect($array)->toHaveKey('key-a');
 ```
 
+You may pass a second parameter to assert that the value at the given key is equal to something:
+
+```php
+expect(['foo' => 'bar'])->toHaveKey('foo', 'bar');
+```
+
+This expectation also supports dot notation for reaching deeper into nested arrays:
+
+```php
+expect(['user' => ['nuno' => 'maduro']])->toHaveKey('user.nuno');
+expect(['user' => ['nuno' => 'maduro']])->toHaveKey('user.nuno', 'maduro');
+```
+
 <a name="expect-toHaveKeys"></a>
 ### `toHaveKeys(array $keys)`
 
@@ -429,6 +442,12 @@ Asserts that the value array contains the provided `$keys`:
 
 ```php
 expect($array)->toHaveKeys(['key-a', 'key-b']);
+```
+
+This expectation also supports dot notation for reaching deeper into nested arrays:
+
+```php
+expect(['user' => ['nuno' => 'maduro', 'luke' => 'downing']])->toHaveKeys(['user.nuno', 'user.luke']);
 ```
 
 <a name="expect-toBeDirectory"></a>
