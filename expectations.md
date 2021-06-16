@@ -688,6 +688,15 @@ expect($user)
     );
 ```
 
+Your Higher Order Expectations can reach as deep into an object or associative array as you like. Once you perform one
+or more of [Pest's expectations](#available-expectations), the expectation's scope will reset to the initial value again:
+
+```php
+expect($user)
+    ->companies->first()->owner->toBeInstanceOf(User::class)->not->toEqual($user)
+    ->name->toEqual('Nuno');
+```
+
 <a name="custom-expectations"></a>
 ## Custom Expectations
 
