@@ -648,6 +648,8 @@ expect([1, 2])->sequence(
 
 ## Higher Order Expectations
 
+> **NOTE:** You cannot call methods and properties on your expectation value that conflict with methods in the `Expectation` API using Higher Order Expectations.
+
 You may create expectations on `methods` or `properties` of the original expectation value. As an example, imagine you're testing that a `User` can be created within your system. You might want to test that a variety of attributes have been stored correctly:
 
 ```php
