@@ -62,7 +62,7 @@ for coverage results. If the thresholds are not met, Pest will return failure.
 <a name="filters"></a>
 ## Filters
 
-By default, the PHPUnit [configuration file generated](https://github.com/pestphp/pest-plugin-init/blob/master/stubs/phpunit.xml) by Pest initialization will include directory coverage for the `app` and `src` directories.
+By default, the PHPUnit [configuration file generated](https://github.com/pestphp/pest/blob/master/stubs/init/phpunit.xml) by Pest initialization will include directory coverage for the `app` and `src` directories.
 
 Although this covers most libraries and applications, you may need to add more directories to be covered. To do this, you'll need to add a new `<directory>` element inside the `coverage.include` section.
 
