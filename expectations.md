@@ -623,6 +623,13 @@ expect(['hello' => 'world', 'foo' => 'bar', 'john' => 'doe'])->sequence(
 );
 ```
 
+If you just want to check that each value in the iterable is equal to another value, you can pass the expected value
+directly instead of using a closure:
+
+```php
+expect(['foo', 'bar', 'baz'])->sequence('foo', 'bar', 'baz');
+```
+
 <a name="expect-ray"></a>
 ### `ray()`
 
