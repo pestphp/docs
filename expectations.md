@@ -545,7 +545,21 @@ Pass a new value to the `and` function to chain multiple expectations in a singl
 expect($id)->toBe(14)->and($name)->toBe('Nuno');
 ```
 
-<a name="expect-dd"></a>
+<a name="expect-json"></a>
+### `json()`
+
+Pass a JSON string to the `json` method to assert it is a valid JSON and chain other expectations:
+
+```php
+expect('{"name":"Nuno","credit":1000.00}')
+    ->json()
+    ->toHaveCount(2)
+    ->name->toBe('Nuno')
+    ->credit->toBeFloat();
+);
+```
+
+<aname="expect-dd"></a>
 ### `dd()`
 
 Use the `dd` method to dumps the current expectation value and ends the script:
