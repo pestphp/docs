@@ -559,7 +559,7 @@ expect('{"name":"Nuno","credit":1000.00}')
 );
 ```
 
-<aname="expect-dd"></a>
+<a name="expect-dd"></a>
 ### `dd()`
 
 Use the `dd` method to dumps the current expectation value and ends the script:
