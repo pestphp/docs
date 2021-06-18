@@ -83,6 +83,7 @@ expect($value)->// chain your checks here
 - [`toMatch()`](#expect-toMatch)
 - [`toMatchConstraint()`](#expect-toMatchConstraint)
 - [`and($value)`](#expect-and)
+- [`json()`](#expect-json)
 - [`dd()`](#expect-dd)
 - [`each()`](#expect-each)
 - [`not()`](#expect-not)
