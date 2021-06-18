@@ -557,7 +557,6 @@ expect('{"name":"Nuno","credit":1000.00}')
     ->toHaveCount(2)
     ->name->toBe('Nuno')
     ->credit->toBeFloat();
-);
 ```
 
 <a name="expect-dd"></a>
