@@ -46,7 +46,7 @@ Now, you can use the `actingAs` helper in your tests:
 <?php
 
 it('redirects to user profile', function () {
-    $user = factory(User::class)->create();
+    $user = User::factory()->create();
 
     actingAs($user)->get('/profile')->assertSee($user->name);
 });
