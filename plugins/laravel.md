@@ -9,6 +9,7 @@ description: The Laravel Plugin
 - [Installation](#installation)
 - [Available Artisan commands](#available-artisan-commands)
 - [Available Functions](#available-functions)
+- [Available Expectations](#available-expectations)
 - [Using Test Traits](#using-test-traits)
 - [Tests without description](#tests-without-description)
 - [Laravel Dusk](#laravel-dusk)
@@ -99,6 +100,20 @@ it('has a welcome page', function () {
     // Same as:
     $this->get('/')->assertStatus(200);
 });
+```
+
+<a name="available-expectations"></a>
+## Available Expectations
+
+Laravel Plugin offers you a set of additional expectations.
+
+<a name="expect-toBeCollection"></a>
+### `toBeCollection()`
+
+Asserts that the value is an instance of `\Illuminate\Support\Collection`
+
+```php
+expect(collect([1, 2, 3]))->toBeCollection();
 ```
 
 <a name="using-test-traits"></a>
