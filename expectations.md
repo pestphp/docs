@@ -423,6 +423,19 @@ Asserts that the value array contains the provided `$key`:
 expect($array)->toHaveKey('key-a');
 ```
 
+You may pass a second parameter to assert that the value at the given key is equal to something:
+
+```php
+expect(['foo' => 'bar'])->toHaveKey('foo', 'bar');
+```
+
+This expectation also supports dot notation for reaching deeper into nested arrays:
+
+```php
+expect(['user' => ['nuno' => 'maduro']])->toHaveKey('user.nuno');
+expect(['user' => ['nuno' => 'maduro']])->toHaveKey('user.nuno', 'maduro');
+```
+
 <a name="expect-toHaveKeys"></a>
 ### `toHaveKeys(array $keys)`
 
@@ -430,6 +443,12 @@ Asserts that the value array contains the provided `$keys`:
 
 ```php
 expect($array)->toHaveKeys(['key-a', 'key-b']);
+```
+
+This expectation also supports dot notation for reaching deeper into nested arrays:
+
+```php
+expect(['user' => ['nuno' => 'maduro', 'luke' => 'downing']])->toHaveKeys(['user.nuno', 'user.luke']);
 ```
 
 <a name="expect-toBeDirectory"></a>
@@ -618,6 +637,13 @@ expect(['hello' => 'world', 'foo' => 'bar', 'john' => 'doe'])->sequence(
 );
 ```
 
+If you just want to check that each value in the iterable is equal to another value, you can pass the expected value
+directly instead of using a closure:
+
+```php
+expect(['foo', 'bar', 'baz'])->sequence('foo', 'bar', 'baz');
+```
+
 <a name="expect-ray"></a>
 ### `ray()`
 
@@ -635,6 +661,8 @@ expect([1, 2])->sequence(
 <a name="higher-order-expectations"></a>
 
 ## Higher Order Expectations
+
+> **NOTE:** You cannot call methods and properties on your expectation value that conflict with methods in the `Expectation` API using Higher Order Expectations.
 
 You may create expectations on `methods` or `properties` of the original expectation value. As an example, imagine you're testing that a `User` can be created within your system. You might want to test that a variety of attributes have been stored correctly:
 
@@ -674,6 +702,15 @@ expect($user)
         fn ($post) => $post->title->toEqual('My first post!'),
         fn ($post) => $post->title->toEqual('My second post')
     );
+```
+
+Your Higher Order Expectations can reach as deep into an object or associative array as you like. Once you perform one
+or more of [Pest's expectations](#available-expectations), the expectation's scope will reset to the initial value again:
+
+```php
+expect($user)
+    ->companies->first()->owner->toBeInstanceOf(User::class)->not->toEqual($user)
+    ->name->toEqual('Nuno');
 ```
 
 <a name="custom-expectations"></a>
