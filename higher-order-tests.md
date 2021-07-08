@@ -39,8 +39,8 @@ it('writes to the database after the command is run')
     ->assertDatabaseHas('users', ['id' => 1]);
 ```
 
-If you want to perform an expectation on a runtime value in higher order tests, you can pass a closure
-to the `expect` method:
+If you want to perform an expectation on a runtime value in higher order tests, you can pass 
+a closure to the `expect` method:
 
 ```php
 it('points to the correct URL')
