@@ -30,7 +30,23 @@ test('true is true', function () {
 
 Pest will properly delegate to any given method and its arguments of the test itself.
 
-> **Warning**:  You can't access runtime helpers in Laravel, like `route`, with higher-order tests.
+Sometimes, you'll need to access methods not available until runtime. Higher order tests provide
+the `tap` method, which receives a closure and executes the code inside:
+
+```php
+it('writes to the database after the command is run')
+    ->tap(fn() => $this->artisan('your-command'))
+    ->assertDatabaseHas('users', ['id' => 1]);
+```
+
+If you want to perform an expectation on a runtime value in higher order tests, you can pass a closure
+to the `expect` method:
+
+```php
+it('points to the correct URL')
+    ->expect(fn() => route('dashboard'))
+    ->toBe('http://example.com/dashboard');
+```
 
 The exact same rules apply to global functions like `beforeEach` or `afterEach`. Let's
 take a look at an example using the Laravel Framework:
