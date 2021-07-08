@@ -36,6 +36,14 @@ it('has home', function () {
 })->skip(true === true, 'Home page not available');
 ```
 
+You may use a callable for the condition, which has access to the underlying test case:
+```php
+it('has home', function () {
+    // ..
+})->skip(fn() => DB::getDriverName() === 'mysql', 'Only runs when using mysql');
+```
+
+
 And it also works with higher order tests:
 ```php
 it('works with higher order testing')
