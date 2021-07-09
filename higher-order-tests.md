@@ -59,6 +59,17 @@ it('has home')
     ->assertSee('Hello World');
 ```
 
+Pest also provides support for [higher order expectations](/docs/expectations#higher-order-expectations)
+when writing higher order tests:
+
+```php
+test('the user has the correct values')
+    ->expect(fn() => Auth::user())
+    ->first_name->toEqual('Nuno')
+    ->last_name->toEqual('Maduro')
+    ->withTitle('Mr')->toEqual('Mr Nuno Maduro');
+```
+
 ---
 
 Next section: [Custom Helpers →](/docs/helpers)
