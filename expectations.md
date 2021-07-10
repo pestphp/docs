@@ -44,6 +44,7 @@ expect($value)->// chain your checks here
 <div class="collection-method-list" markdown="1">
 
 - [`toBe()`](#expect-toBe)
+- [`toBeArray()`](#expect-toBeArray)
 - [`toBeEmpty()`](#expect-toBeEmpty)
 - [`toBeTrue()`](#expect-toBeTrue)
 - [`toBeFalse()`](#expect-toBeFalse)
