@@ -22,12 +22,21 @@ it('throws exception', function () {
 ```
 
 If you wish to assert the exception message too, you need to give
-a second argument to the `throws` method.
+a second argument to the `throws` method:
 ```php
 it('throws exception', function () {
     throw new Exception('Something happened.');
 })->throws(Exception::class, 'Something happened.');
 ```
+
+If you're only interested in the message, and the exception type
+isn't important, you can just provide the message by itself:
+```php
+it('throws exception', function () {
+    throw new Exception('Something happened.');
+})->throws('Something happened.');
+```
+
 
 ---
 
