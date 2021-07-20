@@ -537,7 +537,7 @@ Asserts that the value matches a custom constraint:
 expect('https://google.com')->toMatchConstraint(new IsValidUrlConstraint());
 class IsValidUrlConstraint extends \PHPUnit\Framework\Constraint\Constraint
 {
-    public function toString()
+    public function toString(): string
     {
         return 'is a valid url';
     }
