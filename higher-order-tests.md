@@ -6,6 +6,7 @@ description: Higher Order Tests
 # Higher Order Tests
 
 - [Overview](#overview)
+- [Working with Datasets](#working-with-datasets)
 
 <a name="overview"></a>
 ## Overview
@@ -68,6 +69,23 @@ test('the user has the correct values')
     ->first_name->toEqual('Nuno')
     ->last_name->toEqual('Maduro')
     ->withTitle('Mr')->toEqual('Mr Nuno Maduro');
+```
+
+## Working with Datasets
+
+When working with [datasets](/docs/datasets), Pest allows you to access the dataset values in higher order
+tests when using the `expect`, `and` or `tap` methods:
+
+```php
+it('validates the user names')
+    ->with('badUsernames')
+    ->expect(fn($name) => ValidateUserName::isValid($name)) // We receive the data as a parameter to `expect`
+    ->toBeFalse();
+
+it('inserts a user in the database')
+    ->with('users')
+    ->tap(fn($name, $email) => User::create(['name' => $name, 'email' => $email])) // You may receive multiple arguments
+    ->assertDatabaseHas('users', 1);
 ```
 
 ---
