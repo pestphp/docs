@@ -66,6 +66,8 @@ it('has artisan', function () {
 // artisan
 ```
 
+> Note that you cannot bind `$this` to `beforeAll` in this same way, because `beforeAll` is not executed in the context of every test closure like `beforeEach`.
+
 ### `afterEach()`
 
 The function `afterEach()` runs the given closure after each test
