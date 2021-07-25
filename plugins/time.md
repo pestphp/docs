@@ -3,7 +3,7 @@ title: Time Plugin
 description: The Time Plugin
 ---
 
-# Snapshots Plugin
+# Time Plugin
 
 - [Overview](#overview)
 - [Installation](#installation)
