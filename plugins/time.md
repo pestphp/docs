@@ -17,7 +17,7 @@ The Time Plugin for Pest allows you to control the flow of time in your Pest tes
 **Source code**: [github.com/spatie/pest-plugin-test-time](https://github.com/spatie/pest-plugin-test-time)
 
 <a name="installation"></a>
-### Installation
+## Installation
 
 Install the Time Plugin via the Composer package manager:
 
