@@ -53,7 +53,7 @@ testTime()->freeze('2021-01-02 12:34:56');
 \Carbon\Carbon::now()->format('Y-m-d H:i:s') // returns '2021-01-02 12:34:56';
 ```
 
-## Changing the time
+### Changing the time
 
 You can change the time, by calling any of the `add` and `sub` functions that are available on `Carbon`.
 
