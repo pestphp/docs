@@ -22,6 +22,7 @@
 	- [Faker](/docs/plugins/faker)
 	- [Global Assertions](/docs/plugins/global-assertions)
 	- [Snapshots](/docs/plugins/snapshots)
+    - [Time](/docs/plugins/time)
 	- [Watch](/docs/plugins/watch)
 	- [Creating Plugins](/docs/plugins/creating-plugins)
 - ## More
