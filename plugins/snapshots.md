@@ -82,4 +82,4 @@ Also, when you expect a changed value, you may need to run the `-d --update-snap
 
 ---
 
-Next section: [Watch Plugin →](/docs/plugins/watch)
+Next section: [Time Plugin →](/docs/plugins/time)
