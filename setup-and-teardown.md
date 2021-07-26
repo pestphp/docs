@@ -158,8 +158,9 @@ in the previous section, only this time we combine it with the
 
 ```php
 // Pest.php
-uses()->in('Feature/Dashboard')
-    ->beforeEach(fn () => $this->actingAs(User::first()));
+uses()
+    ->beforeEach(fn () => $this->actingAs(User::first()))
+    ->in('Feature/Dashboard');
 ```
 
 **_All_ setup & teardown methods** described on this page are available for
