@@ -60,6 +60,7 @@ expect($value)->// chain your checks here
 - [`toEqual()`](#expect-toEqual)
 - [`toEqualCanonicalizing()`](#expect-toEqualCanonicalizing)
 - [`toEqualWithDelta()`](#expect-toEqualWithDelta)
+- [`toBeIn()`](#expect-toBeIn)
 - [`toBeInfinite()`](#expect-toBeInfinite)
 - [`toBeInstanceOf()`](#expect-toBeInstanceOf)
 - [`toBeBool()`](#expect-toBeBool)
@@ -269,6 +270,15 @@ expect(14)->toEqualWithDelta(10, 5);
 
 // Fail
 expect(14)->toEqualWithDelta(10, 0.1);
+```
+
+<a name="expect-toBeIn"></a>
+### `toBeIn()`
+
+Asserts that the value is one of the given values.
+
+```php
+expect($response->httpCode)->toBeIn([200, 301, 302]);
 ```
 
 <a name="expect-toBeInfinite"></a>
