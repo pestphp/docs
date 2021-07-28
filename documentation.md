@@ -18,6 +18,7 @@
 	- [Laravel](/docs/plugins/laravel)
 	- [Livewire](/docs/plugins/livewire)
 	- [Mock](/docs/plugins/mock)
+  	- [Money](/docs/plugins/money)
 	- [Mutation Testing](/docs/plugins/mutation-testing)
 	- [Faker](/docs/plugins/faker)
 	- [Global Assertions](/docs/plugins/global-assertions)
