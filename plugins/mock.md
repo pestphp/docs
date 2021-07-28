@@ -74,4 +74,4 @@ For the full list of available methods, please refer to the **[Mockery documenta
 
 ---
 
-Next section: [Mutation Testing Plugin →](/docs/plugins/mutation-testing)
+Next section: [Money Plugin →](/docs/plugins/money)
