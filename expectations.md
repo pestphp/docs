@@ -170,12 +170,13 @@ expect($count)->toBeLessThanOrEqual(2);
 ```
 
 <a name="expect-toContain"></a>
-### `toContain($needle)`
+### `toContain($needles)`
 
-Asserts that the needle is an element of the value:
+Asserts that all given needles are elements of the value:
 
 ```php
-expect($content)->toContain('Hello World');
+expect("Hello World")->toContain('Hello');
+expect([1, 2, 3, 4])->toContain(2, 4);
 ```
 
 <a name="expect-toHaveCount"></a>
