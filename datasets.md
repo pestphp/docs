@@ -116,12 +116,12 @@ in Laravel applications, you might want a dataset of `User` models that have bee
 Pest allows you to do this using bound datasets:
 
 ```php
-it('can calculate the full name of a user', function(User $user, string $fullName) {
-    expect($user->full_name)->toBe($fullName);
+it('can calculate the full name of a user', function(User $user) {
+    expect($user->full_name)->toBe("{$user->first_name} {$user->last_name}");
 })->with([
-    fn() => [User::factory()->create(['first_name' => 'Nuno', 'last_name' => 'Maduro']), 'Nuno Maduro'],
-    fn() => [User::factory()->create(['first_name' => 'Luke', 'last_name' => 'Downing']), 'Luke Downing'],
-    fn() => [User::factory()->create(['first_name' => 'Freek', 'last_name' => 'Van Der Herten']), 'Freek Van Der Herten'],
+    fn() => User::factory()->create(['first_name' => 'Nuno', 'last_name' => 'Maduro']),
+    fn() => User::factory()->create(['first_name' => 'Luke', 'last_name' => 'Downing']),
+    fn() => User::factory()->create(['first_name' => 'Freek', 'last_name' => 'Van Der Herten']),
 ]);
 ```
 
