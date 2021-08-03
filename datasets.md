@@ -10,6 +10,7 @@ description: Datasets
     - [Inline Datasets](#inline-datasets)
     - [Shared Datasets](#shared-datasets)
     - [Lazy Datasets](#lazy-datasets)
+    - [Bound Datasets](#bound-datasets)
     - [Combining Datasets](#combining-datasets)
 
 <a name="overview"></a>
@@ -101,6 +102,38 @@ it('has emails', function ($email) {
 })->with(function () {
     yield 'enunomaduro@gmail.com';
     yield 'other@example.com';
+});
+```
+
+---
+
+<a name="bound-datasets"></a>
+### Bound Datasets
+
+Sometimes, it's helpful to have a dataset that is resolved *after* the `beforeEach` method of your tests. For example,
+in Laravel applications, you might want a dataset of `User` models that have been persisted to the database.
+
+Pest allows you to do this using bound datasets:
+
+```php
+it('can calculate the full name of a user', function(User $user, string $fullName) {
+    expect($user->full_name)->toBe($fullName);
+})->with([
+    fn() => [User::factory()->create(['first_name' => 'Nuno', 'last_name' => 'Maduro']), 'Nuno Maduro'],
+    fn() => [User::factory()->create(['first_name' => 'Luke', 'last_name' => 'Downing']), 'Luke Downing'],
+    fn() => [User::factory()->create(['first_name' => 'Freek', 'last_name' => 'Van Der Herten']), 'Freek Van Der Herten'],
+]);
+```
+
+> **Note:** You can access the TestCase using `$this` inside of the closure.
+
+Shared datasets may also have bound access:
+
+```php
+dataset('users', function () {
+    yield fn() => User::factory()->blocked()->create()
+    yield fn() => User::factory()->unverified()->create()
+    yield fn() => User::factory()->inactive()->create()
 });
 ```
 
