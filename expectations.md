@@ -47,7 +47,9 @@ expect($value)->// chain your checks here
 - [`toBeArray()`](#expect-toBeArray)
 - [`toBeEmpty()`](#expect-toBeEmpty)
 - [`toBeTrue()`](#expect-toBeTrue)
+- [`toBeTruthy()`](#expect-toBeTruthy)
 - [`toBeFalse()`](#expect-toBeFalse)
+- [`toBeFalsy()`](#expect-toBeFalsy)
 - [`toBeGreaterThan()`](#expect-toBeGreaterThan)
 - [`toBeGreaterThanOrEqual()`](#expect-toBeGreaterThanOrEqual)
 - [`toBeLessThan()`](#expect-toBeLessThan)
@@ -124,6 +126,16 @@ Asserts that the value is true:
 expect($published)->toBeTrue();
 ```
 
+<a name="expect-toBeTruthy"></a>
+### `toBeTruthy()`
+
+Asserts that the value is truthy:
+
+```php
+expect(1)->toBeTruthy();
+expect('1')->toBeTruthy();
+```
+
 <a name="expect-toBeFalse"></a>
 ### `toBeFalse()`
 
@@ -131,6 +143,16 @@ Asserts that the value is false:
 
 ```php
 expect($archived)->toBeFalse();
+```
+
+<a name="expect-toBeFalsy"></a>
+### `toBeFalsy()`
+
+Asserts that the value is falsy:
+
+```php
+expect(0)->toBeFalsy();
+expect('')->toBeFalsy();
 ```
 
 <a name="expect-toBeGreaterThan"></a>
