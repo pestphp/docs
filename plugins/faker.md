@@ -71,4 +71,4 @@ Finally, for the full list of available Faker methods, please refer to the [Fake
 
 ---
 
-Next section: [Global Assertions →](/docs/plugins/global-assertions)
+Next section: [Global Assertions Plugin →](/docs/plugins/global-assertions)

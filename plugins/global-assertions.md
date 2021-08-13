@@ -40,4 +40,4 @@ This plugin is a good temporary helper when upgrading to [the Expectations API](
 
 ---
 
-Next section: [Snapshots →](/docs/plugins/snapshots)
+Next section: [Laravel Plugin →](/docs/plugins/laravel)
