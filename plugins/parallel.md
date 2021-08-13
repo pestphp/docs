@@ -30,21 +30,21 @@ composer require pestphp/pest-plugin-parallel --dev
 <a name="usage"></a>
 ## Usage
 
-Once installed, running your tests in parallel is as simple as tagging `--parallel` or `-P` onto the standard pest command:
+Once installed, running your tests in parallel is as simple as tagging `--parallel` or `-p` onto the standard pest command:
 
 ```bash
 ./vendor/bin/pest --parallel
 
 # Shorthand...
-./vendor/bin/pest -P
+./vendor/bin/pest -p
 ```
 
 By default, the Parallel plugin will consume as many processes as you have threads on your computer. You can 
-always tweak this manually with the `-p` option:
+always tweak this manually with the `--processes` option:
 
 ```bash
 # Use 8 processes to run the test suite
-./vendor/bin/pest --parallel -p8
+./vendor/bin/pest --parallel --processes=8
 ```
 
 The parallel plugin has been fine-tuned to work seamlessly with other Pest options. For example, displaying test coverage
