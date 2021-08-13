@@ -44,7 +44,7 @@ always tweak this manually with the `-p` option:
 
 ```bash
 # Use 8 processes to run the test suite
-./vendor/bin/pest --parallel -p=8
+./vendor/bin/pest --parallel -p8
 ```
 
 The parallel plugin has been fine-tuned to work seamlessly with other Pest options. For example, displaying test coverage
