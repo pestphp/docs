@@ -14,7 +14,7 @@ description: The Parallel Plugin
 ## Overview
 
 Pest is the first testing framework to ship with first-party support for parallel testing. Using this feature,
-you can drastically reduce the time it take to run large test suites.
+you can drastically reduce the time it takes to run large test suites.
 
 **Source code**: [github.com/pestphp/pest-plugin-parallel](https://github.com/pestphp/pest-plugin-parallel)
 
@@ -57,9 +57,9 @@ is identical to running Pest normally:
 <a name="laravel"></a>
 ## Laravel
 
-If you're used to running your Laravel test suite using `php artisan test --parallel`, you don't need to 
+If you're used to running your Laravel test suite with `php artisan test --parallel`, you don't need to 
 do anything else. Pest is intelligent enough to detect that you want to run your Pest tests instead of
-PhpUnit tests.
+PHPUnit tests.
 
 ---
 
