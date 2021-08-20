@@ -30,7 +30,7 @@ composer require pestphp/pest-plugin-parallel --dev
 <a name="usage"></a>
 ## Usage
 
-Once installed, running your tests in parallel is as simple as tagging `--parallel` or `-p` onto the standard pest command:
+Once installed, running your tests in parallel is as simple as using the `--parallel` or `-p` option with the standard pest command:
 
 ```bash
 ./vendor/bin/pest --parallel
