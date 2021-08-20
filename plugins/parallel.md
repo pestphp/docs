@@ -6,6 +6,7 @@ description: The Parallel Plugin
 # Parallel Plugin
 
 - [Overview](#overview)
+- [Requirements](#requirements)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Laravel](#laravel)
@@ -17,6 +18,16 @@ Pest is the first testing framework to ship with first-party support for paralle
 you can drastically reduce the time it takes to run large test suites.
 
 **Source code**: [github.com/pestphp/pest-plugin-parallel](https://github.com/pestphp/pest-plugin-parallel)
+
+<a name="requirements"></a>
+## Requirements
+
+Before you get started with parallel, make sure you have the following packages installed:
+
+- `pestphp/pest` v1.16.0 or higher
+- `nunomaduro/collision` v5.8.0 or higher
+
+Additionally, if you are using the Laravel framework, you should make sure you're running `v8.55.0` or higher.
 
 <a name="installation"></a>
 ## Installation
@@ -56,6 +67,8 @@ is identical to running Pest normally:
 
 <a name="laravel"></a>
 ## Laravel
+
+> **Note:** For a seamless experience, make sure you're running Laravel 8.55.0 or higher.
 
 If you're used to running your Laravel test suite with `php artisan test --parallel`, you don't need to 
 do anything else. Pest is intelligent enough to detect that you want to run your Pest tests instead of
