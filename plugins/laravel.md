@@ -228,4 +228,4 @@ Now, when you run `pest` you will see your Dusk tests as well.
 
 ---
 
-Next section: [Livewire Plugin →](/docs/plugins/livewire)
+Next section: [Livewire →](/docs/plugins/livewire)

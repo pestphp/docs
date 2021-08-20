@@ -63,4 +63,4 @@ PHPUnit tests.
 
 ---
 
-Next section: [Snapshots Plugin →](/docs/plugins/snapshots)
+Next section: [Mock Plugin →](/docs/plugins/mock)
