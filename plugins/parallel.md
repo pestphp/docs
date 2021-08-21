@@ -13,8 +13,8 @@ description: The Parallel Plugin
 <a name="overview"></a>
 ## Overview
 
-Pest is the first testing framework to ship with first-party support for parallel testing. Using this feature,
-you can drastically reduce the time it takes to run large test suites.
+Pest is the first testing framework to ship with first-party support for parallel testing. By default, Pest executes your tests sequentially within a single process. 
+However, you may greatly reduce the amount of time it takes to run your tests by using the Parallel plugin, which allows you run tests simultaneously across multiple processes.
 
 **Source code**: [github.com/pestphp/pest-plugin-parallel](https://github.com/pestphp/pest-plugin-parallel)
 
