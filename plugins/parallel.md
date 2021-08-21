@@ -14,7 +14,7 @@ description: The Parallel Plugin
 ## Overview
 
 By default, Pest executes your tests sequentially within a single process. 
-However, you may greatly reduce the amount of time it takes to run your tests by using the Parallel plugin, which allows you run tests simultaneously across multiple processes.
+However, you may save a lot of time by using the Parallel plugin, which allows you to run tests simultaneously across multiple processes.
 
 **Source code**: [github.com/pestphp/pest-plugin-parallel](https://github.com/pestphp/pest-plugin-parallel)
 
