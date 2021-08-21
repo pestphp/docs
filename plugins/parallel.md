@@ -39,7 +39,7 @@ Once installed, running your tests in parallel is as simple as using the `--para
 ./vendor/bin/pest -p
 ```
 
-By default, the Parallel plugin will consume as many processes as you have threads on your computer. You can 
+By default, the Parallel plugin will consume as many processes as you have CPU cores on your computer. You can 
 always tweak this manually with the `--processes` option:
 
 ```bash
