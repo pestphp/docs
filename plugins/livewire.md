@@ -81,4 +81,4 @@ Finally, for the full list of available Livewire methods, please refer to the [L
 
 ---
 
-Next section: [Mock →](/docs/plugins/mock)
+Next section: [Parallel →](/docs/plugins/parallel)
