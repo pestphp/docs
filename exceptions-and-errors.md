@@ -37,6 +37,7 @@ it('throws exception', function () {
 })->throws('Something happened.');
 ```
 
+You may also assert one or more exceptions inside your test function with [Expectations](/docs/expectations#expect-toThrow)' method `toThrow()`
 
 ---
 
