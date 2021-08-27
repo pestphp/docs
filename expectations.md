@@ -83,6 +83,7 @@ expect($value)->// chain your checks here
 - [`toBeReadableDirectory()`](#expect-toBeReadableDirectory)
 - [`toBeWritableDirectory()`](#expect-toBeWritableDirectory)
 - [`toStartWith()`](#expect-toStartWith)
+- [`toThrow()`](#expect-toThrow)
 - [`toEndWith()`](#expect-toEndWith)
 - [`toMatch()`](#expect-toMatch)
 - [`toMatchConstraint()`](#expect-toMatchConstraint)
@@ -519,6 +520,47 @@ Asserts that the value starts with the provided string:
 
 ```php
 expect($content)->toStartWith('Hello');
+```
+
+<a name="expect-toThrow"></a>
+### `toThrow()`
+
+Asserts that a closure throws an exception class, exception message, or the combination of both.
+
+```php
+test('it throws the desired Exception class', function () {
+    expect(fn() => throw new Exception('Something happened.'))->toThrow(Exception::class);
+});
+```
+
+```php
+test('it throws an exception with desired message', function () {
+    expect(fn() => throw new Exception('Something happened.'))->toThrow('Something happened.');
+});
+```
+
+```php
+test('it throws the desired Exception class with the desired message', function () {
+    expect(fn() => throw new Exception('Something happened.'))->toThrow(Exception::class, 'Something happened.');
+});
+```
+
+You may assert more than one exception per test:
+
+```php
+test('it asserts two exceptions with their specific messages', function () {
+    expect(fn() => throw new Exception('Error 1'))->toThrow(Exception::class, 'Error 1');
+
+    expect(fn() => throw new Exception('Error 2'))->toThrow(Exception::class, 'Error 2');
+});
+```
+
+It is also possible to use `not()` modifier together with `toThrow()`:
+
+```php
+test('it does not throw an Exception', function () {
+    expect(fn ($x, $y) => $x + $y)->not->toThrow(Exception::class);
+});
 ```
 
 <a name="expect-toMatch"></a>
