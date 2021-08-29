@@ -80,6 +80,7 @@ expect($value)->// chain your checks here
 - [`toBeNull()`](#expect-toBeNull)
 - [`toHaveKey()`](#expect-toHaveKey)
 - [`toHaveKeys()`](#expect-toHaveKeys)
+- [`toHaveLength()`](#expect-toHaveLength)
 - [`toBeReadableDirectory()`](#expect-toBeReadableDirectory)
 - [`toBeWritableDirectory()`](#expect-toBeWritableDirectory)
 - [`toStartWith()`](#expect-toStartWith)
@@ -484,6 +485,18 @@ This expectation also supports dot notation for reaching deeper into nested arra
 
 ```php
 expect(['user' => ['nuno' => 'maduro', 'luke' => 'downing']])->toHaveKeys(['user.nuno', 'user.luke']);
+```
+
+<a name="expect-toHaveLength"></a>
+### `toHaveLength(int $number)`
+
+Asserts that the `$number` matches the `$value`'s string length, or number of elements of the iterable `$value`:
+
+```php
+expect('pest')->toHaveLength(4);
+expect(['Nuno', 'Maduro'])->toHaveLength(2);
+expect('')->not->toHaveLength(5);
+expect(true)->toHaveLength(4); //throws a `BadMethodCallException` when the expectation value type is not supported.
 ```
 
 <a name="expect-toBeDirectory"></a>
