@@ -186,17 +186,6 @@ Remember, for the full list of available Laravel testing methods, please refer t
 
 Pest can also work seamlessly with [Laravel Dusk](https://laravel.com/docs/dusk). To get started, first follow Dusk's [installation instructions](https://laravel.com/docs/7.x/dusk#installation).
 
-Then, add the "Browser" test suite under the `<testsuites>` tag in your `phpunit.xml` file:
-
-```
-<testsuites>
-    ...
-    <testsuite name="Browser">
-        <directory suffix="Test.php">./tests/Browser</directory>
-    </testsuite>
-</testsuites>
-```
-
 Finally, instruct Pest to use `DuskTestCase` as the base test case for the `Browser` directory by adding the following code to your `Pest.php` file:
 
 ```php
