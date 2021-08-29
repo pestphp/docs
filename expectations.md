@@ -490,7 +490,7 @@ expect(['user' => ['nuno' => 'maduro', 'luke' => 'downing']])->toHaveKeys(['user
 <a name="expect-toHaveLength"></a>
 ### `toHaveLength(int $number)`
 
-Asserts that the `$number` matches the value's string length, or the number of elements when the value type is array, object or collection.
+Asserts that the `$number` matches the `$value`'s string length, or number of elements of the iterable `$value`:
 
 ```php
 expect('pest')->toHaveLength(4);
