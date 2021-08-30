@@ -24,7 +24,7 @@ However, you may save a lot of time by using the Parallel plugin, which allows y
 Install the Parallel Plugin via the Composer package manager:
 
 ```bash
-composer require pestphp/pest-plugin-parallel --dev
+composer require pestphp/pest-plugin-parallel --dev --with-all-dependencies
 ```
 
 <a name="usage"></a>
