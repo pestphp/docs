@@ -17,7 +17,7 @@ description: The Laravel Plugin
 <a name="overview"></a>
 ## Overview
 
-Although Pest is framework agnostic, it was built with Laravel in mind. The Laravel Plugin for Pest gives your direct access to Laravel's testing API in your test files.
+Although Pest is framework agnostic, it was built with Laravel in mind. The Laravel Plugin for Pest gives you direct access to Laravel's testing API in your test files.
 
 **Source code**: [github.com/pestphp/pest-plugin-laravel](https://github.com/pestphp/pest-plugin-laravel)
 
