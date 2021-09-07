@@ -131,9 +131,9 @@ Shared datasets may also have bound access:
 
 ```php
 dataset('users', function () {
-    yield fn() => User::factory()->blocked()->create()
-    yield fn() => User::factory()->unverified()->create()
-    yield fn() => User::factory()->inactive()->create()
+    yield fn() => User::factory()->blocked()->create();
+    yield fn() => User::factory()->unverified()->create();
+    yield fn() => User::factory()->inactive()->create();
 });
 ```
 
