@@ -57,6 +57,7 @@ expect($value)->// chain your checks here
 - [`toContain()`](#expect-toContain)
 - [`toHaveCount()`](#expect-toHaveCount)
 - [`toHaveProperty()`](#expect-toHaveProperty)
+- [`toHaveProperties()`](#expect-toHaveProperties)
 - [`toMatchArray()`](#expect-toMatchArray)
 - [`toMatchObject()`](#expect-toMatchObject)
 - [`toEqual()`](#expect-toEqual)
@@ -220,6 +221,15 @@ Asserts that the `$value` contains the property `$name`:
 ```php
 expect($user)->toHaveProperty('name');
 expect($user)->toHaveProperty('name', 'Nuno');
+```
+
+<a name="expect-toHaveProperties"></a>
+### `toHaveProperties(iterable $name)`
+
+Asserts that the `$value` contains the provided properties `$names`:
+
+```php
+expect($user)->toHaveProperties(['name', 'email']);
 ```
 
 <a name="expect-toMatchArray"></a>
