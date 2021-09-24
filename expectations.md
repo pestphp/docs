@@ -96,6 +96,7 @@ expect($value)->// chain your checks here
 - [`not()`](#expect-not)
 - [`sequence()`](#expect-sequence)
 - [`when()`](#when)
+- [`unless()`](#unless)
 - [`ray()`](#expect-ray)
 
 </div>
@@ -753,6 +754,21 @@ The when method will execute the given callback when the first argument given to
 expect($db)
     ->when(DB::getDriverName() === 'mysql',
         fn($db) => $db->driver->toBe('mysql'), // Only runs when using mysql
+    )
+    ->status->toBeTrue();
+```
+
+For the inverse of `when`, see the [`unless`](#unless) method.
+
+<a name="unless"></a>
+### `unless()`
+
+The `unless` method will execute the given callback unless the first argument given to the method evaluates to `true`:
+
+```php
+expect($db)
+    ->unless(DB::getDriverName() === 'mysql',
+        fn($db) => $db->driver->toBe('sqlite'), // Only works when not using mysql
     )
     ->status->toBeTrue();
 ```
