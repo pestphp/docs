@@ -95,6 +95,7 @@ expect($value)->// chain your checks here
 - [`each()`](#expect-each)
 - [`not()`](#expect-not)
 - [`sequence()`](#expect-sequence)
+- [`when()`](#when)
 - [`ray()`](#expect-ray)
 
 </div>
@@ -741,6 +742,19 @@ directly instead of using a closure:
 
 ```php
 expect(['foo', 'bar', 'baz'])->sequence('foo', 'bar', 'baz');
+```
+
+<a name="when"></a>
+### `when()`
+
+The when method will execute the given callback when the first argument given to the method evaluates to `true`:
+
+```php
+expect($db)
+    ->when(DB::getDriverName() === 'mysql',
+        fn($db) => $db->driver->toBe('mysql'), // Only runs when using mysql
+    )
+    ->status->toBeTrue();
 ```
 
 <a name="expect-ray"></a>
