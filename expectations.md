@@ -96,6 +96,7 @@ expect($value)->// chain your checks here
 - [`not()`](#expect-not)
 - [`sequence()`](#expect-sequence)
 - [`when()`](#when)
+- [`match()`](#match)
 - [`unless()`](#unless)
 - [`ray()`](#expect-ray)
 
@@ -759,6 +760,20 @@ expect($db)
 ```
 
 For the inverse of `when`, see the [`unless`](#unless) method.
+
+<a name="match"></a>
+### `match()`
+
+The `match` method executes the callback of the first `key` that matches the first argument given to the method:
+
+```php
+expect($db)
+    ->match(DB::getDriverName(),
+        'mysql'  => fn($db) => $db->driver->toBe('mysql'),
+        'sqlite' => fn($db) => $db->driver->toBe('sqlite'),
+    )
+    ->status->toBeTrue();
+```
 
 <a name="unless"></a>
 ### `unless()`
