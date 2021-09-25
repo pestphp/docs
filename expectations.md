@@ -90,12 +90,15 @@ expect($value)->// chain your checks here
 - [`toMatch()`](#expect-toMatch)
 - [`toMatchConstraint()`](#expect-toMatchConstraint)
 - [`and($value)`](#expect-and)
-- [`json()`](#expect-json)
 - [`dd()`](#expect-dd)
 - [`each()`](#expect-each)
+- [`json()`](#expect-json)
+- [`match()`](#match)
 - [`not()`](#expect-not)
-- [`sequence()`](#expect-sequence)
 - [`ray()`](#expect-ray)
+- [`sequence()`](#expect-sequence)
+- [`unless()`](#unless)
+- [`when()`](#when)
 
 </div>
 
@@ -664,19 +667,6 @@ Pass a new value to the `and` function to chain multiple expectations in a singl
 expect($id)->toBe(14)->and($name)->toBe('Nuno');
 ```
 
-<a name="expect-json"></a>
-### `json()`
-
-Pass a JSON string to the `json` method to assert it is a valid JSON and chain other expectations:
-
-```php
-expect('{"name":"Nuno","credit":1000.00}')
-    ->json()
-    ->toHaveCount(2)
-    ->name->toBe('Nuno')
-    ->credit->toBeFloat();
-```
-
 <a name="expect-dd"></a>
 ### `dd()`
 
@@ -703,6 +693,42 @@ expect([1, 2, 3])->each->not->toBeString();
 expect([1, 2, 3])->each(fn ($number) => $number->toBeLessThan(4));
 ```
 
+<a name="expect-json"></a>
+### `json()`
+
+Pass a JSON string to the `json` method to assert it is a valid JSON and chain other expectations:
+
+```php
+expect('{"name":"Nuno","credit":1000.00}')
+    ->json()
+    ->toHaveCount(2)
+    ->name->toBe('Nuno')
+    ->credit->toBeFloat();
+```
+
+<a name="match"></a>
+### `match()`
+
+The `match` method executes the callback of the first `key` that matches the first argument given to the method:
+
+```php
+expect('pest')
+    ->match(true, [
+        true  => fn ($value) => $value->toEqual('pest'),
+        false => fn ($value) => $value->not->toEqual('pest')
+    ]);
+```
+
+If you just want to check that the expected value is equal to the value of the matching key, you can pass the expected value directly instead of using a callback:
+
+```php
+expect('pestphp')
+    ->match('twitter', [
+        'twitter' => 'pestphp',
+        'website' => 'pestphp.com'
+    ]);
+```
+
 <a name="expect-not"></a>
 ### `not()`
 
@@ -710,6 +736,20 @@ Use the `not` modifier before a check to invert it:
 
 ```php
 expect($id)->not->toBe(14);
+```
+
+<a name="expect-ray"></a>
+### `ray()`
+
+Use the `ray` method to debug the current expectation value with **[myray.app](https://myray.app/)**:
+
+```php
+expect(14)->ray(); // 14
+
+expect([1, 2])->sequence(
+    fn ($number) => $number->toBe(1),
+    fn ($number) => $number->ray(), // 2
+);
 ```
 
 <a name="expect-sequence"></a>
@@ -743,18 +783,28 @@ directly instead of using a closure:
 expect(['foo', 'bar', 'baz'])->sequence('foo', 'bar', 'baz');
 ```
 
-<a name="expect-ray"></a>
-### `ray()`
+<a name="when"></a>
+### `when()`
 
-Use the `ray` method to debug the current expectation value with **[myray.app](https://myray.app/)**:
+The when method will execute the given callback when the first argument given to the method evaluates to `true`:
 
 ```php
-expect(14)->ray(); // 14
+expect($user)
+    ->when(true, fn ($user) => $user->verified->toBeTrue())
+    ->first_name->toEqual('Nuno');
+```
 
-expect([1, 2])->sequence(
-    fn ($number) => $number->toBe(1),
-    fn ($number) => $number->ray(), // 2
-);
+For the inverse of `when`, see the [`unless`](#unless) method.
+
+<a name="unless"></a>
+### `unless()`
+
+The `unless` method will execute the given callback unless the first argument given to the method evaluates to `true`:
+
+```php
+expect($user)
+    ->unless(false, fn ($user) => $user->verified->toBeTrue())
+    ->first_name->toEqual('Nuno');
 ```
 
 <a name="higher-order-expectations"></a>
