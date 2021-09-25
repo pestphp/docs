@@ -62,7 +62,7 @@ it('has home', function () {
 })->only();
 ```
 
-> Please be aware that `->only()` requires all tests to be written with Pest test functions to work correctly.
+> Please be aware that `->only()` requires all tests to be written with Pest test functions to work correctly. Furthermore, it will be ignored if the `--ci` option is added to the cli command
 
 <a name="incomplete-tests"></a>
 ## Incomplete tests
