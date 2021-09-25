@@ -47,7 +47,7 @@ This option allows you to specify the directory that will be used to gather the 
 
 ### `--ci`
 
-This options tells Pest that it's running inside a Continuous Integration environment. If it is provided, all [->only()](docs/skipping-tests#running-single-test) restrictions will be ignored
+You may use the `--ci` option to instruct Pest that the test suite is running within a Continuous Integration environment. When provided, this option makes Pest ignore development/local features such as [->only()](docs/skipping-tests#running-single-test).
 
 ---
 
