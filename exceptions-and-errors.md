@@ -37,8 +37,7 @@ it('throws exception', function () {
 })->throws('Something happened.');
 ```
 
-If you want conditional exception you can use `throwsIf` method:
-
+You may also use the `throwsIf` method to conditional assert an exception if a given boolean expression evaluates to `true`:
 ```php
 it('throwsIf exception', function () {
     // ..
