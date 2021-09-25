@@ -37,6 +37,14 @@ it('throws exception', function () {
 })->throws('Something happened.');
 ```
 
+If you want conditional exception you can use `throwsIf` method:
+
+```php
+it('throwsIf exception', function () {
+    // ..
+})->throwsIf(fn() => DB::getDriverName() === 'mysql', Exception::class, 'MySQL is not supported.');
+```
+
 You may also assert one or more exceptions inside your test function with [Expectations](/docs/expectations#expect-toThrow)' method `toThrow()`
 
 ---
