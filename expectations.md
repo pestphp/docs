@@ -709,40 +709,24 @@ expect('{"name":"Nuno","credit":1000.00}')
 <a name="match"></a>
 ### `match()`
 
-The `match` method executes the closure of the first `key` that matches the first argument given to the method:
+The `match` method executes the callback of the first `key` that matches the first argument given to the method:
 
 ```php
 expect('pest')
-    ->match(true,
+    ->match(true, [
         true  => fn ($value) => $value->toEqual('pest'),
         false => fn ($value) => $value->not->toEqual('pest')
-    );
+    ]);
 ```
 
-If you just want to check that the expected value is equal to the value of the matching key, you can pass the 
-expected value directly instead of using a closure:
+If you just want to check that the expected value is equal to the value of the matching key, you can pass the expected value directly instead of using a callback:
 
 ```php
 expect('pestphp')
-    ->match('twitter',
+    ->match('twitter', [
         'twitter' => 'pestphp',
         'website' => 'pestphp.com'
-    );
-```
-
-You can use it with [`datasets`](/docs/datasets) if you want:
-
-```php
-it('database driver', function ($driver) {
-    expect(new DB())
-        ->match($driver,
-            'mysql'  => fn ($db) => $db->driver->toEqual('mysql'),
-            'sqlite' => fn ($db) => $db->driver->toEqual('sqlite')
-        );
-})->with([
-    'mysql',
-    'sqlite'
-]);
+    ]);
 ```
 
 <a name="expect-not"></a>
@@ -802,13 +786,11 @@ expect(['foo', 'bar', 'baz'])->sequence('foo', 'bar', 'baz');
 <a name="when"></a>
 ### `when()`
 
-The when method will execute the given closure when the first argument given to the method evaluates to `true`:
+The when method will execute the given callback when the first argument given to the method evaluates to `true`:
 
 ```php
 expect($user)
-    ->when(true,
-        fn ($user) => $user->verified->toBeTrue(),
-    )
+    ->when(true, fn ($user) => $user->verified->toBeTrue())
     ->first_name->toEqual('Nuno');
 ```
 
@@ -817,13 +799,11 @@ For the inverse of `when`, see the [`unless`](#unless) method.
 <a name="unless"></a>
 ### `unless()`
 
-The `unless` method will execute the given closure unless the first argument given to the method evaluates to `true`:
+The `unless` method will execute the given callback unless the first argument given to the method evaluates to `true`:
 
 ```php
 expect($user)
-    ->unless(false,
-        fn ($user) => $user->verified->toBeTrue(),
-    )
+    ->unless(false, fn ($user) => $user->verified->toBeTrue())
     ->first_name->toEqual('Nuno');
 ```
 
