@@ -45,6 +45,10 @@ This option allows you to only run a specific list of [grouped tests](/docs/grou
 
 This option allows you to specify the directory that will be used to gather the tests that should be run. If it isn't provided the default `tests` directory will be used.
 
+### `--ci`
+
+This options tells Pest that it's running inside a Continuous Integration environment. If it is provided, all [->only()](docs/skipping-tests#running-single-test) restrictions will be ignored
+
 ---
 
 Next section: [Laravel Plugin →](/docs/plugins/laravel)
