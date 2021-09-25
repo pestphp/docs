@@ -752,11 +752,11 @@ expect(['foo', 'bar', 'baz'])->sequence('foo', 'bar', 'baz');
 The when method will execute the given callback when the first argument given to the method evaluates to `true`:
 
 ```php
-expect($db)
-    ->when(DB::getDriverName() === 'mysql',
-        fn($db) => $db->driver->toBe('mysql'), // Only runs when using mysql
+expect($user)
+    ->when(true,
+        fn ($user) => $user->verified->toBeTrue(),
     )
-    ->status->toBeTrue();
+    ->first_name->toEqual('Nuno');
 ```
 
 For the inverse of `when`, see the [`unless`](#unless) method.
@@ -769,8 +769,8 @@ The `match` method executes the callback of the first `key` that matches the fir
 ```php
 expect($db)
     ->match(DB::getDriverName(),
-        'mysql'  => fn($db) => $db->driver->toBe('mysql'),
-        'sqlite' => fn($db) => $db->driver->toBe('sqlite'),
+        'mysql'  => fn ($db) => $db->driver->toBe('mysql'),
+        'sqlite' => fn ($db) => $db->driver->toBe('sqlite'),
     )
     ->status->toBeTrue();
 ```
@@ -781,11 +781,11 @@ expect($db)
 The `unless` method will execute the given callback unless the first argument given to the method evaluates to `true`:
 
 ```php
-expect($db)
-    ->unless(DB::getDriverName() === 'mysql',
-        fn($db) => $db->driver->toBe('sqlite'), // Only works when not using mysql
+expect($user)
+    ->unless(false,
+        fn ($user) => $user->verified->toBeTrue(),
     )
-    ->status->toBeTrue();
+    ->first_name->toEqual('Nuno');
 ```
 
 <a name="expect-ray"></a>
