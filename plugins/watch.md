@@ -68,7 +68,7 @@ The command will watch the `app`, `routes`, and `tests` directories.
 
 ## Filter test
 
-You still filter the test you want to run during the watching loop by using the `--filter=` option. 
+You still can filter the test you want to run during the watching loop by using the `--filter=` option. 
 
 However, the test name should be wrapped into `"` in this case, like this:
 ```bash
