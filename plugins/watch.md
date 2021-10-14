@@ -61,9 +61,33 @@ If you need to watch a custom set of directories, just provide a comma-separated
 Example:
 
 ```bash
-pest --watch=app,routes,tests
+./vendor/bin/pest --watch=app,routes,tests
 ```
 
 The command will watch the `app`, `routes`, and `tests` directories.
+
+## Filter test
+
+You still filter the test you want to run during the watching loop by using the `--filter=` option. 
+
+However, the test name should be wrapped into `"` in this case, like this:
+```bash
+./vendor/bin/pest --watch --filter="'can run this test on watching'"
+```
+
+You can create an alias or a bash function to run this easily: 
+
+```bash
+function pw {
+ ./vendor/bin/pest --filter="\"$1\"" --watch
+}
+```
+
+So now, to watch a test you simply run: 
+
+```
+pw 'can run this test on watching'
+```
+
 
 Next section: [Creating Plugins →](/docs/plugins/creating-plugins)
