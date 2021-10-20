@@ -40,7 +40,7 @@ You may use a callable for the condition, which has access to the underlying tes
 ```php
 it('has home', function () {
     // ..
-})->skip(fn() => DB::getDriverName() === 'mysql', 'Only runs when using mysql');
+})->skip(fn() => DB::getDriverName() !== 'mysql', 'Only runs when using mysql');
 ```
 
 
