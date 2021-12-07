@@ -327,7 +327,7 @@ expect($response->httpCode)->toBeIn([200, 301, 302]);
 Asserts that the value is infinite:
 
 ```php
-expect($universe)->toBeInfinite();
+expect(log(0))->toBeInfinite();
 ```
 
 <a name="expect-toBeInstanceOf"></a>
