@@ -491,13 +491,13 @@ expect(['user' => ['nuno' => 'maduro']])->toHaveKey('user.nuno', 'maduro');
 Asserts that the value array contains the provided `$keys`:
 
 ```php
-expect($array)->toHaveKeys(['key-a', 'key-b']);
+expect(['id' => 1, 'name' => 'Nuno'])->toHaveKeys(['id', 'name']);
 ```
 
 This expectation also supports dot notation for reaching deeper into nested arrays:
 
 ```php
-expect(['user' => ['nuno' => 'maduro', 'luke' => 'downing']])->toHaveKeys(['user.nuno', 'user.luke']);
+expect(['message' => ['from' => 'Nuno', 'to' => 'Luke'] ])->toHaveKeys(['message.from', 'message.to']);
 ```
 
 <a name="expect-toHaveLength"></a>
