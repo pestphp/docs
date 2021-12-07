@@ -408,7 +408,9 @@ expect($age)->toBeNumeric();
 Asserts that the value is of type object:
 
 ```php
-expect($post)->toBeObject();
+$object = new stdClass();
+
+expect($object)->toBeObject();
 ```
 
 <a name="expect-toBeResource"></a>
