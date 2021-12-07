@@ -542,10 +542,12 @@ expect('/tmp')->toBeWritableDirectory();
 <a name="expect-toStartWith"></a>
 ### `toStartWith(string $expected)`
 
-Asserts that the value starts with the provided string:
+Asserts that the `$value` starts with the provided `string` `$expected`.
+
+The expectation is case-sensitive.
 
 ```php
-expect($content)->toStartWith('Hello');
+expect('Hello World')->toStartWith('Hello');
 ```
 
 <a name="expect-toThrow"></a>
