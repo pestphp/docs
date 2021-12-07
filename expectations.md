@@ -744,10 +744,10 @@ expect('pestphp')
 <a name="expect-not"></a>
 ### `not()`
 
-Use the `not` modifier before a check to invert it:
+Use the `not` modifier before a `method` to invert it:
 
 ```php
-expect($id)->not->toBe(14);
+expect(10)->not->toBeGreaterThan(100);
 ```
 
 <a name="expect-ray"></a>
