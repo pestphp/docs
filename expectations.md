@@ -490,7 +490,7 @@ expect(['user' => ['name' => 'Nuno', 'surname' => 'Maduro']])->toHaveKey('user.n
 <a name="expect-toHaveKeys"></a>
 ### `toHaveKeys(array $keys)`
 
-Asserts that the value array contains the provided `$keys`:
+Asserts that the `$value` contains the provided `$keys`:
 
 ```php
 expect(['id' => 1, 'name' => 'Nuno'])->toHaveKeys(['id', 'name']);
