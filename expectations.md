@@ -167,7 +167,7 @@ expect('')->toBeFalsy();
 Asserts that the value is greater than the expected one:
 
 ```php
-expect($age)->toBeGreaterThan(20);
+expect($count)->toBeGreaterThan(20);
 ```
 
 <a name="expect-toBeGreaterThanOrEqual"></a>
@@ -176,7 +176,7 @@ expect($age)->toBeGreaterThan(20);
 Asserts that the value is greater than or equal to the expected one:
 
 ```php
-expect($age)->toBeGreaterThanOrEqual(21);
+expect($count)->toBeGreaterThanOrEqual(21);
 ```
 
 <a name="expect-toBeLessThan"></a>
