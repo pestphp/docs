@@ -203,7 +203,7 @@ expect($count)->toBeLessThanOrEqual(2);
 Asserts that all given needles are elements of the value:
 
 ```php
-expect("Hello World")->toContain('Hello');
+expect('Hello World')->toContain('Hello');
 expect([1, 2, 3, 4])->toContain(2, 4);
 ```
 
