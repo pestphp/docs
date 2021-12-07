@@ -430,7 +430,11 @@ expect($handle)->toBeResource();
 Asserts that the value is of type scalar:
 
 ```php
-expect($scalar)->toBeScalar();
+expect('1')->toBeScalar();
+expect(1)->toBeScalar();
+expect(1.0)->toBeScalar();
+expect(true)->toBeScalar();
+expect([1, '1'])->not->toBeScalar();
 ```
 
 <a name="expect-toBeString"></a>
