@@ -524,10 +524,10 @@ expect('/tmp')->toBeDirectory();
 <a name="expect-toBeReadableDirectory"></a>
 ### `toBeReadableDirectory()`
 
-Asserts that the value is a directory and is readable.
+Asserts that the `string` `$value` is a directory and it is readable.
 
 ```php
-expect($dir)->toBeReadableDirectory();
+expect('/tmp')->toBeReadableDirectory();
 ```
 
 <a name="expect-toBeWritableDirectory"></a>
