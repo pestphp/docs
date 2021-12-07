@@ -468,23 +468,23 @@ expect(null)->toBeNull();
 <a name="expect-toHaveKey"></a>
 ### `toHaveKey(string $key)`
 
-Asserts that the value array contains the provided `$key`:
+Asserts that the `$value` contains the provided `$key`:
 
 ```php
-expect($array)->toHaveKey('key-a');
+expect(['name' => 'Nuno', 'surname' => 'Maduro'])->toHaveKey('name');
 ```
 
 You may pass a second parameter to assert that the value at the given key is equal to something:
 
 ```php
-expect(['foo' => 'bar'])->toHaveKey('foo', 'bar');
+expect(['name' => 'Nuno', 'surname' => 'Maduro'])->toHaveKey('name', 'Nuno');
 ```
 
 This expectation also supports dot notation for reaching deeper into nested arrays:
 
 ```php
-expect(['user' => ['nuno' => 'maduro']])->toHaveKey('user.nuno');
-expect(['user' => ['nuno' => 'maduro']])->toHaveKey('user.nuno', 'maduro');
+expect(['user' => ['name' => 'Nuno', 'surname' => 'Maduro']])->toHaveKey('user.name');
+expect(['user' => ['name' => 'Nuno', 'surname' => 'Maduro']])->toHaveKey('user.name', 'Nuno');
 ```
 
 <a name="expect-toHaveKeys"></a>
