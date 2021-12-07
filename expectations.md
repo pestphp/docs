@@ -603,10 +603,12 @@ expect('Hello World')->toMatch('/^hello wo.*$/i');
 <a name="expect-toEndWith"></a>
 ### `toEndWith(string $expected)`
 
-Asserts that the value ends with the provided string:
+Asserts that the `$value` ends with the provided `string` `$expected`.
+
+The expectation is case-sensitive.
 
 ```php
-expect($content)->toEndWith('World');
+expect('Hello World')->toEndWith('World');
 ```
 
 <a name="expect-toMatchConstraint"></a>
