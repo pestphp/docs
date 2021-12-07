@@ -419,7 +419,9 @@ expect($object)->toBeObject();
 Asserts that the value is of type resource:
 
 ```php
-expect($resource)->toBeResource();
+$handle = fopen('php://memory', 'r+');
+
+expect($handle)->toBeResource();
 ```
 
 <a name="expect-toBeScalar"></a>
