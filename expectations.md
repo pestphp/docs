@@ -345,7 +345,7 @@ expect($user)->toBeInstanceOf(User::class);
 Asserts that the value is an array:
 
 ```php
-expect($vegetables)->toBeArray();
+expect(['Pest','PHP','Laravel'])->toBeArray();
 ```
 
 <a name="expect-toBeBool"></a>
