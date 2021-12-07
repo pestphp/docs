@@ -515,10 +515,10 @@ expect(['Nuno', 'Maduro'])->toHaveLength(2);
 <a name="expect-toBeDirectory"></a>
 ### `toBeDirectory()`
 
-Asserts that the value is a directory:
+Asserts that the `string` `$value` is a directory.
 
 ```php
-expect($dir)->toBeDirectory();
+expect('/tmp')->toBeDirectory();
 ```
 
 <a name="expect-toBeReadableDirectory"></a>
