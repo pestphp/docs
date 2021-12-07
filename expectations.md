@@ -129,7 +129,7 @@ expect($lastSeen)->toBeEmpty();
 Asserts that the value is true:
 
 ```php
-expect($published)->toBeTrue();
+expect($isPublished)->toBeTrue();
 ```
 
 <a name="expect-toBeTruthy"></a>
@@ -148,7 +148,7 @@ expect('1')->toBeTruthy();
 Asserts that the value is false:
 
 ```php
-expect($archived)->toBeFalse();
+expect($isPublished)->toBeFalse();
 ```
 
 <a name="expect-toBeFalsy"></a>
