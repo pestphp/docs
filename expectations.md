@@ -461,7 +461,7 @@ expect('{"hello":"world"}')->toBeJson();
 Asserts that the value is not a number (NaN):
 
 ```php
-expect($nan)->toBeNan();
+expect(sqrt(-1))->toBeNan();
 ```
 
 <a name="expect-toBeNull"></a>
