@@ -505,13 +505,11 @@ expect(['message' => ['from' => 'Nuno', 'to' => 'Luke'] ])->toHaveKeys(['message
 <a name="expect-toHaveLength"></a>
 ### `toHaveLength(int $number)`
 
-Asserts that the `$number` matches the `$value`'s string length, or number of elements of the iterable `$value`:
+Asserts that the provided `$number` matches the length of a `string` `$value` or the number of elements in an `iterable` `$value`.
 
 ```php
-expect('pest')->toHaveLength(4);
+expect('Pest')->toHaveLength(4);
 expect(['Nuno', 'Maduro'])->toHaveLength(2);
-expect('')->not->toHaveLength(5);
-expect(true)->toHaveLength(4); //throws a `BadMethodCallException` when the expectation value type is not supported.
 ```
 
 <a name="expect-toBeDirectory"></a>
