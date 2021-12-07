@@ -210,11 +210,13 @@ expect([1, 2, 3, 4])->toContain(2, 4);
 <a name="expect-toHaveCount"></a>
 ### `toHaveCount(int $count)`
 
-Asserts that the `$count` matches the number of elements of `$value`:
+Asserts the provided `$count` matches the number of elements in an `iterable` `$value`.
 
 ```php
-expect($dozen)->toHaveCount(12);
+expect(['Nuno', 'Luke', 'Alex', 'Dan'])->toHaveCount(4);
 ```
+
+To assert length, see the [`toHaveLength()`](#expect-toHaveLength) method.
 
 <a name="expect-toHaveProperty"></a>
 ### `toHaveProperty(string $name, $value = null)`
