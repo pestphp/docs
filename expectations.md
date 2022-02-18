@@ -129,7 +129,7 @@ expect($lastSeen)->toBeEmpty();
 Asserts that the value is true:
 
 ```php
-expect($published)->toBeTrue();
+expect($isPublished)->toBeTrue();
 ```
 
 <a name="expect-toBeTruthy"></a>
@@ -148,7 +148,7 @@ expect('1')->toBeTruthy();
 Asserts that the value is false:
 
 ```php
-expect($archived)->toBeFalse();
+expect($isPublished)->toBeFalse();
 ```
 
 <a name="expect-toBeFalsy"></a>
@@ -167,7 +167,7 @@ expect('')->toBeFalsy();
 Asserts that the value is greater than the expected one:
 
 ```php
-expect($age)->toBeGreaterThan(20);
+expect($count)->toBeGreaterThan(20);
 ```
 
 <a name="expect-toBeGreaterThanOrEqual"></a>
@@ -176,7 +176,7 @@ expect($age)->toBeGreaterThan(20);
 Asserts that the value is greater than or equal to the expected one:
 
 ```php
-expect($age)->toBeGreaterThanOrEqual(21);
+expect($count)->toBeGreaterThanOrEqual(21);
 ```
 
 <a name="expect-toBeLessThan"></a>
@@ -203,18 +203,20 @@ expect($count)->toBeLessThanOrEqual(2);
 Asserts that all given needles are elements of the value:
 
 ```php
-expect("Hello World")->toContain('Hello');
+expect('Hello World')->toContain('Hello');
 expect([1, 2, 3, 4])->toContain(2, 4);
 ```
 
 <a name="expect-toHaveCount"></a>
 ### `toHaveCount(int $count)`
 
-Asserts that the `$count` matches the number of elements of `$value`:
+Asserts the provided `$count` matches the number of elements in an `iterable` `$value`.
 
 ```php
-expect($dozen)->toHaveCount(12);
+expect(['Nuno', 'Luke', 'Alex', 'Dan'])->toHaveCount(4);
 ```
+
+To assert length, see the [`toHaveLength()`](#expect-toHaveLength) method.
 
 <a name="expect-toHaveProperty"></a>
 ### `toHaveProperty(string $name, $value = null)`
@@ -325,7 +327,7 @@ expect($response->httpCode)->toBeIn([200, 301, 302]);
 Asserts that the value is infinite:
 
 ```php
-expect($universe)->toBeInfinite();
+expect(log(0))->toBeInfinite();
 ```
 
 <a name="expect-toBeInstanceOf"></a>
@@ -343,7 +345,7 @@ expect($user)->toBeInstanceOf(User::class);
 Asserts that the value is an array:
 
 ```php
-expect($vegetables)->toBeArray();
+expect(['Pest','PHP','Laravel'])->toBeArray();
 ```
 
 <a name="expect-toBeBool"></a>
@@ -406,7 +408,9 @@ expect($age)->toBeNumeric();
 Asserts that the value is of type object:
 
 ```php
-expect($post)->toBeObject();
+$object = new stdClass();
+
+expect($object)->toBeObject();
 ```
 
 <a name="expect-toBeResource"></a>
@@ -415,7 +419,9 @@ expect($post)->toBeObject();
 Asserts that the value is of type resource:
 
 ```php
-expect($resource)->toBeResource();
+$handle = fopen('php://memory', 'r+');
+
+expect($handle)->toBeResource();
 ```
 
 <a name="expect-toBeScalar"></a>
@@ -424,7 +430,11 @@ expect($resource)->toBeResource();
 Asserts that the value is of type scalar:
 
 ```php
-expect($scalar)->toBeScalar();
+expect('1')->toBeScalar();
+expect(1)->toBeScalar();
+expect(1.0)->toBeScalar();
+expect(true)->toBeScalar();
+expect([1, '1'])->not->toBeScalar();
 ```
 
 <a name="expect-toBeString"></a>
@@ -451,7 +461,7 @@ expect('{"hello":"world"}')->toBeJson();
 Asserts that the value is not a number (NaN):
 
 ```php
-expect($nan)->toBeNan();
+expect(sqrt(-1))->toBeNan();
 ```
 
 <a name="expect-toBeNull"></a>
@@ -466,86 +476,86 @@ expect(null)->toBeNull();
 <a name="expect-toHaveKey"></a>
 ### `toHaveKey(string $key)`
 
-Asserts that the value array contains the provided `$key`:
+Asserts that the `$value` contains the provided `$key`:
 
 ```php
-expect($array)->toHaveKey('key-a');
+expect(['name' => 'Nuno', 'surname' => 'Maduro'])->toHaveKey('name');
 ```
 
 You may pass a second parameter to assert that the value at the given key is equal to something:
 
 ```php
-expect(['foo' => 'bar'])->toHaveKey('foo', 'bar');
+expect(['name' => 'Nuno', 'surname' => 'Maduro'])->toHaveKey('name', 'Nuno');
 ```
 
 This expectation also supports dot notation for reaching deeper into nested arrays:
 
 ```php
-expect(['user' => ['nuno' => 'maduro']])->toHaveKey('user.nuno');
-expect(['user' => ['nuno' => 'maduro']])->toHaveKey('user.nuno', 'maduro');
+expect(['user' => ['name' => 'Nuno', 'surname' => 'Maduro']])->toHaveKey('user.name');
+expect(['user' => ['name' => 'Nuno', 'surname' => 'Maduro']])->toHaveKey('user.name', 'Nuno');
 ```
 
 <a name="expect-toHaveKeys"></a>
 ### `toHaveKeys(array $keys)`
 
-Asserts that the value array contains the provided `$keys`:
+Asserts that the `$value` contains the provided `$keys`:
 
 ```php
-expect($array)->toHaveKeys(['key-a', 'key-b']);
+expect(['id' => 1, 'name' => 'Nuno'])->toHaveKeys(['id', 'name']);
 ```
 
 This expectation also supports dot notation for reaching deeper into nested arrays:
 
 ```php
-expect(['user' => ['nuno' => 'maduro', 'luke' => 'downing']])->toHaveKeys(['user.nuno', 'user.luke']);
+expect(['message' => ['from' => 'Nuno', 'to' => 'Luke'] ])->toHaveKeys(['message.from', 'message.to']);
 ```
 
 <a name="expect-toHaveLength"></a>
 ### `toHaveLength(int $number)`
 
-Asserts that the `$number` matches the `$value`'s string length, or number of elements of the iterable `$value`:
+Asserts that the provided `$number` matches the length of a `string` `$value` or the number of elements in an `iterable` `$value`.
 
 ```php
-expect('pest')->toHaveLength(4);
+expect('Pest')->toHaveLength(4);
 expect(['Nuno', 'Maduro'])->toHaveLength(2);
-expect('')->not->toHaveLength(5);
-expect(true)->toHaveLength(4); //throws a `BadMethodCallException` when the expectation value type is not supported.
 ```
 
 <a name="expect-toBeDirectory"></a>
 ### `toBeDirectory()`
 
-Asserts that the value is a directory:
+Asserts that the `string` `$value` is a directory.
 
 ```php
-expect($dir)->toBeDirectory();
+expect('/tmp')->toBeDirectory();
 ```
 
 <a name="expect-toBeReadableDirectory"></a>
 ### `toBeReadableDirectory()`
 
-Asserts that the value is a directory and is readable.
+Asserts that the `string` `$value` is a directory and it is readable.
 
 ```php
-expect($dir)->toBeReadableDirectory();
+expect('/tmp')->toBeReadableDirectory();
 ```
 
 <a name="expect-toBeWritableDirectory"></a>
 ### `toBeWritableDirectory()`
 
-Asserts that the value is a directory and is writable:
+Asserts that the `string` `$value` is a directory and it is writable.
 
 ```php
-expect($dir)->toBeWritableDirectory();
+expect('/tmp')->toBeWritableDirectory();
 ```
 
 <a name="expect-toStartWith"></a>
 ### `toStartWith(string $expected)`
 
-Asserts that the value starts with the provided string:
+Asserts that the `$value` starts with the provided `string` `$expected`.
+
+The expectation is case-sensitive.
 
 ```php
-expect($content)->toStartWith('Hello');
+expect('Hello World')->toStartWith('Hello');
 ```
 
 <a name="expect-toThrow"></a>
@@ -601,10 +611,12 @@ expect('Hello World')->toMatch('/^hello wo.*$/i');
 <a name="expect-toEndWith"></a>
 ### `toEndWith(string $expected)`
 
-Asserts that the value ends with the provided string:
+Asserts that the `$value` ends with the provided `string` `$expected`.
+
+The expectation is case-sensitive.
 
 ```php
-expect($content)->toEndWith('World');
+expect('Hello World')->toEndWith('World');
 ```
 
 <a name="expect-toMatchConstraint"></a>
@@ -732,10 +744,10 @@ expect('pestphp')
 <a name="expect-not"></a>
 ### `not()`
 
-Use the `not` modifier before a check to invert it:
+Use the `not` modifier before a `method` to invert it:
 
 ```php
-expect($id)->not->toBe(14);
+expect(10)->not->toBeGreaterThan(100);
 ```
 
 <a name="expect-ray"></a>
