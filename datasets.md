@@ -156,7 +156,7 @@ test('business hours', function($business, $day) {
 })->with([
     Bar::class,  
     Restaurant::class,
-])->with('days_of_week');
+])->with('days_of_the_week');
 ```
 
 ---
