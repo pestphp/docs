@@ -41,6 +41,10 @@ This option allows you to set a minimum required coverage value. If the coverage
 
 This option allows you to only run a specific list of [grouped tests](/docs/groups). This is a comma-separated list.
 
+### `--exclude-group`
+
+You may also use the `--exclude-group` option to instruct Pest to exclude [grouped tests](/docs/groups). This is a comma-separated list.
+
 ### `--test-directory`
 
 This option allows you to specify the directory that will be used to gather the tests that should be run. If it isn't provided the default `tests` directory will be used.
