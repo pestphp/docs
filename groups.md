@@ -47,6 +47,12 @@ running Pest on the command-line:
 ./vendor/bin/pest --group=integration,browser
 ```
 
+You may also exclude specific groups using the  `--exclude-group` option:
+
+```bash
+./vendor/bin/pest --exclude-group=api
+```
+
 > **Note:** The `uses()->group('integration')->in('Feature')` will **not** put any PHPUnit test class under the *integration* group.
 You still need the `@group` [annotation](https://phpunit.readthedocs.io/en/latest/annotations.html) for them.
 Pest will understand it.
