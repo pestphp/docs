@@ -5,7 +5,7 @@ description: Installation
 
 # Installation
 
-> **Requirements:** [PHP 7.3+](https://php.net/releases/).
+> **Requirements:** [PHP 8.0+](https://php.net/releases/).
 
 1. First, install Pest via the [Composer](https://getcomposer.org) package manager:
 
