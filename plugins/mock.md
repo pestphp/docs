@@ -63,8 +63,8 @@ Of course, while the `expect(callable ...$methods)` method addresses most of the
 test('some service', function () {
     $mock = mock(UserRepository::class)
         ->shouldReceive('save')
-        ->once()
-        ->andReturn(true);
+        ->andReturn(true)
+        ->getMock();
 
     expect($mock->save('Nuno'))->toBeTrue();
 });
