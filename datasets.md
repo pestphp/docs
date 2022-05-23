@@ -12,6 +12,7 @@ description: Datasets
     - [Lazy Datasets](#lazy-datasets)
     - [Bound Datasets](#bound-datasets)
     - [Combining Datasets](#combining-datasets)
+    - [Datasets description](#datasets-description)
 
 <a name="overview"></a>
 ## Overview
@@ -157,6 +158,34 @@ test('business hours', function($business, $day) {
     Bar::class,  
     Restaurant::class,
 ])->with('days_of_the_week');
+```
+
+<a name="datasets-description"></a>
+### Datasets description
+
+By default, when running a test with a dataset, Pest generates a small description of the dataset based on the dataset values:
+
+```php
+✓ has emails with (james@laravel.com)
+✓ has emails with (taylor@laravel.com)
+```
+
+You may specify yourself the dataset description adding a `key` to the dataset values:
+
+```php
+it('has emails', function ($email) {
+    expect($email)->not->toBeEmpty();
+})->with([
+    'james' => 'james@laravel.com',
+    'taylor' => 'taylor@laravel.com',
+]);
+```
+
+When adding a `key`, the `key` value will be used instead:
+
+```php
+✓ has emails with (james)
+✓ has emails with (taylor)
 ```
 
 ---
