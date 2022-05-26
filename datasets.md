@@ -166,8 +166,8 @@ test('business hours', function($business, $day) {
 By default, when running a test with a dataset, Pest generates a small description of the dataset based on the dataset values:
 
 ```php
-✓ has emails with (james@laravel.com)
-✓ has emails with (taylor@laravel.com)
+✓ it has emails with (james@laravel.com)
+✓ it has emails with (taylor@laravel.com)
 ```
 
 You may specify yourself the dataset description adding a `key` to the dataset values:
@@ -184,8 +184,8 @@ it('has emails', function ($email) {
 When adding a `key`, the `key` value will be used instead:
 
 ```php
-✓ has emails with (james)
-✓ has emails with (taylor)
+✓ it has emails with data set "james"
+✓ it has emails with data set "taylor"
 ```
 
 ---
