@@ -46,6 +46,8 @@ of source code that has been tested/executed.
 
 The numbers marked in red (if any) relate to the lines not covered by your current test suite, these are displayed using the line numbers. If there are multiple lines without coverage these numbers will be displayed with `..` between them. For example, if you are missing coverage on line 52, you will see `52` in red, whereas if there is missing coverage between lines 52 and 60 you will see `52..60`.
 
+You can combine this with other coverage options from PHPUnit such as `--coverage-xml` or `--coverage-html`.
+
 <a name="min"></a>
 ### `--min`
 
