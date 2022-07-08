@@ -70,7 +70,7 @@ test('some service', function () {
 });
 ```
 
-For the full list of available methods, please refer to the **[Mockery documentation](http://docs.mockery.io/en/latest/)**.
+For the full list of available methods, please refer to the **[Mockery documentation](https://docs.mockery.io/en/latest/)**.
 
 ---
 
