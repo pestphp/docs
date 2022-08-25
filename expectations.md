@@ -6,16 +6,17 @@ description: Expectations
 # Expectations
 
 - [Overview](#overview)
+- [Usage](#usage)
 - [Available Expectations](#available-expectations)
+- [Expectation Modifiers](#expectation-modifiers)
 - [Higher Order Expectations](#higher-order-expectations)
 
 <a name="overview"></a>
 ## Overview
 
-In addition to assertions, Pest offers you a set of expectations.
-These functions let you test your values against certain conditions.
-This API is inspired by [Jest](https://jestjs.io/docs/expect).
-Expectations also allow you to write your tests like you would a natural sentence:
+In addition to [Assertions](/docs/assertions), Pest offers you the Expectation API (inspired by [Jest](https://jestjs.io/docs/expect)).
+
+Expectations allow you to write tests as if you were writing a natural sentence in English.
 
 ```php
 test('expect true to be true', function () {
@@ -23,18 +24,45 @@ test('expect true to be true', function () {
   $this->assertTrue(true);
 
   // expectation
-  expect(true)->toBe(true);
+  expect(true)->toBeTrue();
 });
 ```
 
-<a name="expect"></a>
-### `expect($value)`
+<a name="usage"></a>
+### `Usage`
 
-Start the expectation by passing your value to this function.
-Then, you can chain your check(s):
+Start the expectation by passing your value to the `expect($value)` function.
 
 ```php
 expect($value)->// chain your checks here
+```
+
+Then, continue chaining as many [expectations](#available-expectations) as you need to perform your checks. For example:
+
+```php
+expect($value)->toContain('@')
+    ->toEndWith('.com');
+```
+
+Just like in plan English, to negate an expectation, you can use the modifier [`not()`](#expect-not).
+
+```php
+expect($value)->not()->toContain('@banned-domain.com');
+```
+
+A single test may have several expectations:
+
+```php
+it('can have many expectations', function () {
+    $number           = rand();
+    $suffix           = PHP_SHLIB_SUFFIX;
+    $operatingSystem  = PHP_OS_FAMILY;
+ 
+    expect($number)->toBeInt();
+    expect($suffix)->toBeIn(['so', 'dll']);
+    expect($operatingSystem)->toBeString()
+        ->not()->toBe('Symbian');
+});
 ```
 
 <a name="available-expectations"></a>
@@ -88,7 +116,15 @@ expect($value)->// chain your checks here
 - [`toEndWith()`](#expect-toEndWith)
 - [`toMatch()`](#expect-toMatch)
 - [`toMatchConstraint()`](#expect-toMatchConstraint)
-- [`and($value)`](#expect-and)
+
+</div>
+
+<a name="expectation-modifiers"></a>
+## Expectation Modifiers
+
+<div class="collection-method-list" markdown="1">
+
+- [`and()`](#expect-and)
 - [`dd()`](#expect-dd)
 - [`each()`](#expect-each)
 - [`json()`](#expect-json)
@@ -101,22 +137,32 @@ expect($value)->// chain your checks here
 
 </div>
 
+---
+
 <a name="expect-toBe"></a>
 ### `toBe()`
 
-Asserts that two variables have the same type and value.
-Used on objects, it asserts that the two variables reference the same object:
+Asserts that `$value` and `$expected` have the same **type** and **value**.
+
+When used on objects, it asserts that the two variables reference the same object.
 
 ```php
-expect($color)->toBe('pink');
+expect($total)->toBe(120);
 
-expect($user)->toBe($user);
+expect(1)->toBe(1);
+expect('1')->not()->toBe(1);
+
+expect(new StdClass)->not()->toBe(new StdClass);
+
 ```
+
+This is equivalent to PHPUnit `AssertSame()` method.
+
 
 <a name="expect-toBeEmpty"></a>
 ### `toBeEmpty()`
 
-Asserts that the value is empty:
+Asserts that the `$value` is empty.
 
 ```php
 expect($lastSeen)->toBeEmpty();
@@ -125,7 +171,7 @@ expect($lastSeen)->toBeEmpty();
 <a name="expect-toBeTrue"></a>
 ### `toBeTrue()`
 
-Asserts that the value is true:
+Asserts that the `$value` is true.
 
 ```php
 expect($isPublished)->toBeTrue();
@@ -134,7 +180,7 @@ expect($isPublished)->toBeTrue();
 <a name="expect-toBeTruthy"></a>
 ### `toBeTruthy()`
 
-Asserts that the value is truthy:
+Asserts that the `$value` is truthy.
 
 ```php
 expect(1)->toBeTruthy();
@@ -144,7 +190,7 @@ expect('1')->toBeTruthy();
 <a name="expect-toBeFalse"></a>
 ### `toBeFalse()`
 
-Asserts that the value is false:
+Asserts that the `$value` is false.
 
 ```php
 expect($isPublished)->toBeFalse();
@@ -153,7 +199,7 @@ expect($isPublished)->toBeFalse();
 <a name="expect-toBeFalsy"></a>
 ### `toBeFalsy()`
 
-Asserts that the value is falsy:
+Asserts that the `$value` is falsy.
 
 ```php
 expect(0)->toBeFalsy();
@@ -163,7 +209,7 @@ expect('')->toBeFalsy();
 <a name="expect-toBeGreaterThan"></a>
 ### `toBeGreaterThan($expected)`
 
-Asserts that the value is greater than the expected one:
+Asserts that the `$value` is greater than the `$expected`.
 
 ```php
 expect($count)->toBeGreaterThan(20);
@@ -172,7 +218,7 @@ expect($count)->toBeGreaterThan(20);
 <a name="expect-toBeGreaterThanOrEqual"></a>
 ### `toBeGreaterThanOrEqual($expected)`
 
-Asserts that the value is greater than or equal to the expected one:
+Asserts that the `$value` is greater than or equal to the `$expected`.
 
 ```php
 expect($count)->toBeGreaterThanOrEqual(21);
@@ -181,7 +227,7 @@ expect($count)->toBeGreaterThanOrEqual(21);
 <a name="expect-toBeLessThan"></a>
 ### `toBeLessThan($expected)`
 
-Asserts that the value is lesser than the expected one:
+Asserts that the `$value` is lesser than the `$expected`.
 
 ```php
 expect($count)->toBeLessThan(3);
@@ -190,7 +236,7 @@ expect($count)->toBeLessThan(3);
 <a name="expect-toBeLessThanOrEqual"></a>
 ### `toBeLessThanOrEqual($expected)`
 
-Asserts that the value is lesser than or equal to the expected one:
+Asserts that the `$value` is lesser than or equal to the `$expected`.
 
 ```php
 expect($count)->toBeLessThanOrEqual(2);
@@ -199,10 +245,11 @@ expect($count)->toBeLessThanOrEqual(2);
 <a name="expect-toContain"></a>
 ### `toContain($needles)`
 
-Asserts that all given needles are elements of the value:
+Asserts that all given needles are elements of the `$value`.
 
 ```php
 expect('Hello World')->toContain('Hello');
+expect('Pest: an elegant PHP Testing Framework')->toContain('Pest', 'PHP', 'Framework');
 expect([1, 2, 3, 4])->toContain(2, 4);
 ```
 
@@ -220,7 +267,7 @@ To assert length, see the [`toHaveLength()`](#expect-toHaveLength) method.
 <a name="expect-toHaveProperty"></a>
 ### `toHaveProperty(string $name, $value = null)`
 
-Asserts that the `$value` contains the property `$name`:
+Asserts that the `$value` contains the property `$name`.
 
 ```php
 expect($user)->toHaveProperty('name');
@@ -230,7 +277,7 @@ expect($user)->toHaveProperty('name', 'Nuno');
 <a name="expect-toHaveProperties"></a>
 ### `toHaveProperties(iterable $name)`
 
-Asserts that the `$value` contains the provided properties `$names`:
+Asserts that the `$value` contains the provided properties `$names`.
 
 ```php
 expect($user)->toHaveProperties(['name', 'email']);
@@ -257,7 +304,7 @@ expect($user)->toMatchArray([
 <a name="expect-toMatchObject"></a>
 ### `toMatchObject($object)`
 
-Asserts that the `$value` object matches a subset of the properties of a given `$object`:
+Asserts that the `$value` object matches a subset of the properties of a given `$object`.
 
 ```php
 $user = new stdClass();
@@ -274,11 +321,19 @@ expect($user)->toMatchObject([
 <a name="expect-toEqual"></a>
 ### `toEqual($expected)`
 
-Asserts that two variables have the same value.
+Asserts that `$value` and `$expected` have the same **value**.
 
 ```php
 expect($title)->toEqual('Hello World');
+
+expect('1')->toEqual(1);
+
+expect(new StdClass)->toEqual(new StdClass);
+
 ```
+
+This is equivalent to PHPUnit `AssertEquals()` method.
+
 
 <a name="expect-toEqualCanonicalizing"></a>
 ### `toEqualCanonicalizing($expected)`
@@ -300,21 +355,20 @@ expect([1, 2, 4])->toEqual([1, 2, 4]);
 <a name="expect-toEqualWithDelta"></a>
 ### `toEqualWithDelta($expected, float $delta)`
 
-Asserts that the absolute difference between `$value` and
-`$expected` is lower than `$delta`:
+Asserts that the absolute difference between `$value` and `$expected` is lower than `$delta`.
 
 ```php
-// Pass
-expect(14)->toEqualWithDelta(10, 5);
+expect($bakingTime)->toEqualWithDelta(30, 5); //Baking time with a 5 minute variance
 
-// Fail
-expect(14)->toEqualWithDelta(10, 0.1);
+expect(14)->toEqualWithDelta(10, 5);    // Pass
+expect(14)->toEqualWithDelta(10, 0.1); // Fail
+
 ```
 
 <a name="expect-toBeIn"></a>
 ### `toBeIn()`
 
-Asserts that the value is one of the given values.
+Asserts that the `$value` is one of the given values.
 
 ```php
 expect($response->httpCode)->toBeIn([200, 301, 302]);
@@ -323,7 +377,7 @@ expect($response->httpCode)->toBeIn([200, 301, 302]);
 <a name="expect-toBeInfinite"></a>
 ### `toBeInfinite()`
 
-Asserts that the value is infinite:
+Asserts that the `$value` is infinite.
 
 ```php
 expect(log(0))->toBeInfinite();
@@ -332,7 +386,7 @@ expect(log(0))->toBeInfinite();
 <a name="expect-toBeInstanceOf"></a>
 ### `toBeInstanceOf($class)`
 
-Asserts that the value is an instance of `$class`:
+Asserts that the `$value` is an instance of `$class`.
 
 ```php
 expect($user)->toBeInstanceOf(User::class);
@@ -341,7 +395,7 @@ expect($user)->toBeInstanceOf(User::class);
 <a name="expect-toBeArray"></a>
 ### `toBeArray()`
 
-Asserts that the value is an array:
+Asserts that the `$value` is an array.
 
 ```php
 expect(['Pest','PHP','Laravel'])->toBeArray();
@@ -350,7 +404,7 @@ expect(['Pest','PHP','Laravel'])->toBeArray();
 <a name="expect-toBeBool"></a>
 ### `toBeBool()`
 
-Asserts that the value is of type bool:
+Asserts that the `$value` is of type `bool`.
 
 ```php
 expect($isActive)->toBeBool();
@@ -359,16 +413,18 @@ expect($isActive)->toBeBool();
 <a name="expect-toBeCallable"></a>
 ### `toBeCallable()`
 
-Asserts that the value is of type callable:
+Asserts that the `$value` is of type `callable`.
 
 ```php
-expect($controller)->toBeCallable();
+$myFunction = function () {};
+
+expect($myFunction)->toBeCallable();
 ```
 
 <a name="expect-toBeFloat"></a>
 ### `toBeFloat()`
 
-Asserts that the value is of type float:
+Asserts that the `$value` is of type `float`.
 
 ```php
 expect($height)->toBeFloat();
@@ -377,7 +433,7 @@ expect($height)->toBeFloat();
 <a name="expect-toBeInt"></a>
 ### `toBeInt()`
 
-Asserts that the value is of type integer:
+Asserts that the `$value` is of type `integer`.
 
 ```php
 expect($count)->toBeInt();
@@ -386,25 +442,27 @@ expect($count)->toBeInt();
 <a name="expect-toBeIterable"></a>
 ### `toBeIterable()`
 
-Asserts that the value is of type iterable:
+Asserts that the `$value` is of type `iterable`.
 
 ```php
-expect($value)->toBeIterable();
+expect($array)->toBeIterable();
 ```
 
 <a name="expect-toBeNumeric"></a>
 ### `toBeNumeric()`
 
-Asserts that the value is of type numeric:
+Asserts that the `$value` is of type `numeric`.
 
 ```php
 expect($age)->toBeNumeric();
+expect(10)->toBeNumeric();
+expect('10')->toBeNumeric();
 ```
 
 <a name="expect-toBeObject"></a>
 ### `toBeObject()`
 
-Asserts that the value is of type object:
+Asserts that the `$value` is of type `object`.
 
 ```php
 $object = new stdClass();
@@ -415,7 +473,7 @@ expect($object)->toBeObject();
 <a name="expect-toBeResource"></a>
 ### `toBeResource()`
 
-Asserts that the value is of type resource:
+Asserts that the `$value` is of type `resource`.
 
 ```php
 $handle = fopen('php://memory', 'r+');
@@ -426,20 +484,20 @@ expect($handle)->toBeResource();
 <a name="expect-toBeScalar"></a>
 ### `toBeScalar()`
 
-Asserts that the value is of type scalar:
+Asserts that the `$value` is of type `scalar`.
 
 ```php
 expect('1')->toBeScalar();
 expect(1)->toBeScalar();
 expect(1.0)->toBeScalar();
 expect(true)->toBeScalar();
-expect([1, '1'])->not->toBeScalar();
+expect([1, '1'])->not()->toBeScalar();
 ```
 
 <a name="expect-toBeString"></a>
 ### `toBeString()`
 
-Asserts that the value is of type string:
+Asserts that the `$value` is of type `string`.
 
 ```php
 expect($string)->toBeString();
@@ -448,16 +506,18 @@ expect($string)->toBeString();
 <a name="expect-toBeJson"></a>
 ### `toBeJson()`
 
-Asserts that the value is a JSON string:
+Asserts that the `$value` is a JSON string.
 
 ```php
 expect('{"hello":"world"}')->toBeJson();
 ```
 
+> 💡 See also the [`json()`](#expect-json) modifier.
+
 <a name="expect-toBeNan"></a>
 ### `toBeNan()`
 
-Asserts that the value is not a number (NaN):
+Asserts that the `$value` is not a number (NaN).
 
 ```php
 expect(sqrt(-1))->toBeNan();
@@ -466,7 +526,7 @@ expect(sqrt(-1))->toBeNan();
 <a name="expect-toBeNull"></a>
 ### `toBeNull()`
 
-Asserts that the value is null:
+Asserts that the `$value` is `null`.
 
 ```php
 expect(null)->toBeNull();
@@ -475,13 +535,13 @@ expect(null)->toBeNull();
 <a name="expect-toHaveKey"></a>
 ### `toHaveKey(string $key)`
 
-Asserts that the `$value` contains the provided `$key`:
+Asserts that the `$value` contains the provided `$key`.
 
 ```php
 expect(['name' => 'Nuno', 'surname' => 'Maduro'])->toHaveKey('name');
 ```
 
-You may pass a second parameter to assert that the value at the given key is equal to something:
+You may pass a second parameter to assert that the `$value` at the given key is equal to something:
 
 ```php
 expect(['name' => 'Nuno', 'surname' => 'Maduro'])->toHaveKey('name', 'Nuno');
@@ -531,7 +591,7 @@ expect('/tmp')->toBeDirectory();
 <a name="expect-toBeReadableDirectory"></a>
 ### `toBeReadableDirectory()`
 
-Asserts that the `string` `$value` is a directory and it is readable.
+Asserts that the `string` `$value` is a directory, and it is readable.
 
 ```php
 expect('/tmp')->toBeReadableDirectory();
@@ -540,7 +600,7 @@ expect('/tmp')->toBeReadableDirectory();
 <a name="expect-toBeWritableDirectory"></a>
 ### `toBeWritableDirectory()`
 
-Asserts that the `string` `$value` is a directory and it is writable.
+Asserts that the `string` `$value` is a directory and, it is writable.
 
 ```php
 expect('/tmp')->toBeWritableDirectory();
@@ -590,18 +650,18 @@ test('it asserts two exceptions with their specific messages', function () {
 });
 ```
 
-It is also possible to use `not()` modifier together with `toThrow()`:
+It is also possible to use [`not()`](#expect-not) modifier together with `toThrow()`:
 
 ```php
 test('it does not throw an Exception', function () {
-    expect(fn ($x, $y) => $x + $y)->not->toThrow(Exception::class);
+    expect(fn ($x, $y) => $x + $y)->not()->toThrow(Exception::class);
 });
 ```
 
 <a name="expect-toMatch"></a>
 ### `toMatch(string $expression)`
 
-Asserts that the value matches a regular expression:
+Asserts that the `$value` matches a regular expression.
 
 ```php
 expect('Hello World')->toMatch('/^hello wo.*$/i');
@@ -621,7 +681,7 @@ expect('Hello World')->toEndWith('World');
 <a name="expect-toMatchConstraint"></a>
 ### `toMatchConstraint(Constraint $constraint)`
 
-Asserts that the value matches a specified [PHPUnit constraint](https://github.com/sebastianbergmann/phpunit/tree/master/src/Framework/Constraint):
+Asserts that the `$value` matches a specified [PHPUnit constraint](https://github.com/sebastianbergmann/phpunit/tree/master/src/Framework/Constraint).
 
 ```php
 use PHPUnit\Framework\Constraint\IsTrue;
@@ -629,7 +689,7 @@ use PHPUnit\Framework\Constraint\IsTrue;
 expect(true)->toMatchConstraint(new IsTrue());
 ```
 
-Asserts that the value matches a complex group of constraints:
+Asserts that the `$value` matches a complex group of constraints.
 
 ```php
 use PHPUnit\Framework\Constraint\IsFalse;
@@ -643,7 +703,7 @@ expect(true)->toMatchConstraint(
 );
 ```
 
-Asserts that the value matches a custom constraint:
+Asserts that the `$value` matches a custom constraint.
 
 ```php
 expect('https://google.com')->toMatchConstraint(new IsValidUrlConstraint());
@@ -672,17 +732,17 @@ class IsValidUrlConstraint extends \PHPUnit\Framework\Constraint\Constraint
 <a name="expect-and"></a>
 ### `and($value)`
 
-Pass a new value to the `and` function to chain multiple expectations in a single test:
+Pass a new value to the `and` function to chain multiple expectations in a single test.
 
 ```php
-expect($id)->toBe(14)->and($name)->toBe('Nuno');
+expect($id)->toBe(14)
+    ->and($name)->toBe('Nuno');
 ```
 
 <a name="expect-dd"></a>
 ### `dd()`
 
-Use the `dd` method to dumps the current expectation value and ends the script:
-
+Use the `dd()` method to dump the current expectation `$value` and stop the code execution.
 ```php
 expect(14)->dd(); // 14
 
@@ -692,14 +752,16 @@ expect([1, 2])->sequence(
 );
 ```
 
+> 💡 The acronym "dd" stands for "dump and die".
+
 <a name="expect-each"></a>
 ### `each()`
 
-Use the `each` modifier to create an expectation on each item of the given iterable:
+Use the `each()` modifier to create an expectation on each item of the given iterable.
 
 ```php
 expect([1, 2, 3])->each->toBeInt();
-expect([1, 2, 3])->each->not->toBeString();
+expect([1, 2, 3])->each->not()->toBeString();
 
 expect([1, 2, 3])->each(fn ($number) => $number->toBeLessThan(4));
 ```
@@ -707,7 +769,9 @@ expect([1, 2, 3])->each(fn ($number) => $number->toBeLessThan(4));
 <a name="expect-json"></a>
 ### `json()`
 
-Pass a JSON string to the `json` method to assert it is a valid JSON and chain other expectations:
+The `json()` modifier asserts that the given `value` is a valid `json string`.
+
+This method also provides a convenient way to test the Json values by converting the string into an `iterable` value.
 
 ```php
 expect('{"name":"Nuno","credit":1000.00}')
@@ -715,22 +779,26 @@ expect('{"name":"Nuno","credit":1000.00}')
     ->toHaveCount(2)
     ->name->toBe('Nuno')
     ->credit->toBeFloat();
+
+expect('not-a-json')->json(); //Fails
 ```
+
+> **❗ NOTE:**  When used in a Higher Order test, this modifier locks the current expectation with the converted value and does not allow the scope to be reseted back to upper levels.
 
 <a name="match"></a>
 ### `match()`
 
-The `match` method executes the callback of the first `key` that matches the first argument given to the method:
+The `match()` method executes the `callback` of the first `key` that matches the first argument given to the method.
 
 ```php
 expect('pest')
     ->match(true, [
         true  => fn ($value) => $value->toEqual('pest'),
-        false => fn ($value) => $value->not->toEqual('pest')
+        false => fn ($value) => $value->not()->toEqual('pest')
     ]);
 ```
 
-If you just want to check that the expected value is equal to the value of the matching key, you can pass the expected value directly instead of using a callback:
+If you just want to check that the `$expected` is equal to the `$value` of the matching key, you can pass the `$expected` directly instead of using a callback:
 
 ```php
 expect('pestphp')
@@ -743,16 +811,18 @@ expect('pestphp')
 <a name="expect-not"></a>
 ### `not()`
 
-Use the `not` modifier before a `method` to invert it:
+Use the `not()` modifier before an expectation to invert the checking condition.
 
 ```php
-expect(10)->not->toBeGreaterThan(100);
+expect(10)->not()->toBeGreaterThan(100);
+
+expect(true)->not->toBeFalse(); //also available as property
 ```
 
 <a name="expect-ray"></a>
 ### `ray()`
 
-Use the `ray` method to debug the current expectation value with **[myray.app](https://myray.app/)**:
+Use the `ray()` method to debug the current expectation value with **[myray.app](https://myray.app/)**.
 
 ```php
 expect(14)->ray(); // 14
@@ -766,7 +836,7 @@ expect([1, 2])->sequence(
 <a name="expect-sequence"></a>
 ### `sequence()`
 
-Use the `sequence` method to specify a sequential set of expectations for each item of the given iterable:
+Use the `sequence()` method to specify a sequential set of expectations for each item of the given iterable.
 
 ```php
 expect([1, 2, 3])->sequence(
@@ -776,7 +846,7 @@ expect([1, 2, 3])->sequence(
 );
 ```
 
-You can also use the `sequence` method with associative iterables. Each closure receives the value as an expectation for
+You can also use the `sequence()` method with associative iterables. Each closure receives the value as an expectation for
 the first argument, and the key as an expectation for the second argument:
 
 ```php
@@ -787,7 +857,7 @@ expect(['hello' => 'world', 'foo' => 'bar', 'john' => 'doe'])->sequence(
 );
 ```
 
-If you just want to check that each value in the iterable is equal to another value, you can pass the expected value
+If you just want to check that each value in the iterable is equal to another value, you can pass the `$expected` value
 directly instead of using a closure:
 
 ```php
@@ -810,7 +880,7 @@ For the inverse of `when`, see the [`unless`](#unless) method.
 <a name="unless"></a>
 ### `unless()`
 
-The `unless` method will execute the given callback unless the first argument given to the method evaluates to `true`:
+The `unless()` method will execute the given callback unless the first argument given to the method evaluates to `true`:
 
 ```php
 expect($user)
@@ -856,7 +926,7 @@ Higher order expectations can be used with all of [Pest's expectations](#availab
 ```php
 expect($user)
     ->posts
-    ->not->toBeEmpty
+    ->not()->toBeEmpty
     ->toHaveCount(2)
     ->sequence(
         fn ($post) => $post->title->toEqual('My first post!'),
@@ -869,7 +939,7 @@ or more of [Pest's expectations](#available-expectations), the expectation's sco
 
 ```php
 expect($user)
-    ->companies->first()->owner->toBeInstanceOf(User::class)->not->toEqual($user)
+    ->companies->first()->owner->toBeInstanceOf(User::class)->not()->toEqual($user)
     ->name->toEqual('Nuno');
 ```
 
