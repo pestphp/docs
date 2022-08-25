@@ -8,7 +8,6 @@ description: Expectations
 - [Overview](#overview)
 - [Available Expectations](#available-expectations)
 - [Higher Order Expectations](#higher-order-expectations)
-- [Custom Expectations](#custom-expectations)
 
 <a name="overview"></a>
 ## Overview
@@ -873,24 +872,6 @@ expect($user)
     ->companies->first()->owner->toBeInstanceOf(User::class)->not->toEqual($user)
     ->name->toEqual('Nuno');
 ```
-
-<a name="custom-expectations"></a>
-## Custom Expectations
-
-You can use `expect()->extend()` to add your own expectations to Pest. For example, let's say that you're testing a number utility library and you're frequently asserting that numbers appear within particular ranges of other numbers. You could abstract that into a `toBeWithinRange` expectation:
-
-```php
-expect()->extend('toBeWithinRange', function ($min, $max) {
-    return $this->toBeGreaterThanOrEqual($min)
-                ->toBeLessThanOrEqual($max);
-});
-
-test('numeric ranges', function () {
-    expect(100)->toBeWithinRange(90, 110);
-});
-```
-
-Those custom expectations may be also placed in your `tests/Pest.php` file.
 
 ---
 
