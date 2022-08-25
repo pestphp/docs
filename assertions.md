@@ -11,16 +11,14 @@ description: Assertions
 <a name="overview"></a>
 ## Overview
 
-By now you've caught a glimpse of some available assertions. They
-are the ones that actually perform the checks to ensure that things
-are going as planned.
+Pest also provides full access to the PHPUnit built-in Assertions.
 
-Remember, the `$this` variable inside the given
-closure in tests is always bound to a Test Case class. Therefore
-assertions are methods of the `$this` variable.
+You can use Assertions to perform checks and ensure that your code is behaving as expected.
+
+Assertions are methods of the `$this` variable. Inside a test `closure`, `$this` is always bound to a [Test Case](/docs/underlying-test-case) class.
 
 ```php
-it('asserts true is true', function () {
+it('asserts that TRUE is TRUE', function () {
     $this->assertTrue(true);
 });
 ```
@@ -39,7 +37,7 @@ it('asserts true is true', function () {
 
 </div>
 
-For the full list of **assertions**, please refer to [PHPUnit Assertions](https://phpunit.readthedocs.io/en/9.5/assertions.html) documentation.
+For the full list of **Assertions**, please refer to [PHPUnit Assertions](https://phpunit.readthedocs.io/en/9.5/assertions.html) documentation.
 
 <a name="assertTrue"></a>
 ### `assertTrue()`
@@ -65,7 +63,7 @@ $this->assertFalse(false);
 The `assertCount` asserts the given iterable to contain the same number of items.
 
 ```php
-$array = [1, 2, 3, 4];
+$array = ['Oliver', 'Fabio', 'Owen', 'Vaggelis'];
 
 $this->assertCount(4, $array);
 ```
@@ -76,9 +74,9 @@ $this->assertCount(4, $array);
 The `assertEquals` asserts the given values are equal.
 
 ```php
-$array = [1, 2, 3, 4];
+$array = ['Nuno', 'Luke', 'Alex', 'Dan'];
 
-$this->assertEquals([1, 2, 3, 4], $array);
+$this->assertEquals(['Nuno', 'Luke', 'Alex', 'Dan'], $array);
 ```
 
 <a name="assertEmpty"></a>
@@ -98,7 +96,7 @@ $this->assertEmpty($array);
 The `assertStringContainsString` asserts the given string exists.
 
 ```php
-$this->assertStringContainsString('Star', 'Star Wars');
+$this->assertStringContainsString('Hello', 'Hello World');
 ```
 
 ---
