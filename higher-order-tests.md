@@ -19,12 +19,12 @@ don't provide a closure, the chained methods are going to create a closure for
 you. Here is the most basic example:
 
 ```php
-test('true is true')->assertTrue(true);
+test('TRUE is TRUE')->assertTrue(true);
 ```
 
 The code above is equivalent to:
 ```php
-test('true is true', function () {
+test('TRUE is TRUE', function () {
     $this->assertTrue(true);
 });
 ```
