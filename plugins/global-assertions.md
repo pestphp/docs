@@ -31,7 +31,7 @@ composer require pestphp/pest-plugin-global-assertions --dev
 This allows you to do the following, without calling the `$this` object. For a full list of available methods, please refer to [the compiled list](https://github.com/pestphp/pest-plugin-global-assertions/blob/main/src/compiled.php).
 
 ```php
-it('asserts true is true using global function', function () {
+it('asserts that TRUE is TRUE using global function', function () {
     assertTrue(true);
 });
 ```
