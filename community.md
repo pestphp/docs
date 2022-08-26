@@ -5,26 +5,33 @@ description: Community
 
 # Community
 
-- [Discord](#discord)
 - [Twitter](#twitter)
+- [GitHub](#github)
+- [Discord](#discord)
 
-Come gather 'round our community channels and meet other Pest users.
+[`Welcome to the Pest Community!`](#)
 
-<a name="discord"></a>
-## Discord
+The Pest community is welcoming, approachable, and respectful. Much of Pest success comes from all the community members contributing not only with code, but also with sharing ideas, information and supporting each other on their PHP Testing journey.
 
-Meet and chat with dozens of other Pest users in real-time on our Discord server. Submit your ideas and suggestions, ask for help, share the cool stuff you made, or simply follow the latest Pest announcements. We are waiting for you!
+We are proud to propagate `#GoodVibesOnly`.
 
-[Join our Discord channel](https://discord.gg/bMAJv82)
-
+Stay up to date, meet other users, say hello in our community spaces.
 
 <a name="twitter"></a>
 ## Twitter
 
-Do you prefer small nuggets of content? Get the latest Pest related news and discover the cool things Pest users shared directly on your feed!
+Follow Pest account [@pestphp](https://twitter.com/pestphp) on Twitter and get the latest news along with cool things Pest users shared directly on your feed!
 
-[Follow Pest on Twitter](https://twitter.com/pestphp)
+<a name="github"></a>
+## GitHub
+
+Visit [Pest Discussion](https://github.com/pestphp/pest/discussions) on GitHub and share your idea, ask questions and see what are the currently discussions involving Pest PHP.
+
+<a name="discord"></a>
+## Discord
+
+[Join our Discord channel](https://discord.gg/bMAJv82) to meet and chat with dozens of other Pest users in real-time on our Discord server.
 
 ---
 
-So, you want to contribute to Pest? Head on to the next section: [Contribute →](/docs/contribute)
+**Next**: Be part of Pest PHP, [`contribute` →](/docs/contribute)
