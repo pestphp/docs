@@ -54,7 +54,7 @@ You may also exclude specific groups using the  `--exclude-group` option:
 ```
 
 > **Note:** The `uses()->group('integration')->in('Feature')` will **not** put any PHPUnit test class under the *integration* group.
-You still need the `@group` [annotation](https://phpunit.readthedocs.io/en/latest/annotations.html) for them.
+You still need the `@group` [annotation](https://phpunit.readthedocs.io/en/9.5/annotations.html) for them.
 Pest will understand it.
 
 ---
