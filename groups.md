@@ -59,4 +59,4 @@ Pest will understand it.
 
 ---
 
-Next section: [Skipping Tests →](/docs/skipping-tests)
+Next section: - [Test Dependency →](/docs/test-dependency)

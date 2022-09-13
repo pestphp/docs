@@ -10,6 +10,7 @@
   - [IDE Plugins](/docs/ide-plugins)
   - [Exceptions & Errors](/docs/exceptions-and-errors)
   - [Groups Of Tests](/docs/groups)
+  - [Test Dependency](/docs/test-dependency)  
   - [Skipping Tests](/docs/skipping-tests)
   - [Datasets](/docs/datasets)
   - [Coverage](/docs/coverage)
