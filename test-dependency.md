@@ -6,22 +6,27 @@ description: Test Dependency
 # Test Dependency
 
 - [Overview](#overview)
+- [Using it() function](#using-it-function)
 - [Returning values](#returning-values)
 - [Multiple dependencies](#multiple-dependencies)
 
 <a name="overview"></a>
 
-https://subscription.packtpub.com/book/application-development/9781782169581/1/ch01lvl1sec17/using-test-dependencies-advanced
-
 ## Overview
 
-Sometimes your tests depends on each other.
+Tests often depend on a set of preconditions or events to happen before they run, otherwise they fail.
 
-Pest will understand that you only want to run the Child test if the Parent test has passed.
+For example, you can only assert that users can edit their accounts if first you assert that an account can be created.
+
+Pest provides the method `depends()` to indicate that a Child test depends on one or more Parent tests.
+
+Let's see how it works:
 
 ```php
 test('Parent', function () {
     expect(true)->toBeTrue();
+
+    $this->assertTrue(true);
 });
 
 test('Child', function () {
@@ -29,7 +34,9 @@ test('Child', function () {
 })->depends('Parent');
 ```
 
-Resulting in:
+In the example above, the Child test depends on the Parent test.
+
+If the Parent test passes, the Child test will be executed:
 
 ```plain
    PASS  Tests\Unit\ExampleTest
@@ -39,11 +46,11 @@ Resulting in:
   Tests:  2 passed
 ```
 
-However, If the Parent test fails, the Child test will be skipped.
+However, if the Parent test fails, the Child test will be skipped with a user-friendly message.
 
 ```php
 test('Parent', function () {
-    expect(0)->toBe(1);
+    expect(true)->toBeFalse();
 });
 
 test('Child', function () {
@@ -59,9 +66,13 @@ The example above results in:
   ! Child → This test depends on "P\Tests\Unit\ExampleTest::Parent" which does not exist.
 ```
 
-Keep in mind that using the `it()` function will append "it" to your test name. 
+<a name="using-it-function"></a>
 
-This means you must include "it" when referencing this test in `depends()`.
+## Using it() function
+
+ The `it()` function automatically appends "it" to the test name.
+
+For this reason, you must add  "`it `" when referencing the test name in `depends()`.
 
 ```php
 it('is the Parent', function () {
@@ -87,109 +98,93 @@ Results is:
 
 ## Returning values
 
-For the next example, 
+Parent tests may return values which will be accessible as function arguments in the Child test.
 
 ```php
-//Class for demonstration
-class Greeting
-{
-    public string $name = '';
-    
-    public function sayHello()
-    {
-        return "Hello {$this->name}!";
-    }
-}
+test('Parent', function () {
+    expect(true)->toBeTrue();
 
-//The first test asserts that class has the property name
-
-test('#1 initial', function () {
-    $greeting = new Greeting();
-
-    expect($greeting)->toHaveProperty('name');
-
-    $this->assertTrue(property_exists($greeting, 'name'));
-
-    return $greeting;
+    return 'coming from Parent';
 });
 
-//Then, depending on the first test, it asserts that property name is empty
+test('Child', function ($parentValue) {
+    var_dump(func_get_args());
 
-test('name is empty', function (Greeting $greeting) {
-    expect($greeting)->name->toBe('');
-
-    return $greeting;
-})->depends('#1 initial');
-
-//Next, depending on the first test, it asserts that it can say hello to a given name
-
-it('can say hello', function (Greeting $greeting) {
-    $greeting->name = 'Dan';
-    
-    expect($greeting)->sayHello()
-        ->toBe('Hello Dan!');
-
-    return $greeting;
-})->depends('#1 initial');
-
-//Finally, depending on "it can say hello", it asserts that sayHello works with two names.
-
-test('say hello with two names', function (Greeting $greeting) {
-    $doubleGreeting = clone $greeting;
-    
-    $doubleGreeting->name .= ' and Nuno';
-    
-    expect($doubleGreeting)->sayHello()
-        ->toBe('Hello Dan and Nuno!');
-
-    return $doubleGreeting;
-})->depends('it can say hello');
+    expect($parentValue)->toBe('coming from Parent');
+})->depends('Parent');
 ```
 
 Resulting in:
 
 ```plain
-   PASS  Tests\Unit\ExampleTest
-  ✓ #1 initial
-  ✓ name is empty
-  ✓ it can say hello
-  ✓ say hello with two names
+array(1) {
+  [0] =>
+  string(18) "coming from Parent"
+}
 
-  Tests:  4 passed
+   PASS  Tests\Unit\ExampleTest
+  ✓ Parent
+  ✓ Child
+
+  Tests:  2 passed
 ```
 
 <a name="multiple-dependencies"></a>
 
 ## Multiple dependencies
 
-You may also add multiple dependencies to one test.
+You may also add multiple dependencies to a test.
 
-To demonstrate this concept, let's add a new test to the [Returning values example](#returning-values).
+All parent tests must pass, and the value returned by each test will be accessible via function parameters in order of dependency.
 
-The new test depends on the two previous tests **#1 initial** and  **say hello with two names**. Both tests must pass and the value returned by each test will be accessible in the new test via function parameters.
 
 ```php
-test('say hello with uppercase', function (Greeting $greeting, Greeting $doubleGreeting) {
-    //Value comes from "#1 initial" test
-    expect(strtoupper($greeting->name))->toBe('DAN');
+test('Test A', function () {
+    expect(true)->toBeTrue();
 
-    //Value comes from "say hello with two names" test
-    expect(strtoupper($doubleGreeting->sayHello()))
-        ->toBe('HELLO DAN AND NUNO!');
-})->depends('#1 initial', 'say hello with two names');
+    return 'coming from Test A';
+});
+
+test('Test B', function () {
+    expect(true)->toBeTrue();
+
+    return 'coming from Test B';
+});
+
+test('Test C', function () {
+    expect(true)->toBeTrue();
+
+    return 'coming from Test C';
+});
+
+test('Last Test', function ($testA, $testC, $testB) {
+    var_dump(func_get_args());
+
+    expect($testA)->toBe('coming from Test A');
+    expect($testC)->toBe('coming from Test C');
+    expect($testB)->toBe('coming from Test B');
+})->depends('Test A', 'Test C', 'Test B');
 ```
 
 Resulting in:
 
 ```plain
-   PASS  Tests\Unit\ExampleTest
-  ✓ #1 initial
-  ✓ name is empty
-  ✓ it can say hello
-  ✓ say hello with two names
-  ✓ say hello with uppercase
+array(3) {
+  [0] =>
+  string(18) "coming from Test A"
+  [1] =>
+  string(18) "coming from Test C"
+  [2] =>
+  string(18) "coming from Test B"
+}
 
-  Tests:  5 passed
+   PASS  Tests\Unit\ExampleTest
+  ✓ Test C
+  ✓ Test B
+  ✓ Test A
+  ✓ Last Test
+
+  Tests:  4 passed
 ```
 
 Next section: [Skipping Tests →](/docs/skipping-tests)
