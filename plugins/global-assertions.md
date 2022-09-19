@@ -28,7 +28,7 @@ composer require pestphp/pest-plugin-global-assertions --dev
 <a name="available-functions"></a>
 ## Available functions
 
-This allows you to do the following, without calling the `$this` object. For a full list of available methods, please refer to [the compiled list](https://github.com/pestphp/pest-plugin-global-assertions/blob/main/src/compiled.php).
+This allows you to do the following, without calling the `$this` object. For a full list of available methods, please refer to [the compiled list](https://github.com/pestphp/pest-plugin-global-assertions/blob/1.x/src/compiled.php).
 
 ```php
 it('asserts true is true using global function', function () {
