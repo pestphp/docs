@@ -101,7 +101,7 @@ which we are going to reproduce here.
 If your plugin has any dependencies, then add them first with `composer`:
 
 ```bash
-composer require fzaninotto/faker
+composer require fakerphp/faker
 ```
 
 All plugin files reside inside the `src/` folder. Let's assume we want to provide a `faker()` function
