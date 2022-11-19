@@ -82,8 +82,12 @@ expect($value)->// chain your checks here
 - [`toHaveKey()`](#expect-toHaveKey)
 - [`toHaveKeys()`](#expect-toHaveKeys)
 - [`toHaveLength()`](#expect-toHaveLength)
+- [`toBeDirectory()`](#expect-toBeDirectory)
 - [`toBeReadableDirectory()`](#expect-toBeReadableDirectory)
 - [`toBeWritableDirectory()`](#expect-toBeWritableDirectory)
+- [`toBeFile()`](#expect-toBeFile)
+- [`toBeReadableFile()`](#expect-toBeReadableFile)
+- [`toBeWritableFile()`](#expect-toBeWritableFile)
 - [`toStartWith()`](#expect-toStartWith)
 - [`toThrow()`](#expect-toThrow)
 - [`toEndWith()`](#expect-toEndWith)
@@ -545,6 +549,33 @@ Asserts that the `string` `$value` is a directory and it is writable.
 
 ```php
 expect('/tmp')->toBeWritableDirectory();
+```
+
+<a name="expect-toBeFile"></a>
+### `toBeFile()`
+
+Asserts that the `string` `$value` is a file.
+
+```php
+expect('/file.txt')->toBeFile();
+```
+
+<a name="expect-toBeReadableFile"></a>
+### `toBeReadableFile()`
+
+Asserts that the `string` `$value` is a file and is readable.
+
+```php
+expect('/file.txt')->toBeReadableFile();
+```
+
+<a name="expect-toBeWritableFile"></a>
+### `toBeWritableFile()`
+
+Asserts that the `string` `$value` is a file and is writable.
+
+```php
+expect('/file.txt')->toBeWritableFile();
 ```
 
 <a name="expect-toStartWith"></a>
