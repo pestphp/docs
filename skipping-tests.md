@@ -65,6 +65,14 @@ it('has home', function () {
 > Please be aware that `->only()` requires all tests to be written with Pest test functions to work correctly. Furthermore, it will be ignored if the `--ci` option is added to the cli command
 
 <a name="incomplete-tests"></a>
+
+## Skip all tests
+If you'd like to make all the tests in a single file, just add the following syntax at the beginning of the test file:
+
+```php
+beforeEach()->skip()
+```
+
 ## Incomplete tests
 
 If you’d like to remind yourself to come back and write a test later, just
