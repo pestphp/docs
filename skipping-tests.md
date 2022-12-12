@@ -51,6 +51,12 @@ it('works with higher order testing')
     ->skip();
 ```
 
+If you'd like to skip all the tests in a single file, just add the following syntax at the beginning of the test file:
+
+```php
+beforeEach()->skip()
+```
+
 <a name="running-single-test"></a>
 ## Running a single test
 
@@ -65,13 +71,6 @@ it('has home', function () {
 > Please be aware that `->only()` requires all tests to be written with Pest test functions to work correctly. Furthermore, it will be ignored if the `--ci` option is added to the cli command
 
 <a name="incomplete-tests"></a>
-
-## Skip all tests
-If you'd like to make all the tests in a single file, just add the following syntax at the beginning of the test file:
-
-```php
-beforeEach()->skip()
-```
 
 ## Incomplete tests
 
