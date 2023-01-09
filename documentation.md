@@ -29,7 +29,6 @@
   - [Watch](/docs/plugins/watch)
   - [Creating Plugins](/docs/plugins/creating-plugins)
 - ## More
-  - [Changelog](/docs/changelog)
   - [Upgrade Guide](/docs/upgrade-guide)
 - ## Get involved
   - [Community](/docs/community)
