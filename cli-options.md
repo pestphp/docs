@@ -16,7 +16,7 @@ The Pest command line runner has many available options that can make your testi
 <a name="available-options"></a>
 ## Available Options
 
-Pest defers non-Pest-specific options to PHPUnit, so please refer to [the PHPUnit command-line test runner](https://phpunit.readthedocs.io/en/latest/textui.html#command-line-options) documentation for a full list.
+Pest defers non-Pest-specific options to PHPUnit, so please refer to [the PHPUnit command-line test runner](https://phpunit.readthedocs.io/en/9.5/textui.html#command-line-options) documentation for a full list.
 
 ### `--init`
 
@@ -39,11 +39,23 @@ This option allows you to set a minimum required coverage value. If the coverage
 
 ### `--group`
 
-This option allows you to only run a specific list of [grouped tests](/docs/groups). This is a comma-separated list.
+This option allows you to only run a specific list of [grouped tests](/docs/groups).
+
+Groups must be passed as a comma-separated list. For example: `--group=integration,browser`
 
 ### `--exclude-group`
 
-You may also use the `--exclude-group` option to instruct Pest to exclude [grouped tests](/docs/groups). This is a comma-separated list.
+You may also use the `--exclude-group` option to instruct Pest to exclude [grouped tests](/docs/groups).
+
+Groups must be passed as a comma-separated list. For example: `--exclude-group=integration,browser`
+
+### `--order-by`
+
+This option allows you to run your tests in a specific order.
+
+You may run your tests in a random order using: `--order-by random`. This is useful to guarantee that there are no interdependencies between tests.
+
+Read more about this option at the [PHPUnit documentation](https://phpunit.readthedocs.io/en/9.5/textui.html#command-line-options).
 
 ### `--test-directory`
 
