@@ -5,7 +5,23 @@ description: Upgrade Guide
 
 # Upgrade Guide
 
-## Upgrading To 1.0 From 0.3
+## Upgrading To 2.x From 1.x
+
+#### Estimated Upgrade Time: 1 Minute
+
+> We attempt to document every possible breaking change. Since some of these breaking changes are in obscure parts of the framework, only a portion of these changes may actually affect your application.
+
+### Updating Dependencies
+
+Update your `pestphp/pest` dependency to `^2.0` in your `composer.json` file.
+
+If you are using any official plugins, update them to `^2.0` in your `composer.json` file.
+
+### Laravel Plugin
+
+Previously, commands related to Laravel Artisan, such as "pest:install" and "pest:dataset," were part of the core of the pestphp/pest framework. However, they have now been extracted and moved to the Laravel Plugin to keep the framework's code as agnostic as possible. To use these commands, make sure you have the Laravel Plugin installed by running: `composer require pestphp/pest-plugin-laravel`.
+
+## Upgrading To 1.x From 0.3
 
 #### Estimated Upgrade Time: 1-2 Minutes
 
