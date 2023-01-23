@@ -1,10 +1,11 @@
 - ## Getting Started
+  - [About](/docs/about)
   - [Installation](/docs/installation)
+  - [Files & Folders](/docs/files-and-folders)
   - [Writing Tests](/docs/writing-tests)
-  - [Underlying Test Case](/docs/underlying-test-case)
-  - [Assertions](/docs/assertions)
   - [Expectations](/docs/expectations)
   - [Setup And Teardown](/docs/setup-and-teardown)
+  - [Underlying Test Case](/docs/underlying-test-case)
   - [Higher Order Tests](/docs/higher-order-tests)
   - [Custom Helpers](/docs/helpers)
   - [IDE Plugins](/docs/ide-plugins)

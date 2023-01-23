@@ -67,5 +67,5 @@ You may use the `--ci` option to instruct Pest that the test suite is running wi
 
 ---
 
-Next section: [Laravel Plugin →](/docs/plugins/laravel)
+Next section: [Laravel Plugin →](/docs/plugins/arch)
 

@@ -6,86 +6,80 @@ description: Writing Tests
 # Writing Tests
 
 - [Overview](#overview)
-- [API Reference](#api-reference)
+- [Assertations or expectations](#assertations-or-expectations)
 
 <a name="overview"></a>
+
 ## Overview
 
-Pest makes it easy to write tests. This section illustrates how to write
-a simple test suite with Pest, and what are the conventions you should use.
+In our Files & Folders section, we show you how to create and organize your
+test files, typically suffixed with `Test.php`, such as `ExampleTest.php`.
 
-The setup is very simple, and usually looks like this:
-
-```php
-tests
-    - Unit/ComponentTest.php <--
-    - Feature/HomeTest.php <--
-phpunit.xml
-```
-
-To write a test, create a file in the `Unit` or `Feature` directory,
-and make sure its filename ends with the `...Test.php` suffix.
-Then, all you need inside this file is a function that runs your test:
+Let's take a look at a simple example. Imagine your project offers a global function called sum that adds two numbers together. To test this function, you would create a `SumTest.php` file with the following code:
 
 ```php
 <?php
-test('has home', function () {
-    // ..
-});
 
-// or
-it('has home', function () {
-    // ..
+test('sum', function () {
+    $result = sum(1, 2);
+
+    expect($result)->toBe(3);
+    // or
+    $this->assertSame(3, $result);
 });
 ```
 
-> **Note**: Pest will only run a test file if its name ends with the suffix set in your `phpunit.xml`.
+When you run ``./vendor/bin/pest`, Pest will print the message "✓ sum", indicating that the test has passed:
 
-<a name="api-reference"></a>
-## API Reference
+```shell
+   PASS  Tests\SumTest.php
+  ✓ sum
 
-Now, on to the API reference. Pest offers you two functions to write your tests: `test()` & `it()`.
-Use the one that best fits your test naming convention, or both. They share the same behavior & syntax:
+  Tests:  1 passed
+```
 
-### `test()`
-
-The `test` function adds the given closure as test. The first argument is the test
-description; the second argument is a closure that contains the test expectations:
+In addition to the test function, we also offer the convenient `it` function, which prefixes the description with the word "it". For example:
 
 ```php
-test('asserts true is true', function () {
-    $this->assertTrue(true);
+<?php
 
-    expect(true)->toBeTrue();
+it('performs sums', function () {
+    $result = sum(1, 2);
+
+    expect($result)->toBe(3);
+    // or...
+    $this->assertSame(3, $result);
 });
 ```
 
-Here is what this example test will return:
-```bash
-✓ asserts true is true
+This time, the result would be the following: "it performs sums".
+
+```shell
+   PASS  Tests\SumTest.php
+  ✓ it performs sums
+
+  Tests:  1 passed
 ```
 
-### `it()`
+<a name="assertations-or-expectations"></a>
+## Assertations or expectations
 
-The `it` function adds the given closure as test. The first argument is the test
-description; the second argument is a closure that contains the test expectations:
+In the example above, you saw the following code snippet:
 
 ```php
-it('asserts true is true', function () {
-    $this->assertTrue(true);
-
-    expect(true)->toBeTrue();
-});
+expect($result)->toBe(3); // Expectation API
+// or...
+$this->assertSame(3, $result); // Assertion API
 ```
 
-Here is what this example test will return:
-```bash
-✓ it asserts true is true
-```
+Both APIs have the same goal: to perform checks to ensure that
+things are going as planned. Historically, because Pest is
+built on top of PHPUnit, we have always provided access
+to the Assertion API. However, we recommend you take a look
+at the Expectation API, as it allows you to write your tests
+like a natural sentence, making it easier to read and understand.
 
-> **Note**: Notice how, when using the `it` function, your test name gets prepended with 'it' in the
-returned description.
 
 ---
 
-Next section: [Underlying Test Case →](/docs/underlying-test-case)
+Continue to our next section, for more information on how to use the Expectation API: [Expectations →](/docs/expectations)

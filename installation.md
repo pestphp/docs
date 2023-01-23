@@ -5,35 +5,39 @@ description: Installation
 
 # Installation
 
-> **Requirements:** [PHP 7.3+](https://php.net/releases/).
+> **Requirements:** [PHP 8.1+](https://php.net/releases/).
 
-1. First, install Pest via the [Composer](https://getcomposer.org) package manager:
+Installing Pest PHP Testing Framework is a simple process that can be completed in just a few steps. Before you begin, make sure you have PHP `8.1+` or higher installed on your system.
+
+**The first step** is to require Pest as a dev dependency in your project by running the following command in your command line:
 
 ```bash
 composer require pestphp/pest --dev --with-all-dependencies
 ```
 
-2. **On Laravel**, require the `pest-plugin-laravel` and run the `pest:install` _Artisan_ command:
+**In the second step**, you'll need to determine the specification of your project:
 
+- If you're using the Laravel Framework, you'll need to require the Laravel Plugin via Composer by running the following command:
 ```bash
 composer require pestphp/pest-plugin-laravel --dev
 php artisan pest:install
 ```
 
-3. **On other projects**, create a `tests` folder and run the `pest --init` command:
-
+- If you're working on a Generic PHP Project or other PHP Framework, the process is slightly different. In this case, you'll need to initialize and setup Pest by running the following command:
 ```bash
 ./vendor/bin/pest --init
 ```
 
-4. Finally, you can run Pest directly from the command line:
+**In the final step**, you can run your tests by executing the command:
 
 ```bash
 ./vendor/bin/pest
 ```
 
+The default Test Report in a brand-new project is shown in the image below.
+
 ![Install](/assets/img/pestinstall.png)
 
 ---
 
-In the next section, we are going to learn how to write tests with Pest: [Writing Tests →](/docs/writing-tests)
+Once the installation process is complete, you can learn more about the syntax of files and folders visiting the next section of the documentation: [Files And Folders →](/docs/files-and-folders)
