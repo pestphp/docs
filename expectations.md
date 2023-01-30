@@ -83,6 +83,8 @@ it('can have many expectations', function () {
 - [`toBeLessThanOrEqual()`](#expect-toBeLessThanOrEqual)
 - [`toContain()`](#expect-toContain)
 - [`toHaveCount()`](#expect-toHaveCount)
+- [`toHaveMethod()`](#expect-toHaveMethod)
+- [`toHaveMethods()`](#expect-toHaveMethods)
 - [`toHaveProperty()`](#expect-toHaveProperty)
 - [`toHaveProperties()`](#expect-toHaveProperties)
 - [`toMatchArray()`](#expect-toMatchArray)
@@ -263,6 +265,24 @@ expect(['Nuno', 'Luke', 'Alex', 'Dan'])->toHaveCount(4);
 ```
 
 To assert length, see the [`toHaveLength()`](#expect-toHaveLength) method.
+
+<a name="expect-toHaveMethod"></a>
+### `toHaveMethod(string $name)`
+
+Asserts that the `$value` has the method `$name`.
+
+```php
+expect($user)->toHaveMethod('name');
+```
+
+<a name="expect-toHaveMethods"></a>
+### `toHaveMethods(iterable $names)`
+
+Asserts that the `$value` has the provided methods `$names`.
+
+```php
+expect($user)->toHaveMethods(['name', 'email']);
+```
 
 <a name="expect-toHaveProperty"></a>
 ### `toHaveProperty(string $name, $value = null)`
