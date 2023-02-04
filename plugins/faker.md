@@ -32,36 +32,36 @@ composer require pestphp/pest-plugin-faker --dev
 
 <div class="collection-method-list" markdown="1">
 
-- [`faker()`](#faker)
+- [`fake()`](#fake)
 
 </div>
 
-<a name="faker"></a>
-### `faker()`
+<a name="fake"></a>
+### `fake()`
 
-The `faker()` function will create an instance of the Faker generator with the default locale (*en_US*).
+The `fake()` function will create an instance of the Faker generator with the default locale (*en_US*).
 
 ```php
-use function Pest\Faker\faker;
+use function Pest\Faker\fake;
 
 it('generates a name using faker', function () {
-    $name = faker()->name;
+    $name = fake()->name;
 
     // Same as:
-    $name = $this->faker()->name;
+    $name = $this->fake()->name;
 
     assertIsString($name);
 });
 ```
 
-The `faker()` function also allows you to specify the locale that is used when
+The `fake()` function also allows you to specify the locale that is used when
 creating the instance of the Faker generator.
 
 ```php
-use function Pest\Faker\faker;
+use function Pest\Faker\fake;
 
 it('generates a name using faker with locale', function () {
-    $name = faker('fr_FR')->name;
+    $name = fake('fr_FR')->name;
 
     assertIsString($name);
 });
