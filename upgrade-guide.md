@@ -21,6 +21,10 @@ If you are using any official plugins, update them to `^2.0` in your `composer.j
 
 Previously, commands related to Laravel Artisan, such as "pest:install" and "pest:dataset," were part of the core of the pestphp/pest framework. However, they have now been extracted and moved to the Laravel Plugin to keep the framework's code as agnostic as possible. To use these commands, make sure you have the Laravel Plugin installed by running: `composer require pestphp/pest-plugin-laravel`.
 
+#### Changes in datasets
+
+In 1.x, datasets defined inside any test file, using the `dataset()` function, are globally available in the entire test suite. v2.x new feature, _scoped datasets_, brings a slight breaking change on the visibility of datasets defined inside a test file, as they are now scoped inside the file to which they belong. This should be taken into account and global datasets should be moved to a dedicated file following the new _scoped datasets_ guidelines.
+
 ## Upgrading To 1.x From 0.3
 
 #### Estimated Upgrade Time: 1-2 Minutes
