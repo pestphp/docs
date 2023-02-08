@@ -83,12 +83,30 @@ it('has emails', function ($email) {
     expect($email)->not->toBeEmpty();
 })->with('emails');
 ```
+
+### Shared datasets scope
+
+Shared datasets defined inside a test file, are scoped to that file. Shared datasets defined inside a `Datasets.php` file or a `Datasets/` directory are scoped to the same folder and each subfolder. This way it is possible to define datasets with the same name and different data for each part of the test suite.
+
+```
+/tests
+|_/Datasets
+|  |_GeneralDataset.php <-- (everybody can see these datasets)
+|_/Feature
+|  |_/Users
+|     |_AdminTest.php
+|     |_GuestTest.php
+|     |_Datasets.php   <-- (matters for the users feature tests)
+|_/Units
+|   | _MyTest.php <-- (inside this file, there could be a dataset visibile only to it)
+```
+
 ---
 
 <a name="lazy-datasets"></a>
 ### Lazy Datasets
 
-In both **inline** and **external** approaches, you may need to serve your
+In both **inline** and **shared** approaches, you may need to serve your
 data with PHP's generators to allow you to work with very large datasets
 while keeping memory usage low:
 
