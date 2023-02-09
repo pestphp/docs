@@ -54,14 +54,14 @@ it('generates a name using faker', function () {
 });
 ```
 
-The `fake()` function also allows you to specify the locale that is used when
+The `faker()` function also allows you to specify the locale that is used when
 creating the instance of the Faker generator.
 
 ```php
-use function Pest\Faker\fake;
+use function Pest\Faker\faker;
 
 it('generates a name using faker with locale', function () {
-    $name = fake('fr_FR')->name;
+    $name = faker('fr_FR')->name;
 
     assertIsString($name);
 });
