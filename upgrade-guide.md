@@ -17,6 +17,11 @@ Update your `pestphp/pest` dependency to `^2.0` in your `composer.json` file.
 
 If you are using any official plugins, update them to `^2.0` in your `composer.json` file.
 
+In 2.x, the `pestphp/pest-plugin-parallel` plugin has been removed and merged into the core of the framework.
+Run `composer remove pestphp/pest-plugin-parallel` to remove it from your project. To continue using parallel
+testing, you will need to install [Paratest](https://github.com/paratestphp/paratest/) as a dev dependency.
+Run `composer require --dev brianium/paratest` to install it.
+
 ### Laravel Plugin
 
 Previously, commands related to Laravel Artisan, such as "pest:install" and "pest:dataset," were part of the core of the pestphp/pest framework. However, they have now been extracted and moved to the Laravel Plugin to keep the framework's code as agnostic as possible. To use these commands, make sure you have the Laravel Plugin installed by running: `composer require pestphp/pest-plugin-laravel`.
