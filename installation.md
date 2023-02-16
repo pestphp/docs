@@ -79,4 +79,4 @@ The image below shows the default Test output in a brand-new project:
 
 ---
 
-**Next**: In the next section, we are going to learn how to write tests with Pest: [Writing Tests →](docs/writing-tests)
+**Next**: In the next section, we are going to learn how to write tests with Pest: [Writing Tests →](/docs/writing-tests)
