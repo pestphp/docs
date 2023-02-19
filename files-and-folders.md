@@ -5,18 +5,7 @@ description: Pest files and folders structure
 
 # Files & Folders
 
-- [Overview](#overview)
-- [Structure](#structure)
-
-<a name="overview"></a>
-
-## Overview
-
-This section provides an overview of what each file and folder represents. If you are familiar with PHPUnit, you will notice that the file and folder structure of Pest is similar.
-
-After [installing](/docs/installation) Pest, you will have the following files and folders:
-
-#### Laravel:
+This section is intended to provide you with a brief overview of the files and folders that you will encounter when using Pest PHP. Upon successful [installation](/docs/installation) of Pest, you will find the following files and folders in your project:
 
 ```plain
 ├── 📂 tests
@@ -29,36 +18,9 @@ After [installing](/docs/installation) Pest, you will have the following files a
 ├── phpunit.xml
 ```
 
-#### Generic PHP projects
+The `tests` folder serves as the main directory where all your test files will reside. Within this folder, you will find two sub-folders, `Unit` and `Feature`, which house your unit and feature tests, respectively. The `TestCase.php` file is where you can define common functionality or setup that you want to use across all your tests. Lastly, the `Pest.php` file is where you can configure your test suite, as mentioned earlier.
 
-```plain
-├── 📂 tests
-│   └── Pest.php
-│   └── ExampleTest.php
-```
-
-<a name="structure"></a>
-
-## Structure
-
-**Folder tests**: Contains everything related to your tests.
-
-**Unit and Feature Folders**: These are where your test logic lives. You are welcome to modify and rename this folders according to your project convention.
-
-**Unit**: Unit tests are designed to test a small portion of your isolated code. These tests should not depend on external resources like database or APIs.
-
-A good example is testing the `calcTotalPrice()` method to guarantee it returns the correct sum of given values. This test has no external dependencies. In other words, you don't need an existing customer, a valid product or an instance of an invoice to write this test.
-
-**Feature**: Features tests, in the other hand, are testing if parts of your code behave as expected when acting together.
-Following the previous example, a Feature Test would verify that the `ProductCart` class is passed to the `CheckOut` class and it has a proprety `totalAmount`, and that its value equals the sum of each product's price.
-
-**ExampleTest.php**: Pest will create an Example Test during its installation. Laravel users, may find one example test for a Feature Test and another for Unit tests.
-
-**TestCase.php**: The TestCase file is responsible for bootstraping your application. When using Laravel case, it provides access to framework resources such as  Facades and Helpers. Read more in [Underlying Test Case](/docs/underlying-test-case).
-
-**Pest.php**: This is the entry point of Pest PHP. Pest autoloads this file and here can reference your [Test Case](/docs/underlying-test-case), create [Custom Helpers](/docs/helpers) and extend Pest Expectation API with [Custom Expectations](/docs/custom-expectations).
-
-**phpunit.xml**: The files **phpunit.xml** or **phpunit.dist.xml** contains the PHPUnit configuration.
+Additionally, the `phpunit.xml` file can be found in your project, and is used to configure PHPUnit's various options when running tests. It's important to note that Pest is built on top of PHPUnit, which means that all of the options offered by PHPUnit can also be used in Pest. Therefore, any customization or configuration that you do with the `phpunit.xml` file will also apply to Pest tests.
 
 ---
 
