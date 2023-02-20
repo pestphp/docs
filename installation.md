@@ -5,7 +5,7 @@ description: Installation
 
 # Installation
 
-> **Requirements:** [PHP 8.1+](https://php.net/releases/).
+> **Requirements:** [PHP 8.1+](https://php.net/releases/)
 
 Installing Pest PHP Testing Framework is a simple process that can be completed in just a few steps. Before you begin, make sure you have PHP `8.1+` or higher installed on your system.
 

@@ -5,68 +5,26 @@ description: Expectations
 
 # Expectations
 
-- [Overview](#overview)
-- [Usage](#usage)
-- [Available Expectations](#available-expectations)
-- [Expectation Modifiers](#expectation-modifiers)
-- [Higher Order Expectations](#higher-order-expectations)
+By setting expectations for your tests using the Pest expectation API, you can easily identify bugs and other issues in your code. This is because the API allows you to specify the expected outcome of a test, making it easy to detect any deviations from the expected behavior.
 
-<a name="overview"></a>
-## Overview
-
-In addition to [Assertions](/docs/assertions), Pest offers you the Expectation API (inspired by [Jest](https://jestjs.io/docs/expect)).
-
-Expectations allow you to write tests as if you were writing a natural sentence in English.
+Start the expectation by passing your value to the `expect($value)` function. The `expect` function is used every time you want to test a value. You will rarely call `expect` by itself. Instead, you will use expect along with a "expectation" method to assert something about a value.
 
 ```php
-test('expect true to be true', function () {
-  // assertion
-  $this->assertTrue(true);
+test('emails', function () {
+    $email = /* your code here */;
 
-  // expectation
-  expect(true)->toBeTrue();
+    expect($email)->toBe('enunomaduro@gmail.com');
 });
 ```
 
-<a name="usage"></a>
-### `Usage`
-
-Start the expectation by passing your value to the `expect($value)` function.
-
-```php
-expect($value)->// chain your checks here
-```
-
-Then, continue chaining as many [expectations](#available-expectations) as you need to perform your checks. For example:
+As demonstrated, the expect function in Pest allows you to chain multiple expectations together for a given $value. This means that you can perform as many checks as necessary in a single test by simply continuing to chain additional expectations.
 
 ```php
 expect($value)->toContain('@')
     ->toEndWith('.com');
 ```
 
-Just like in plan English, to negate an expectation, you can use the modifier [`not()`](#expect-not).
-
-```php
-expect($value)->not()->toContain('@banned-domain.com');
-```
-
-A single test may have several expectations:
-
-```php
-it('can have many expectations', function () {
-    $number           = rand();
-    $suffix           = PHP_SHLIB_SUFFIX;
-    $operatingSystem  = PHP_OS_FAMILY;
-
-    expect($number)->toBeInt();
-    expect($suffix)->toBeIn(['so', 'dll']);
-    expect($operatingSystem)->toBeString()
-        ->not()->toBe('Symbian');
-});
-```
-
-<a name="available-expectations"></a>
-## Available Expectations
+With the Pest expectation API, you have access to an extensive collection of individual expectations that are designed to test various aspects of your code. Below is a comprehensive list of the available expectations.
 
 <div class="collection-method-list" markdown="1">
 
@@ -121,8 +79,7 @@ it('can have many expectations', function () {
 
 </div>
 
-<a name="expectation-modifiers"></a>
-## Expectation Modifiers
+In addition to the individual expectations available in Pest, the expectation API also provides several modifiers that allow you to further customize your tests. These modifiers can be used to create more complex expectations and to test multiple values at once. Here are some examples of the modifiers available in Pest:
 
 <div class="collection-method-list" markdown="1">
 
@@ -131,7 +88,7 @@ it('can have many expectations', function () {
 - [`each()`](#expect-each)
 - [`json()`](#expect-json)
 - [`match()`](#match)
-- [`not()`](#expect-not)
+- [`not`](#expect-not)
 - [`ray()`](#expect-ray)
 - [`sequence()`](#expect-sequence)
 - [`unless()`](#unless)
@@ -152,9 +109,9 @@ When used on objects, it asserts that the two variables reference the same objec
 expect($total)->toBe(120);
 
 expect(1)->toBe(1);
-expect('1')->not()->toBe(1);
+expect('1')->not->toBe(1);
 
-expect(new StdClass)->not()->toBe(new StdClass);
+expect(new StdClass)->not->toBe(new StdClass);
 
 ```
 
@@ -511,7 +468,7 @@ expect('1')->toBeScalar();
 expect(1)->toBeScalar();
 expect(1.0)->toBeScalar();
 expect(true)->toBeScalar();
-expect([1, '1'])->not()->toBeScalar();
+expect([1, '1'])->not->toBeScalar();
 ```
 
 <a name="expect-toBeString"></a>
@@ -670,11 +627,11 @@ test('it asserts two exceptions with their specific messages', function () {
 });
 ```
 
-It is also possible to use [`not()`](#expect-not) modifier together with `toThrow()`:
+It is also possible to use [`not`](#expect-not) modifier together with `toThrow()`:
 
 ```php
 test('it does not throw an Exception', function () {
-    expect(fn ($x, $y) => $x + $y)->not()->toThrow(Exception::class);
+    expect(fn ($x, $y) => $x + $y)->not->toThrow(Exception::class);
 });
 ```
 
@@ -781,7 +738,7 @@ Use the `each()` modifier to create an expectation on each item of the given ite
 
 ```php
 expect([1, 2, 3])->each->toBeInt();
-expect([1, 2, 3])->each->not()->toBeString();
+expect([1, 2, 3])->each->not->toBeString();
 
 expect([1, 2, 3])->each(fn ($number) => $number->toBeLessThan(4));
 ```
@@ -814,7 +771,7 @@ The `match()` method executes the `callback` of the first `key` that matches the
 expect('pest')
     ->match(true, [
         true  => fn ($value) => $value->toEqual('pest'),
-        false => fn ($value) => $value->not()->toEqual('pest')
+        false => fn ($value) => $value->not->toEqual('pest')
     ]);
 ```
 
@@ -829,12 +786,12 @@ expect('pestphp')
 ```
 
 <a name="expect-not"></a>
-### `not()`
+### `not`
 
-Use the `not()` modifier before an expectation to invert the checking condition.
+Use the `not` modifier before an expectation to invert the checking condition.
 
 ```php
-expect(10)->not()->toBeGreaterThan(100);
+expect(10)->not->toBeGreaterThan(100);
 
 expect(true)->not->toBeFalse(); //also available as property
 ```
@@ -946,7 +903,7 @@ Higher order expectations can be used with all of [Pest's expectations](#availab
 ```php
 expect($user)
     ->posts
-    ->not()->toBeEmpty
+    ->not->toBeEmpty
     ->toHaveCount(2)
     ->sequence(
         fn ($post) => $post->title->toEqual('My first post!'),
@@ -959,7 +916,7 @@ or more of [Pest's expectations](#available-expectations), the expectation's sco
 
 ```php
 expect($user)
-    ->companies->first()->owner->toBeInstanceOf(User::class)->not()->toEqual($user)
+    ->companies->first()->owner->toBeInstanceOf(User::class)->not->toEqual($user)
     ->name->toEqual('Nuno');
 ```
 
@@ -1012,10 +969,10 @@ expect($value)->toContain('@')
     ->toEndWith('.com');
 ```
 
-Just like in plan English, to negate an expectation, you can use the modifier [`not()`](#expect-not).
+Just like in plan English, to negate an expectation, you can use the modifier [`not`](#expect-not).
 
 ```php
-expect($value)->not()->toContain('@banned-domain.com');
+expect($value)->not->toContain('@banned-domain.com');
 ```
 
 A single test may have several expectations:
@@ -1029,7 +986,7 @@ it('can have many expectations', function () {
     expect($number)->toBeInt();
     expect($suffix)->toBeIn(['so', 'dll']);
     expect($operatingSystem)->toBeString()
-        ->not()->toBe('Symbian');
+        ->not->toBe('Symbian');
 });
 ```
 
@@ -1097,7 +1054,7 @@ it('can have many expectations', function () {
 - [`each()`](#expect-each)
 - [`json()`](#expect-json)
 - [`match()`](#match)
-- [`not()`](#expect-not)
+- [`not`](#expect-not)
 - [`ray()`](#expect-ray)
 - [`sequence()`](#expect-sequence)
 - [`unless()`](#unless)
@@ -1118,9 +1075,9 @@ When used on objects, it asserts that the two variables reference the same objec
 expect($total)->toBe(120);
 
 expect(1)->toBe(1);
-expect('1')->not()->toBe(1);
+expect('1')->not->toBe(1);
 
-expect(new StdClass)->not()->toBe(new StdClass);
+expect(new StdClass)->not->toBe(new StdClass);
 
 ```
 
@@ -1459,7 +1416,7 @@ expect('1')->toBeScalar();
 expect(1)->toBeScalar();
 expect(1.0)->toBeScalar();
 expect(true)->toBeScalar();
-expect([1, '1'])->not()->toBeScalar();
+expect([1, '1'])->not->toBeScalar();
 ```
 
 <a name="expect-toBeString"></a>
@@ -1618,11 +1575,11 @@ test('it asserts two exceptions with their specific messages', function () {
 });
 ```
 
-It is also possible to use [`not()`](#expect-not) modifier together with `toThrow()`:
+It is also possible to use [`not`](#expect-not) modifier together with `toThrow()`:
 
 ```php
 test('it does not throw an Exception', function () {
-    expect(fn ($x, $y) => $x + $y)->not()->toThrow(Exception::class);
+    expect(fn ($x, $y) => $x + $y)->not->toThrow(Exception::class);
 });
 ```
 
@@ -1729,7 +1686,7 @@ Use the `each()` modifier to create an expectation on each item of the given ite
 
 ```php
 expect([1, 2, 3])->each->toBeInt();
-expect([1, 2, 3])->each->not()->toBeString();
+expect([1, 2, 3])->each->not->toBeString();
 
 expect([1, 2, 3])->each(fn ($number) => $number->toBeLessThan(4));
 ```
@@ -1762,7 +1719,7 @@ The `match()` method executes the `callback` of the first `key` that matches the
 expect('pest')
     ->match(true, [
         true  => fn ($value) => $value->toEqual('pest'),
-        false => fn ($value) => $value->not()->toEqual('pest')
+        false => fn ($value) => $value->not->toEqual('pest')
     ]);
 ```
 
@@ -1777,12 +1734,12 @@ expect('pestphp')
 ```
 
 <a name="expect-not"></a>
-### `not()`
+### `not`
 
-Use the `not()` modifier before an expectation to invert the checking condition.
+Use the `not` modifier before an expectation to invert the checking condition.
 
 ```php
-expect(10)->not()->toBeGreaterThan(100);
+expect(10)->not->toBeGreaterThan(100);
 
 expect(true)->not->toBeFalse(); //also available as property
 ```
@@ -1894,7 +1851,7 @@ Higher order expectations can be used with all of [Pest's expectations](#availab
 ```php
 expect($user)
     ->posts
-    ->not()->toBeEmpty
+    ->not->toBeEmpty
     ->toHaveCount(2)
     ->sequence(
         fn ($post) => $post->title->toEqual('My first post!'),
@@ -1907,7 +1864,7 @@ or more of [Pest's expectations](#available-expectations), the expectation's sco
 
 ```php
 expect($user)
-    ->companies->first()->owner->toBeInstanceOf(User::class)->not()->toEqual($user)
+    ->companies->first()->owner->toBeInstanceOf(User::class)->not->toEqual($user)
     ->name->toEqual('Nuno');
 ```
 

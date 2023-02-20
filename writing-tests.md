@@ -5,80 +5,69 @@ description: Writing Tests
 
 # Writing Tests
 
-- [Overview](#overview)
-- [Assertations or expectations](#assertations-or-expectations)
+As you begin writing tests for your project, it's important to consider how to create and organize your test files effectively. Typically, test files are suffixed with `Test.php`, such as `ExampleTest.php`.
 
-<a name="overview"></a>
-
-## Overview
-
-In our Files & Folders section, we show you how to create and organize your
-test files, typically suffixed with `Test.php`, such as `ExampleTest.php`.
-
-Let's take a look at a simple example. Imagine your project offers a global function called sum that adds two numbers together. To test this function, you would create a `SumTest.php` file with the following code:
+Let's explore a straightforward example. Imagine that your project features a global function called `sum`, which adds two numbers together. To test this function, you would create a `Tests\Unit\SumTest.php` file with the following code:
 
 ```php
-<?php
-
 test('sum', function () {
-    $result = sum(1, 2);
+   $result = sum(1, 2);
 
-    expect($result)->toBe(3);
-    // or
-    $this->assertSame(3, $result);
+   expect($result)->toBe(3);
 });
 ```
 
-When you run ``./vendor/bin/pest`, Pest will print the message "✓ sum", indicating that the test has passed:
+After writing your test code, it's time to run your tests using Pest. When you execute the command `./vendor/bin/pest`, Pest will display a message indicating whether your tests passed or failed.
 
 ```shell
-   PASS  Tests\SumTest.php
-  ✓ sum
+   PASS  Tests\Unit\SumTest.php
+ ✓ sum
 
-  Tests:  1 passed
+   Tests:  1 passed
 ```
 
-In addition to the test function, we also offer the convenient `it` function, which prefixes the description with the word "it". For example:
+In addition to the test function, Pest provides the convenient `it` function that prefixes the description with the word "it". This function can be used in place of the test function and can help make your tests more readable.
 
 ```php
-<?php
-
 it('performs sums', function () {
-    $result = sum(1, 2);
+   $result = sum(1, 2);
 
-    expect($result)->toBe(3);
-    // or...
-    $this->assertSame(3, $result);
+   expect($result)->toBe(3);
 });
 ```
 
-This time, the result would be the following: "it performs sums".
+In this case, when you run the command `./vendor/bin/pest`, the output will include the description "it performs sums", along with the result of the test:
 
 ```shell
-   PASS  Tests\SumTest.php
-  ✓ it performs sums
+   PASS  Tests\Unit\SumTest.php
+ ✓ it performs sums
 
-  Tests:  1 passed
+   Tests:  1 passed
 ```
 
-<a name="assertations-or-expectations"></a>
-## Assertations or expectations
+## Expectation API
 
-In the example above, you saw the following code snippet:
+As you may have noticed in our previous examples, we made use of Pest's expectation API to perform assertions in our test code. The expect function is a core part of the expectation API and is used to assert that certain conditions are met.
+
+For instance, in our previous example, we used `expect($result)->toBe(3)` to ensure that the value of `$result` is equal to `5`. Pest's expectation API provides a variety of other assertion functions that you can use to test the behavior of your code, such as `toBeTrue`, `toBeFalse`, and `toContain`.
+
+By using the expectation API, you can write concise and readable assertions that make it clear what your code is doing and how it should behave. In the next section, we will cover some of the most commonly used assertion functions in Pest's expectation API.
+
+You can find the full documentation for Pest's expectation API, including all available functions and their usage, on the [next chapter](/docs/expectations).
+
+## Assertion API
+
+While Pest's expectation API provides a convenient way to perform assertions, it's not the only option available. You can also use PHPUnit's assertion API, which is supported by Pest. This can be useful if you're already familiar with PHPUnit's assertion API or if you need to perform more complex assertions that aren't available in Pest's expectation API.
 
 ```php
-expect($result)->toBe(3); // Expectation API
-// or...
-$this->assertSame(3, $result); // Assertion API
+test('sum', function () {
+   $result = sum(1, 2);
+
+   $this->assertSame(3, $result); // Same as expect($result)->toBe(3)
+});
 ```
 
-Both APIs have the same goal: to perform checks to ensure that
-things are going as planned. Historically, because Pest is
-built on top of PHPUnit, we have always provided access
-to the Assertion API. However, we recommend you take a look
-at the Expectation API, as it allows you to write your tests
-like a natural sentence, making it easier to read and understand.
-
+You can find the full documentation for PHPUnit's assertion API in the PHPUnit's website: [docs.phpunit.de/en/10.0/assertions.html](https://docs.phpunit.de/en/10.0/assertions.html)
 
 ---
 
