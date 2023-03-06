@@ -1,21 +1,29 @@
 - ## Getting Started
   - [About](/docs/about)
   - [Installation](/docs/installation)
-  - [Files & Folders](/docs/files-and-folders)
+  - [Editor Setup](/docs/editor-setup)
   - [Writing Tests](/docs/writing-tests)
   - [Expectations](/docs/expectations)
-  - [Setup And Teardown](/docs/setup-and-teardown)
-  - [Underlying Test Case](/docs/underlying-test-case)
-  - [Higher Order Tests](/docs/higher-order-tests)
-  - [Custom Helpers](/docs/helpers)
-  - [IDE Plugins](/docs/ide-plugins)
-  - [Exceptions & Errors](/docs/exceptions-and-errors)
-  - [Groups Of Tests](/docs/groups)
-  - [Test Dependency](/docs/test-dependency)  
+  - [Hooks](/docs/hooks)
+  - [Exceptions](/docs/exceptions)
+  - [Datasets](/docs/datasets)
   - [Skipping Tests](/docs/skipping-tests)
   - [Datasets](/docs/datasets)
   - [Coverage](/docs/coverage)
+  - [Test Dependency](/docs/test-dependency)
   - [CLI Options](/docs/cli-options)
+
+- ## Digging Deeper
+  - [Grouping tests](/docs/grouping-tests)
+
+- ## Customization
+  - [Global Hooks](/docs/global-hooks)
+  - [Underlying Test Case](/docs/underlying-test-case)
+  - [Higher Order Tests](/docs/higher-order-tests)
+  - [Custom Helpers](/docs/helpers)
+  - [Advanced Expectations](/docs/plugins/advanced-expectations)
+  - [Test Dependency](/docs/test-dependency)
+
 - ## Plugins
   - [Laravel](/docs/plugins/laravel)
   - [Livewire](/docs/plugins/livewire)

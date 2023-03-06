@@ -1,6 +1,6 @@
 ---
 title: Expectations
-description: Expectations
+description: By setting expectations for your tests using the Pest expectation API, you can easily identify bugs and other issues in your code.
 ---
 
 # Expectations
@@ -112,7 +112,6 @@ expect(1)->toBe(1);
 expect('1')->not->toBe(1);
 
 expect(new StdClass)->not->toBe(new StdClass);
-
 ```
 
 This is equivalent to PHPUnit `AssertSame()` method.
@@ -1081,9 +1080,6 @@ expect(new StdClass)->not->toBe(new StdClass);
 
 ```
 
-This is equivalent to PHPUnit `AssertSame()` method.
-
-
 <a name="expect-toBeEmpty"></a>
 ### `toBeEmpty()`
 
@@ -1256,9 +1252,6 @@ expect('1')->toEqual(1);
 expect(new StdClass)->toEqual(new StdClass);
 
 ```
-
-This is equivalent to PHPUnit `AssertEquals()` method.
-
 
 <a name="expect-toEqualCanonicalizing"></a>
 ### `toEqualCanonicalizing($expected)`
@@ -1631,18 +1624,23 @@ expect(true)->toMatchConstraint(
 Asserts that the `$value` matches a custom constraint.
 
 ```php
+use PHPUnit\Framework\Constraint\Constraint;
+
 expect('https://google.com')->toMatchConstraint(new IsValidUrlConstraint());
-class IsValidUrlConstraint extends \PHPUnit\Framework\Constraint\Constraint
+
+class IsValidUrlConstraint extends Constraint
 {
     public function toString(): string
     {
         return 'is a valid url';
     }
+
     protected function matches($other): bool
     {
         if (! is_string($other)) {
             return false;
         }
+
         return preg_match(
             Symfony\Component\Validator\Constraints\UrlValidator::PATTERN,
             $other
@@ -1652,7 +1650,6 @@ class IsValidUrlConstraint extends \PHPUnit\Framework\Constraint\Constraint
 ```
 
 > Custom constraints should extend `PHPUnit\Framework\Constraint\Constraint`, and provide a `matches()` and `toString()` method, and optionally override the `evaluate()` method.
-
 
 <a name="expect-and"></a>
 ### `and($value)`
@@ -1813,61 +1810,6 @@ expect($user)
     ->first_name->toEqual('Nuno');
 ```
 
-<a name="higher-order-expectations"></a>
-
-## Higher Order Expectations
-
-> **NOTE:** You cannot call methods and properties on your expectation value that conflict with methods in the `Expectation` API using Higher Order Expectations.
-
-You may create expectations on `methods` or `properties` of the original expectation value. As an example, imagine you're testing that a `User` can be created within your system. You might want to test that a variety of attributes have been stored correctly:
-
-```php
-expect($user->first_name)->toEqual('Nuno');
-expect($user->last_name)->toEqual('Maduro');
-expect($user->withTitle('Mr'))->toEqual('Mr Nuno Maduro');
-```
-
-With higher order expectations, you can refactor that test to:
-
-```php
-expect($user)
-    ->first_name->toEqual('Nuno')
-    ->last_name->toEqual('Maduro')
-    ->withTitle('Mr')->toEqual('Mr Nuno Maduro');
-```
-
-You may also access `array` keys to perform expectations on them:
-
-```php
-expect(['name' => 'Nuno', 'companies' => ['Pest', 'Laravel']])
-    ->name->toEqual('Nuno')
-    ->companies->toHaveCount(2)->each->toBeString
-```
-
-Pest takes care of retrieving the property or calling the method on the value under test.
-
-Higher order expectations can be used with all of [Pest's expectations](#available-expectations). Which means you can create tests that are both powerful and elegant - even creating further higher order expectations within [`each()`](#expect-each) and [`sequence()`](#expect-sequence) closures:
-
-```php
-expect($user)
-    ->posts
-    ->not->toBeEmpty
-    ->toHaveCount(2)
-    ->sequence(
-        fn ($post) => $post->title->toEqual('My first post!'),
-        fn ($post) => $post->title->toEqual('My second post')
-    );
-```
-
-Your Higher Order Expectations can reach as deep into an object or associative array as you like. Once you perform one
-or more of [Pest's expectations](#available-expectations), the expectation's scope will reset to the initial value again:
-
-```php
-expect($user)
-    ->companies->first()->owner->toBeInstanceOf(User::class)->not->toEqual($user)
-    ->name->toEqual('Nuno');
-```
-
 ---
 
-Next section: [Setup And Teardown →](/docs/setup-and-teardown)
+After learning how to write expectations, the next section in the documentation, "Hooks" covers useful functions like "beforeEach" and "afterEach" that can be used to set up preconditions and cleanup actions for your tests: [Hooks →](/docs/hooks)

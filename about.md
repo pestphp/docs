@@ -1,6 +1,6 @@
 ---
 title: About
-description: About
+description: Welcome to the Pest Testing Framework!
 ---
 
 # About
@@ -17,13 +17,9 @@ test('sum', function () {
 });
 ```
 
-As you can see, you can expect a smooth and efficient coding experience thanks to its functional and declarative code style. Writing tests with Pest is simple, and the test reporting is well-organized, practical, and informative, with clear and concise error and stack trace displays for quick debugging.
-
-**Interfaces that people love**
+As you can see, you can expect a smooth and efficient coding experience thanks to its easy-to-use API inspired by Ruby's Rspec and Jest. Writing tests with Pest is simple, and the test reporting is well-organized, practical, and informative, with clear and concise error and stack trace displays for quick debugging.
 
 With Pest, you can obtain test reporting that is unmatched in its beauty, directly from the console! Furthermore, its easily readable error messages and stack traces enable you to debug with lightning-fast speed.
-
-**Testing can be more productive**
 
 Aside from its exceptional test reporting, Pest also boasts an array of other valuable features, including testing coverage, profiling, and more. Whether you're engaged in a small personal project or a large-scale enterprise application, Pest has got you covered.
 

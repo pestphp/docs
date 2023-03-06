@@ -5,7 +5,26 @@ description: Writing Tests
 
 # Writing Tests
 
+This section is intended to provide you with a brief overview of the how to wriet tests using Pest. Upon successful [installation](/docs/installation) of Pest, you will find the following files and folders in your project:
+
+```plain
+├── 📂 tests
+│   ├── 📂 Unit
+│   │   └── ExampleTest.php
+│   └── 📂 Feature
+│   │   └── ExampleTest.php
+│   └── TestCase.php
+│   └── Pest.php
+├── phpunit.xml
+```
+
+The `tests` folder serves as the main directory where all your test files will reside. Within this folder, you will find two sub-folders, `Unit` and `Feature`, which house your unit and feature tests, respectively. The `TestCase.php` file is where you can define common functionality or setup that you want to use across all your tests. Lastly, the `Pest.php` file is where you can configure your test suite, as mentioned earlier.
+
+Additionally, the `phpunit.xml` file can be found in your project, and is used to configure PHPUnit's various options when running tests. It's important to note that Pest is built on top of PHPUnit, which means that all of the options offered by PHPUnit can also be used in Pest. Therefore, any customization or configuration that you do with the `phpunit.xml` file will also apply to Pest tests.
+
 As you begin writing tests for your project, it's important to consider how to create and organize your test files effectively. Typically, test files are suffixed with `Test.php`, such as `ExampleTest.php`.
+
+## Your First Test
 
 Let's explore a straightforward example. Imagine that your project features a global function called `sum`, which adds two numbers together. To test this function, you would create a `Tests\Unit\SumTest.php` file with the following code:
 

@@ -1,9 +1,9 @@
 ---
-title: Groups Of Tests
+title: Grouping Tests
 description: Groups Of Tests
 ---
 
-# Groups Of Tests
+# Grouping Tests
 
 - [Overview](#overview)
 
