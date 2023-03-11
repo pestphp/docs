@@ -7,14 +7,16 @@
   - [Hooks](/docs/hooks)
   - [Exceptions](/docs/exceptions)
   - [Datasets](/docs/datasets)
-  - [Skipping Tests](/docs/skipping-tests)
-  - [Datasets](/docs/datasets)
-  - [Coverage](/docs/coverage)
-  - [Test Dependency](/docs/test-dependency)
-  - [CLI Options](/docs/cli-options)
+  - [Filtering Tests](/docs/filtering-tests)
+  - [Continuous Integration](/docs/continuous-integration)
 
 - ## Digging Deeper
-  - [Grouping tests](/docs/grouping-tests)
+  - [Configuring Pest](/docs/configuring-pest)
+  - [Grouping Tests](/docs/grouping-tests)
+  - [Skipping Tests](/docs/skipping-tests)
+  - [Coverage](/docs/coverage)
+  - [Defining Dependencies](/docs/test-dependency)
+  - [CLI Options](/docs/cli-options)
 
 - ## Customization
   - [Global Hooks](/docs/global-hooks)

@@ -1,25 +1,41 @@
 ---
 title: Grouping Tests
-description: Groups Of Tests
+description: You can assign tests to various groups using Pest's group method, which is optional. Assigning a group to a set of relatively slow tests could be beneficial, allowing you to selectively execute them together.
 ---
 
 # Grouping Tests
 
-- [Overview](#overview)
+You can assign tests folders to various groups using Pest's `group` method, which is optional. Assigning a group to a set of relatively slow tests could be beneficial, allowing you to selectively execute them together.
 
-<a name="overview"></a>
-## Overview
+As example, where we are assigning the `tests/Integration` folder to a specific group called "integration".
 
-Optionally, Pest allows you to assign tests to different groups with the `group` method. If you have a bunch of
-particularly slow tests, it might be good to add them all to the same group:
+```php
+uses(TestCase::class)
+    ->group('integration')
+    ->in('Integration');
+```
+
+As previously stated in the [Filtering Tests](/docs/filtering-tests) documentation, you can use the `--group` option to execute tests belonging to a specific group.
+
+```bash
+./vendor/bin/pest --group=integration
+```
+
+The expected behavior when filtering tests by a specific group is that the output will only display the tests belonging to that group.
+
+```php
+✓ it has emails with (enunomaduro@gmail.com)
+```
+
+You have the option to assign a particular test to a specific group by chaining the group method onto an it or test function, if desired.
 
 ```php
 it('has home', function () {
-    // ..
+    //
 })->group('integration');
 ```
 
-Of course, you can also assign a test to multiple groups:
+Naturally, you can assign a test to multiple groups as well.
 
 ```php
 it('has home', function () {
@@ -27,36 +43,16 @@ it('has home', function () {
 })->group('integration', 'browser');
 ```
 
-Sometimes, you may want to assign an entire file to a group:
+In some cases, you may want to assign a whole file to a group. Keep in mind that to do so, you should use the `uses()` function without the `in()` method on the specific test file.
 
 ```php
 uses()->group('integration');
+
+it('has home', function () {
+    //
+});
 ```
-
-Or a specific folder:
-
-```php
-// Pest.php
-uses()->group('integration')->in('integration');
-```
-
-Finally, you can run the tests of a specific group using the `--group` option while
-running Pest on the command-line:
-
-```bash
-./vendor/bin/pest --group=integration,browser
-```
-
-You may also exclude specific groups using the  `--exclude-group` option:
-
-```bash
-./vendor/bin/pest --exclude-group=api
-```
-
-> **Note:** The `uses()->group('integration')->in('Feature')` will **not** put any PHPUnit test class under the *integration* group.
-You still need the `@group` [annotation](https://phpunit.readthedocs.io/en/9.5/annotations.html) for them.
-Pest will understand it.
 
 ---
 
-Next section: - [Test Dependency →](/docs/test-dependency)
+Next, one of the features available to you when setting up your test suite is the ability to group folders, in addition to configuring the base test case class. This feature allows you to filter your test executions by group, using the --group option, at a later point in time: [Grouping Tests](/docs/grouping-tests)
