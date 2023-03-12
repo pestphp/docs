@@ -1,9 +1,9 @@
 ---
-title: Configuring Pest
+title: Configuring Tests
 description: The `Pest.php` file is a configuration file that is used to define your test suite setup.
 ---
 
-# Configuring Pest
+# Configuring Tests
 
 The `Pest.php` file is a configuration file that is used to define your test suite setup. This file is located in the `tests` directory of your project and is automatically loaded by Pest when you run your tests. Although you can define [Global Hooks](/docs/global-hooks) or [Custom Expectations](/docs/custom-expectations) within this file, its primary purpose is to specify the base test class utilized in your test suite.
 
@@ -39,7 +39,7 @@ class TestCase extends BaseTestCase
 {
     public function performThis(): void
     {
-        // ...
+        //
     }
 }
 
@@ -75,5 +75,4 @@ it('has home', function () {
 
 ---
 
-Next, one of the features available to you when setting up your test suite is the ability to group folders, in addition to configuring the base test case class. This feature allows you to filter your test executions by group, using the --group option, at a later point in time: [Grouping Tests](/docs/grouping-tests)
-
+Next, one of the features available to you when setting up your test suite is the ability to group folders, in addition to configuring the base test case class. This feature allows you to filter your test executions by group, using the `--group` option, at a later point in time: [Grouping Tests](/docs/grouping-tests)

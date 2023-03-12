@@ -70,4 +70,5 @@ If a test has failed previously, you might want to attempt running it again. In 
 
 ---
 
-Manually running your tests with filtering can become tedious, especially as your codebase grows. That's why it's a good idea to integrate Pest with a Continuous Integration (CI) service: [Continuous Integration →](/docs/continuous-integration)
+As your codebase grows, manually running your tests with filtering can become tedious. That's where skipping tests comes in. Skipping tests is a useful feature that allows developers to exclude specific tests from the test suite temporarily without deleting them entirely: [Skipping Tests →](/docs/skipping-tests)
+

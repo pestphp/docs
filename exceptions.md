@@ -34,7 +34,7 @@ it('throws exception', function () {
 You can also use the `throwsIf` method to conditionally verify an exception if a specific Boolean expression is true.
 ```php
 it('throws exception', function () {
-    // ..
+    //
 })->throwsIf(fn() => DB::getDriverName() === 'mysql', Exception::class, 'MySQL is not supported.');
 ```
 

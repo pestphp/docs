@@ -1,6 +1,6 @@
 ---
-title: Test Dependency
-description: Test Dependency
+title: Test Dependencies
+description: Test Dependencies
 ---
 
 # Test Dependency

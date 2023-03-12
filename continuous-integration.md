@@ -13,7 +13,7 @@ If your application uses [GitHub Actions](https://github.com/features/actions) a
 
 1. Next, create a `tests.yml` file within the `your-project/.github/workflows` directory. The file should have the following contents:
 
-> Note: Naturally, you should customize the script above according to your requirements. For instance, if you are not utilizing Laravel, then exclude the "Prepare Laravel" step. Similarly, if you do not utilize "npm" at all, then remove any "npm" related steps.
+> Note: Naturally, you should customize the script above according to your requirements. An example would be needing to set up a database if your tests require one for testing purposes.
 
 ```yml
 name: Tests
@@ -22,71 +22,27 @@ on: ['push', 'pull_request']
 
 jobs:
   ci:
-    runs-on: ubuntu-22.04
-    strategy:
-      fail-fast: true
-      matrix:
-        php: [8.2]
-        composer-flags:
-          - '--prefer-stable'
-
-    name: Tests
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Cache Dependencies
-        uses: actions/cache@v1
-        with:
-          path: ~/.composer/cache/files
-          key: dependencies-php-composer-${{ hashFiles('composer.lock') }}
-
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php }}
-          extensions: json, dom, curl, libxml, mbstring, zip
+          php-version: 8.2
           tools: composer:v2
-          coverage: none
+          coverage: xdebug
 
-      - name: Set up Node & NPM
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16.x'
-
-      - name: Setup Problem Matches
-        run: |
-          echo "::add-matcher::${{ runner.tool_cache }}/php.json"
-          echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
-
-      - name: Install PHP dependencies
-        run: composer install --no-interaction --no-progress --ansi
-
-      - name: Cache dependencies
-        id: cache
-        uses: actions/cache@v2
-        with:
-          path: ./node_modules
-          key: modules-${{ hashFiles('package-lock.json') }}
-
-      - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: npm install
-
-      - name: Build dependencies
-        run: npm run build
-
-      - name: Prepare Laravel
-        run: |
-          cp .env.example .env
-          php artisan key:generate
+      - name: Install Dependencies
+        run: composer install --no-interaction --prefer-dist --optimize-autoloader
 
       - name: Tests
-        run: ./vendor/bin/pest --ci
+        run: ./vendor/bin/pest
 ```
 
-2. Once you are done, commit and push the `tests.yml` file so GitHub Actions can run the first tests job.
+2. Once you are done, commit and push the `tests.yml` file so GitHub Actions can run the first tests job. Keep in mind that once you make this commit, your test suite will execute on new pull requests and commits.
 
 ---
 

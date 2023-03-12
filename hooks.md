@@ -57,7 +57,7 @@ afterEach(function () {
 So, on the example used above, if the `beforeEach()` hook is used to initialize the `$userRepository` property, the `afterEach()` hook is used to "clean" it after each test, if necessary. This ensures that the object is cleared and reset between tests, preventing any interference or unwanted behavior.
 
 ```php
-// ...
+//
 
 afterEach(function () {
     $this->userRepository->reset();

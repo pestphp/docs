@@ -5,20 +5,20 @@ description: You can assign tests to various groups using Pest's group method, w
 
 # Grouping Tests
 
-You can assign tests folders to various groups using Pest's `group` method, which is optional. Assigning a group to a set of relatively slow tests could be beneficial, allowing you to selectively execute them together.
+You can assign tests folders to various groups using Pest's `group` method, which is optional. Assigning a group to a set of relatively slow tests could be beneficial, allowing you to selectively execute them together. In general, the process of assigning a set of tests to a group is done through your `Pest.php` configuration file.
 
-As example, where we are assigning the `tests/Integration` folder to a specific group called "integration".
+For instance, consider the scenario where we assign the tests located in the `tests/Feature` folder to a particular group named "feature".
 
 ```php
 uses(TestCase::class)
-    ->group('integration')
-    ->in('Integration');
+    ->group('feature')
+    ->in('Feature');
 ```
 
 As previously stated in the [Filtering Tests](/docs/filtering-tests) documentation, you can use the `--group` option to execute tests belonging to a specific group.
 
 ```bash
-./vendor/bin/pest --group=integration
+./vendor/bin/pest --group=feature
 ```
 
 The expected behavior when filtering tests by a specific group is that the output will only display the tests belonging to that group.
@@ -32,21 +32,21 @@ You have the option to assign a particular test to a specific group by chaining 
 ```php
 it('has home', function () {
     //
-})->group('integration');
+})->group('feature');
 ```
 
 Naturally, you can assign a test to multiple groups as well.
 
 ```php
 it('has home', function () {
-    // ..
-})->group('integration', 'browser');
+    //
+})->group('feature', 'browser');
 ```
 
 In some cases, you may want to assign a whole file to a group. Keep in mind that to do so, you should use the `uses()` function without the `in()` method on the specific test file.
 
 ```php
-uses()->group('integration');
+uses()->group('feature');
 
 it('has home', function () {
     //
@@ -55,4 +55,4 @@ it('has home', function () {
 
 ---
 
-Next, one of the features available to you when setting up your test suite is the ability to group folders, in addition to configuring the base test case class. This feature allows you to filter your test executions by group, using the --group option, at a later point in time: [Grouping Tests](/docs/grouping-tests)
+When you are setting up a test suite, it may be necessary to share common hooks between different folders and groups. In such cases, Global Hooks can prove to be helpful: [Global Hooks](/docs/global-hooks)

@@ -84,6 +84,23 @@ it('has emails', function ($email) {
 
 Bound datasets, description keys, and other rules that are applicable to inline datasets can also be applied to shared datasets. Thus, these features can be used to manipulate shared datasets as well.
 
+### Scope Datasets
+
+Occasionally, datasets may pertain only to a specific feature or set of folders. In such cases, rather than distributing the dataset globally within the Datasets folder, you can generate a `Datasets.php` file within the relevant folder requiring the dataset and restrict the dataset's scope to that folder alone.
+
+```php
+// tests/Feature/Products/ExampleTest.php...
+it('has products', function ($product) {
+    expect($product)->not->toBeEmpty();
+})->with('products');
+
+// tests/Feature/Products/Datasets.php...
+dataset('products', [
+    'beer',
+    'wine'
+]);
+```
+
 ## Combining Datasets
 
 You can easily obtain complex datasets by combining both **inline** and **shared** datasets using a [cartesian product](https://en.wikipedia.org/wiki/Cartesian_product) approach. This allows for a straightforward method to generate new datasets.
@@ -92,7 +109,7 @@ You can easily obtain complex datasets by combining both **inline** and **shared
 dataset('days_of_the_week', [
     'Monday',
     'Tuesday',
-    // ...
+    //
 ]);
 
 test('business hours', function($business, $day) {

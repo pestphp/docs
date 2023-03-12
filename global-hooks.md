@@ -5,89 +5,44 @@ description: Global HOoks
 
 # Global Hooks
 
-- [Overview](#overview)
-- [Working with Datasets](#working-with-datasets)
+As previously stated, hooks allow you to simplify your testing process and automate repetitive tasks that you may perform before or after a test. It's worth noting that if the tasks are the same across multiple test files, you can define "global" hooks in your `Pest.php` configuration file.
 
-<a name="overview"></a>
-## Overview
-
-Pest also provides support for **higher order tests**, which are shortcuts for performing
-common actions while writing your tests.
-
-The best way to think about this is: If you
-don't provide a closure, the chained methods are going to create a closure for
-you. Here is the most basic example:
+For instance, if you need to execute a certain task in your database before each test within the `Feature` folder, you can make use of the `beforeEach` hook. This hook will run the specified task before each test within the folder.
 
 ```php
-test('true is true')->assertTrue(true);
+uses(TestCase::class)->beforeEach(function () {
+    // interact with your database...
+})->group('integration')->in('Feature');
 ```
 
-The code above is equivalent to:
+In addition, you have the option to specify hooks that will run before or after your entire test suite, regardless of the folder or group.
+
 ```php
-test('true is true', function () {
-    $this->assertTrue(true);
-});
+uses()->beforeEach(function () {
+    // interact with your database...
+})->in(__DIR__); // all folders, and all groups...
 ```
 
-Pest will properly delegate to any given method and its arguments of the test itself.
-
-Sometimes, you'll need to access methods not available until runtime. Higher order tests provide
-the `tap` method, which receives a closure and executes the code inside:
+It should come as no surprise that any of the other hooks mentioned in the [Hooks](/docs/hooks) documentation can also be used at the top level in your `Pest.php` configuration file.
 
 ```php
-it('writes to the database after the command is run')
-    ->tap(fn() => $this->artisan('your-command'))
-    ->assertDatabaseHas('users', ['id' => 1]);
+uses(TestCase::class)->beforeAll(function () {
+    // runs before each file...
+})->beforeEach(function () {
+    // runs before each test...
+})->afterEach(function () {
+    // runs after each test...
+})->afterAll(function () {
+    // runs after each file...
+})->group('integration')->in('Feature');
 ```
 
-If you want to perform an expectation on a runtime value in higher order tests, you can pass
-a closure to the `expect` method:
+Now, in terms of ordering, `before*` hooks specified at the `Pest.php` configuration level will be executed prior to any hook specified at the file level. Conversely, `after*` hooks specified at the Pest.php configuration level will be executed subsequent to any hook specified at the file level.
 
-```php
-it('points to the correct URL')
-    ->expect(fn() => route('dashboard'))
-    ->toBe('http://example.com/dashboard');
 ```
 
-The exact same rules apply to global functions like `beforeEach` or `afterEach`. Let's
-take a look at an example using the Laravel Framework:
-
-```php
-beforeEach()->withoutMiddleware();
-
-it('has home')
-    ->get('/admin')
-    ->assertSee('Hello World');
-```
-
-Pest also provides support for [higher order expectations](/docs/expectations#higher-order-expectations)
-when writing higher order tests:
-
-```php
-test('the user has the correct values')
-    ->expect(fn() => Auth::user())
-    ->first_name->toEqual('Nuno')
-    ->last_name->toEqual('Maduro')
-    ->withTitle('Mr')->toEqual('Mr Nuno Maduro');
-```
-
-## Working with Datasets
-
-When working with [datasets](/docs/datasets), Pest allows you to access the dataset values in higher order
-tests when using the `expect`, `and` or `tap` methods:
-
-```php
-it('validates the user names')
-    ->with('badUsernames')
-    ->expect(fn($name) => ValidateUserName::isValid($name)) // We receive the data as a parameter to `expect`
-    ->toBeFalse();
-
-it('inserts a user in the database')
-    ->with('users')
-    ->tap(fn($name, $email) => User::create(['name' => $name, 'email' => $email])) // You may receive multiple arguments
-    ->assertDatabaseHas('users', 1);
 ```
 
 ---
 
-Next section: [Custom Helpers →](/docs/helpers)
+When you are setting up a test suite, it may be necessary to share common hooks between different folders and groups. In such cases, Global Hooks can prove to be helpful: Global Hooks

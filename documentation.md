@@ -8,14 +8,16 @@
   - [Exceptions](/docs/exceptions)
   - [Datasets](/docs/datasets)
   - [Filtering Tests](/docs/filtering-tests)
+  - [Skipping Tests](/docs/skipping-tests)
+  - [Optimizating Tests](/docs/optimizing-tests)
   - [Continuous Integration](/docs/continuous-integration)
 
 - ## Digging Deeper
-  - [Configuring Pest](/docs/configuring-pest)
+  - [Configuring Tests](/docs/configuring-tests)
   - [Grouping Tests](/docs/grouping-tests)
-  - [Skipping Tests](/docs/skipping-tests)
-  - [Coverage](/docs/coverage)
-  - [Defining Dependencies](/docs/test-dependency)
+  - [Global Hooks](/docs/global-hooks)
+  - [Testing Coverage](/docs/testing-coverage)
+  - [Custom Expectations](/docs/custom-expectations)
   - [CLI Options](/docs/cli-options)
 
 - ## Customization
@@ -39,6 +41,10 @@
   - [Time](/docs/plugins/time)
   - [Watch](/docs/plugins/watch)
   - [Creating Plugins](/docs/plugins/creating-plugins)
+
+- ## Advanced Topics
+  - [Test Dependencies](/docs/test-dependencies)
+
 - ## More
   - [Support Policy](/docs/support-policy)
   - [Upgrade Guide](/docs/upgrade-guide)
