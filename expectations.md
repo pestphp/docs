@@ -713,7 +713,7 @@ expect($id)->toBe(14)->and($name)->toBe('Nuno');
 <a name="expect-dd"></a>
 ### `dd()`
 
-Use the `dd` method to dump the current expectation value and ends the script:
+Use the `dd` method to dump the current expectation value and end the script:
 
 ```php
 expect(14)->dd(); // 14
