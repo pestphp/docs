@@ -1,190 +1,122 @@
 ---
 title: Test Dependencies
-description: Test Dependencies
+description: Sometimes, tests typically require certain preconditions or events to occur prior to their execution, or else they will not succeed. As an illustration, you can only verify that users are able to modify their accounts if you have first verified that an account can be established.
 ---
 
 # Test Dependency
 
-- [Overview](#overview)
-- [Using it() function](#using-it-function)
-- [Returning values](#returning-values)
-- [Multiple dependencies](#multiple-dependencies)
+Sometimes, tests typically require certain preconditions or events to occur prior to their execution, or else they will not succeed. As an illustration, you can only verify that users are able to modify their accounts if you have first verified that an account can be established.
 
-<a name="overview"></a>
-
-## Overview
-
-Tests often depend on a set of preconditions or events to happen before they run, otherwise they fail.
-
-For example, you can only assert that users can edit their accounts if first you assert that an account can be created.
-
-Pest provides the method `depends()` to indicate that a Child test depends on one or more Parent tests.
-
-Let's see how it works:
+To address this issue, Pest offers the `depends()` method, which allows a "Child" test to specify that it depends on one or more "Parent" tests.
 
 ```php
-test('Parent', function () {
+test('parent', function () {
     expect(true)->toBeTrue();
 
     $this->assertTrue(true);
 });
 
-test('Child', function () {
+test('child', function () {
     expect(false)->toBeFalse();
-})->depends('Parent');
+})->depends('parent');
 ```
 
-In the example above, the Child test depends on the Parent test.
-
-If the Parent test passes, the Child test will be executed:
-
-```plain
-   PASS  Tests\Unit\ExampleTest
-  ✓ Parent
-  ✓ Child
-
-  Tests:  2 passed
-```
-
-However, if the Parent test fails, the Child test will be skipped with a user-friendly message.
+As illustrated earlier, the `child` test is reliant on the `parent` test. If the `parent` test successfully completes, the `child` test will then be triggered.
 
 ```php
-test('Parent', function () {
+   PASS  Tests\Unit\ExampleTest
+ ✓ Parent
+ ✓ Child
+
+   Tests:  2 passed
+```
+
+Nonetheless, if the `parent` test fails, the `child` test will be bypassed, accompanied by a message that is easy to understand for the user.
+
+```php
+test('parent', function () {
     expect(true)->toBeFalse();
 });
 
-test('Child', function () {
+test('child', function () {
     expect(false)->toBeFalse();
-})->depends('Parent');
+})->depends('parent');
 ```
 
 The example above results in:
 
-```plain
+```php
    FAIL  Tests\Unit\ExampleTest
   ⨯ Parent
-  ! Child → This test depends on "P\Tests\Unit\ExampleTest::Parent" which does not exist.
+  ! Child → This test depends on "Tests\Unit\ExampleTest::Parent" which does not exist.
 ```
 
-<a name="using-it-function"></a>
-
-## Using it() function
-
- The `it()` function automatically appends "it" to the test name.
-
-For this reason, you must add  "`it `" when referencing the test name in `depends()`.
+It is important to remember that the `it()` function adds the suffix "it" to the test name by default. Thus, when referencing the test name in depends(), you should include the "it " suffix.
 
 ```php
-it('is the Parent', function () {
+it('is the parent', function () {
     expect(true)->toBeTrue();
 });
 
-test('Child', function () {
+test('child', function () {
     expect(false)->toBeFalse();
-})->depends('it is the Parent');
+})->depends('it is the parent');
 ```
 
 Results is:
 
-```plain
+```php
    PASS  Tests\Unit\ExampleTest
-  ✓ it is the Parent
-  ✓ Child
+  ✓ it is the parent
+  ✓ child
 
   Tests:  2 passed
 ```
 
-<a name="returning-values"></a>
-
-## Returning values
-
-Parent tests may return values which will be accessible as function arguments in the Child test.
+Parent tests can provide return values that can be accessed as arguments in the `child` test.
 
 ```php
-test('Parent', function () {
+test('parent', function () {
     expect(true)->toBeTrue();
 
-    return 'coming from Parent';
+    return 'coming from parent';
 });
 
-test('Child', function ($parentValue) {
-    var_dump(func_get_args());
+test('child', function ($parentValue) {
+    var_dump($parentValue); // coming from parent
 
-    expect($parentValue)->toBe('coming from Parent');
-})->depends('Parent');
+    expect($parentValue)->toBe('coming from parent');
+})->depends('parent');
 ```
 
-Resulting in:
-
-```plain
-array(1) {
-  [0] =>
-  string(18) "coming from Parent"
-}
-
-   PASS  Tests\Unit\ExampleTest
-  ✓ Parent
-  ✓ Child
-
-  Tests:  2 passed
-```
-
-<a name="multiple-dependencies"></a>
-
-## Multiple dependencies
-
-You may also add multiple dependencies to a test.
-
-All parent tests must pass, and the value returned by each test will be accessible via function parameters in order of dependency.
-
+It is also possible to add multiple dependencies to a test. However, all parent tests must pass, and the values returned by each test will be available as function parameters, in the order of their dependencies.
 
 ```php
-test('Test A', function () {
+test('a', function () {
     expect(true)->toBeTrue();
 
-    return 'coming from Test A';
+    return 'a';
 });
 
-test('Test B', function () {
+test('b', function () {
     expect(true)->toBeTrue();
 
-    return 'coming from Test B';
+    return 'b';
 });
 
-test('Test C', function () {
+test('c', function () {
     expect(true)->toBeTrue();
 
-    return 'coming from Test C';
+    return 'c';
 });
 
-test('Last Test', function ($testA, $testC, $testB) {
-    var_dump(func_get_args());
-
-    expect($testA)->toBe('coming from Test A');
-    expect($testC)->toBe('coming from Test C');
-    expect($testB)->toBe('coming from Test B');
-})->depends('Test A', 'Test C', 'Test B');
+test('d', function ($testA, $testC, $testB) {
+    var_dump($testA); // a
+    var_dump($testB); // b
+    var_dump($testC); // c
+})->depends('a', 'b', 'c');
 ```
 
-Resulting in:
+---
 
-```plain
-array(3) {
-  [0] =>
-  string(18) "coming from Test A"
-  [1] =>
-  string(18) "coming from Test C"
-  [2] =>
-  string(18) "coming from Test B"
-}
-
-   PASS  Tests\Unit\ExampleTest
-  ✓ Test C
-  ✓ Test B
-  ✓ Test A
-  ✓ Last Test
-
-  Tests:  4 passed
-```
-
-Next section: [Skipping Tests →](/docs/skipping-tests)
+While test dependencies are uncommon, they can be useful for optimizing your tests and minimizing the need to recreate resources repeatedly. In the next chapter, we will explore the concept of "High Order Testing": [High Order Testing](/docs/high-order-testing)

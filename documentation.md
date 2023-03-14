@@ -1,5 +1,5 @@
 - ## Getting Started
-  - [About](/docs/about)
+  - [Why Pest](/docs/why-pest)
   - [Installation](/docs/installation)
   - [Editor Setup](/docs/editor-setup)
   - [Writing Tests](/docs/writing-tests)
@@ -23,23 +23,10 @@
   - [Custom Helpers](/docs/custom-helpers)
   - [Custom Expectations](/docs/custom-expectations)
 
-- ## Plugins
-  - [Laravel](/docs/plugins/laravel)
-  - [Livewire](/docs/plugins/livewire)
-  - [Mock](/docs/plugins/mock)
-  - [Money](/docs/plugins/money)
-  - [Mutation Testing](/docs/plugins/mutation-testing)
-  - [Faker](/docs/plugins/faker)
-  - [Global Assertions](/docs/plugins/global-assertions)
-  - [Snapshots](/docs/plugins/snapshots)
-  - [Time](/docs/plugins/time)
-  - [Watch](/docs/plugins/watch)
-  - [Creating Plugins](/docs/plugins/creating-plugins)
-
 - ## Advanced Topics
+  - [CLI API Reference](/docs/cli-api-reference)
   - [Test Dependencies](/docs/test-dependencies)
-  - [CLI Options](/docs/cli-options)
-  - [Higher Order Tests](/docs/higher-order-tests)
+  - [Higher Order Testing](/docs/higher-order-testing)
 
 - ## More
   - [Support Policy](/docs/support-policy)
