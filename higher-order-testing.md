@@ -51,7 +51,7 @@ It is crucial to use lazy evaluation for the expectation value by passing a clos
 If you need to call assertions on an object that requires lazy evaluation at runtime, you can use the `defer` method for such cases.
 
 ```php
-it('create admins')
+it('creates admins')
     ->defer(fn () => $this->artisan('user:create --admin'))
     ->assertDatabaseHas('users', ['id' => 1]);
 ```
