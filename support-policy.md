@@ -4,14 +4,19 @@ description: Support Policy
 ---
 # Support Policy
 
-As an open-source project, we do our best to address any reported bugs or issues on a best-effort basis. However, we cannot guarantee a specific resolution time or the availability of a fix for every issue.
+We strive to resolve all reported bugs or issues to the best of our abilities as an open-source project. Nevertheless, we cannot ensure a fixed resolution time or guarantee the availability of a fix for every problem.
 
-For outdated versions, we will provide bug fixes for a period of two years from the release of the latest version. Once a new version of Pest is released, the previous version will be considered outdated.
+Bug fixes will be available for outdated versions for a duration of two years following the latest version's release. The previous version will be regarded as outdated once a new version of Pest is released.
 
 | Major Version | PHP Compatibility | Initial Release | Bug Fixes Until
-| --- | --- | --- | --- |
+| ---------------- | --- | --- | --- |
 | Pest v2 | >= PHP 8.1 | To be determined | To be determined
 | Pest v1 | >= PHP 7.3 | January 7, 2021 | To be determined
+
+Pest adheres to semantic versioning principles, where the version number `x.y.z` conveys the following information:
+- When issuing bug fixes, the `z` number is incremented (e.g., 2.10.2 to 2.10.3).
+- When adding new non-breaking features or improvements, the `y` number is incremented (e.g., 2.10.2 to 2.12.0).
+- When introducing breaking changes, the `x` number is incremented (e.g., 2.10.2 to 3.0.0).
 
 ----
 
