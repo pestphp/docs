@@ -45,20 +45,10 @@ it('can be incremented', function () {
     livewire(Counter::class)
         ->call('increment')
         ->assertSee(1);
-
-    // Same as:
-    $this->livewire(Counter::class)
-        ->call('increment')
-        ->assertSee(1);
 });
 
 it('can be decremented', function () {
     livewire(Counter::class)
-        ->call('decrement')
-        ->assertSee(-1);
-
-    // Same as:
-    $this->livewire(Counter::class)
         ->call('decrement')
         ->assertSee(-1);
 });

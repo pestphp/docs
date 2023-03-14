@@ -122,4 +122,4 @@ test('business hours', function($business, $day) {
 
 ---
 
-After mastering the use of datasets for testing, the next step is to explore "Test Filtering". This feature allows you to efficiently run specific tests based on criteria like test name, dirty files, etc: [Filtering Tests →](/docs/filtering-tests)
+After becoming skilled at utilizing datasets for testing, the next crucial step is to gain an understanding of how to test for exceptions. This involves verifying that your code behaves correctly and throws appropriate exceptions when it encounters unexpected or erroneous input: [Exceptions →](/docs/exceptions)

@@ -1813,3 +1813,4 @@ expect($user)
 ---
 
 After learning how to write expectations, the next section in the documentation, "Hooks" covers useful functions like "beforeEach" and "afterEach" that can be used to set up preconditions and cleanup actions for your tests: [Hooks →](/docs/hooks)
+

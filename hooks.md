@@ -86,7 +86,7 @@ Executes the provided closure once after all tests have completed within the cur
 
 ```php
 afterAll(function () {
-    // clean something after all tests run
+    // clhttp://pestphp.com.test/docs/datasetsean something after all tests run
 });
 ```
 
@@ -94,4 +94,4 @@ Just like `beforeAll`, and unlike the `afterEach()` the `$this` variable may not
 
 ---
 
-Once you've mastered using Hooks to set up preconditions and cleanup actions for your tests, it's important to learn how to handle exceptions that may occur during testing. The next section in the documentation, "Exceptions", covers techniques for testing that code throws expected exceptions under specific circumstances. [Exceptions →](/docs/exceptions)
+Once you've mastered using Hooks to set up preconditions and cleanup actions for your tests, the next section in the documentation, "Datasets", covers the use of datasets to run the same test with different inputs or parameters. These datasets can be used to thoroughly test your code under a variety of conditions and edge cases, and can help you identify and fix bugs that may not be immediately obvious. By using data providers or datasets, you can write more efficient and effective tests that cover a wider range of scenarios: [Datasets →](/docs/datasets)

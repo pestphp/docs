@@ -46,4 +46,4 @@ jobs:
 
 ---
 
-Great job setting up Continuous Integration for your project to ensure codebase stability! Now, let's take a deeper dive into Pest's concepts by exploring it's configure file: [Configuring Pest →](/docs/configuring-pest)
+Great job setting up Continuous Integration for your project to ensure codebase stability! Now, let's take a deeper dive into Pest's concepts by exploring it's configure tests: [Configuring Pest →](/docs/configuring-tests)

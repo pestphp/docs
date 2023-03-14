@@ -106,3 +106,4 @@ expect()->pipe('toBe', function (Closure $next, mixed $expected) {
 
 ---
 
+...

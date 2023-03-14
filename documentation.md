@@ -5,33 +5,27 @@
   - [Writing Tests](/docs/writing-tests)
   - [Expectations](/docs/expectations)
   - [Hooks](/docs/hooks)
-  - [Exceptions](/docs/exceptions)
   - [Datasets](/docs/datasets)
+  - [Exceptions](/docs/exceptions)
   - [Filtering Tests](/docs/filtering-tests)
   - [Skipping Tests](/docs/skipping-tests)
-  - [Optimizating Tests](/docs/optimizing-tests)
+  - [Optimizing Tests](/docs/optimizing-tests)
   - [Continuous Integration](/docs/continuous-integration)
 
 - ## Digging Deeper
   - [Configuring Tests](/docs/configuring-tests)
   - [Grouping Tests](/docs/grouping-tests)
   - [Global Hooks](/docs/global-hooks)
-  - [Testing Coverage](/docs/testing-coverage)
+  - [Mocking](/docs/mocking)
+  - [Plugins](/docs/plugins)
+  - [Arch Testing](/docs/arch-testing)
+  - [Test Coverage](/docs/test-coverage)
+  - [Custom Helpers](/docs/custom-helpers)
   - [Custom Expectations](/docs/custom-expectations)
-  - [CLI Options](/docs/cli-options)
-
-- ## Customization
-  - [Global Hooks](/docs/global-hooks)
-  - [Underlying Test Case](/docs/underlying-test-case)
-  - [Higher Order Tests](/docs/higher-order-tests)
-  - [Custom Helpers](/docs/helpers)
-  - [Advanced Expectations](/docs/plugins/advanced-expectations)
-  - [Test Dependency](/docs/test-dependency)
 
 - ## Plugins
   - [Laravel](/docs/plugins/laravel)
   - [Livewire](/docs/plugins/livewire)
-  - [Parallel](/docs/plugins/parallel)
   - [Mock](/docs/plugins/mock)
   - [Money](/docs/plugins/money)
   - [Mutation Testing](/docs/plugins/mutation-testing)
@@ -44,6 +38,8 @@
 
 - ## Advanced Topics
   - [Test Dependencies](/docs/test-dependencies)
+  - [CLI Options](/docs/cli-options)
+  - [Higher Order Tests](/docs/higher-order-tests)
 
 - ## More
   - [Support Policy](/docs/support-policy)

@@ -11,8 +11,6 @@ Additionally, Pest PHP provides the `--profile` flag to identify slow-running te
 
 ## Parallel Testing
 
-> **Requirements:** [Paratest 7.0+](https://github.com/paratestphp/paratest/)
-
 Pest executes your tests sequentially within a single process as the default behavior. However, you can significantly decrease the time taken to run your tests by utilizing the `--parallel` option to run tests concurrently across multiple processes.
 
 ```bash

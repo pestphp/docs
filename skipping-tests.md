@@ -81,4 +81,4 @@ At any point in time, you have the ability to view a list of todos in your test 
 
 ---
 
-As your codebase expands, it's advisable to consider enhancing the speed of your test suite. To assist you with that, we offer a comprehensive documentation: [Optimizating Tests](/docs/optimizing-tests)
+As your codebase expands, it's advisable to consider enhancing the speed of your test suite. To assist you with that, we offer a comprehensive documentation: [Optimizing Tests](/docs/optimizing-tests)

@@ -39,10 +39,6 @@ uses(TestCase::class)->beforeAll(function () {
 
 Now, in terms of ordering, `before*` hooks specified at the `Pest.php` configuration level will be executed prior to any hook specified at the file level. Conversely, `after*` hooks specified at the Pest.php configuration level will be executed subsequent to any hook specified at the file level.
 
-```
-
-```
-
 ---
 
-When you are setting up a test suite, it may be necessary to share common hooks between different folders and groups. In such cases, Global Hooks can prove to be helpful: Global Hooks
+When setting up a test suite, it may be necessary to mock certain functionality or objects in order to isolate the code being tested and to simulate certain conditions or behaviors. This can be done through the use of mocking libraries or frameworks, such as Mockery: [Mocking](/docs/mocking)

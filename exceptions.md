@@ -50,4 +50,4 @@ it('throws exception', function () {
 
 ---
 
-After mastering techniques for handling exceptions during testing, the next section in the documentation, "Datasets", covers the use of datasets to run the same test with different inputs or parameters. These datasets can be used to thoroughly test your code under a variety of conditions and edge cases, and can help you identify and fix bugs that may not be immediately obvious. By using data providers or datasets, you can write more efficient and effective tests that cover a wider range of scenarios: [Datasets →](/docs/datasets)
+After learning how to write expectations, the next step is to explore "Test Filtering". This feature allows you to efficiently run specific tests based on criteria like test name, dirty files, etc: [Filtering Tests →](/docs/filtering-tests)
