@@ -20,7 +20,7 @@ test('sum', function () {
 });
 ```
 
-You can expect a smooth and efficient coding experience thanks to its easy-to-use API inspired by Ruby's Rspec and Jest. Writing tests with Pest is simple, and the test reporting is well-organized, practical, and informative, with clear and concise error and stack trace displays for quick debugging. With Pest, you can obtain test reporting that is unmatched in its beauty, directly from the console! Furthermore, its easily readable error messages and stack traces enable you to debug with lightning-fast speed.
+You can expect a smooth and efficient coding experience thanks to its easy-to-use API inspired by Ruby's Rspec and Jest. In addition, the test reporting is well-organized, practical, and informative, with clear and concise error and stack trace displays for quick debugging. With Pest, you can obtain test reporting that is unmatched in its beauty, directly from the console!
 
 ![Install](/assets/img/failure.webp)
 
