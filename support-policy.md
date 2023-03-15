@@ -22,4 +22,4 @@ As maintainers of testing frameworks, we regard the matter of breaking changes w
 
 ----
 
-Next section: [Upgrade Guide →](/docs/upgrade-guide)
+The support policy has been covered on this page. In the next chapter, we will explore the process of upgrading between major versions through the Upgrade Guide: [Upgrade Guide](/docs/upgrade-guide)

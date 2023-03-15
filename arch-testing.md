@@ -15,6 +15,7 @@ Architectural testing enables you to specify expectations for different sections
 - [`toBeUsedOn()`](#expect-toBeUsedOn)
 - [`toUse()`](#expect-toUse)
 - [`toUseNothing()`](#expect-toUseNothing)
+- [`ignoring()`](#expect-ignoring)
 
 </div>
 
@@ -94,6 +95,29 @@ If you want to indicate that particular layers or classes should not have any de
 test('value objects')
     ->expect('App\ValueObjects')
     ->toUseNothing();
+```
+
+<a name="expect-ignoring"></a>
+### `ignoring()`
+
+When defining your architecture rules, you can use the ignoring method to exclude certain components.
+
+```php
+test('facades')
+    ->expect('Illuminate\Support\Facades')
+    ->not->toBeUsed()
+    ->ignoring('App\Providers');
+```
+
+In certain cases, certain components may not be regarded as "dependencies" as they are part of the system just like regular PHP code. To customize the definition of "native" code and exclude it during testing, you can specify what to ignore. For example, if you want to exclude Laravel as a dependency, you can use the `arch()` method inside the `beforeEach()` function to disregard any code within the "Illuminate" namespace. This approach allows you to focus only on the actual dependencies of your application.
+
+```php
+// tests/Pest.php
+uses()->beforeEach(function () {
+    $this->arch()->ignore([
+        'Illuminate',
+    ])->ignoreGlobalFunctions();
+})->in('Feature');
 ```
 
 ---

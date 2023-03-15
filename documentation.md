@@ -1,5 +1,8 @@
-- ## Getting Started
+- ## Press
+  - [Announcing Pest 2.0](/docs/announcing-pest2)
   - [Why Pest](/docs/why-pest)
+
+- ## Getting Started
   - [Installation](/docs/installation)
   - [Editor Setup](/docs/editor-setup)
   - [Writing Tests](/docs/writing-tests)
@@ -29,8 +32,7 @@
   - [Higher Order Testing](/docs/higher-order-testing)
 
 - ## More
+  - [Video Resources](/docs/video-resources)
   - [Support Policy](/docs/support-policy)
   - [Upgrade Guide](/docs/upgrade-guide)
-- ## Get involved
-  - [Community](/docs/community)
-  - [Contribute](/docs/contribute)
+  - [Community Guide](/docs/community-guide)

@@ -62,7 +62,7 @@ Sometimes, instead of using the `--group` option, you can use the `--exclude-gro
 <a name="retry"></a>
 ### `--retry`
 
-If a test has failed previously, you might want to attempt running it again. In such cases, you can utilize the --retry option, which can prove beneficial if you suspect that the failure was a result of a temporary issue or an error on your part. Using this option, you can try the test again and determine if it passes on a subsequent attempt.
+If a test has failed previously, you might want to attempt running it again. In such cases, you can utilize the `--retry` option, which can prove beneficial if you suspect that the failure was a result of a temporary issue or an error on your part. Using this option, you can try the test again and determine if it passes on a subsequent attempt.
 
 ```bash
 ./vendor/bin/pest --retry

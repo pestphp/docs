@@ -16,7 +16,7 @@ Here is a comprehensive list of plugins that are officially maintained by the Pe
 - [Faker](#faker)
 - [Laravel](#laravel)
 - [Livewire](#livewire)
-- [Watch][#watch]
+- [Watch](#watch)
 
 </div>
 

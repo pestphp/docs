@@ -20,6 +20,13 @@ Pest v2 requires PHP 8.1.0 or greater. To start the migration process from Pest 
 +    "pestphp/pest": "^2.0",
 ````
 
+In addition, please upgrade Collision to version 7 if you are using Laravel.
+
+```diff
+-    "nunomaduro/collision": "^6.0",
++    "nunomaduro/collision": "^7.0",
+````
+
 If you are using the Parallel Plugin, please remove it from your dependencies since it has been merged into Pest's core.
 
 ```diff
@@ -66,7 +73,7 @@ To address this issue, and as detailed on the warning, simply re-run Pest with t
 ./vendor/bin/pest --migrate-configuration
 ```
 
-Furthermore, it's worth noting that Pest v2 is built on top of PHPUnit v10. This means that any notable changes made to PHPUnit v10 might have an impact on your test suite. To examine all the changes introduced in PHPUnit v10, please refer to the PHPUnit v10 Changelog at the following link:[PHPUnit v10 Changelog](https://github.com/sebastianbergmann/phpunit/blob/10.0.0/ChangeLog-10.0.md#1000---2023-02-03).
+Furthermore, it's worth noting that Pest v2 is built on top of PHPUnit v10. This means that any notable changes made to PHPUnit v10 might have an impact on your test suite. To examine all the changes introduced in PHPUnit v10, please refer to the PHPUnit v10 Changelog at the following link: [PHPUnit v10 Changelog](https://github.com/sebastianbergmann/phpunit/blob/10.0.0/ChangeLog-10.0.md#1000---2023-02-03).
 
 ### High Order Testing
 
@@ -93,7 +100,7 @@ Although we previously documented in Pest v1 that datasets should only be declar
 
 In the past, you may have used the `->only()` method to only run a particular test in your test suite. This method no longer exists. As workaround, you may use Pest's new CLI options: `--dirty` or `--retry`.
 
-```php
+```diff
 test('sum', function () {
    $result = sum(1, 2);
 
@@ -104,4 +111,4 @@ test('sum', function () {
 
 ---
 
-Next section: [Community →](/docs/community)
+You may have noticed that upgrading Pest between major versions only takes a few minutes. The upcoming chapter we are going to see insights on how you can contribute to the growth of Pest: [Community Guide](/docs/community-guide)

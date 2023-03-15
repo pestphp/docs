@@ -87,5 +87,4 @@ it('validates emails')
 
 ---
 
-Although high-order testing may appear complicated, it is a technique that can significantly simplify your test suite's code. In the next section, we will discuss Pest's Support Policy: [Support Policy](/docs/support-policy)
-
+Although high-order testing may appear complicated, it is a technique that can significantly simplify your test suite's code. In the next section, we will discuss Pest's community video resources: [Video Resources](/docs/video-resources)
