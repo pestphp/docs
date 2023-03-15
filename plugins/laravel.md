@@ -9,6 +9,7 @@ description: The Laravel Plugin
 - [Installation](#installation)
 - [Available Artisan commands](#available-artisan-commands)
 - [Available Functions](#available-functions)
+  - [assertDatabaseCount](#assert-database-count) 
 - [Available Expectations](#available-expectations)
 - [Using Test Traits](#using-test-traits)
 - [Tests without description](#tests-without-description)
@@ -100,6 +101,15 @@ it('has a welcome page', function () {
     // Same as:
     $this->get('/')->assertStatus(200);
 });
+```
+
+<a name="assert-database-count"></a>
+### `assertDatabaseCount()`
+
+Asserts count of database table.
+
+```php
+assertDatabaseCount('users', 5);
 ```
 
 <a name="available-expectations"></a>
