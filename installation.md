@@ -27,9 +27,9 @@ composer require pestphp/pest --dev --with-all-dependencies
 ./vendor/bin/pest
 ```
 
-The default Test Report in a brand-new project is shown in the image below.
+Here is an example of the output displayed when running Pest in a new, fresh project.
 
-![Install](/assets/img/pestinstall.png)
+![Install](/assets/img/pestinstall.webp)
 
 ---
 

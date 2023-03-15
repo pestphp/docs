@@ -17,12 +17,12 @@ Pest 2.0 marks a major milestone in our development, packed with an array of pow
 
 - **[Powerful Architecture Plugin](/docs/arch-testing)**, for testing the architectural rules of your application with ease
 - **[Up To 60% Speed Improvements on "--parallel" testing](/docs/optimizing-tests#parallel)**, with our fully rewritten parallel core, enjoy significantly faster test runs
-- **[--profile option](/docs/optimizing-tests#profiling)**, to identify the slowest tests and optimize their execution
-- **[--retry option](/docs/filtering-tests#--retry)**, for saving time by running only previously unsuccessful tests
-- **[--dirty option](/docs/filtering-tests#--dirty)**, for only run tests with uncommitted changes
-- **[todo()](/docs/skipping-tests#creating-todos)** method, for creating todos within your test suite
-- **[Expectation Interceptors and Pipes](/docs/custom-expectations#intercept-expectations)**, allowing you to tailor your expectations to fit your specific testing needs
-- **[Scoped Datasets](/docs/datasets#scope-datasets)**, for creating datasets that pertain only to a specific feature or set of folders
+- **[--profile option](/docs/optimizing-tests#content-profiling)**, to identify the slowest tests and optimize their execution
+- **[--retry option](/docs/filtering-tests#retry)**, for saving time by running only previously unsuccessful tests
+- **[--dirty option](/docs/filtering-tests#dirty)**, for only run tests with uncommitted changes
+- **[todo()](/docs/skipping-tests#content-creating-todos)** method, for creating todos within your test suite
+- **[Expectation Interceptors and Pipes](/docs/custom-expectations#content-intercept-expectations)**, allowing you to tailor your expectations to fit your specific testing needs
+- **[Scoped Datasets](/docs/datasets#content-scope-datasets)**, for creating datasets that pertain only to a specific feature or set of folders
 
 In addition to the features detailed above, there's so much more to explore with Pest 2.0! **Our website has been completely revamped**, with fresh documentation and a more user-friendly interface. There's never been a better time to dive in and start exploring.
 
