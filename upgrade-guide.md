@@ -20,7 +20,7 @@ Pest v2 requires PHP 8.1.0 or greater. To start the migration process from Pest 
 +    "pestphp/pest": "^2.0",
 ````
 
-In addition, please upgrade Collision to version 7 if you are using Laravel.
+In addition, please upgrade Collision to version 7 if you are using Laravel. Note that, Laravel 10 is required.
 
 ```diff
 -    "nunomaduro/collision": "^6.0",
