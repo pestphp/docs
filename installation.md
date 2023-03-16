@@ -9,7 +9,7 @@ description: Installing Pest PHP Testing Framework is a simple process that can 
 
 Installing Pest PHP Testing Framework is a simple process that can be completed in just a few steps. Before you begin, make sure you have PHP `8.1+` or higher installed on your system.
 
-**The first step** is to require Pest as a "dev" dependency in your project by running the following command in your command line:
+**The first step** is to require Pest as a "dev" dependency in your project by running the following command on your command line.
 
 ```bash
 composer require pestphp/pest --dev --with-all-dependencies

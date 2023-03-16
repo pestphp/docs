@@ -10,16 +10,16 @@ Bug fixes will be available for outdated versions for a duration of two years fo
 
 | Major Version | PHP Compatibility | Initial Release | Bug Fixes Until
 | ---------------- | --- | --- | --- |
-| Pest v2 | >= PHP 8.1 | March 20, 2023  | To be determined
-| Pest v1 | >= PHP 7.3 | January 7, 2021 | March 20, 2025
+| Pest 2 | >= PHP 8.1 | March 20, 2023  | To be determined
+| Pest 1 | >= PHP 7.3 | January 7, 2021 | March 20, 2025
 
 Pest adheres to semantic versioning principles, where the version number `x.y.z` conveys the following information:
 - When issuing bug fixes, the `z` number is incremented (e.g., 2.10.2 to 2.10.3).
 - When adding new non-breaking features or improvements, the `y` number is incremented (e.g., 2.10.2 to 2.12.0).
 - When introducing breaking changes, the `x` number is incremented (e.g., 2.10.2 to 3.0.0).
 
-As maintainers of testing frameworks, we regard the matter of breaking changes with utmost importance. Therefore, we make it a point to deliver incredible and robust new features without causing any disruption to the community's test suites. This is precisely why upgrading from Pest v1 to Pest v2 merely required updating your composer.json file, and we assure you that the process will be just as seamless when Pest v3 is released.
+As maintainers of testing frameworks, we take the matter of breaking changes very seriously. Therefore, we always attempt to deliver incredible and robust new features without causing any disruption to the community's test suites. This is precisely why upgrading from Pest 1 to Pest 2 merely required updating your composer.json file, and we assure you that the process will be just as seamless when Pest v3 is released.
 
 ----
 
-The support policy has been covered on this page. In the next chapter, we will explore the process of upgrading between major versions through the Upgrade Guide: [Upgrade Guide](/docs/upgrade-guide)
+In the next chapter, we will explore the process of upgrading between major versions via our upgrade guide: [Upgrade Guide](/docs/upgrade-guide)

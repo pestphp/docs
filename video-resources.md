@@ -1,13 +1,13 @@
 ---
 title: Video Resources
-description: Ever since the introduction of Pest to the world, the communtity have been inundating social media with free (or partially free) online video courses on the subject. This has left us feeling deeply appreciative, as some individuals simply prefer to learn about Pest and testing through video rather than documentation.
+description: Ever since the introduction of Pest to the world, the community has been inundating social media with online video courses on the subject. This has left us feeling deeply appreciative, as some individuals simply prefer to learn about Pest and testing through video rather than documentation.
 ---
 
 # Video Resources
 
-Ever since the introduction of Pest to the world, the communtity have been inundating social media with free (or partially free) online video courses on the subject. This has left us feeling deeply appreciative, as some individuals simply prefer to learn about Pest and testing through video rather than documentation.
+Ever since the introduction of Pest to the world, the community has been inundating social media with online video courses on the subject. This has left us feeling deeply appreciative, as some individuals simply prefer to learn about Pest and testing through video rather than documentation.
 
-The aim of this chapter is to provide a comprehensive list of video resources that cover everything from the fundamentals of Pest to advanced concepts.
+Below you will find a list of some of the video resources available online. These videos cover everything from the fundamentals of Pest to advanced testing concepts.
 
 ### Conference Talks
 
@@ -32,4 +32,4 @@ The aim of this chapter is to provide a comprehensive list of video resources th
 
 ---
 
-Understanding the significance of video resources in the learning process, we trust that you have found this chapter enjoyable. In the upcoming chapter, you will find comprehensive details regarding Pest's Support Policy: [Support Policy](/docs/support-policy)
+Understanding the significance of video resources in the learning process, we trust that you have found this chapter enjoyable. In the upcoming chapter, you will find comprehensive details regarding Pest's support policy: [Support Policy](/docs/support-policy)
