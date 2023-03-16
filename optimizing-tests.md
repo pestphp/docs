@@ -13,7 +13,7 @@ Finally, it's often useful to focus solely on your test suite's failures. To do 
 
 ## Parallel Testing
 
-> Parallel Testing in Pest 2 now runs up to 60% faster, thanks to a complete rebuild of its core. This impressive improvement is the result of a complete rebuild of the core of the parallel testing system, which now incorporates advanced techniques for process reuse between test case runs.
+> Parallel testing in Pest 2 now runs up to 60% faster. This impressive result was only possible thanks to a complete rebuild of the parallel test core system. The new core incorporates advances techniques for process reuse between test case runs.
 
 By default, Pest executes your tests sequentially within a single process. However, you can significantly decrease the time needed to run your tests by utilizing the `--parallel` option to run tests concurrently across multiple processes.
 
