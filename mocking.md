@@ -21,7 +21,7 @@ While comprehensive documentation for Mockery can be found on its [dedicated web
 
 ## Method Expectations
 
-Mock objects are essential for isolating the code being tested and simulating specific behaviors or conditions. To indicate that a test double should anticipate a call to a method with a given name, we use the `shouldReceive` method, as demonstrated in the code snippet below.
+Mock objects are essential for isolating the code being tested and simulating specific behaviors or conditions. To indicate that a test mock should anticipate a call to a method with a given name, we use the `shouldReceive` method, as demonstrated in the code snippet below.
 
 ```php
 use App\Repositories\BookRepository;
@@ -32,7 +32,7 @@ it('may buy a book', function () {
     $client->shouldReceive('post');
 
     $books = new BookRepository($client);
-    $books->buy(); // don't actually reach the API...
+    $books->buy(); // The API is not actually reached as `$client->post()` has been mocked...
 });
 
 ```
@@ -65,7 +65,7 @@ It is important to note that expectations set up using `shouldReceive()` and `wi
 ```php
 $client->shouldReceive('post')->with(1);
 
-$client->post(2); // test fails, throws a NoMatchingExpectationException
+$client->post(2); // test fails, throws a `NoMatchingExpectationException`
 ```
 
 In certain cases, it may be more appropriate to use a closure to match all passed arguments simultaneously, rather than relying on built-in matchers for each individual argument. The `withArgs()` method accepts a closure that receives all of the arguments passed to the expected method call. As a result, this expectation will only be applied to method calls in which the passed arguments cause the closure to evaluate to true.
@@ -76,7 +76,7 @@ $client->shouldReceive('post')->withArgs(function ($arg) {
 });
 
 $client->post(1); // test passes, matches the expectation
-$client->post(2); // test fails, throws a NoMatchingExpectationException
+$client->post(2); // test fails, throws a `NoMatchingExpectationException`
 ```
 
 ## Return Values

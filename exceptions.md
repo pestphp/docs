@@ -5,9 +5,7 @@ description: In PHP, when testing behavior, it may be necessary to verify whethe
 
 # Exceptions
 
-In PHP, when testing behavior, it may be necessary to verify whether an exception or error has been thrown.
-
-To write a test that expects an exception to be thrown, you can use the following code.
+When testing behavior in PHP, you might need to check if an exception or error has been thrown. To create a test that expects an exception to be thrown, you can use the `throws` method.
 
 ```php
 it('throws exception', function () {
@@ -15,7 +13,7 @@ it('throws exception', function () {
 })->throws(Exception::class);
 ```
 
-If you also want to assert the exception message, you need to provide a second argument to the throws method.
+If you also want to assert the exception message, you need to provide a second argument to the `throws` method.
 
 ```php
 it('throws exception', function () {

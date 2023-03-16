@@ -22,7 +22,9 @@ test('sum', function () {
 
 You can expect a smooth and efficient coding experience thanks to its easy-to-use API inspired by Ruby's Rspec and Jest. In addition, the test reporting is well-organized, practical, and informative, with clear and concise error and stack trace displays for quick debugging. With Pest, you can obtain test reporting that is unmatched in its beauty, directly from the console!
 
-![Install](/assets/img/failure.webp)
+<div >
+    <img src="/assets/img/failure.webp" style="display: block; margin-left: auto; margin-right: auto;" width="80%" height="600" />
+</div>
 
 In addition to its exceptional test reporting, Pest also offers a range of other valuable features, including:
 

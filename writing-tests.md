@@ -5,7 +5,7 @@ description: Writing Tests
 
 # Writing Tests
 
-This section is intended to provide you with a brief overview of the how to wriet tests using Pest. Upon successful [installation](/docs/installation) of Pest, you will find the following files and folders in your project:
+This section is intended to provide you with a brief overview of the how to write tests using Pest. Upon successful [installation](/docs/installation) of Pest, you will find the following files and folders in your project:
 
 ```plain
 ├── 📂 tests
@@ -70,9 +70,7 @@ As you may have noticed in our previous examples, we made use of Pest's expectat
 
 For instance, in our previous example, we used `expect($result)->toBe(3)` to ensure that the value of `$result` is equal to `5`. Pest's expectation API provides a variety of other assertion functions that you can use to test the behavior of your code, such as `toBeTrue`, `toBeFalse`, and `toContain`.
 
-By using the expectation API, you can write concise and readable assertions that make it clear what your code is doing and how it should behave. In the next section, we will cover some of the most commonly used assertion functions in Pest's expectation API.
-
-You can find the full documentation for Pest's expectation API, including all available functions and their usage, on the [next chapter](/docs/expectations).
+By using the expectation API, you can write concise and readable assertions that make it clear what your code is doing and how it should behave. In the [next section](/docs/expectations), we will cover some of the most commonly used assertion functions in Pest's expectation API.
 
 ## Assertion API
 

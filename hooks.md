@@ -86,7 +86,7 @@ Executes the provided closure once after all tests have completed within the cur
 
 ```php
 afterAll(function () {
-    // clhttp://pestphp.com.test/docs/datasetsean something after all tests run
+    // clean something after all tests run
 });
 ```
 

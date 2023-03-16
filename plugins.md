@@ -20,7 +20,7 @@ Here is a comprehensive list of plugins that are officially maintained by the Pe
 
 </div>
 
-Here is a comprehensive list of plugins that are officially maintained by the Pest team. Although we have provided a comprehensive list of community plugins available for Pest, please note that there are many other community plugins that you can discover on GitHub.
+Although we have provided a comprehensive list of officially plugins available for Pest, please note that there are many other community plugins that you can discover on GitHub. Here are a few examples.
 
 <div class="collection-method-list" markdown="1">
 
@@ -42,7 +42,7 @@ To get started, you need to require this plugin via Composer.
 composer require pestphp/pest-plugin-faker --dev
 ```
 
-After finishing the installation, you can opt to utilize the fake namespaced function to generate fake data for your tests.
+After finishing the installation, you can opt to utilize the `fake` namespaced function to generate fake data for your tests.
 
 ```php
 use function Pest\Faker\fake;

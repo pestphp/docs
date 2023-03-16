@@ -119,4 +119,4 @@ test('d', function ($testA, $testC, $testB) {
 
 ---
 
-While test dependencies are uncommon, they can be useful for optimizing your tests and minimizing the need to recreate resources repeatedly. In the next chapter, we will explore the concept of "High Order Testing": [High Order Testing](/docs/high-order-testing)
+While test dependencies are uncommon, they can be useful for optimizing your tests and minimizing the need to recreate resources repeatedly. In the next chapter, we will explore how you can create plugins: [Creating Plugins](/docs/creating-plugins)

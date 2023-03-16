@@ -58,7 +58,7 @@ it('creates admins')
 
 In this case, the `assertDatabaseHas` assertion will be performed on the result of the closure passed to the `defer` method.
 
-The principles of high-order testing can also be applied to hooks. This means that if the body of your hook consists of a sequence of methods chained to the $this variable, you can simply chain those methods and omit the closure.
+The principles of high-order testing can also be applied to hooks. This means that if the body of your hook consists of a sequence of methods chained to the `$this` variable, you can simply chain those methods and omit the closure.
 
 ```php
 beforeEach(function () {

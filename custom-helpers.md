@@ -1,13 +1,13 @@
 ---
 title: Custom Helpers
-description: Custom Helpers
+description: If you're transitioning to a functional approach for writing tests, you may wonder where to put your helpers that used to be protected or private methods in your test classes. This chapter aims to clarify that, in line with other functional programming languages, helpers can exist outside of conventional classes.
 ---
 
 # Custom Helpers
 
 If you're transitioning to a functional approach for writing tests, you may wonder where to put your helpers that used to be protected or private methods in your test classes. This chapter aims to clarify that, in line with other functional programming languages, helpers can exist outside of conventional classes.
 
-However, it's important to note that if your helper involves creating a custom expectation, you should make a [custom expectation](/docs/custom-expectation) instead. Otherwise, creating a helper is a straightforward process - you can simply create a function.
+However, it's important to note that if your helper involves creating a custom expectation, you should make a [custom expectation](/docs/custom-expectations) instead. Otherwise, creating a helper is a straightforward process - you can simply create a function.
 
 If your helper is specific to your test file, you may create the helper in the test file directly. If you use the `test` function without passing any arguments, you can access the `$this` variable inside the closure.
 

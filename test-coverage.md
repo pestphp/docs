@@ -30,7 +30,10 @@ Once you have configured the settings and installed a coverage driver, generatin
 ```
 
 By utilizing the `--coverage` option, the test suite runs normally, but with the additional feature of displaying a list of project files and their corresponding coverage results.
-![Coverage](/assets/img/coverage.png)
+
+<div>
+    <img src="/assets/img/coverage.png" style="display: block; margin-left: auto; margin-right: auto;" width="80%" height="600" />
+</div>
 
 If there are any uncovered lines in your current test suite, they will be highlighted in red and displayed using their respective line numbers. Multiple uncovered lines will be displayed with two dots `..` between them. For instance, if there is missing coverage between lines 52 and 60, you will see `52..60` instead of just `52` in red.
 
@@ -42,7 +45,9 @@ To ensure comprehensive testing and maintain code quality, it is crucial to set 
 ./vendor/bin/pest --coverage --min=90
 ```
 
-![Coverage Min](/assets/img/coverage-min.png)
+<div>
+    <img src="/assets/img/coverage-min.png" style="display: block; margin-left: auto; margin-right: auto;" width="80%" height="600" />
+</div>
 
 ## Ignoring Code
 

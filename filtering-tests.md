@@ -11,25 +11,26 @@ When you run `/vendor/bin/pest`, Pest executes the complete test suite by defaul
 /vendor/bin/pest tests/Unit/TestExample.php
 ```
 
-Nevertheless, Pest provides various CLI options and methods that can be helpful for filtering your test suite during development.
+This chapter will cover the most commonly used filtering options in Pest PHP. For the complete CLI API Reference, please refer to [CLI API Reference](/docs/cli-api-reference).
 
 <div class="collection-method-list" markdown="1">
 
-- [`--filter`](#filter)
+- [`--bail`](#bail)
 - [`--dirty`](#dirty)
+- [`--filter`](#filter)
 - [`--group`](#group)
 - [`--exclude-group`](#exclude-group)
 - [`--retry`](#retry)
 
 </div>
 
-<a name="filter"></a>
-### `--filter`
+<a name="bail"></a>
+### `--bail`
 
-Using the `--filter` option, it is possible to run tests that match a specified regular expression pattern. The `--filter` option allows you to filter test results based on any information that would typically appear in the test's output description, such as the filename, test description, dataset parameters, and more.
+If you want Pest to stop executing your test suite upon encountering the first failure, you can make use of the `--bail` option. This option instructs Pest to immediately halt the test execution as soon as it detects a failure.
 
 ```bash
-/vendor/bin/pest --filter "test description"
+/vendor/bin/pest --bail
 ```
 
 <a name="dirty"></a>
@@ -39,6 +40,15 @@ With the `--dirty` option, you may run the modified tests that have uncommitted 
 
 ```bash
 /vendor/bin/pest --dirty
+```
+
+<a name="filter"></a>
+### `--filter`
+
+Using the `--filter` option, it is possible to run tests that match a specified regular expression pattern. The `--filter` option allows you to filter test results based on any information that would typically appear in the test's output description, such as the filename, test description, dataset parameters, and more.
+
+```bash
+/vendor/bin/pest --filter "test description"
 ```
 
 <a name="group"></a>

@@ -100,7 +100,7 @@ test('value objects')
 <a name="expect-ignoring"></a>
 ### `ignoring()`
 
-When defining your architecture rules, you can use the ignoring method to exclude certain components.
+When defining your architecture rules, you can use the `ignoring` method to exclude certain components.
 
 ```php
 test('facades')
@@ -122,4 +122,4 @@ uses()->beforeEach(function () {
 
 ---
 
-In this section, you have learned how to perform architectural testing, ensuring that your application or library's architecture meets the specified architectural requirements. Moving on, let's explore how to create custom helpers on Pest: [Custom Helpers](/docs/custom-helpers)
+In this section, you have learned how to perform architectural testing, ensuring that your application or library's architecture meets the specified architectural requirements. Moving on, let's explore how to test the coverage of your testing code: [Test Coverage](/docs/test-coverage)

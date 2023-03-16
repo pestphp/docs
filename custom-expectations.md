@@ -1,6 +1,6 @@
 ---
 title: Custom Expectations
-description:
+description: Pest's expectation API is powerful by default, but there may be times when you need to write the same expectations repeatedly between tests. In such cases, creating custom expectations that meet your specific requirements can be incredibly useful.
 ---
 
 # Custom Expecatations
@@ -11,7 +11,7 @@ Custom expectations are usually defined in the `tests/Pest.php` file, but you ca
 
 As an example, suppose you are testing a number utility library and you need to frequently assert that numbers fall within certain ranges. In such cases, you can create a custom expectation called `toBeWithinRange`:
 
-```
+```php
 // Pest.php or Expectations.php...
 expect()->extend('toBeWithinRange', function (int $min, int $max) {
     return $this->toBeGreaterThanOrEqual($min)

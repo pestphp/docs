@@ -21,13 +21,7 @@ As previously stated in the [Filtering Tests](/docs/filtering-tests) documentati
 ./vendor/bin/pest --group=feature
 ```
 
-The expected behavior when filtering tests by a specific group is that the output will only display the tests belonging to that group.
-
-```php
-✓ it has emails with (enunomaduro@gmail.com)
-```
-
-You have the option to assign a particular test to a specific group by chaining the group method onto an it or test function, if desired.
+You also have the option to assign a particular test to a specific group by chaining the group method onto an it or test function, if desired.
 
 ```php
 it('has home', function () {

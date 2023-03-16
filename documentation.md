@@ -29,8 +29,8 @@
 - ## Advanced Topics
   - [CLI API Reference](/docs/cli-api-reference)
   - [Test Dependencies](/docs/test-dependencies)
+  - [Creating Plugins](/docs/creating-plugins)
   - [Higher Order Testing](/docs/higher-order-testing)
-
 - ## More
   - [Video Resources](/docs/video-resources)
   - [Support Policy](/docs/support-policy)
