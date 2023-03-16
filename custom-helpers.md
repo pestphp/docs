@@ -1,15 +1,13 @@
 ---
 title: Custom Helpers
-description: If you're transitioning to a functional approach for writing tests, you may wonder where to put your helpers that used to be protected or private methods in your test classes. This chapter aims to clarify that, in line with other functional programming languages, helpers can exist outside of conventional classes.
+description: If you're transitioning to a functional approach for writing tests, you may wonder where to put your helpers that used to be protected or private methods in your test classes. This chapter aims to clarify that, similar to other functional programming languages, helpers can exist outside of conventional classes.
 ---
 
 # Custom Helpers
 
-If you're transitioning to a functional approach for writing tests, you may wonder where to put your helpers that used to be protected or private methods in your test classes. This chapter aims to clarify that, in line with other functional programming languages, helpers can exist outside of conventional classes.
+If you're transitioning to a functional approach for writing tests, you may wonder where to put your helpers that used to be protected or private methods in your test classes. When using Pest, these helper methods should be converted to simple functions.
 
-However, it's important to note that if your helper involves creating a custom expectation, you should make a [custom expectation](/docs/custom-expectations) instead. Otherwise, creating a helper is a straightforward process - you can simply create a function.
-
-If your helper is specific to your test file, you may create the helper in the test file directly. If you use the `test` function without passing any arguments, you can access the `$this` variable inside the closure.
+For example, if your helper is specific to a certain test file, you may create the helper in the test file directly. Within your helper, you may invoke the `test` function to access the test class instance that would normally be available via `$this`.
 
 ```php
 use App\Models\User;
@@ -28,7 +26,9 @@ it('can manage users', function () {
 })
 ```
 
-If your test helpers are utilized throughout your test suite, you have the alternative of keeping them in either `tests/Pest.php` or `tests/Helpers.php`, which will be automatically loaded by Pest.
+> **Note:** If your helper creates a custom expectation, you should write a dedicated [custom expectation](/docs/custom-expectations) instead.
+
+If your test helpers are utilized throughout your test suite, you may define them within `tests/Pest.php` or `tests/Helpers.php`, which will be automatically loaded by Pest.
 
 ```php
 use App\Clients\PaymentClient;
@@ -52,7 +52,7 @@ it('may buy a book', function () {
 })
 ```
 
-As previously indicated in the [Configuring Tests](/docs/configuring-tests) section, you have the option of generating protected methods in your base test class and subsequently accessing them in your test cases using the `$this` variable.
+As an alternative to defining helper methods as functions, you may define protected methods in your base test class and subsequently access them in your test cases using the `$this` variable.
 
 ```php
 use App\Clients\PaymentClient;
@@ -85,4 +85,4 @@ it('may buy a book', function () {
 
 ---
 
-In this section, we explored creating custom helpers. However, at times, you might want to generate a custom expectation. We will delve into that topic in the next chapter: [Custom Expectations](/docs/custom-expectations)
+In this section, we explored creating custom helpers. Digging deeper, you may even want to generate a custom expectation. Let's jump into that topic in the next chapter: [Custom Expectations](/docs/custom-expectations)
