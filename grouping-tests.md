@@ -5,9 +5,9 @@ description: You can assign tests to various groups using Pest's group method, w
 
 # Grouping Tests
 
-You can assign tests folders to various groups using Pest's `group` method, which is optional. Assigning a group to a set of relatively slow tests could be beneficial, allowing you to selectively execute them together. In general, the process of assigning a set of tests to a group is done through your `Pest.php` configuration file.
+You can assign tests folders to various groups using Pest's `group` method. Assigning a group to a set of relatively slow tests could be beneficial since it allows you to selectively execute them separately from the rest of your test suite. Typically, the process of assigning a set of tests to a group is done within your `Pest.php` configuration file.
 
-For instance, consider the scenario where we assign the tests located in the `tests/Feature` folder to a particular group named "feature".
+For instance, consider the scenario where we assign the tests located in the `tests/Feature` folder to a group named "feature".
 
 ```php
 uses(TestCase::class)
@@ -21,7 +21,7 @@ As previously stated in the [Filtering Tests](/docs/filtering-tests) documentati
 ./vendor/bin/pest --group=feature
 ```
 
-You also have the option to assign a particular test to a specific group by chaining the group method onto an it or test function, if desired.
+You also have the option to assign a particular test to a group by chaining the `group()` method onto the test function.
 
 ```php
 it('has home', function () {
@@ -29,7 +29,7 @@ it('has home', function () {
 })->group('feature');
 ```
 
-Naturally, you can assign a test to multiple groups as well.
+You may also assign a test to multiple groups.
 
 ```php
 it('has home', function () {
@@ -37,7 +37,7 @@ it('has home', function () {
 })->group('feature', 'browser');
 ```
 
-In some cases, you may want to assign a whole file to a group. Keep in mind that to do so, you should use the `uses()` function without the `in()` method on the specific test file.
+In some cases, you may want to assign a whole file to a group. To do so, you may combine the `uses()` and `group()` methods.
 
 ```php
 uses()->group('feature');

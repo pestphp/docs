@@ -7,7 +7,7 @@ description: The `Pest.php` file is a configuration file that is used to define 
 
 The `Pest.php` file is a configuration file that is used to define your test suite setup. This file is located in the `tests` directory of your project and is automatically loaded by Pest when you run your tests. Although you can define [Global Hooks](/docs/global-hooks) or [Custom Expectations](/docs/custom-expectations) within this file, its primary purpose is to specify the base test class utilized in your test suite.
 
-In Pest, the closure supplied to your test function is, by default, linked with a specific test case class, which is typically `PHPUnit\Framework\TestCase`. The default configuration guarantees that the test cases written in Pest's functional style can access the assertion API, simplifying collaboration with other developers who are more conversant with the PHPUnit testing framework.
+When using Pest, the `$this` variable available within closures provided to test functions is bound to a specific test case class, which is typically `PHPUnit\Framework\TestCase`. This guarantees that the test cases written in Pest's functional style can access the underlying assertion API of PHPUnit, simplifying collaboration with other developers who are more familiar with the PHPUnit testing framework.
 
 ```php
 it('has home', function () {
@@ -17,7 +17,7 @@ it('has home', function () {
 });
 ```
 
-Usually, users prefer associating a specific folder or the whole test suite with a particular test case class for convenience. If you're in this situation, you can utilize the `Pest.php` configuration file and the combined functions of `uses()` and `in()`.
+However, you may associate a specific folder or even your entire test suite with another base test case class, thus changing the value of `$this` within tests. To accomplish this, you can utilize the `uses()` and `in()` functions within your `Pest.php` configuration file.
 
 ```php
 // tests/Pest.php
@@ -29,7 +29,7 @@ it('has home', function () {
 });
 ```
 
-Certainly, any method that is defined as public or protected at the test case level can be accessed within the test closure.
+Any method that is defined as `public` or `protected` in your base test case class can be accessed within the test closure.
 
 ```php
 use PHPUnit\Framework\TestCase as BaseTestCase;
@@ -52,7 +52,7 @@ it('has home', function () {
 });
 ```
 
-A trait can be linked to a test or folder, much like classes. For instance, in Laravel, you can employ the `RefreshDatabase` trait to reset the database prior to each test. To include the trait in your test, pass it through the `uses()` function.
+A trait can be linked to a test or folder, much like classes. For instance, in Laravel, you can employ the `RefreshDatabase` trait to reset the database prior to each test. To include the trait in your test, pass the trait's name to the `uses()` function.
 
 ```php
 <?php
@@ -63,7 +63,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 uses(TestCase::class, RefreshDatabase::class)->in('Feature');
 ```
 
-To associate a particular test with a specific test case class or trait, you can utilize the `uses()` function **on the test file directly**, omitting the use of the `in()` method.
+To associate a particular test with a specific test case class or trait, you can utilize the `uses()` function **within that specific test file**, omitting the use of the `in()` method.
 
 ```php
 uses(Tests\MySpecificTestCase::class);
@@ -75,4 +75,4 @@ it('has home', function () {
 
 ---
 
-Next, one of the features available to you when setting up your test suite is the ability to group folders, in addition to configuring the base test case class. This feature allows you to filter your test executions by group, using the `--group` option, at a later point in time: [Grouping Tests](/docs/grouping-tests)
+Next, one of the features available to you when configuring your test suite is the ability to group folders. When utilized, this feature allows you to filter your executed tests using the `--group` option: [Grouping Tests](/docs/grouping-tests)
