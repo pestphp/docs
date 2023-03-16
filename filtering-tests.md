@@ -1,6 +1,6 @@
 ---
 title: Filtering Tests
-description: When you run `/vendor/bin/pest`, Pest executes the complete test suite by default. Nevertheless, Pest provides various CLI options and methods that can be helpful for filtering your test suite during development.
+description: When you run `/vendor/bin/pest`, Pest executes the complete test suite by default. As you might expect, running individual tests is accomplished by passing the test name as the first argument.
 ---
 
 # Test Filtering

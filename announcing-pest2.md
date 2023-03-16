@@ -1,6 +1,6 @@
 ---
 title: Announcing Pest 2.0
-description: The Pest team is thrilled to unveil the release of Pest 2 after a development period of 18 months and over 500 commits. This release introduces several exciting features that promise to improve the user's experience. Among the notable enhancements are robust new plugins, refined syntax, and advanced options that streamline testing, enhance usability, and boost productivity.
+description: The Pest team is thrilled to unveil the release of Pest 2.0 after a development period of 18 months and over 500 commits. This release introduces several exciting features that promise to improve the user's experience. Among the notable enhancements are robust new plugins, refined syntax, and advanced options that streamline testing, enhance usability, and boost productivity.
 ---
 
 # Announcing Pest 2.0

@@ -1,6 +1,6 @@
 ---
 title: Skipping Tests
-description: During the development process, there may be times when you need to temporarily disable a test. Rather than commenting out the code, it is recommended to use the `skip` method or the `todo` method, which is specifically designed for this purpose.
+description: During the development process, there may be times when you need to temporarily disable a test. Rather than commenting out the code, we recommended using the `skip` method.
 ---
 
 # Skipping Tests

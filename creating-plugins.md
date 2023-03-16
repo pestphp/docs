@@ -1,6 +1,6 @@
 ---
 title: Creating Plugins
-description:
+description: Community plugins are essential for offering additional features to the Pest community, while the Pest team prioritizes keeping the framework's core small and fast. In this chapter, we'll discuss how to create your own plugins and share them with the community.
 ---
 
 # Creating Plugins

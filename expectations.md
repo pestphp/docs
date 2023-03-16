@@ -1,6 +1,6 @@
 ---
 title: Expectations
-description: By setting expectations for your tests using the Pest expectation API, you can easily identify bugs and other issues in your code.
+description: By setting expectations for your tests using the Pest expectation API, you can easily identify bugs and other issues in your code. This is because the API allows you to specify the expected outcome of a test, making it easy to detect any deviations from the expected behavior.
 ---
 
 # Expectations

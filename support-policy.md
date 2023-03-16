@@ -1,6 +1,6 @@
 ---
 title: Support Policy
-description: Support Policy
+description: We strive to resolve all reported bugs or issues to the best of our abilities as an open-source project. Nevertheless, we cannot ensure a fixed resolution time or guarantee the availability of a fix for every problem.
 ---
 # Support Policy
 

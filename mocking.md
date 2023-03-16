@@ -1,6 +1,6 @@
 ---
 title: Mocking
-description: During application testing, you may want to "mock" specific components to prevent them from being executed during a particular test. For instance, if you encounter an API that initiates a payment, you may want to locally mock the API Client to prevent the actual request from being made.
+description: When testing your applications, you may want to "mock" specific classes to prevent them from actually being invoked during a particular test. For instance, if your application interacts with an API that initiates a payment, you likely want to "mock" the API client locally to prevent the actual payment from being made.
 ---
 
 # Mocking

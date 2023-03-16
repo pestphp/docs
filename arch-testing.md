@@ -1,6 +1,6 @@
 ---
 title: Architecture Testing
-description: Architectural testing enables you to specify expectations for different sections of your codebase and test whether certain components adhere to architectural rules.
+description: Architecture testing enables you to specify expectations that test whether your application adheres to a set of architectural rules, helping you maintain a clean and sustainable codebase.
 ---
 
 # Architecture Testing

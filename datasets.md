@@ -1,6 +1,6 @@
 ---
 title: Datasets
-description: With datasets, you can define an array of test data, and Pest will run the same test for each set automatically. This saves time and effort by eliminating the need to repeat the same test manually with different data.
+description: With datasets, you can define an array of test data and Pest will run the same test for each set automatically. This saves time and effort by eliminating the need to repeat the same test manually with different data.
 ---
 
 # Datasets

@@ -1,6 +1,6 @@
 ---
 title: Plugins
-description: In this section, we will discuss the official and community developed Pest plugins that we endorse. Plugins primarily offer namespaced functions, console commands, and additional options.
+description: In this section, we will discuss the official and community developed plugins that we endorse. Plugins primarily offer namespaced functions, console commands, custom expectations, and additional command-line options to augment the default Pest experience.
 ---
 
 # Plugins

@@ -1,6 +1,6 @@
 ---
 title: Test Coverage
-description: Code coverage is a metric used to measure the percentage of code that is executed during testing. This can help developers identify parts of their code that may not be tested or that have low coverage, indicating a potential risk for bugs and other issues.
+description: Test coverage (or code coverage) is a metric used to measure the percentage of code that is executed during testing. This can help developers identify parts of their code that may not be tested or that have low coverage, indicating a potential risk for bugs and other issues.
 ---
 
 # Test Coverage

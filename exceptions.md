@@ -1,6 +1,6 @@
 ---
 title: Exceptions
-description: When testing behavior in PHP, it may be necessary to verify whether an exception or error has been thrown.
+description: When testing behavior in PHP, you might need to check if an exception or error has been thrown. To create a test that expects an exception to be thrown, you can use the `throws` method.
 ---
 
 # Exceptions

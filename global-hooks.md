@@ -1,6 +1,6 @@
 ---
 title: Global Hooks
-description: Global HOoks
+description: As previously discussed, hooks allow you to simplify your testing process and automate repetitive tasks that you may perform before or after a test. However, if the hooks are the same across multiple test files, you may wish to define "global" hooks to avoid code duplication. Global hooks are defined in your `Pest.php` configuration file.
 ---
 
 # Global Hooks

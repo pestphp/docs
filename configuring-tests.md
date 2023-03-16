@@ -1,6 +1,6 @@
 ---
 title: Configuring Tests
-description: The `Pest.php` file is a configuration file that is used to define your test suite setup.
+description: The `Pest.php` file is a configuration file that is used to define your test suite setup. This file is located in the `tests` directory of your project and is automatically loaded by Pest when you run your tests. Although you can define Global Hooks or Custom Expectations within this file, its primary purpose is to specify the base test class utilized in your test suite.
 ---
 
 # Configuring Tests

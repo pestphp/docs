@@ -1,6 +1,6 @@
 ---
 title: Custom Helpers
-description: If you're transitioning to a functional approach for writing tests, you may wonder where to put your helpers that used to be protected or private methods in your test classes. This chapter aims to clarify that, similar to other functional programming languages, helpers can exist outside of conventional classes.
+description: If you're transitioning to a functional approach for writing tests, you may wonder where to put your helpers that used to be protected or private methods in your test classes. When using Pest, these helper methods should be converted to simple functions.
 ---
 
 # Custom Helpers

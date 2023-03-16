@@ -1,6 +1,6 @@
 ---
 title: Optimizing Tests
-description: Pest offers several optimization techniques, including parallel testing with the `--parallel` option to greatly reduce test execution time. In addition, the `--profile` flag identifies slow tests, allowing you to optimize their execution.
+description: Pest offers several optimization techniques to help developers write efficient and high-performing tests. One of the most important is parallel testing, which allows multiple tests to run simultaneously across multiple processes using the `--parallel` option. This can greatly reduce the time it takes to run tests and improve the overall performance of your test suite.
 ---
 
 # Optimizing Tests

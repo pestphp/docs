@@ -1,6 +1,6 @@
 ---
 title: Grouping Tests
-description: You can assign tests to various groups using Pest's group method, which is optional. Assigning a group to a set of relatively slow tests could be beneficial, allowing you to selectively execute them together.
+description: You can assign tests folders to various groups using Pest's `group` method. Assigning a group to a set of relatively slow tests could be beneficial since it allows you to selectively execute them separately from the rest of your test suite. Typically, the process of assigning a set of tests to a group is done within your `Pest.php` configuration file.
 ---
 
 # Grouping Tests
