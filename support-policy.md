@@ -10,8 +10,8 @@ Bug fixes will be available for outdated versions for a duration of two years fo
 
 | Major Version | PHP Compatibility | Initial Release | Bug Fixes Until
 | ---------------- | --- | --- | --- |
-| Pest v2 | >= PHP 8.1 | To be determined | To be determined
-| Pest v1 | >= PHP 7.3 | January 7, 2021 | To be determined
+| Pest v2 | >= PHP 8.1 | March 20, 2023  | To be determined
+| Pest v1 | >= PHP 7.3 | January 7, 2021 | March 20, 2025
 
 Pest adheres to semantic versioning principles, where the version number `x.y.z` conveys the following information:
 - When issuing bug fixes, the `z` number is incremented (e.g., 2.10.2 to 2.10.3).

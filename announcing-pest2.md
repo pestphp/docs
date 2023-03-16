@@ -18,6 +18,7 @@ Pest 2.0 marks a major milestone in our development, packed with an array of pow
 - **[Powerful Architecture Plugin](/docs/arch-testing)**, for testing the architectural rules of your application with ease
 - **[Up To 60% Speed Improvements on "--parallel" testing](/docs/optimizing-tests#parallel)**, with our fully rewritten parallel core, enjoy significantly faster test runs
 - **[--profile option](/docs/optimizing-tests#content-profiling)**, to identify the slowest tests and optimize their execution
+- **[--compact printer](/docs/optimizing-tests#content-compact-printer)**, a minimal printer that only outputs information about test failures
 - **[--retry option](/docs/filtering-tests#retry)**, for saving time by running only previously unsuccessful tests
 - **[--dirty option](/docs/filtering-tests#dirty)**, for only run tests with uncommitted changes
 - **[todo()](/docs/skipping-tests#content-creating-todos)** method, for creating todos within your test suite

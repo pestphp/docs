@@ -9,6 +9,8 @@ Pest offers several optimization techniques to help developers write efficient a
 
 Additionally, Pest PHP provides the `--profile` flag to identify slow-running tests and optimize their execution. When this flag is used, Pest PHP generates a report that highlights the slowest tests, providing insight into which tests are taking the most time to execute. Developers can then use this information to optimize these tests and improve the overall performance of their test suite.
 
+Finally, you might want to shift your attention towards testing failures instead of solely focusing on successful output. To do this, you can utilize the `--compact` printer. This printer replaces Pest's default printer with a more streamlined approach that only displays information regarding test failures.
+
 ## Parallel Testing
 
 Pest executes your tests sequentially within a single process as the default behavior. However, you can significantly decrease the time taken to run your tests by utilizing the `--parallel` option to run tests concurrently across multiple processes.
@@ -55,6 +57,25 @@ For example, if you run your test suite and see the following output:
 ```
 
 You can see that the `UserTest > create user` and `OrderTest > create order` tests are taking significantly longer than the other tests. By analyzing this test, you may discover that it's making several database calls or performing some other expensive operation that could be optimized to reduce its execution time.
+
+## Compact Printer
+
+If you're working with a large number of tests, it can be beneficial to concentrate solely on the failed ones. You can use the `--compact` printer to only display the failures, making it easier to pinpoint and resolve any problems. This is particularly useful when dealing with hundreds of tests.
+
+<div >
+    <img src="/assets/img/compact.webp" style="display: block; margin-left: auto; margin-right: auto;" width="80%" height="600" />
+</div>
+
+Furthermore, since the `--compact` printer produces a simpler output, tests can gain a few milliseconds in performance because there is less input/output involved.
+
+You can configure Pest to automatically use the compact printer, so you don't have to specify the `--compact` option every time you run your test suite.
+
+```php
+// tests/Pest.php
+uses()->compact();
+
+//
+```
 
 ---
 
