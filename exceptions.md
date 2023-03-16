@@ -1,6 +1,6 @@
 ---
 title: Exceptions
-description: In PHP, when testing behavior, it may be necessary to verify whether an exception or error has been thrown.
+description: When testing behavior in PHP, it may be necessary to verify whether an exception or error has been thrown.
 ---
 
 # Exceptions
@@ -13,7 +13,7 @@ it('throws exception', function () {
 })->throws(Exception::class);
 ```
 
-If you also want to assert the exception message, you need to provide a second argument to the `throws` method.
+If you also want to make an assertion against the exception message, you may provide a second argument to the `throws` method.
 
 ```php
 it('throws exception', function () {
@@ -21,7 +21,7 @@ it('throws exception', function () {
 })->throws(Exception::class, 'Something happened.');
 ```
 
-If the exception type is not relevant and you're only concerned with the message, you can directly pass the message without specifying the exception type.
+If the exception type is not relevant and you're only concerned with the message, you can simply pass the message without specifying the exception's type.
 
 ```php
 it('throws exception', function () {
@@ -29,23 +29,22 @@ it('throws exception', function () {
 })->throws('Something happened.');
 ```
 
-You can also use the `throwsIf` method to conditionally verify an exception if a specific Boolean expression is true.
+You can use the `throwsIf` method to conditionally verify an exception if a given boolean expression evaluates to true.
+
 ```php
 it('throws exception', function () {
     //
 })->throwsIf(fn() => DB::getDriverName() === 'mysql', Exception::class, 'MySQL is not supported.');
 ```
 
-You can also verify one or more exceptions within your test function using the [toThrow()](/docs/expectations#expect-toThrow) method of the expectation API.
+You can also verify that a given closure throws one or more exceptions using the [toThrow()](/docs/expectations#expect-toThrow) method of the expectation API.
 
 ```php
 it('throws exception', function () {
-    expect(fn() => throw new Exception('Something happened.'))->toThrow(Exception::class);
-
     expect(fn() => throw new Exception('Something happened.'))->toThrow(Exception::class);
 });
 ```
 
 ---
 
-After learning how to write expectations, the next step is to explore "Test Filtering". This feature allows you to efficiently run specific tests based on criteria like test name, dirty files, etc: [Filtering Tests →](/docs/filtering-tests)
+After learning how to write tests that make assertions about exceptions, the next step is to explore "Test Filtering". This feature allows you to efficiently run specific tests based on criteria like test name, dirty files, and more: [Filtering Tests →](/docs/filtering-tests)

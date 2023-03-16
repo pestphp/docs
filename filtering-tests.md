@@ -5,13 +5,13 @@ description: When you run `/vendor/bin/pest`, Pest executes the complete test su
 
 # Test Filtering
 
-When you run `/vendor/bin/pest`, Pest executes the complete test suite by default. As expected, running individual tests is accomplished by passing the test name as the first argument.
+When you run `/vendor/bin/pest`, Pest executes the complete test suite by default. As you might expect, running individual tests is accomplished by passing the test name as the first argument.
 
 ```bash
 /vendor/bin/pest tests/Unit/TestExample.php
 ```
 
-This chapter will cover the most commonly used filtering options in Pest PHP. For the complete CLI API Reference, please refer to [CLI API Reference](/docs/cli-api-reference).
+This chapter will cover even more ways to filter which tests are executed by Pest. For the complete CLI API Reference, please refer to our [CLI API Reference](/docs/cli-api-reference).
 
 <div class="collection-method-list" markdown="1">
 
@@ -27,7 +27,7 @@ This chapter will cover the most commonly used filtering options in Pest PHP. Fo
 <a name="bail"></a>
 ### `--bail`
 
-If you want Pest to stop executing your test suite upon encountering the first failure, you can make use of the `--bail` option. This option instructs Pest to immediately halt the test execution as soon as it detects a failure.
+The `--bail` option instructs Pest to stop executing your test suite upon encountering the first failure.
 
 ```bash
 /vendor/bin/pest --bail
@@ -36,7 +36,7 @@ If you want Pest to stop executing your test suite upon encountering the first f
 <a name="dirty"></a>
 ### `--dirty`
 
-With the `--dirty` option, you may run the modified tests that have uncommitted changes according to Git. This can be useful, when the user is developing a set of tests for a new feature, and don't want to run the entire test suite all the time.
+The `--dirty` option instructs Pest to only run tests that have uncommitted changes according to Git. This is often useful when you're developing a set of tests for a new feature and don't want to run the entire test suite each time Pest is invoked.
 
 ```bash
 /vendor/bin/pest --dirty
@@ -45,7 +45,7 @@ With the `--dirty` option, you may run the modified tests that have uncommitted 
 <a name="filter"></a>
 ### `--filter`
 
-Using the `--filter` option, it is possible to run tests that match a specified regular expression pattern. The `--filter` option allows you to filter test results based on any information that would typically appear in the test's output description, such as the filename, test description, dataset parameters, and more.
+Using the `--filter` option, it is possible to run tests that match a specified regular expression pattern. The `--filter` option allows you to filter tests based on any information that would typically appear in the test's output description, such as the filename, test description, dataset parameters, and more.
 
 ```bash
 /vendor/bin/pest --filter "test description"
@@ -54,7 +54,7 @@ Using the `--filter` option, it is possible to run tests that match a specified 
 <a name="group"></a>
 ### `--group`
 
-You can utilize the `--group` option to selectively run tests belonging to a particular group. To learn about assigning a specific test or folder to a group, please refer to the [Grouping Tests →](/docs/grouping-tests) documentation.
+You can utilize the `--group` option to selectively run tests belonging to a particular group. To learn about assigning a tests or folders to groups, please refer to the [Grouping Tests →](/docs/grouping-tests) documentation.
 
 ```bash
 ./vendor/bin/pest --group=integration,browser
@@ -63,7 +63,7 @@ You can utilize the `--group` option to selectively run tests belonging to a par
 <a name="exclude-group"></a>
 ### `--exclude-group`
 
-Sometimes, instead of using the `--group` option, you can use the `--exclude-group` option to exclude specific groups from being executed.
+The `--exclude-group` option may be used to exclude specific test groups from being executed.
 
 ```bash
 ./vendor/bin/pest --group=integration,browser
@@ -72,7 +72,7 @@ Sometimes, instead of using the `--group` option, you can use the `--exclude-gro
 <a name="retry"></a>
 ### `--retry`
 
-If a test has failed previously, you might want to attempt running it again. In such cases, you can utilize the `--retry` option, which can prove beneficial if you suspect that the failure was a result of a temporary issue or an error on your part. Using this option, you can try the test again and determine if it passes on a subsequent attempt.
+If a test previously failed, you typically want to run it again to see if you have fixed the problem. In such cases, you can utilize the `--retry` option to quickly try the latest failing test again.
 
 ```bash
 ./vendor/bin/pest --retry
