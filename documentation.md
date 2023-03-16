@@ -21,7 +21,7 @@
   - [Global Hooks](/docs/global-hooks)
   - [Mocking](/docs/mocking)
   - [Plugins](/docs/plugins)
-  - [Arch Testing](/docs/arch-testing)
+  - [Architecture Testing](/docs/arch-testing)
   - [Test Coverage](/docs/test-coverage)
   - [Custom Helpers](/docs/custom-helpers)
   - [Custom Expectations](/docs/custom-expectations)

@@ -1,18 +1,18 @@
 ---
-title: Arch Testing
-description: The Arch Plugin
+title: Architecture Testing
+description: Architectural testing enables you to specify expectations for different sections of your codebase and test whether certain components adhere to architectural rules.
 ---
 
-# Arch Testing
+# Architecture Testing
 
-Architectural testing enables you to specify expectations for different sections of your codebase and test whether certain components adhere to architectural rules. This process verifies that specific dependencies are being used by particular components and helps maintain a modular and sustainable codebase.
+Architecture testing enables you to specify expectations that test whether your application adheres to a set of architectural rules, helping you maintain a clean and sustainable codebase.
 
 <div class="collection-method-list" markdown="1">
 
 - [`toOnlyUse()`](#expect-toOnlyUse)
-- [`toOnlyBeUsedOn()`](#expect-toOnlyBeUsedOn)
+- [`toOnlyBeUsedIn()`](#expect-toOnlyBeUsedIn)
 - [`toBeUsed()`](#expect-toBeUsed)
-- [`toBeUsedOn()`](#expect-toBeUsedOn)
+- [`toBeUsedIn()`](#expect-toBeUsedIn)
 - [`toUse()`](#expect-toUse)
 - [`toUseNothing()`](#expect-toUseNothing)
 - [`ignoring()`](#expect-ignoring)
@@ -22,7 +22,7 @@ Architectural testing enables you to specify expectations for different sections
 <a name="expect-toOnlyUse"></a>
 ### `toOnlyUse()`
 
-For instance, you can utilize the `toOnlyUse()` expectation to ensure that your models are compact and dependent solely on the `Illuminate\Database` namespace, without dispatching queue jobs or events.
+The `toOnlyUse()` method may be used to ensure that your models are compact and dependent solely on the `Illuminate\Database` namespace and, for example, do not dispatch queued jobs or events.
 
 ```php
 test('models')
@@ -30,21 +30,21 @@ test('models')
     ->toOnlyUse('Illuminate\Database');
 ```
 
-<a name="expect-toOnlyBeUsedOn"></a>
-### `toOnlyBeUsedOn()`
+<a name="expect-toOnlyBeUsedIn"></a>
+### `toOnlyBeUsedIn()`
 
-Furthermore, with the method `toOnlyBeUsedOn`, you can confirm that your models are only used by your repositories and not directly by controllers or service providers.
+The `toOnlyBeUsedIn()` method allows you to confirm that your models are only used by your repositories and not by controllers or service providers.
 
 ```php
 test('models')
     ->expect('App\Models')
-    ->toOnlyBeUsedOn('App\Repositories');
+    ->toOnlyBeUsedIn('App\Repositories');
 ```
 
 <a name="expect-toBeUsed"></a>
 ### `toBeUsed()`
 
-The `not` modifier, when combined with the `toBeUsed` method, enables you to verify whether certain layers, functions, or classes are not being utilized.
+The `not` modifier, when combined with the `toBeUsed()` method, enables you to verify that certain classes or functions are not being utilized by your application.
 
 ```php
 test('globals')
@@ -56,25 +56,25 @@ test('facades')
     ->not->toBeUsed();
 ```
 
-<a name="expect-toBeUsedOn"></a>
-### `toBeUsedOn()`
+<a name="expect-toBeUsedIn"></a>
+### `toBeUsedIn()`
 
-At times, you may desire to restrict certain layers, functions, or classes in specific layers. In such cases, you can utilize the `not` modifier along with the `toBeUsedOn` method.
+By combining the `not` modifier with the `toBeUsedIn()` method, you can restrict specific classes and functions from being used within a given namespace.
 
 ```php
 test('globals')
     ->expect('request')
-    ->not->toBeUsedOn('App\Domain');
+    ->not->toBeUsedIn('App\Domain');
 
 test('globals')
     ->expect('Illuminate\Http')
-    ->not->toBeUsedOn('App\Domain');
+    ->not->toBeUsedIn('App\Domain');
 ```
 
 <a name="expect-toUse"></a>
 ### `toUse()`
 
-You can also use the `toUse` method as a substitute for `toBeUsedOn` to indicate whether a specific layer should not use a particular layer, function, or class.
+By combining the `not` modifier with the `toUse()` method, you can indicate that files within a given namespace should not use specific functions or classes.
 
 ```php
 test('globals')
@@ -89,7 +89,7 @@ test('globals')
 <a name="expect-toUseNothing"></a>
 ### `toUseNothing()`
 
-If you want to indicate that particular layers or classes should not have any dependencies, you can utilize the `toUseNothing` method.
+If you want to indicate that particular namespaces or classes should not have any dependencies, you can utilize the `toUseNothing()` method.
 
 ```php
 test('value objects')
@@ -100,7 +100,7 @@ test('value objects')
 <a name="expect-ignoring"></a>
 ### `ignoring()`
 
-When defining your architecture rules, you can use the `ignoring` method to exclude certain components.
+When defining your architecture rules, you can use the `ignoring()` method to exclude certain namespaces or classes that would otherwise be included in the rule definition.
 
 ```php
 test('facades')
@@ -109,7 +109,9 @@ test('facades')
     ->ignoring('App\Providers');
 ```
 
-In certain cases, certain components may not be regarded as "dependencies" as they are part of the system just like regular PHP code. To customize the definition of "native" code and exclude it during testing, you can specify what to ignore. For example, if you want to exclude Laravel as a dependency, you can use the `arch()` method inside the `beforeEach()` function to disregard any code within the "Illuminate" namespace. This approach allows you to focus only on the actual dependencies of your application.
+In some cases, certain components may not be regarded as "dependencies" as they are part of the native PHP library. To customize the definition of "native" code and exclude it during testing, Pest allows you to specify what to ignore.
+
+For example, if you do not want to consider Laravel a "dependency", you can use the `arch()` method inside the `beforeEach()` function to disregard any code within the "Illuminate" namespace. This approach allows you to focus only on the actual dependencies of your application.
 
 ```php
 // tests/Pest.php
@@ -122,4 +124,4 @@ uses()->beforeEach(function () {
 
 ---
 
-In this section, you have learned how to perform architectural testing, ensuring that your application or library's architecture meets the specified architectural requirements. Moving on, let's explore how to test the coverage of your testing code: [Test Coverage](/docs/test-coverage)
+In this section, you have learned how to perform architectural testing, ensuring that your application or library's architecture meets a specified set of architectural requirements. Moving on, let's explore how to test the coverage of your testing code: [Test Coverage](/docs/test-coverage)
