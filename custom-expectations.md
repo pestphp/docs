@@ -7,9 +7,9 @@ description: Pest's expectation API is powerful by default, but there may be tim
 
 Pest's expectation API is powerful by default, but there may be times when you need to write the same expectations repeatedly between tests. In such cases, creating custom expectations that meet your specific requirements can be incredibly useful.
 
-Custom expectations are usually defined in the `tests/Pest.php` file, but you can also organize them in a separate `tests/Expectation.php` file for better maintainability. To create a custom expectation in Pest, you can chain the `extend` method onto the `expect` function without providing any expectation value.
+Custom expectations are usually defined in the `tests/Pest.php` file, but you can also organize them in a separate `tests/Expectation.php` file for better maintainability. To create a custom expectation in Pest, chain the `extend()` method onto the `expect()` function without providing any expectation value.
 
-As an example, suppose you are testing a number utility library and you need to frequently assert that numbers fall within certain ranges. In such cases, you can create a custom expectation called `toBeWithinRange`:
+For example, suppose you are testing a number utility library and you need to frequently assert that numbers fall within a given range. In this case, you might create a custom expectation called `toBeWithinRange()`:
 
 ```php
 // Pest.php or Expectations.php...
@@ -24,7 +24,7 @@ test('numeric ranges', function () {
 });
 ```
 
-While users typically chain expectations as demonstrated in the `toBeWithinRange` example, there may be times when you need to access the expectation value directly. In such cases, you can access the expectation value, which is passed to `expect($value)`, via the `$this->value` property.
+While users typically utilize Pest's built-in expectations within their custom expectations as demonstrated in the `toBeWithinRange()` example, there may be times when you need to access the expectation value directly to perform your own custom expectation logic. In such cases, you can access the expectation value that was passed to `expect($value)` via the `$this->value` property.
 
 ```php
 expect()->extend('toBeWithinRange', function (int $min, int $max) {
@@ -32,7 +32,7 @@ expect()->extend('toBeWithinRange', function (int $min, int $max) {
 });
 ```
 
-Naturally, similar to any other essential expectation, you want for users to have the ability to "chain" expectations together, even with your custom expectation. To achieve this, ensure to include a `return` statement with `$this` inside the closure of your custom expectation.
+Of course, you probably want users to have the ability to "chain" expectations together with your custom expectation. To achieve this, ensure your custom expectation includes a `return $this` statement.
 
 ```php
 // Pest.php or Expectations.php...
@@ -51,11 +51,9 @@ test('numeric ranges', function () {
 });
 ```
 
-Although it is considered an advanced practice, you can override existing expectations with your own implementation. This can be achieved by using the `intercept` or `pipe` method.
-
 ## Intercept Expectations
 
-By using the `intercept` method, the existing expectation will be fully substituted if the expectation value is of the specified type. For example, you can replace the `toBe` expectation to check if two objects of the `Illuminate\Database\Eloquent\Model` type have the same `id`.
+Although it is considered an advanced practice, you can override existing expectations with your own implementation via the `intercept()` method. When using this method, the existing expectation will be fully substituted if the expectation value is of the specified type. For example, you can replace the `toBe()` expectation to check if two objects of the `Illuminate\Database\Eloquent\Model` type have the same `id`.
 
 ```php
 use Illuminate\Database\Eloquent\Model;
@@ -75,7 +73,7 @@ test('models', function () {
 });
 ```
 
-You have the option to pass a callback as the second argument of the intercept method, which determines whether or not to override the core expectation.
+Instead of passing a string type as the second argument to the `intercept()` method, you may also pass a closure, which will be invoked to determine whether or not to override the core expectation.
 
 ```php
 expect()->intercept('toBe', fn (mixed $value) => is_string($value), function (string $expected, bool $ignoreCase = false) {
@@ -89,7 +87,7 @@ expect()->intercept('toBe', fn (mixed $value) => is_string($value), function (st
 
 ## Pipe Expectations
 
-There may be instances where you want to run the original expectation check based on certain conditions. In these cases, you can use the `pipe` method.
+There may be instances where you want to run one of Pest's built-in expectations, but include customized expectation logic under certain conditions. In these cases, you can use the `pipe` method. For example, we may want to customize the behavior of the `toBe()` expectation if the given value is an Eloquent model.
 
 ```php
 use Illuminate\Database\Eloquent\Model;
@@ -100,7 +98,7 @@ expect()->pipe('toBe', function (Closure $next, mixed $expected) {
         return expect($this->value->id)->toBe($expect->id);
     }
 
-    return $next(); // continues to the original expectation...
+    return $next(); // Run to the original, built-in expectation...
 });
 ```
 
