@@ -29,9 +29,10 @@ In addition, if you are using Laravel, please upgrade Collision to version 7. No
 +    "nunomaduro/collision": "^7.0",
 ````
 
-If you are using the Parallel Plugin, you may remove it from your dependencies since it is now included with Pest by default.
+If you are using the Parallel Plugin (or Paratest), you may remove it from your dependencies since it is now included with Pest by default.
 
 ```diff
+-    "brianium/paratest": "^6.8.1",
 -    "pestphp/pest-plugin-parallel": "^1.2.1",
 ````
 
