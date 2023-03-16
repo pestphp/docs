@@ -1,27 +1,27 @@
 ---
 title: Mocking
-description: Installing Pest PHP Testing Framework is a simple process that can be completed in just a few steps.
+description: During application testing, you may want to "mock" specific components to prevent them from being executed during a particular test. For instance, if you encounter an API that initiates a payment, you may want to locally mock the API Client to prevent the actual request from being made.
 ---
 
 # Mocking
 
 > **Requirements:** [Mockery 1.0+](https://github.com/mockery/mockery/)
 
-During application testing, you may want to "mock" specific components to prevent them from being executed during a particular test. For instance, if you encounter an API that initiates a payment, you may want to locally mock the API Client to prevent the actual request from being made. This approach enables you to focus solely on testing your application or library without the need to deal with the actual API functioning behind the scenes.
+When testing your applications, you may want to "mock" specific classes to prevent them from actually being invoked during a particular test. For instance, if your application interacts with an API that initiates a payment, you likely want to "mock" the API client locally to prevent the actual payment from being made.
 
-If your use case requires mocking features in your application or library, you will need to install a mocking library. Our personal recommendation is [Mockery](https://github.com/mockery/mockery/), but you are free to choose any other library that suits your needs.
+Before getting started, you will need to install a mocking library. We recommend [Mockery](https://github.com/mockery/mockery/), but you are free to choose any other library that suits your needs.
 
-To begin using Mockery, you will first need to require it through Composer.
+To begin using Mockery, require it using the Composer package manager.
 
 ```bash
 composer require mockery/mockery --dev
 ```
 
-While comprehensive documentation for Mockery can be found on its [dedicated website](https://docs.mockery.io), this section will focus on the most commonly encountered use cases.
+While comprehensive documentation for Mockery can be found on the [Mockery website](https://docs.mockery.io), this section will discuss the most common use cases for mocking.
 
 ## Method Expectations
 
-Mock objects are essential for isolating the code being tested and simulating specific behaviors or conditions. To indicate that a test mock should anticipate a call to a method with a given name, we use the `shouldReceive` method, as demonstrated in the code snippet below.
+Mock objects are essential for isolating the code being tested and simulating specific behaviors or conditions from other pieces of the application. After creating a mock using the `Mockery::mock()` method, we can indicate that we expect a certain method to be invoked by calling the `shouldReceive` method.
 
 ```php
 use App\Repositories\BookRepository;
@@ -32,12 +32,12 @@ it('may buy a book', function () {
     $client->shouldReceive('post');
 
     $books = new BookRepository($client);
-    $books->buy(); // The API is not actually reached as `$client->post()` has been mocked...
+    $books->buy(); // The API is not actually invoked since `$client->post()` has been mocked...
 });
 
 ```
 
-It is possible to specify multiple method calls using the same syntax.
+It is possible to mock multiple method calls using the same syntax shown above.
 
 ```php
 $client->shouldReceive('post');
@@ -46,26 +46,26 @@ $client->shouldReceive('delete');
 
 ## Argument Expectations
 
-In order to make our expectations for a method more specific, we can use constraints to limit the expected argument list for that method call. This can be done by utilizing the `with()` method, as demonstrated in the following example.
+In order to make our expectations for a method more specific, we can use constraints to limit the expected argument list for a method call. This can be done by utilizing the `with()` method, as demonstrated in the following example.
 
 ```php
 $client->shouldReceive('post')
     ->with($firstArgument, $secondArgument);
 ```
 
-In order to increase the flexibility of argument matching, Mockery provides built-in matcher classes that can be used in place of specific values. For example, instead of using specific values, we can use `Mockery::any()` to match any argument passed to that position in the `with()` parameter list.
+In order to increase the flexibility of argument matching, Mockery provides built-in matcher classes that can be used in place of specific values. For example, instead of using specific values, we can use `Mockery::any()` to match any argument.
 
 ```php
 $client->shouldReceive('post')
     ->with($firstArgument, Mockery::any());
 ```
 
-It is important to note that expectations set up using `shouldReceive()` and `with()` only apply to the specified method when it is called with the exact arguments that were specified.
+It is important to note that expectations defined using `shouldReceive()` and `with()` only apply when the method is invoked with the exact arguments that you expected. Otherwise, Mockery will throw an exception.
 
 ```php
 $client->shouldReceive('post')->with(1);
 
-$client->post(2); // test fails, throws a `NoMatchingExpectationException`
+$client->post(2); // fails, throws a `NoMatchingExpectationException`
 ```
 
 In certain cases, it may be more appropriate to use a closure to match all passed arguments simultaneously, rather than relying on built-in matchers for each individual argument. The `withArgs()` method accepts a closure that receives all of the arguments passed to the expected method call. As a result, this expectation will only be applied to method calls in which the passed arguments cause the closure to evaluate to true.
@@ -75,23 +75,22 @@ $client->shouldReceive('post')->withArgs(function ($arg) {
     return $arg === 1;
 });
 
-$client->post(1); // test passes, matches the expectation
-$client->post(2); // test fails, throws a `NoMatchingExpectationException`
+$client->post(1); // passes, matches the expectation
+$client->post(2); // fails, throws a `NoMatchingExpectationException`
 ```
 
 ## Return Values
 
-When working with mock objects, we can use the `andReturn()` method to inform Mockery of the desired return values for the expected method calls.
+When working with mock objects, we can use the `andReturn()` method to tell Mockery what to return from the mocked methods.
 
 ```php
 $client->shouldReceive('post')->andReturn('post response');
 ```
 
-We can establish expectations for multiple return values by using a sequence of return values.
+We can define a sequence of return values by passing multiple return values to the `andReturn()` method.
 
 ```php
-$client->shouldReceive('post')->andReturn(1);
-$client->shouldReceive('post')->andReturn(2);
+$client->shouldReceive('post')->andReturn(1, 2);
 
 $client->post(); // int(1)
 $client->post(); // int(2)
@@ -107,12 +106,10 @@ $mock->shouldReceive('post')
     );
 ```
 
-We can instruct the methods of mock objects to throw exceptions if needed.
+In addition, we can instruct mocked methods to throw exceptions.
 
 ```php
-$client->shouldReceive('post')
-    ->andThrow(new Exception);
-    // andThrow
+$client->shouldReceive('post')->andThrow(new Exception);
 ```
 
 ## Method Call "Count" Expectations
@@ -126,13 +123,13 @@ $mock->shouldReceive('delete')->times(3);
 // ...
 ```
 
-To specify the minimum number of method calls to Mockery, we can use the `atLeast()` method.
+To specify a minimum number of times a method should be called, we may use the `atLeast()` method.
 
 ```php
 $mock->shouldReceive('delete')->atLeast()->times(3);
 ```
 
-The `atMost()` method in Mockery allows us to indicate the upper limit of how many times a method can be called.
+Mockery's `atMost()` method allows us to specify the maximum number of times a method can be called.
 
 ```php
 $mock->shouldReceive('delete')->atMost()->times(3);
@@ -140,4 +137,4 @@ $mock->shouldReceive('delete')->atMost()->times(3);
 
 ---
 
-The primary objective of this section is to provide you with an introduction to Mockery, the mocking library we prefer. However, for a more comprehensive understanding of Mockery, we suggest referring to its documentation website at [docs.mockery.io](https://docs.mockery.io). Let us now explore Pest's plugins and discover how they can enhance your Pest experience: [Plugins](/docs/plugins)
+The primary objective of this section is to provide you with an introduction to Mockery, the mocking library we prefer. However, for a more comprehensive understanding of Mockery, we suggest checking out its [official documentation](https://docs.mockery.io). Next, let's explore Pest's plugins and discover how they can enhance your Pest experience: [Plugins](/docs/plugins)
