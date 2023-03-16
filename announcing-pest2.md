@@ -20,14 +20,14 @@ Pest 2.0 marks a major milestone in our development, packed with an array of pow
 - **[--profile option](/docs/optimizing-tests#content-profiling)**, to identify the slowest tests and optimize their execution
 - **[--compact printer](/docs/optimizing-tests#content-compact-printer)**, a minimal printer that only outputs information about test failures
 - **[--retry option](/docs/filtering-tests#retry)**, for saving time by running only previously unsuccessful tests
-- **[--dirty option](/docs/filtering-tests#dirty)**, for only run tests with uncommitted changes
+- **[--dirty option](/docs/filtering-tests#dirty)**, for only running tests with uncommitted changes
 - **[todo()](/docs/skipping-tests#content-creating-todos)** method, for creating todos within your test suite
 - **[Expectation Interceptors and Pipes](/docs/custom-expectations#content-intercept-expectations)**, allowing you to tailor your expectations to fit your specific testing needs
 - **[Scoped Datasets](/docs/datasets#content-scope-datasets)**, for creating datasets that pertain only to a specific feature or set of folders
 
 In addition to the features detailed above, there's so much more to explore with Pest 2.0! **Our website has been completely revamped**, with fresh documentation and a more user-friendly interface. There's never been a better time to dive in and start exploring.
 
-If you're ready to get started with Pest 2.0 right away, check out our [installation guide](/docs/installation) for step-by-step instructions. And if you're currently using Pest 1, we've got you covered with detailed instructions, in our [upgrade guide](/docs/upgrade-guide), on how to migrate your project to Pest 2.0.
+If you're ready to get started with Pest 2.0 right away, check out our [installation guide](/docs/installation) for step-by-step instructions. And if you're currently using Pest 1, we've got you covered with detailed upgrade instructions in our [upgrade guide](/docs/upgrade-guide).
 
 ---
 
