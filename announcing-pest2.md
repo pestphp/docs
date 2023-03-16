@@ -23,7 +23,7 @@ Pest 2.0 marks a major milestone in our development, packed with an array of pow
 - **[--dirty option](/docs/filtering-tests#dirty)**, for only running tests with uncommitted changes
 - **[todo()](/docs/skipping-tests#content-creating-todos)** method, for creating todos within your test suite
 - **[Expectation Interceptors and Pipes](/docs/custom-expectations#content-intercept-expectations)**, allowing you to tailor your expectations to fit your specific testing needs
-- **[Scoped Datasets](/docs/datasets#content-scope-datasets)**, for creating datasets that pertain only to a specific feature or set of folders
+- **[Scoped Datasets](/docs/datasets#content-scoped-datasets)**, for creating datasets that pertain only to a specific feature or set of folders
 
 In addition to the features detailed above, there's so much more to explore with Pest 2.0! **Our website has been completely revamped**, with fresh documentation and a more user-friendly interface. There's never been a better time to dive in and start exploring.
 

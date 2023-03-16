@@ -84,7 +84,7 @@ it('has emails', function ($email) {
 
 Bound datasets, description keys, and other rules that are applicable to inline datasets can also be applied to shared datasets.
 
-### Scope Datasets
+### Scoped Datasets
 
 Occasionally, datasets may pertain only to a specific feature or set of folders. In such cases, rather than distributing the dataset globally within the `Datasets` folder, you can generate a `Datasets.php` file within the relevant folder requiring the dataset and restrict the dataset's scope to that folder alone.
 
