@@ -9,12 +9,12 @@ In the preceding chapters of the Pest documentation, we have covered numerous CL
 
 ## Configuration
 
-- `--init`: Initialise a standard Pest configuration.
+- `--init`: Initialize a standard Pest configuration.
 - `-c|--configuration <file>`: Read configuration from XML file.
 - `--no-configuration`: Ignore default configuration file (phpunit.xml).
 - `--no-extensions`: Do not load PHPUnit extensions.
 - `--include-path <path(s)>`: Prepend PHP's include_path with given path(s).
-- `-d <key[=value]>`: Sets a php.ini value.
+- `-d <key[=value]>`: Set a php.ini value.
 - `--cache-directory <dir>`: Specify cache directory.
 - `--generate-configuration`: Generate configuration file with suggested settings.
 - `--migrate-configuration`: Migrate configuration file to current format
@@ -113,4 +113,4 @@ In the preceding chapters of the Pest documentation, we have covered numerous CL
 
 ---
 
-In this chapter, you found a complete list of CLI options provided by Pest. In the subsequent advanced subject, we will delve into the topic of Test Dependencies: [Test Dependencies](/docs/test-dependencies)
+In this chapter, you found a complete list of CLI options provided by Pest. In the subsequent documentation, we will explore the topic of test dependencies: [Test Dependencies](/docs/test-dependencies)

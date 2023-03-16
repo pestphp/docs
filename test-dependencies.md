@@ -1,11 +1,11 @@
 ---
 title: Test Dependencies
-description: Sometimes, tests typically require certain preconditions or events to occur prior to their execution, or else they will not succeed. As an illustration, you can only verify that users are able to modify their accounts if you have first verified that an account can be established.
+description: Sometimes, tests require certain preconditions or events to occur prior to their execution or else they will not succeed. For example, you may only be able to verify that users are able to modify their accounts if you have first verified that an account can be established.
 ---
 
 # Test Dependency
 
-Sometimes, tests typically require certain preconditions or events to occur prior to their execution, or else they will not succeed. As an illustration, you can only verify that users are able to modify their accounts if you have first verified that an account can be established.
+Sometimes, tests require certain preconditions or events to occur prior to their execution or else they will not succeed. For example, you may only be able to verify that users are able to modify their accounts if you have first verified that an account can be established.
 
 To address this issue, Pest offers the `depends()` method, which allows a "Child" test to specify that it depends on one or more "Parent" tests.
 
@@ -21,7 +21,7 @@ test('child', function () {
 })->depends('parent');
 ```
 
-As illustrated earlier, the `child` test is reliant on the `parent` test. If the `parent` test successfully completes, the `child` test will then be triggered.
+In this example, the `child` test will be triggered once the `parent` test has successfully completed.
 
 ```php
    PASS  Tests\Unit\ExampleTest
@@ -31,7 +31,7 @@ As illustrated earlier, the `child` test is reliant on the `parent` test. If the
    Tests:  2 passed
 ```
 
-Nonetheless, if the `parent` test fails, the `child` test will be bypassed, accompanied by a message that is easy to understand for the user.
+If the `parent` test fails, the `child` test will be bypassed and an informative message will be displayed in your test results.
 
 ```php
 test('parent', function () {
@@ -43,7 +43,7 @@ test('child', function () {
 })->depends('parent');
 ```
 
-The example above results in:
+The example above results in the following output:
 
 ```php
    FAIL  Tests\Unit\ExampleTest
@@ -51,7 +51,7 @@ The example above results in:
   ! Child → This test depends on "Tests\Unit\ExampleTest::Parent" which does not exist.
 ```
 
-It is important to remember that the `it()` function adds the suffix "it" to the test name by default. Thus, when referencing the test name in depends(), you should include the "it " suffix.
+It is important to remember that the `it()` function prefixes the test with "it" by default. Thus, when referencing the test name via the `depends()` method, you should include the "it " prefix.
 
 ```php
 it('is the parent', function () {
@@ -73,23 +73,23 @@ Results is:
   Tests:  2 passed
 ```
 
-Parent tests can provide return values that can be accessed as arguments in the `child` test.
+Parent tests can even provide return values that can be accessed as arguments in the `child` test.
 
 ```php
 test('parent', function () {
     expect(true)->toBeTrue();
 
-    return 'coming from parent';
+    return 'from parent';
 });
 
 test('child', function ($parentValue) {
-    var_dump($parentValue); // coming from parent
+    var_dump($parentValue); // from parent
 
-    expect($parentValue)->toBe('coming from parent');
+    expect($parentValue)->toBe('from parent');
 })->depends('parent');
 ```
 
-It is also possible to add multiple dependencies to a test. However, all parent tests must pass, and the values returned by each test will be available as function parameters, in the order of their dependencies.
+It is also possible to add multiple dependencies to a test. However, all parent tests must pass, and the values returned by each test will be available as function parameters in the same order as the specified dependencies.
 
 ```php
 test('a', function () {
