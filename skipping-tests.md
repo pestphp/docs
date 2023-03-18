@@ -16,7 +16,7 @@ it('has home', function () {
 When running your tests, Pest will inform you about any tests that were skipped.
 
 <div class="code-snippet">
-    <img src="/assets/img/skip.webp" style="--lines: 2" />
+    <img src="/assets/img/skip.webp?1" style="--lines: 2" />
 </div>
 
 You may also provide the reason for skipping the test, which Pest will display when running your tests.
@@ -64,7 +64,7 @@ it('has home')->todo();
 If you invoke the `todo()` method on a test, Pest's output will inform you that the test is a todo so you don't forget about it.
 
 <div class="code-snippet">
-    <img src="/assets/img/todo.webp" style="--lines: 5" />
+    <img src="/assets/img/todo.webp?1" style="--lines: 5" />
 </div>
 
 You can easily view a list of pending todos contained in your test suite by including the `--todos` option when running Pest.

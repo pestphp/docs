@@ -30,7 +30,7 @@ composer require pestphp/pest --dev --with-all-dependencies
 Here is an example of the output displayed when running Pest in a new, fresh project.
 
 <div class="code-snippet">
-    <img src="/assets/img/pestinstall.webp" style="--lines: 10" />
+    <img src="/assets/img/pestinstall.webp?1" style="--lines: 10" />
 </div>
 
 ---

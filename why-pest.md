@@ -24,7 +24,7 @@ You can expect a smooth and efficient coding experience thanks to Pest's easy-to
 
 
 <div class="code-snippet">
-    <img src="/assets/img/failure.webp" style="--lines: 16" />
+    <img src="/assets/img/failure.webp?1" style="--lines: 16" />
 </div>
 
 In addition to its exceptional test reporting, Pest also offers a range of other valuable features, including:

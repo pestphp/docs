@@ -16,7 +16,7 @@ it('has emails', function ($email) {
 When running your tests, Pest will automatically add informative test descriptions to tests that use datasets, outlining the parameters used in each test, aiding in understanding the data and identifying issues if a test fails.
 
 <div class="code-snippet">
-    <img src="/assets/img/datasets-emails.webp" style="--lines: 3" />
+    <img src="/assets/img/datasets-emails.webp?1" style="--lines: 3" />
 </div>
 
 Naturally, it is possible to supply multiple arguments by providing an array containing arrays of arguments.

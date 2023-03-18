@@ -33,7 +33,7 @@ By utilizing the `--coverage` option, the test suite runs normally, but with the
 
 
 <div class="code-snippet">
-    <img src="/assets/img/coverage.webp" style="--lines: 12" />
+    <img src="/assets/img/coverage.webp?1" style="--lines: 12" />
 </div>
 
 If there are any uncovered lines in your current test suite, they will be highlighted in red and displayed using their respective line numbers. Multiple uncovered lines will be displayed with two dots (`..`) between them. For instance, if there is missing coverage between lines 52 and 60, you will see `52..60` instead of just `52` in red.
@@ -47,7 +47,7 @@ To ensure comprehensive testing and maintain code quality, it is crucial to set 
 ```
 
 <div class="code-snippet">
-    <img src="/assets/img/coverage-min.webp" style="--lines: 9" />
+    <img src="/assets/img/coverage-min.webp?1" style="--lines: 9" />
 </div>
 
 ## Ignoring Code
