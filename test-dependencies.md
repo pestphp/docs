@@ -23,13 +23,9 @@ test('child', function () {
 
 In this example, the `child` test will be triggered once the `parent` test has successfully completed.
 
-```php
-   PASS  Tests\Unit\ExampleTest
- ✓ Parent
- ✓ Child
-
-   Tests:  2 passed
-```
+<div class="code-snippet">
+    <img src="/assets/img/depends.webp" style="--lines: 6" />
+</div>
 
 If the `parent` test fails, the `child` test will be bypassed and an informative message will be displayed in your test results.
 
@@ -45,11 +41,9 @@ test('child', function () {
 
 The example above results in the following output:
 
-```php
-   FAIL  Tests\Unit\ExampleTest
-  ⨯ Parent
-  ! Child → This test depends on "Tests\Unit\ExampleTest::Parent" which does not exist.
-```
+<div class="code-snippet">
+    <img src="/assets/img/depends-fail.webp" style="--lines: 3" />
+</div>
 
 It is important to remember that the `it()` function prefixes the test with "it" by default. Thus, when referencing the test name via the `depends()` method, you should include the "it " prefix.
 
@@ -65,13 +59,9 @@ test('child', function () {
 
 Results is:
 
-```php
-   PASS  Tests\Unit\ExampleTest
-  ✓ it is the parent
-  ✓ child
-
-  Tests:  2 passed
-```
+<div class="code-snippet">
+    <img src="/assets/img/depends-pass.webp" style="--lines: 6" />
+</div>
 
 Parent tests can even provide return values that can be accessed as arguments in the `child` test.
 
