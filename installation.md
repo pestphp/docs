@@ -29,8 +29,8 @@ composer require pestphp/pest --dev --with-all-dependencies
 
 Here is an example of the output displayed when running Pest in a new, fresh project.
 
-<div >
-    <img src="/assets/img/pestinstall.webp" style="display: block; margin-left: auto; margin-right: auto;" width="80%" height="600" />
+<div class="code-snippet">
+    <img src="/assets/img/pestinstall.webp" style="--lines: 10" />
 </div>
 
 ---
