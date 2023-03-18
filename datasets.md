@@ -43,11 +43,9 @@ it('has emails', function ($email) {
 
 If a key is added, Pest will use the key when generating the description for the test.
 
-```php
-✓ it has emails with data set "james"
-✓ it has emails with data set "taylor"
-```
-
+<div class="code-snippet">
+    <img src="/assets/img/datasets-named.webp?1" style="--lines: 2" />
+</div>
 
 ## Bound Datasets
 
