@@ -7,6 +7,8 @@ description: Architecture testing enables you to specify expectations that test 
 
 Architecture testing enables you to specify expectations that test whether your application adheres to a set of architectural rules, helping you maintain a clean and sustainable codebase.
 
+By utilizing the Pest Architecture Testing tool, you can leverage a broad range of expectations that are specifically designed to assess the architecture of your application. The expectations are defined by: Relative namespace, fully qualified namespaces, or function names. Here is a comprehensive list of the expectations at your disposal.
+
 <div class="collection-method-list" markdown="1">
 
 - [`toOnlyUse()`](#expect-toOnlyUse)
@@ -22,7 +24,7 @@ Architecture testing enables you to specify expectations that test whether your 
 <a name="expect-toOnlyUse"></a>
 ### `toOnlyUse()`
 
-The `toOnlyUse()` method may be used to ensure that your models are compact and dependent solely on the `Illuminate\Database` namespace and, for example, do not dispatch queued jobs or events.
+The `toOnlyUse()` method may be used to guarantee that certain classes are restricted to utilizing specific functions or classes. For example, you may ensure your models are streamlined and solely dependent on the `Illuminate\Database` namespace, and not, for instance, dispatching queued jobs or events.
 
 ```php
 test('models')
@@ -33,7 +35,7 @@ test('models')
 <a name="expect-toOnlyBeUsedIn"></a>
 ### `toOnlyBeUsedIn()`
 
-The `toOnlyBeUsedIn()` method allows you to confirm that your models are only used by your repositories and not by controllers or service providers.
+The `toOnlyBeUsedIn()` method enables you to limit the usage of a specific class or set of classes to only particular parts of your application. For instance, you can use this method to confirm that your models are only used by your repositories and not by controllers or service providers.
 
 ```php
 test('models')
