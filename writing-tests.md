@@ -5,7 +5,7 @@ description: Next let's get a brief overview of how to write tests using Pest. A
 
 # Writing Tests
 
-Next let's get a brief overview of how to write tests using Pest. After successfully [installing Pest](/docs/installation), you will find the following files and folders in your project:
+In this section, let's get a brief overview of how to write tests using Pest. After successfully [installing Pest](/docs/installation), you will find the following files and folders in your project:
 
 ```plain
 ├── 📂 tests
@@ -20,7 +20,7 @@ Next let's get a brief overview of how to write tests using Pest. After successf
 
 The `tests` folder serves as the main directory where all your test files will reside. Within this folder, you will find two sub-folders, `Unit` and `Feature`, which house your unit and feature tests, respectively. The `TestCase.php` file is where you can define common functionality or setup that you want to use across all your tests. Lastly, the `Pest.php` file is where you can configure your test suite, as mentioned earlier.
 
-Additionally, a `phpunit.xml` file can be found in your root of your project, and is used to configure PHPUnit's various options when running tests. It's important to note that Pest is built on top of PHPUnit, which means that all of the options offered by PHPUnit can also be used in Pest. Therefore, any customization or configuration that you do with the `phpunit.xml` file will also apply to Pest tests.
+Additionally, a `phpunit.xml` file can be found in the root of your project, and is used to configure PHPUnit's various options when running tests. It's important to note that Pest is built on top of PHPUnit, which means that all the options offered by PHPUnit can also be used in Pest. Therefore, any customization or configuration that you do with the `phpunit.xml` file will also apply to Pest tests.
 
 As you begin writing tests for your project, it's important to consider how to create and organize your test files effectively. Typically, test files are suffixed with `Test.php`, such as `ExampleTest.php`.
 
@@ -42,7 +42,7 @@ After writing your test code, it's time to run your tests using Pest. When you e
     <img src="/assets/img/sum.webp?1" style="--lines: 5" />
 </div>
 
-As an alternative to the `test` function, Pest provides the convenient `it` function that simply prefixes the test description with the word "it". This function can be used in place of the test function and can help make your tests more readable.
+As an alternative to the `test` function, Pest provides the convenient `it` function that simply prefixes the test description with the word "it", making your tests more readable.
 
 ```php
 it('performs sums', function () {
