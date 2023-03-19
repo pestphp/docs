@@ -10,38 +10,29 @@ By setting expectations for your tests using the Pest expectation API, you can e
 You can start the expectation by passing your value to the `expect($value)` function. The `expect` function is used every time you want to test a value. You will rarely call `expect` by itself. Instead, you will use `expect` along with an "expectation" method to assert something about the value.
 
 ```php
-test('emails', function () {
-    $email = /* your code here */;
+test('sum', function () {
+    $value = sum(1, 2);
 
-    expect($email)->toBe('enunomaduro@gmail.com');
+    expect($value)->toBe(3); // Assert that the value is 3...
 });
 ```
 
-The expect function in Pest allows you to chain multiple expectations together for a given `$value`.
+As demonstrated, the expect function in Pest allows you to chain multiple expectations together for a given `$value`. This means that you can perform as many checks as necessary in a single test by simply continuing to chain additional expectations.
 
 ```php
-test('emails', function () {
-    $email = /* your code here */;
-
-   expect($email)->toContain('@')
-    ->toEndWith('.com');
-});
+expect($value)
+    ->toBeInt()
+    ->toBe(3);
 ```
 
-As demonstrated in the previous example, you can perform as many checks as necessary in a single test by simply continuing to chain additional expectations.
-
-Additionally, you may use the modifier [`not`](#expect-not) if you need to validate that the `$value` does not match the expectation.
-
-In the next example, we introduce a check to ensure that the email does not belong to an unwanted free email service:
+At any time, you may test the opposite of an expectation by prepending the `not` modifier to the expectation.
 
 ```php
-test('emails', function () {
-    $email = /* your code here */;
-
-   expect($email)->toContain('@')
-    ->toEndWith('.com')
-    ->not->toContain('@free-email-service.com')
-});
+expect($value)
+    ->toBeInt()
+    ->toBe(3)
+    ->not->toBeString() // Not to be string...
+    ->not->toBe(4); // Not to be 4...
 ```
 
 With the Pest expectation API, you have access to an extensive collection of individual expectations that are designed to test various aspects of your code. Below is a comprehensive list of the available expectations.
