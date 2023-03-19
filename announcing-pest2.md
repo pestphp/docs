@@ -21,6 +21,7 @@ Pest 2.0 marks a major milestone in our development, packed with an array of pow
 - **[--compact printer](/docs/optimizing-tests#content-compact-printer)**, a minimal printer that only outputs information about test failures
 - **[--retry option](/docs/filtering-tests#retry)**, for saving time by running only previously unsuccessful tests
 - **[--dirty option](/docs/filtering-tests#dirty)**, for only running tests with uncommitted changes
+- **[--bail option](/docs/filtering-tests#bail)**, to immediately terminate the test suite upon encountering an error or failure.
 - **[todo()](/docs/skipping-tests#content-creating-todos)** method, for creating todos within your test suite
 - **[Expectation Interceptors and Pipes](/docs/custom-expectations#content-intercept-expectations)**, allowing you to tailor your expectations to fit your specific testing needs
 - **[Scoped Datasets](/docs/datasets#content-scoped-datasets)**, for creating datasets that pertain only to a specific feature or set of folders
