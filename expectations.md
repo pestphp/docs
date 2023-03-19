@@ -648,7 +648,7 @@ expect([1, 2])->sequence(
 <a name="expect-each"></a>
 ### `each()`
 
-The `each()` allows you to create an expectation on each item of the given iterable. It works by iterating over the iterable and applying the expectation to each item.
+The `each()` modifier allows you to create an expectation on each item of the given iterable. It works by iterating over the iterable and applying the expectation to each item.
 
 ```php
 expect([1, 2, 3])->each->toBeInt();
