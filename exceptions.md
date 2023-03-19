@@ -21,7 +21,7 @@ it('throws exception', function () {
 })->throws(Exception::class, 'Something happened.');
 ```
 
-If the exception type is not relevant and you're only concerned with the message, you can simply pass the message without specifying the exception's type.
+If the exception type is not relevant, and you're only concerned with the message, you can simply pass the message without specifying the exception's type.
 
 ```php
 it('throws exception', function () {
@@ -47,4 +47,4 @@ it('throws exception', function () {
 
 ---
 
-After learning how to write tests that make assertions about exceptions, the next step is to explore "Test Filtering". This feature allows you to efficiently run specific tests based on criteria like test name, dirty files, and more: [Filtering Tests →](/docs/filtering-tests)
+After learning how to write tests that assert exceptions, the next step is to explore "Test Filtering". This feature allows you to efficiently run specific tests based on criteria like test name, dirty files, and more: [Filtering Tests →](/docs/filtering-tests)

@@ -54,7 +54,7 @@ Using the `--filter` option, it is possible to run tests that match a specified 
 <a name="group"></a>
 ### `--group`
 
-You can utilize the `--group` option to selectively run tests belonging to a particular group. To learn about assigning a tests or folders to groups, please refer to the [Grouping Tests →](/docs/grouping-tests) documentation.
+You can utilize the `--group` option to selectively run tests belonging to a particular group. To learn about assigning a tests or folders to groups, please refer to the [Grouping Tests](/docs/grouping-tests) documentation.
 
 ```bash
 ./vendor/bin/pest --group=integration,browser
