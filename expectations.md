@@ -251,7 +251,7 @@ expect($user)->toHaveMethods(['getFullname', 'isAuthenticated']);
 
 This expectation ensures that `$value` has a property named `$name`.
 
-Additonally, you may check the propety actual value by passing a second argument (loose comparison) .
+In addition, you can verify the actual value of a property by providing a second argument.
 
 ```php
 expect($user)->toHaveProperty('name');
