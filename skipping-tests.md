@@ -39,7 +39,7 @@ You may pass a closure as the first argument to the `skip()` method to defer the
 
 ```php
 it('has home', function () {
-    /* some code only compatible with MySQL */
+    //
 })->skip(fn () => DB::getDriverName() !== 'mysql', 'db driver not supported');
 ```
 
