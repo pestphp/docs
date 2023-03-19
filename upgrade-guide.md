@@ -11,6 +11,8 @@ We make an effort to document every potential breaking change, but some of these
 
 ### Updating Dependencies
 
+> Likelihood Of Impact: High
+
 Pest 2 now requires PHP 8.1.0 or greater. To start migrating from Pest 1 to Pest 2, update the `pestphp/pest` dependency to `^2.0` in your application's `composer.json` file.
 
 ```diff
