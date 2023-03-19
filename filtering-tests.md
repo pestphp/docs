@@ -27,7 +27,7 @@ This chapter will cover even more ways to filter which tests are executed by Pes
 <a name="bail"></a>
 ### `--bail`
 
-The `--bail` option instructs Pest to stop executing your test suite upon encountering the first failure.
+The `--bail` option instructs Pest to stop executing your test suite upon encountering the first failure or error.
 
 ```bash
 /vendor/bin/pest --bail
