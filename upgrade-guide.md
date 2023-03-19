@@ -11,36 +11,38 @@ We make an effort to document every potential breaking change, but some of these
 
 ### Updating Dependencies
 
-> Likelihood Of Impact: High
-
-> **Note:** Pest 2 requires PHP 8.1.0 or greater.
-
-To start migrating from Pest 1 to Pest 2, update the `pestphp/pest` dependency to `^2.0` in your application's `composer.json` file.
+Pest 2 now requires PHP 8.1.0 or greater. To start migrating from Pest 1 to Pest 2, update the `pestphp/pest` dependency to `^2.0` in your application's `composer.json` file.
 
 ```diff
 -    "pestphp/pest": "^1.22",
 +    "pestphp/pest": "^2.0",
-````
+```
+
+Next, you can remove PHPUnit from your list of dependencies if it is included.
+
+```diff
+-    "phpunit/phpunit": "^9.5.10",
+```
 
 In addition, if you are using Laravel, please upgrade Collision to version 7. Note that, Laravel 10 is required.
 
 ```diff
 -    "nunomaduro/collision": "^6.0",
 +    "nunomaduro/collision": "^7.0",
-````
+```
 
 If you are using the Parallel Plugin (or Paratest), you may remove it from your dependencies since it is now included with Pest by default.
 
 ```diff
 -    "brianium/paratest": "^6.8.1",
 -    "pestphp/pest-plugin-parallel": "^1.2.1",
-````
+```
 
 The Global Assertions Plugin is archived and should be removed from your dependencies.
 
 ```diff
 -    "pestphp/pest-plugin-global-assertions": "^1.0.0",
-````
+```
 
 If you relied on the Global Assertions Plugin, you may access the same underlying assertions using the `$this` variable. Alternatively, you may migrate to the [Expectation API](/docs/expectations).
 
