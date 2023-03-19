@@ -74,7 +74,9 @@ The `--exclude-group` option may be used to exclude specific test groups from be
 
 If a test previously failed, you typically want to sort the failed tests by arranging the test suite to run them first. In such cases, you can use the `--retry` option.
 
-However, keep in mind that if your `phpunit.xml` file has two test suites configured (usually Unit and Feature), this option will sort each test suite by running the previously failed tests first.
+The `--retry` flag reorders your test suites by prioritizing the previously failed tests. If there were no past failures, the suite runs as usual. But if there were previous failures, those tests are run first.
+
+> Note: Keep in mind that if your `phpunit.xml` file has two test suites (usually Unit and Feature), this option will sort each suite by running the failed tests first. This means that sometimes, you may see the entire Unit test suite run before Pest runs the Feature test suite, where previously failed tests take priority.
 
 ```bash
 ./vendor/bin/pest --retry
