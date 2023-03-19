@@ -5,7 +5,7 @@ description: Next let's get a brief overview of how to write tests using Pest. A
 
 # Writing Tests
 
-In this section, let's get a brief overview of how to write tests using Pest. After successfully [installing Pest](/docs/installation), you will find the following files and folders in your project:
+In this section, we will provide a brief overview of how to write tests using Pest. After successfully [installing Pest](/docs/installation), you will find the following files and folders in your project:
 
 ```plain
 ├── 📂 tests
