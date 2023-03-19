@@ -8,7 +8,7 @@ description: With datasets, you can define an array of test data and Pest will r
 With datasets, you can define an array of test data and Pest will run the same test for each set automatically. This saves time and effort by eliminating the need to repeat the same test manually with different data.
 
 ```php
-it('has emails', function ($email) {
+it('has emails', function (string $email) {
     expect($email)->not->toBeEmpty();
 })->with(['enunomaduro@gmail.com', 'other@example.com']);
 ```
@@ -22,7 +22,7 @@ When running your tests, Pest will automatically add informative test descriptio
 Naturally, it is possible to supply multiple arguments by providing an array containing arrays of arguments.
 
 ```php
-it('has emails', function ($name, $email) {
+it('has emails', function (string $name, string $email) {
     expect($email)->not->toBeEmpty();
 })->with([
     ['Nuno', 'enunomaduro@gmail.com'],
@@ -33,7 +33,7 @@ it('has emails', function ($name, $email) {
 To manually add your own description to a dataset value, you may simply assign it a key.
 
 ```php
-it('has emails', function ($email) {
+it('has emails', function (string $email) {
     expect($email)->not->toBeEmpty();
 })->with([
     'james' => 'james@laravel.com',
@@ -47,12 +47,24 @@ If a key is added, Pest will use the key when generating the description for the
     <img src="/assets/img/datasets-named.webp?1" style="--lines: 2" />
 </div>
 
+It is important to notice that when using `closures` in your dataset, you must declare the arguments type in closure passed to the test function:
+
+```php
+it('can sum', function (array $numbers, int $result) {
+    expect(sum($numbers))->toBe($result);
+})->with([
+    'positive numbers' => [[1, 2], 3],
+    'negative numbers' => [[-1, -2], -3],
+    'using closure' => [fn() => [1, 2], 3],
+]);
+```
+
 ## Bound Datasets
 
 Pest's bound datasets can be used to obtain a dataset that is resolved after the `beforeEach()` method of your tests. This is particularly useful in Laravel applications (or any other Pest integration) where you may need a dataset of `App\Models\User` models that are created after your database schema is prepared by the `beforeEach()` method.
 
 ```php
-it('can calculate the full name of a user', function (User $user) {
+it('can generate the full name of a user', function (User $user) {
     expect($user->full_name)->toBe("{$user->first_name} {$user->last_name}");
 })->with([
     fn() => User::factory()->create(['first_name' => 'Nuno', 'last_name' => 'Maduro']),
@@ -67,7 +79,7 @@ By storing your datasets separately in the `tests/Datasets` folder, you can easi
 
 ```diff
 // tests/Unit/ExampleTest.php...
-it('has emails', function ($email) {
+it('has emails', function (string $email) {
     expect($email)->not->toBeEmpty();
 -})->with(['enunomaduro@gmail.com', 'other@example.com']);
 +})->with('emails');
@@ -87,14 +99,14 @@ Occasionally, datasets may pertain only to a specific feature or set of folders.
 
 ```php
 // tests/Feature/Products/ExampleTest.php...
-it('has products', function ($product) {
+it('has products', function (string $product) {
     expect($product)->not->toBeEmpty();
 })->with('products');
 
 // tests/Feature/Products/Datasets.php...
 dataset('products', [
-    'beer',
-    'wine'
+    'egg',
+    'milk'
 ]);
 ```
 
@@ -102,20 +114,28 @@ dataset('products', [
 
 You can easily obtain complex datasets by combining both **inline** and **shared** datasets. When doing so, the datasets will be combined using a [cartesian product](https://en.wikipedia.org/wiki/Cartesian_product) approach.
 
+In the next example, we perform a check to ensure that each of the given businesses are closed on each of the provided weekdays:
+
 ```php
 dataset('days_of_the_week', [
-    'Monday',
-    'Tuesday',
-    //
+    'Saturday',
+    'Sunday',
 ]);
 
-test('business hours', function($business, $day) {
-    expect($business)->isOpen($day)->toBeTrue();
+test('business is closed on day', function(string $business, string $day) {
+    expect($business)->isClosed($day)->toBeTrue();
 })->with([
-    Bar::class,
-    Restaurant::class,
+    Office::class,
+    Bank::class,
+    School::class
 ])->with('days_of_the_week');
 ```
+
+When running the previous example, Pest output will include the description for each of the verified combination:
+
+<div class="code-snippet">
+    <img src="/assets/img/dataset_businesshours.webp?1" style="--lines: 5" />
+</div>
 
 ---
 
