@@ -637,11 +637,11 @@ The `dd()` modifier
 Use the `dd()` modifier allows you to dump the current expectation $value and stop the code execution. This can be useful for debugging by allowing you to inspect the current state of the $value at a particular point in your test.
 
 ```php
-expect(14)->dd(); //outputs: 14
+expect(14)->dd(); // 14
 
 expect([1, 2])->sequence(
     fn ($number) => $number->toBe(1),
-    fn ($number) => $number->dd(), //outputs: 2
+    fn ($number) => $number->dd(), // 2
 );
 ```
 
