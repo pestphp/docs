@@ -13,7 +13,7 @@ You can start the expectation by passing your value to the `expect($value)` func
 test('sum', function () {
     $value = sum(1, 2);
 
-    expect($value)->toBe(3);
+    expect($value)->toBe(3); // Assert that the value is 3...
 });
 ```
 
