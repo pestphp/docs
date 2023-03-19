@@ -114,7 +114,7 @@ dataset('products', [
 
 You can easily obtain complex datasets by combining both **inline** and **shared** datasets. When doing so, the datasets will be combined using a [cartesian product](https://en.wikipedia.org/wiki/Cartesian_product) approach.
 
-In the next example, we perform a check to ensure that each of the given businesses are closed on each of the provided weekdays:
+In the following example, we verify that all of the specified businesses are closed on each of the provided weekdays.
 
 ```php
 dataset('days_of_the_week', [
@@ -131,7 +131,7 @@ test('business is closed on day', function(string $business, string $day) {
 ])->with('days_of_the_week');
 ```
 
-When running the previous example, Pest output will include the description for each of the verified combination:
+When running the example above, Pest's output will contain a description of each of the validated combinations.
 
 <div class="code-snippet">
     <img src="/assets/img/dataset_businesshours.webp?1" style="--lines: 5" />
