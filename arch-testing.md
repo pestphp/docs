@@ -5,9 +5,7 @@ description: Architecture testing enables you to specify expectations that test 
 
 # Architecture Testing
 
-Architecture testing enables you to specify expectations that test whether your application adheres to a set of architectural rules, helping you maintain a clean and sustainable codebase.
-
-By utilizing the Pest Architecture Testing tool, you can leverage a broad range of expectations that are specifically designed to assess the architecture of your application. The expectations are defined by: Relative namespace, fully qualified namespaces, or function names. Here is a comprehensive list of the expectations at your disposal.
+Architecture testing enables you to specify expectations that test whether your application adheres to a set of architectural rules, helping you maintain a clean and sustainable codebase. The expectations are determined by either Relative namespaces, fully qualified namespaces, or function names.
 
 <div class="collection-method-list" markdown="1">
 
