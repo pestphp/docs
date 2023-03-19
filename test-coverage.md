@@ -31,8 +31,9 @@ Once you have configured your code coverage settings and installed a coverage dr
 
 By utilizing the `--coverage` option, the test suite runs normally, but with the additional feature of displaying a list of project files and their corresponding coverage results.
 
-<div>
-    <img src="/assets/img/coverage.png" style="display: block; margin-left: auto; margin-right: auto;" width="80%" height="600" />
+
+<div class="code-snippet">
+    <img src="/assets/img/coverage.webp?1" style="--lines: 12" />
 </div>
 
 If there are any uncovered lines in your current test suite, they will be highlighted in red and displayed using their respective line numbers. Multiple uncovered lines will be displayed with two dots (`..`) between them. For instance, if there is missing coverage between lines 52 and 60, you will see `52..60` instead of just `52` in red.
@@ -45,8 +46,8 @@ To ensure comprehensive testing and maintain code quality, it is crucial to set 
 ./vendor/bin/pest --coverage --min=90
 ```
 
-<div>
-    <img src="/assets/img/coverage-min.png" style="display: block; margin-left: auto; margin-right: auto;" width="80%" height="600" />
+<div class="code-snippet">
+    <img src="/assets/img/coverage-min.webp?1" style="--lines: 9" />
 </div>
 
 ## Ignoring Code

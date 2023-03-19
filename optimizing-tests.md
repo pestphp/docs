@@ -45,16 +45,9 @@ To identify the slowest tests and optimize their execution, you can use Pest's `
 
 For example, imagine you run your test suite and see the following output:
 
-```php
-  Tests:    100 passed, ...
-  Duration: 12.45s
-
-  Top 10 slowest tests:
-  Tests\Feature\UserTest > create user        6.25s
-  Tests\Feature\OrderTest > create order      4.89s
-  Tests\Feature\ProductTest > create product  0.20s
-  ...
-```
+<div class="code-snippet">
+    <img src="/assets/img/profile.webp?1" style="--lines: 10" />
+</div>
 
 You can see that the `UserTest > create user` and `OrderTest > create order` tests are taking significantly longer than the other tests. By analyzing this test, you may discover that it's executing several inefficient database queries or performing other expensive operations that could be optimized to reduce its execution time.
 
@@ -62,8 +55,8 @@ You can see that the `UserTest > create user` and `OrderTest > create order` tes
 
 If you're working with a large number of tests, it can be beneficial to concentrate solely on the failing tests. You can use the `--compact` printer to instruct Pest to only display test failures, making it easier to pinpoint and resolve any problems without the noise of all of your successful tests.
 
-<div >
-    <img src="/assets/img/compact.webp" style="display: block; margin-left: auto; margin-right: auto;" width="80%" height="600" />
+<div class="code-snippet">
+    <img src="/assets/img/compact.webp?1" style="--lines: 11" />
 </div>
 
 Furthermore, since the `--compact` printer produces simpler output, test speed can be improved by a few milliseconds since there is less input / output required for each test.

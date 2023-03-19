@@ -38,12 +38,9 @@ test('sum', function () {
 
 After writing your test code, it's time to run your tests using Pest. When you execute the `./vendor/bin/pest` command, Pest will display a message indicating whether your tests passed or failed.
 
-```shell
-   PASS  Tests\Unit\SumTest.php
- ✓ sum
-
-   Tests:  1 passed
-```
+<div class="code-snippet">
+    <img src="/assets/img/sum.webp?1" style="--lines: 5" />
+</div>
 
 As an alternative to the `test` function, Pest provides the convenient `it` function that simply prefixes the test description with the word "it". This function can be used in place of the test function and can help make your tests more readable.
 
@@ -57,12 +54,9 @@ it('performs sums', function () {
 
 In this case, when you run the `./vendor/bin/pest` command, the output will include the description "it performs sums", along with the result of the test.
 
-```shell
-   PASS  Tests\Unit\SumTest.php
- ✓ it performs sums
-
-   Tests:  1 passed
-```
+<div class="code-snippet">
+    <img src="/assets/img/itsum.webp?1" style="--lines: 5" />
+</div>
 
 ## Expectation API
 
