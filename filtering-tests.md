@@ -66,7 +66,7 @@ You can utilize the `--group` option to selectively run tests belonging to a par
 The `--exclude-group` option may be used to exclude specific test groups from being executed.
 
 ```bash
-./vendor/bin/pest --group=integration,browser
+./vendor/bin/pest --exclude-group=integration,browser
 ```
 
 <a name="retry"></a>
