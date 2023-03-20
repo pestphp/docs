@@ -1,11 +1,11 @@
 ---
 title: Community Guide
-description: Our project aims to develop the world's finest testing framework that not only establishes itself as the standard choice in the PHP ecosystem but also serves as a catalyst for change and inspiration in other ecosystems.
+description: Our project aims to develop the world's finest testing framework that not only establishes itself as the standard choice in the PHP ecosystem, but also serves as a catalyst for change and inspiration in other ecosystems.
 ---
 
 # Community Guide
 
-Our project aims to develop the world's finest testing framework that not only establishes itself as the standard choice in the PHP ecosystem but also serves as a catalyst for change and inspiration in other ecosystems.
+Our project aims to develop the world's finest testing framework that not only establishes itself as the standard choice in the PHP, ecosystem but also serves as a catalyst for change and inspiration in other ecosystems.
 
 Your contribution is crucial to achieving our ambitious goal. We strongly believe that the PHP ecosystem has the talent and work ethic necessary to accomplish this goal. In the following section, we will outline the various areas where you can lend your assistance and become an integral part of our mission.
 
@@ -17,7 +17,7 @@ Your contribution is crucial to achieving our ambitious goal. We strongly believ
 
 > Telegram: **[t.me/+kYH5G4d5MV83ODk0](https://t.me/+kYH5G4d5MV83ODk0)**
 
-**Improve Our Documentation:** If you have strong writing skills, you can assist us in enhancing Pest's documentation and coding examples. Simply navigate to a documentation page and click on the "Edit this page →"" option located on the top right to get started.
+**Improve Our Documentation:** If you have strong writing skills, you can assist us in enhancing Pest's documentation and coding examples. Simply navigate to a documentation page and click on the "Edit this page →" option located on the top right to get started.
 
 > Pest Documentation Repository: **[github.com/pestphp/docs](https://github.com/pestphp/docs)**
 
