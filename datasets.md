@@ -47,15 +47,15 @@ If a key is added, Pest will use the key when generating the description for the
     <img src="/assets/img/datasets-named.webp?1" style="--lines: 2" />
 </div>
 
-It is important to notice that when using `closures` in your dataset, you must declare the arguments type in the closure passed to the test function:
+It is important to notice that when using `closures` in your dataset, you must declare the arguments type in the closure passed to the test function.
 
 ```php
-it('can sum', function (array $numbers, int $result) {
-    expect(sum($numbers))->toBe($result);
+it('can sum', function (int $a, int $b, int $result) {
+    expect(sum($a, $b))->toBe($result);
 })->with([
-    'positive numbers' => [[1, 2], 3],
-    'negative numbers' => [[-1, -2], -3],
-    'using closure' => [fn() => [1, 2], 3],
+    'positive numbers' => [1, 2, 3],
+    'negative numbers' => [-1, -2, -3],
+    'using closure' => [fn () => 1, 2, 3],
 ]);
 ```
 
