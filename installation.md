@@ -1,82 +1,38 @@
 ---
 title: Installation
-description: Installation
+description: Installing Pest PHP Testing Framework is a simple process that can be completed in just a few steps.
 ---
 
 # Installation
 
-- [Requirements](#requirements)
-- [Install Pest](#install-pest)
+> **Requirements:** [PHP 8.1+](https://php.net/releases/)
 
-<a name="requirements"></a>
+Installing Pest PHP Testing Framework is a simple process that can be completed in just a few steps. Before you begin, make sure you have PHP `8.1+` or higher installed on your system.
 
-## Requirements
-
-- [PHP 7.3+](https://php.net/releases/)
-- [Composer](https://getcomposer.org/)
-- [PHPUnit 9.6.x](https://github.com/sebastianbergmann/phpunit)
-- [Collision 6.3.x](https://github.com/nunomaduro/collision)
-
-> ❗ **IMPORTANT**: To install Pest v1 in a **Laravel 10** project, you must downgrade PHPUnit and Collision to compatible versions.<br/>Run the  following command:
-> 
->```bash
->composer require phpunit/phpunit:^9.6 nunomaduro/collision:^6.1 --dev --with-all-dependencies
->```
-
-<a name="install-pest"></a>
-
-## Install
-
-The installation process consists of 3 steps:
-
-``- Step 1:`` Require Pest as a dev dependency in your project. Run:
+**The first step** is to require Pest as a "dev" dependency in your project by running the following command on your command line.
 
 ```bash
 composer require pestphp/pest --dev --with-all-dependencies
 ```
 
-<hr/>
-
-`- Step 2:` Continue the installation according to your project specification:
-
-`Laravel Framework:`
-
-First, you must require the [Laravel Plugin](/docs/plugins/laravel). Run the following command:
-
-  ```bash
-  composer require pestphp/pest-plugin-laravel --dev
-  ```
-
-Now, install Pest using Artisan. Run the command below:
-
-  ```bash
-  php artisan pest:install
-  ```
-
-<br/>
-
-`Other PHP Projects:`
-
-Initialize Pest, run the following command:
+**Secondly**, you'll need to to initialize Pest in your current PHP project. This step will create a configuration file named `Pest.php` at the root level of your test suite, which will enable you to fine-tune your test suite later.
 
 ```bash
 ./vendor/bin/pest --init
 ```
 
----
-
-`- Step 3:` To run your tests, execute the command:
+**Finally**, you can run your tests by executing the `pest` command.
 
 ```bash
 ./vendor/bin/pest
 ```
 
-<br/>
+Here is an example of the output displayed when running Pest in a new, fresh project.
 
-The image below shows the default Test output in a brand-new project:
-
-![Install](/assets/img/pestinstall.png)
+<div class="code-snippet">
+    <img src="/assets/img/pestinstall.webp?1" style="--lines: 10" />
+</div>
 
 ---
 
-**Next**: In the next section, we are going to learn how to write tests with Pest: [Writing Tests →](/docs/writing-tests)
+After the installation process is finished, you can enhance your developer experience while working with Pest by configuring your editor: [Editor Setup →](/docs/editor-setup)

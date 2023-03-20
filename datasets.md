@@ -1,123 +1,70 @@
 ---
 title: Datasets
-description: Datasets
+description: With datasets, you can define an array of test data and Pest will run the same test for each set automatically. This saves time and effort by eliminating the need to repeat the same test manually with different data.
 ---
 
 # Datasets
 
-- [Overview](#overview)
-- [Create Datasets](#create-datasets)
-    - [Inline Datasets](#inline-datasets)
-    - [Shared Datasets](#shared-datasets)
-    - [Lazy Datasets](#lazy-datasets)
-    - [Bound Datasets](#bound-datasets)
-    - [Combining Datasets](#combining-datasets)
-    - [Datasets description](#datasets-description)
+With datasets, you can define an array of test data and Pest will run the same test for each set automatically. This saves time and effort by eliminating the need to repeat the same test manually with different data.
 
-<a name="overview"></a>
-## Overview
-
-Datasets in Pest allows you to run the same test multiple times with
-different data. Also, the test description will contain information
-about the arguments used on each test.
-
-> This feature is most commonly known as Data Providers in PHPUnit.
-
-<a name="create-datasets"></a>
-## Create Datasets
-
-Now, in this section, we are going to cover the way you can create
-datasets in Pest.
-
-<a name="inline-datasets"></a>
-### Inline Datasets
-
-An inline `dataset` may be used for a single test only:
 ```php
-it('has emails', function ($email) {
+it('has emails', function (string $email) {
     expect($email)->not->toBeEmpty();
-})->with([
-    'enunomaduro@gmail.com',
-    'other@example.com'
-]);
+})->with(['enunomaduro@gmail.com', 'other@example.com']);
 ```
 
-Of course, you can also give multiple
-arguments providing an array of arguments:
+When running your tests, Pest will automatically add informative test descriptions to tests that use datasets, outlining the parameters used in each test, aiding in understanding the data and identifying issues if a test fails.
+
+<div class="code-snippet">
+    <img src="/assets/img/datasets-emails.webp?1" style="--lines: 3" />
+</div>
+
+Naturally, it is possible to supply multiple arguments by providing an array containing arrays of arguments.
+
 ```php
-it('has emails', function ($name, $email) {
+it('has emails', function (string $name, string $email) {
     expect($email)->not->toBeEmpty();
 })->with([
     ['Nuno', 'enunomaduro@gmail.com'],
     ['Other', 'other@example.com']
 ]);
 ```
----
 
-<a name="shared-datasets"></a>
-### Shared Datasets
+To manually add your own description to a dataset value, you may simply assign it a key.
 
-If you want to keep your test files clean, you can use
-the `tests/Datasets` folder to place your datasets:
 ```php
-tests
-    - Unit/ComponentTest.php
-    - Feature/HomeTest.php
-    - Datasets/Emails.php <--
-phpunit.xml
-```
-
-Inside this `Emails.php` you just have to use the `dataset()` function:
-```php
-<?php
-
-dataset('emails', [
-    'enunomaduro@gmail.com',
-    'other@example.com'
+it('has emails', function (string $email) {
+    expect($email)->not->toBeEmpty();
+})->with([
+    'james' => 'james@laravel.com',
+    'taylor' => 'taylor@laravel.com',
 ]);
 ```
 
-In your test, you can use the `dataset` name to reuse your dataset:
-```php
-it('has emails', function ($email) {
-    expect($email)->not->toBeEmpty();
-})->with('emails');
-```
----
+If a key is added, Pest will use the key when generating the description for the test.
 
-<a name="lazy-datasets"></a>
-### Lazy Datasets
+<div class="code-snippet">
+    <img src="/assets/img/datasets-named.webp?1" style="--lines: 2" />
+</div>
 
-In both **inline** and **external** approaches, you may need to serve your
-data with PHP's generators to allow you to work with very large datasets
-while keeping memory usage low:
+It is important to notice that when using `closures` in your dataset, you must declare the arguments type in the closure passed to the test function:
 
 ```php
-dataset('emails', function () {
-    yield 'enunomaduro@gmail.com';
-    yield 'other@example.com';
-});
-
-it('has emails', function ($email) {
-    expect($email)->not->toBeEmpty();
-})->with(function () {
-    yield 'enunomaduro@gmail.com';
-    yield 'other@example.com';
-});
+it('can sum', function (array $numbers, int $result) {
+    expect(sum($numbers))->toBe($result);
+})->with([
+    'positive numbers' => [[1, 2], 3],
+    'negative numbers' => [[-1, -2], -3],
+    'using closure' => [fn() => [1, 2], 3],
+]);
 ```
 
----
+## Bound Datasets
 
-<a name="bound-datasets"></a>
-### Bound Datasets
-
-Sometimes, it's helpful to have a dataset that is resolved *after* the `beforeEach` method of your tests. For example,
-in Laravel applications, you might want a dataset of `User` models that have been persisted to the database.
-
-Pest allows you to do this using bound datasets:
+Pest's bound datasets can be used to obtain a dataset that is resolved after the `beforeEach()` method of your tests. This is particularly useful in Laravel applications (or any other Pest integration) where you may need a dataset of `App\Models\User` models that are created after your database schema is prepared by the `beforeEach()` method.
 
 ```php
-it('can calculate the full name of a user', function(User $user) {
+it('can generate the full name of a user', function (User $user) {
     expect($user->full_name)->toBe("{$user->first_name} {$user->last_name}");
 })->with([
     fn() => User::factory()->create(['first_name' => 'Nuno', 'last_name' => 'Maduro']),
@@ -126,68 +73,70 @@ it('can calculate the full name of a user', function(User $user) {
 ]);
 ```
 
-> **Note:** You can access the TestCase using `$this` inside of the closure.
+## Sharing Datasets
 
-Shared datasets may also have bound access:
+By storing your datasets separately in the `tests/Datasets` folder, you can easily distinguish them from your test code and ensure that they do not clutter your main test files.
 
-```php
-dataset('users', function () {
-    yield fn() => User::factory()->blocked()->create();
-    yield fn() => User::factory()->unverified()->create();
-    yield fn() => User::factory()->inactive()->create();
-});
+```diff
+// tests/Unit/ExampleTest.php...
+it('has emails', function (string $email) {
+    expect($email)->not->toBeEmpty();
+-})->with(['enunomaduro@gmail.com', 'other@example.com']);
++})->with('emails');
+
+// tests/Datasets/Emails.php...
++dataset('emails', [
++    'enunomaduro@gmail.com',
++    'other@example.com'
++]);
 ```
 
----
+Bound datasets, description keys, and other rules that are applicable to inline datasets can also be applied to shared datasets.
 
-<a name="combining-datasets"></a>
-### Combining datasets
+### Scoped Datasets
 
-Both, **inline** and **external**, datasets can be combined to generate a new dataset with a [cartesian product](https://en.wikipedia.org/wiki/Cartesian_product) approach. This means that you can obtain complex datasets with a simple approach:
+Occasionally, datasets may pertain only to a specific feature or set of folders. In such cases, rather than distributing the dataset globally within the `Datasets` folder, you can generate a `Datasets.php` file within the relevant folder requiring the dataset and restrict the dataset's scope to that folder alone.
+
+```php
+// tests/Feature/Products/ExampleTest.php...
+it('has products', function (string $product) {
+    expect($product)->not->toBeEmpty();
+})->with('products');
+
+// tests/Feature/Products/Datasets.php...
+dataset('products', [
+    'egg',
+    'milk'
+]);
+```
+
+## Combining Datasets
+
+You can easily obtain complex datasets by combining both **inline** and **shared** datasets. When doing so, the datasets will be combined using a [cartesian product](https://en.wikipedia.org/wiki/Cartesian_product) approach.
+
+In the following example, we verify that all of the specified businesses are closed on each of the provided weekdays.
 
 ```php
 dataset('days_of_the_week', [
-    'Monday',
-    'Tuesday',
-    // ...
+    'Saturday',
+    'Sunday',
 ]);
 
-test('business hours', function($business, $day) {
-    expect($business)->isOpen($day)->toBeTrue();
+test('business is closed on day', function(string $business, string $day) {
+    expect(new $business)->isClosed($day)->toBeTrue();
 })->with([
-    Bar::class,  
-    Restaurant::class,
+    Office::class,
+    Bank::class,
+    School::class
 ])->with('days_of_the_week');
 ```
 
-<a name="datasets-description"></a>
-### Datasets description
+When running the example above, Pest's output will contain a description of each of the validated combinations.
 
-By default, when running a test with a dataset, Pest generates a small description of the dataset based on the dataset values:
-
-```php
-✓ it has emails with (james@laravel.com)
-✓ it has emails with (taylor@laravel.com)
-```
-
-You may specify yourself the dataset description adding a `key` to the dataset values:
-
-```php
-it('has emails', function ($email) {
-    expect($email)->not->toBeEmpty();
-})->with([
-    'james' => 'james@laravel.com',
-    'taylor' => 'taylor@laravel.com',
-]);
-```
-
-When adding a `key`, the `key` value will be used instead:
-
-```php
-✓ it has emails with data set "james"
-✓ it has emails with data set "taylor"
-```
+<div class="code-snippet">
+    <img src="/assets/img/datasets-businesshours.webp?1" style="--lines: 9" />
+</div>
 
 ---
 
-Next section: [Coverage →](/docs/coverage)
+After becoming skilled at utilizing datasets for testing, the next crucial step is to gain an understanding of how to test for exceptions. This involves verifying that your code behaves correctly and throws appropriate exceptions when it encounters unexpected or erroneous input: [Exceptions →](/docs/exceptions)

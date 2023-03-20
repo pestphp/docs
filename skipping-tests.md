@@ -1,88 +1,78 @@
 ---
 title: Skipping Tests
-description: Skipping Tests
+description: During the development process, there may be times when you need to temporarily disable a test. Rather than commenting out the code, we recommended using the `skip` method.
 ---
 
 # Skipping Tests
 
-- [Overview](#overview)
-- [Running a single test](#running-single-test)
-- [Incomplete tests](#incomplete-tests)
+During the development process, there may be times when you need to temporarily disable a test. Rather than commenting out the code, we recommended using the `skip` method.
 
-<a name="overview"></a>
-## Overview
-
-During development, you may want to temporarily turn off a test. Rather than commenting it out,
-you can use the `skip` method.
-
-> This is the equivalent of `markTestSkipped` in PHPUnit.
 ```php
 it('has home', function () {
-    // ..
+    //
 })->skip();
 ```
 
-Of course, you can also mention the reason for skipping this test:
-```php
-it('has home', function () {
-    // ..
-})->skip('Home page not available');
-```
+When running your tests, Pest will inform you about any tests that were skipped.
 
-Also, you may want to skip a test depending on a condition:
-```php
-it('has home', function () {
-    // ..
-})->skip(true === true, 'Home page not available');
-```
+<div class="code-snippet">
+    <img src="/assets/img/skip.webp?1" style="--lines: 2" />
+</div>
 
-You may use a callable for the condition, which has access to the underlying test case:
-```php
-it('has home', function () {
-    // ..
-})->skip(fn() => DB::getDriverName() !== 'mysql', 'Only runs when using mysql');
-```
-
-
-And it also works with higher order tests:
-```php
-it('works with higher order testing')
-    ->assertTrue(true)
-    ->skip();
-```
-
-If you'd like to skip all the tests in a single file, just add the following syntax at the beginning of the test file:
-
-```php
-beforeEach()->skip()
-```
-
-<a name="running-single-test"></a>
-## Running a single test
-
-If you’d like to run a single test to debug a problem, just use the following syntax:
+You may also provide the reason for skipping the test, which Pest will display when running your tests.
 
 ```php
 it('has home', function () {
-    // ..
-})->only();
+    //
+})->skip('temporarily unavailable');
 ```
 
-> Please be aware that `->only()` requires all tests to be written with Pest test functions to work correctly. Furthermore, it will be ignored if the `--ci` option is added to the cli command
-
-<a name="incomplete-tests"></a>
-
-## Incomplete tests
-
-If you’d like to remind yourself to come back and write a test later, just
-omit the closure expression to define a pending test:
+In addition, there may be times when you want to skip a test based on a given condition. In these cases, you may provide a boolean value as the first argument to the `skip()` method. This test will only be skipped if the boolean value evaluates to `true`.
 
 ```php
-it('has home');
+it('has home', function () {
+    //
+})->skip($condition == true, 'temporarily unavailable');
 ```
 
-Behind the scenes, Pest will mark this test as incomplete.
+You may pass a closure as the first argument to the `skip()` method to defer the evaluation of the condition until the `beforeEach()` hook of your test case has been executed.
+
+```php
+it('has home', function () {
+    //
+})->skip(fn () => DB::getDriverName() !== 'mysql', 'db driver not supported');
+```
+
+You may even invoke the `skip()` method within your `beforeEach()` hook to conveniently skip an entire test file.
+
+```php
+beforeEach(function () {
+    //
+})->skip();
+```
+
+## Creating Todos
+
+While skipping tests can be a helpful way to exclude specific tests temporarily from your test suite, it can also lead to situations where skipped tests are forgotten or overlooked. To prevent this, Pest provide a way to create "todos", which are essentially placeholders for tests that need attention.
+
+To begin working with todos, simply invoke the `todo()` method.
+
+```php
+it('has home')->todo();
+```
+
+If you invoke the `todo()` method on a test, Pest's output will inform you that the test is a todo so you don't forget about it.
+
+<div class="code-snippet">
+    <img src="/assets/img/todo.webp?1" style="--lines: 5" />
+</div>
+
+You can easily view a list of pending todos contained in your test suite by including the `--todos` option when running Pest.
+
+```bash
+./vendor/bin/pest --todos
+```
 
 ---
 
-Next section: [Datasets →](/docs/datasets)
+As your codebase expands, it's advisable to consider enhancing the speed of your test suite. To assist you with that, we offer comprehensive documentation on optimizing your test suite: [Optimizing Tests](/docs/optimizing-tests)

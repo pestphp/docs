@@ -1,78 +1,121 @@
 ---
 title: Upgrade Guide
-description: Upgrade Guide
+description: Upgrading To 2.x From 1.x
 ---
 
-# Upgrade Guide
+# Upgrading To 2.x From 1.x
 
-## Upgrading To 1.0 From 0.3
+> **Estimated Upgrade Time**: 2 minutes
 
-#### Estimated Upgrade Time: 1-2 Minutes
-
-> We attempt to document every possible breaking change. Since some of these breaking changes are in obscure parts of the framework, only a portion of these changes may actually affect your application.
+We make an effort to document every potential breaking change, but some of these changes may exist in less frequently used sections of the framework. As a result, only a subset of these changes may impact your application.
 
 ### Updating Dependencies
 
-Update your `pestphp/pest` dependency to `^1.0` in your `composer.json` file.
+> Likelihood Of Impact: High
 
-If you are using any official plugins, update them to `^1.0` in your `composer.json` file.
+Pest 2 now requires PHP 8.1.0 or greater. To start migrating from Pest 1 to Pest 2, update the `pestphp/pest` dependency to `^2.0` in your application's `composer.json` file.
 
-## Upgrading To 0.3 From 0.2
-
-#### Estimated Upgrade Time: 1-2 Minutes
-
-> We attempt to document every possible breaking change. Since some of these breaking changes are in obscure parts of the framework, only a portion of these changes may actually affect your application.
-
-### Updating Dependencies
-
-Update your `pestphp/pest` dependency to `^0.3` in your `composer.json` file.
-
-If you are using any official plugins, update them to `^0.3` in your `composer.json` file.
-
-#### Global assertions
-
-The usage of global assertions is deprecated in favor of the [expectation API](/docs/expectations/).
-
-- Alternative 1: require global assertions plugin:
-```bash
-composer require pestphp/pest-plugin-global-assertions --dev
+```diff
+-    "pestphp/pest": "^1.22",
++    "pestphp/pest": "^2.0",
 ```
 
-- Alternative 2: migrate to `$this` calls, or to [expectation API](/docs/expectations/):
-```php
-it('foo', function () {
-    assertTrue(true); // won't work in 0.3
+Next, you can remove PHPUnit from your list of dependencies if it is included.
 
-    // Replace by:
-    $this->assertTrue(true);
-    // or
-    expect(true)->toBe(true);
+```diff
+-    "phpunit/phpunit": "^9.5.10",
+```
+
+In addition, if you are using Laravel, please upgrade Collision to version 7. Note that, Laravel 10 is required.
+
+```diff
+-    "nunomaduro/collision": "^6.0",
++    "nunomaduro/collision": "^7.0",
+```
+
+If you are using the Parallel Plugin (or Paratest), you may remove it from your dependencies since it is now included with Pest by default.
+
+```diff
+-    "brianium/paratest": "^6.8.1",
+-    "pestphp/pest-plugin-parallel": "^1.2.1",
+```
+
+The Global Assertions Plugin is archived and should be removed from your dependencies.
+
+```diff
+-    "pestphp/pest-plugin-global-assertions": "^1.0.0",
+```
+
+If you relied on the Global Assertions Plugin, you may access the same underlying assertions using the `$this` variable. Alternatively, you may migrate to the [Expectation API](/docs/expectations).
+
+```diff
+test('sum', function () {
+    $result = sum(1, 2);
+
+-   assertSame(3, $result);
++   $this->assertSame(3, $result); // or expect($result)->toBe(3)
 });
 ```
 
-## Upgrading To 0.2 From 0.1
+All other Pest maintained plugins should be updated to version `^2.0` in your application's `composer.json` file.
 
-#### Estimated Upgrade Time: 1-4 Minutes
+```diff
+-    "pestphp/pest-plugin-laravel": "^1.4",
++    "pestphp/pest-plugin-laravel": "^2.0",
+```
 
-> We attempt to document every possible breaking change. Since some of these breaking changes are in obscure parts of the framework, only a portion of these changes may actually affect your application.
+### PHPUnit 10 Changes
 
-### Updating Dependencies
+> Likelihood Of Impact: Medium
 
-Update your `pestphp/pest` dependency to `^0.2` in your `composer.json` file.
-
-If you are using any official plugins, update them to `^0.2` in your `composer.json` file.
-
-#### Namespaced Functions
-
-Any functions provided by official plugins are no longer available globally. Therefore, you need to
-import them. Here is an example:
+If you were previously using PHPUnit instead of Pest, it's possible that your `phpunit.xml` file needs to be updated. When this is the case, you may encounter the following message when running Pest 2 for the first time.
 
 ```php
-use function Pest\Laravel\get;
+  WARN  Your XML configuration validates against a deprecated schema. Migrate your XML configuration using "--migrate-configuration"!
+```
 
-get('/')->assertSee('Laravel');
+To address this issue, simply re-run Pest with the `--migrate-configuration` option.
+
+```bash
+./vendor/bin/pest --migrate-configuration
+```
+
+Pest 2 is built on top of PHPUnit 10. This means that any notable changes made to PHPUnit 10 might have an impact on your test suite. To examine all the changes introduced in PHPUnit 10, please consult the [PHPUnit 10 changelog](https://github.com/sebastianbergmann/phpunit/blob/10.0.0/ChangeLog-10.0.md#1000---2023-02-03).
+
+### High Order Testing
+
+> Likelihood Of Impact: Low
+
+When performing high order testing, you might have utilized the `tap` method to invoke assertions on an object that needs lazy evaluation during runtime. With Pest 2, the `tap` method is deprecated. Instead, you should use the `defer` method.
+
+```diff
+it('creates admins')
+-    ->tap(fn () => $this->artisan('user:create --admin'))
++    ->defer(fn () => $this->artisan('user:create --admin'))
+     ->assertDatabaseHas('users', ['id' => 1]);
+```
+
+### Datasets
+
+> Likelihood Of Impact: Very low
+
+Although we previously documented in Pest 1 that datasets should only be declared using the `dataset` function in the `tests/Pest.php` or `tests/Datasets.php` files, you could actually declare datasets in any test file within your test suite. However, in Pest 2, with the introduction of [scoped datasets](/docs/datasets#scoped-datasets), datasets declared in a test file can only be utilized within that same test file. Therefore, if you have a dataset that needs to be accessible globally, please ensure that it is placed in either the `tests/Pest.php` or `tests/Datasets.php` files.
+
+### `->only()`
+
+> Likelihood Of Impact: Very Low
+
+In the past, you may have used the `->only()` method to only run a particular test in your test suite. This method no longer exists. As a workaround, you may use Pest's new `--dirty` or `--retry` CLI options.
+
+```diff
+test('sum', function () {
+   $result = sum(1, 2);
+
+   expect($result)->toBe(3);
+-})->only();
++});
 ```
 
 ---
 
-Next section: [Community →](/docs/community)
+Next, let's learn how you can contribute to the growth of Pest: [Community Guide](/docs/community-guide)
