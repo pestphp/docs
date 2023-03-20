@@ -123,7 +123,7 @@ dataset('days_of_the_week', [
 ]);
 
 test('business is closed on day', function(string $business, string $day) {
-    expect($business)->isClosed($day)->toBeTrue();
+    expect(new $business)->isClosed($day)->toBeTrue();
 })->with([
     Office::class,
     Bank::class,
@@ -134,7 +134,7 @@ test('business is closed on day', function(string $business, string $day) {
 When running the example above, Pest's output will contain a description of each of the validated combinations.
 
 <div class="code-snippet">
-    <img src="/assets/img/dataset_businesshours.webp?1" style="--lines: 5" />
+    <img src="/assets/img/datasets-businesshours.webp?1" style="--lines: 9" />
 </div>
 
 ---
