@@ -98,7 +98,7 @@ test('plugin example', function () {
 
 ## Adding Custom Expectations
 
-Custom expectations can be incorporated into your plugin's `Autoload.php` file. For information on how to build custom expectations, please refer to the comprehensive documentation on [custom expectations](/docs/custom-expectations].
+Custom expectations can be incorporated into your plugin's `Autoload.php` file. For information on how to build custom expectations, please refer to the comprehensive documentation on [Custom Expectations](/docs/custom-expectations).
 
 ---
 
