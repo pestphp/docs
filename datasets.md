@@ -134,7 +134,7 @@ test('business is closed on day', function(string $business, string $day) {
 When running the example above, Pest's output will contain a description of each of the validated combinations.
 
 <div class="code-snippet">
-    <img src="/assets/img/datasets-businesshours.webp?1" style="--lines: 9" />
+    <img src="/assets/img/datasets-businesshours.webp?1" style="--lines: 10" />
 </div>
 
 ---
