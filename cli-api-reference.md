@@ -59,7 +59,7 @@ In the preceding chapters of the Pest documentation, we have covered numerous CL
 - `--fail-on-warning`: Treat tests with warnings as failures.
 - `--cache-result`: Write test results to cache file.
 - `--do-not-cache-result`: Do not write test results to cache file
---order-by <order>Run tests in order: default|defects|depends|duration|no-depends|random|reverse|size.
+- `--order-by <order>`: Run tests in order: default|defects|depends|duration|no-depends|random|reverse|size.
 - `--random-order-seed <N>`: Use the specified random seed when running tests in random order
 
 ## Reporting
@@ -80,7 +80,7 @@ In the preceding chapters of the Pest documentation, we have covered numerous CL
 - `--reverse-list`: Print defects in reverse order.
 - `--teamcity`: Replace default progress and result output with TeamCity format.
 - `--testdox`: Replace default result output with TestDox format
-- `--compact`:  Replace default result output with Comact format
+- `--compact`:  Replace default result output with Compact format
 
 ## Logging
 
