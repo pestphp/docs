@@ -99,9 +99,9 @@ it('creates admins')
 
 #### Bound Datasets
 
-> Likelihood Of Impact: Medium
+> Likelihood Of Impact: Very low
 
-In order to bound a single dataset value, the corresponding test parameter should be typed now
+If you are utilizing "bound" datasets and binding a single dataset argument, you must now type the corresponding test parameter.
 
 ```diff
 -it('can generate the full name of a user', function ($user, $fullName) {
