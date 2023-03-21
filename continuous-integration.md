@@ -13,7 +13,7 @@ If your application uses [GitHub Actions](https://github.com/features/actions) a
 
 To get started, create a `tests.yml` file within the `your-project/.github/workflows` directory. The file should have the following contents:
 
-```yml
+```yaml
 name: Tests
 
 on: ['push', 'pull_request']

@@ -3,7 +3,7 @@ title: Custom Expectations
 description: Pest's expectation API is powerful by default, but there may be times when you need to write the same expectations repeatedly between tests. In such cases, creating custom expectations that meet your specific requirements can be incredibly useful.
 ---
 
-# Custom Expecatations
+# Custom Expectations
 
 Pest's expectation API is powerful by default, but there may be times when you need to write the same expectations repeatedly between tests. In such cases, creating custom expectations that meet your specific requirements can be incredibly useful.
 
@@ -61,7 +61,7 @@ use App\Models\User;
 
 // tests/Pest.php or tests/Expectations.php
 expect()->intercept('toBe', Model::class, function(Model $expected) {
-    expect($this->id)->toBe($expect->id);
+    expect($this->value->id)->toBe($expected->id);
 });
 
 // tests/Feature/ExampleTest.php
@@ -95,7 +95,7 @@ use App\Models\User;
 
 expect()->pipe('toBe', function (Closure $next, mixed $expected) {
     if ($this->value instanceof Model) {
-        return expect($this->value->id)->toBe($expect->id);
+        return expect($this->value->id)->toBe($expected->id);
     }
 
     return $next(); // Run to the original, built-in expectation...

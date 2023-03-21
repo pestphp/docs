@@ -15,7 +15,7 @@ Installing Pest PHP Testing Framework is a simple process that can be completed 
 composer require pestphp/pest --dev --with-all-dependencies
 ```
 
-**Secondly**, you'll need to to initialize Pest in your current PHP project. This step will create a configuration file named `Pest.php` at the root level of your test suite, which will enable you to fine-tune your test suite later.
+**Secondly**, you'll need to initialize Pest in your current PHP project. This step will create a configuration file named `Pest.php` at the root level of your test suite, which will enable you to fine-tune your test suite later.
 
 ```bash
 ./vendor/bin/pest --init

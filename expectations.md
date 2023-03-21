@@ -51,6 +51,7 @@ With the Pest expectation API, you have access to an extensive collection of ind
 - [`toBeLessThan()`](#expect-toBeLessThan)
 - [`toBeLessThanOrEqual()`](#expect-toBeLessThanOrEqual)
 - [`toContain()`](#expect-toContain)
+- [`toContainOnlyInstancesOf()`](#expect-toContainOnlyInstancesOf)
 - [`toHaveCount()`](#expect-toHaveCount)
 - [`toHaveMethod()`](#expect-toHaveMethod)
 - [`toHaveMethods()`](#expect-toHaveMethods)
@@ -66,6 +67,7 @@ With the Pest expectation API, you have access to an extensive collection of ind
 - [`toBeInstanceOf()`](#expect-toBeInstanceOf)
 - [`toBeBool()`](#expect-toBeBool)
 - [`toBeCallable()`](#expect-toBeCallable)
+- [`toBeFile()`](#expect-toBeFile)
 - [`toBeFloat()`](#expect-toBeFloat)
 - [`toBeInt()`](#expect-toBeInt)
 - [`toBeIterable()`](#expect-toBeIterable)
@@ -81,7 +83,9 @@ With the Pest expectation API, you have access to an extensive collection of ind
 - [`toHaveKeys()`](#expect-toHaveKeys)
 - [`toHaveLength()`](#expect-toHaveLength)
 - [`toBeReadableDirectory()`](#expect-toBeReadableDirectory)
+- [`toBeReadableFile()`](#expect-toBeReadableFile)
 - [`toBeWritableDirectory()`](#expect-toBeWritableDirectory)
+- [`toBeWritableFile()`](#expect-toBeWritableFile)
 - [`toStartWith()`](#expect-toStartWith)
 - [`toThrow()`](#expect-toThrow)
 - [`toEndWith()`](#expect-toEndWith)
@@ -131,7 +135,9 @@ expect(new StdClass)->not->toBe(new StdClass);
 This expectation ensures that `$value` is empty.
 
 ```php
-expect($lastSeen)->toBeEmpty();
+expect('')->toBeEmpty();
+expect([])->toBeEmpty();
+expect(null)->toBeEmpty();
 ```
 
 <a name="expect-toBeTrue"></a>
@@ -217,6 +223,17 @@ This expectation ensures that all the given needles are elements of the `$value`
 expect('Hello World')->toContain('Hello');
 expect('Pest: an elegant PHP Testing Framework')->toContain('Pest', 'PHP', 'Framework');
 expect([1, 2, 3, 4])->toContain(2, 4);
+```
+
+<a name="expect-toContainOnlyInstancesOf"></a>
+### `toContainOnlyInstancesOf($class)`
+
+This expectation ensures that `$value` contains only instances of `$class`.
+
+```php
+$dates =  [new DateTimeImmutable(), new DateTimeImmutable()];
+
+expect($dates)->toContainOnlyInstancesOf(DateTimeImmutable::class);
 ```
 
 <a name="expect-toHaveCount"></a>
@@ -398,6 +415,15 @@ $myFunction = function () {};
 expect($myFunction)->toBeCallable();
 ```
 
+<a name="expect-toBeFile"></a>
+### `toBeFile()`
+
+This expectation ensures that the string `$value` is an existing file.
+
+```php
+expect('/tmp/some-file.tmp')->toBeFile();
+```
+
 <a name="expect-toBeFloat"></a>
 ### `toBeFloat()`
 
@@ -559,6 +585,15 @@ This expectation ensures that the string `$value` is a directory and that it is 
 expect('/tmp')->toBeReadableDirectory();
 ```
 
+<a name="expect-toBeReadableFile"></a>
+### `toBeReadableFile()`
+
+This expectation ensures that the string `$value` is a file and that it is readable.
+
+```php
+expect('/tmp/some-file.tmp')->toBeReadableFile();
+```
+
 <a name="expect-toBeWritableDirectory"></a>
 ### `toBeWritableDirectory()`
 
@@ -566,6 +601,15 @@ This expectation ensures that the string `$value` is a directory and that it is 
 
 ```php
 expect('/tmp')->toBeWritableDirectory();
+```
+
+<a name="expect-toBeWritableFile"></a>
+### `toBeWritableFile()`
+
+This expectation ensures that the string `$value` is a file and that it is writable.
+
+```php
+expect('/tmp/some-file.tmp')->toBeWritableFile();
 ```
 
 <a name="expect-toStartWith"></a>

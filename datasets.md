@@ -47,15 +47,15 @@ If a key is added, Pest will use the key when generating the description for the
     <img src="/assets/img/datasets-named.webp?1" style="--lines: 2" />
 </div>
 
-It is important to notice that when using `closures` in your dataset, you must declare the arguments type in the closure passed to the test function:
+It is important to notice that when using `closures` in your dataset, you must declare the arguments type in the closure passed to the test function.
 
 ```php
-it('can sum', function (array $numbers, int $result) {
-    expect(sum($numbers))->toBe($result);
+it('can sum', function (int $a, int $b, int $result) {
+    expect(sum($a, $b))->toBe($result);
 })->with([
-    'positive numbers' => [[1, 2], 3],
-    'negative numbers' => [[-1, -2], -3],
-    'using closure' => [fn() => [1, 2], 3],
+    'positive numbers' => [1, 2, 3],
+    'negative numbers' => [-1, -2, -3],
+    'using closure' => [fn () => 1, 2, 3],
 ]);
 ```
 
@@ -72,6 +72,20 @@ it('can generate the full name of a user', function (User $user) {
     fn() => User::factory()->create(['first_name' => 'Freek', 'last_name' => 'Van Der Herten']),
 ]);
 ```
+
+If you want, you can bind a single argument to the test case. However, Pest requires that it must be fully typed in the `it|test` function arguments.
+
+```diff
+-it('can generate the full name of a user', function ($user, $fullName) {
++it('can generate the full name of a user', function (User $user, $fullName) {
+    expect($user->full_name)->toBe($fullName);
+})->with([
+    [fn() => User::factory()->create(['first_name' => 'Nuno', 'last_name' => 'Maduro']), 'Nuno Maduro'],
+    [fn() => User::factory()->create(['first_name' => 'Luke', 'last_name' => 'Downing']), 'Luke Downing'],
+    [fn() => User::factory()->create(['first_name' => 'Freek', 'last_name' => 'Van Der Herten']), 'Freek Van Der Herten'],
+]);
+```
+
 
 ## Sharing Datasets
 
@@ -134,7 +148,7 @@ test('business is closed on day', function(string $business, string $day) {
 When running the example above, Pest's output will contain a description of each of the validated combinations.
 
 <div class="code-snippet">
-    <img src="/assets/img/datasets-businesshours.webp?1" style="--lines: 9" />
+    <img src="/assets/img/datasets-businesshours.webp?1" style="--lines: 10" />
 </div>
 
 ---
