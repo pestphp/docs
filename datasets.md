@@ -73,6 +73,20 @@ it('can generate the full name of a user', function (User $user) {
 ]);
 ```
 
+If you want, you can bind a single argument to the test case. However, Pest requires that it must be fully typed in the `it|test` function arguments.
+
+```diff
+-it('can generate the full name of a user', function ($user, $fullName) {
++it('can generate the full name of a user', function (User $user, $fullName) {
+    expect($user->full_name)->toBe($fullName);
+})->with([
+    [fn() => User::factory()->create(['first_name' => 'Nuno', 'last_name' => 'Maduro']), 'Nuno Maduro'],
+    [fn() => User::factory()->create(['first_name' => 'Luke', 'last_name' => 'Downing']), 'Luke Downing'],
+    [fn() => User::factory()->create(['first_name' => 'Freek', 'last_name' => 'Van Der Herten']), 'Freek Van Der Herten'],
+]);
+```
+
+
 ## Sharing Datasets
 
 By storing your datasets separately in the `tests/Datasets` folder, you can easily distinguish them from your test code and ensure that they do not clutter your main test files.
