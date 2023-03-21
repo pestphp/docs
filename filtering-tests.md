@@ -21,6 +21,7 @@ This chapter will cover even more ways to filter which tests are executed by Pes
 - [`--group`](#group)
 - [`--exclude-group`](#exclude-group)
 - [`--retry`](#retry)
+- [`only()`](#only)
 
 </div>
 
@@ -80,6 +81,19 @@ The `--retry` flag reorders your test suites by prioritizing the previously fail
 
 ```bash
 ./vendor/bin/pest --retry
+```
+
+<a name="only"></a>
+### `only()`
+
+If you want to run a specific test in your test suite, you can use the `only` method.
+
+```bash
+test('sum', function () {
+  $result = sum(1, 2);
+
+  expect($result)->toBe(3);
+})->only();
 ```
 
 ---
