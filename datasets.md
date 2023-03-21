@@ -73,7 +73,7 @@ it('can generate the full name of a user', function (User $user) {
 ]);
 ```
 
-A single dataset value can be buond as well, but Pest requires it to be fully typed in test parameters
+If you want, you can bind a single argument to the test case. However, Pest requires that it must be fully typed in the `it|test` function arguments.
 
 ```diff
 -it('can generate the full name of a user', function ($user, $fullName) {
