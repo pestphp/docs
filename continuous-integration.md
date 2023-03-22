@@ -44,6 +44,53 @@ Naturally, you may customize the script above according to your requirements. Fo
 
 Once you have created your `tests.yml` file, commit and push the `tests.yml` file so GitHub Actions can run your tests. Keep in mind that once you make this commit, your test suite will execute on all new pull requests and commits.
 
+
+## Example With GitLab CI/CD Pipelines
+
+If your application uses [GitLab CI/CD Pipelines](https://docs.gitlab.com/ee/ci/pipelines/) as its CI platform, the following guidelines will assist you in configuring Pest so that your application is automatically tested when someone pushes a commit to your GitLab repository.
+
+To get started, add the following configuration to your `.gitlab-ci.yml` file. The file should have the following contents:
+
+```yaml
+stages:
+  - build
+  - test
+  
+build:vendors:
+  stage: build
+  only:
+    refs:
+      - merge_requests
+      - push
+  cache:
+    key:
+      files:
+        - composer.lock
+    policy: pull-push
+  image: composer:2
+  script:
+    - composer install --no-interaction --prefer-dist --optimize-autoloader
+      
+tests:
+  stage: test
+  only:
+    refs:
+      - merge_requests
+      - push
+  cache:
+    key:
+      files:
+        - composer.lock
+    policy: pull
+  image: php:8.2
+  script:
+    - ./vendor/bin/pest
+```
+
+Naturally, you may customize the script above according to your requirements. For example, you may need to set up a database if your tests require one.
+
+Once you have created your `.gitlab-ci.yml` file, commit and push the `.gitlab-ci.yml` file so Gitlab CI/CD Pipelines can run your tests. Keep in mind that once you make this commit, your test suite will execute on all new pull requests and commits.
+
 ---
 
 Great job setting up Continuous Integration for your project to ensure codebase stability! Now, let's take a deeper dive into Pest's concepts by exploring it's test configuration capabilities: [Configuring Pest →](/docs/configuring-tests)
