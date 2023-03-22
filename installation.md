@@ -33,6 +33,12 @@ Here is an example of the output displayed when running Pest in a new, fresh pro
     <img src="/assets/img/pestinstall.webp?1" style="--lines: 10" />
 </div>
 
+Also, you can run special test by `--filter` argument.
+
+```bash
+./vendor/bin/pest --filter "that true is true"
+```
+
 ---
 
 After the installation process is finished, you can enhance your developer experience while working with Pest by configuring your editor: [Editor Setup →](/docs/editor-setup)
