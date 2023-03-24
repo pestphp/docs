@@ -64,6 +64,18 @@ All other Pest maintained plugins should be updated to version `^2.0` in your ap
 +    "pestphp/pest-plugin-laravel": "^2.0",
 ```
 
+If you are using the Faker Plugin, the `faker()` function has been renamed to `fake()`. You will need to update all uses.
+
+```diff
+- use function Pest\Faker\faker;
++ use function Pest\Faker\fake;
+
+test('faker', function () {
+-   expect(faker()->name())->toBeString();
++   expect(fake()->name())->toBeString();
+});
+```
+
 ### PHPUnit 10 Changes
 
 > Likelihood Of Impact: Medium
