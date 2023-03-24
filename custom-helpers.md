@@ -28,7 +28,7 @@ it('can manage users', function () {
 
 > **Note:** If your helper creates a custom expectation, you should write a dedicated [custom expectation](/docs/custom-expectations) instead.
 
-If your test helpers are utilized throughout your test suite, you may define them within `tests/Pest.php` or `tests/Helpers.php`, which will be automatically loaded by Pest.
+If your test helpers are utilized throughout your test suite, you may define them within the `tests/Pest.php` or `tests/Helpers.php` files. Alternatively, you can create a `tests/Helpers` directory to house your own helper files. All of these options will be automatically loaded by Pest.
 
 ```php
 use App\Clients\PaymentClient;
