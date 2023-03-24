@@ -42,7 +42,7 @@ jobs:
 
 Naturally, you may customize the script above according to your requirements. For example, you may need to set up a database if your tests require one.
 
-Once you have created your `tests.yml` file, commit and push the `tests.yml` file so GitHub Actions can run your tests. Keep in mind that once you make this commit, your test suite will execute on all new pull requests and commits.
+Once you have created your `tests.yml` file, commit and push the `tests.yml` file so GitHub Actions can run your tests. Keep in mind that once you make this commit, your test suite will execute on all new merge requests and commits.
 
 
 ## Example With GitLab CI/CD Pipelines
