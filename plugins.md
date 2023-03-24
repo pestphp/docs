@@ -155,7 +155,9 @@ To install Pest's "watch" plugin, you need to require the plugin via Composer.
 composer require pestphp/pest-plugin-watch --dev
 ```
 
-After installing the plugin, you will be able to use the `--watch` option when running Pest. This option instructs Pest to monitor your application and automatically re-run your tests when you change files within a list of specified directories.
+Make sure you also install [`fswatch`](https://github.com/emcrisostomo/fswatch#getting-fswatch) so Pest can monitor when a file changes.
+
+Once both the plugin and `fswatch` are installed, you will be able to use the `--watch` option when running Pest. This option instructs Pest to monitor your application and automatically re-run your tests when you change files within a list of specified directories.
 
 ```bash
 pest --watch
