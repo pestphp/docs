@@ -13,7 +13,7 @@ Your contribution is crucial to achieving our ambitious goal. We strongly believ
 
 **Help Fellow Users:** It's important to remember that contributing to the Pest's  growth goes beyond just writing code. Providing assistance to other Pest users is a valuable form of contribution as well. At this time, we are present on Discord and Telegram. However, you are free to create other community channels.
 
-> Discord: **[discord.gg/bMAJv82](https://discord.gg/bMAJv82)**
+> Discord: **[discord.gg/Huq6vaHu](https://discord.gg/Huq6vaHu)**
 
 > Telegram: **[t.me/+kYH5G4d5MV83ODk0](https://t.me/+kYH5G4d5MV83ODk0)**
 
