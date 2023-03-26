@@ -29,7 +29,7 @@ it('throws exception', function () {
 })->throws('Something happened.');
 ```
 
-You can use the `throwsIf` method to conditionally verify an exception if a given boolean expression evaluates to true.
+You can use the `throwsIf()` method to conditionally verify an exception if a given boolean expression evaluates to true.
 
 ```php
 it('throws exception', function () {
