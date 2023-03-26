@@ -98,7 +98,7 @@ Pest 2 is built on top of PHPUnit 10. This means that any notable changes made t
 
 > Likelihood Of Impact: Low
 
-When performing high order testing, you might have utilized the `tap` method to invoke assertions on an object that needs lazy evaluation during runtime. With Pest 2, the `tap` method is deprecated. Instead, you should use the `defer` method.
+When performing high order testing, you might have utilized the `tap()` method to invoke assertions on an object that needs lazy evaluation during runtime. With Pest 2, the `tap()` method is deprecated. Instead, you should use the `defer()` method.
 
 ```diff
 it('creates admins')
