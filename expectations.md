@@ -7,7 +7,7 @@ description: By setting expectations for your tests using the Pest expectation A
 
 By setting expectations for your tests using the Pest expectation API, you can easily identify bugs and other issues in your code. This is because the API allows you to specify the expected outcome of a test, making it easy to detect any deviations from the expected behavior.
 
-You can start the expectation by passing your value to the `expect($value)` function. The `expect` function is used every time you want to test a value. You will rarely call `expect` by itself. Instead, you will use `expect` along with an "expectation" method to assert something about the value.
+You can start the expectation by passing your value to the `expect($value)` function. The `expect()` function is used every time you want to test a value. You will rarely call `expect()` by itself. Instead, you will use `expect()` along with an "expectation" method to assert something about the value.
 
 ```php
 test('sum', function () {

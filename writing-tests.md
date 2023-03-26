@@ -60,7 +60,7 @@ In this case, when you run the `./vendor/bin/pest` command, the output will incl
 
 ## Expectation API
 
-As you may have noticed in our previous examples, we made use of Pest's expectation API to perform assertions in our test code. The `expect` function is a core part of the expectation API and is used to assert that certain conditions are met.
+As you may have noticed in our previous examples, we made use of Pest's expectation API to perform assertions in our test code. The `expect()` function is a core part of the expectation API and is used to assert that certain conditions are met.
 
 For instance, in our previous example, we used `expect($result)->toBe(3)` to ensure that the value of `$result` is equal to `3`. Pest's expectation API provides a variety of other assertion functions that you can use to test the behavior of your code, such as `toBeTrue`, `toBeFalse`, and `toContain`.
 
