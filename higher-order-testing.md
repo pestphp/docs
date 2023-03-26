@@ -90,7 +90,7 @@ expect($user->surname)->toBe('Maduro');
 expect($user->addTitle('Mr.'))->toBe('Mr. Nuno Maduro');
 ```
 
-To utilize Higher Order Expectations, you can simply chain the properties and methods directly to the expect() function, and Pest will take care of retrieving the property value or calling the method on the `$value` under test.
+To utilize Higher Order Expectations, you can simply chain the properties and methods directly to the `expect()` function, and Pest will take care of retrieving the property value or calling the method on the `$value` under test.
 
 Now, let's see the same test refactored to Higher Order Expectations.
 
@@ -128,7 +128,7 @@ expect(['name' => 'Nuno', 'projects' => ['Pest', 'OpenAI', 'Laravel Zero']])
 
 # Scoped Higher Order Expectations
 
-With Scoped Higher Order Expectations, you can use a closure to gain access and lock an expectation in to a certain level in the chain.
+With Scoped Higher Order Expectations, you may use the method `scoped()` and a closure to gain access and lock an expectation in to a certain level in the chain.
 
 This is very useful for Laravel Eloquent models, where you want to check properties of a child relation.
 
@@ -142,5 +142,7 @@ This is very useful for Laravel Eloquent models, where you want to check propert
         ->country->toBe('Portugal')
     );
 ```
+
+---
 
 Although higher order testing may appear complicated, it is a technique that can significantly simplify your test suite's code. In the next section, we will discuss Pest's community video resources: [Video Resources](/docs/video-resources)
