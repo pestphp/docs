@@ -78,6 +78,71 @@ it('validates emails')
     ->toBeTrue();
 ```
 
+# Higher Order Expectations
+
+With Higher Order Expectations, you can perform expectations directly on the `properties` or `methods` of the expectation `$value`.
+
+For example, imagine you're testing that a user was created successfully and a variety of attributes have been stored in the database. Your test might look something like this:
+
+```php
+expect($user->name)->toBe('Nuno');
+expect($user->surname)->toBe('Maduro');
+expect($user->addTitle('Mr.'))->toBe('Mr. Nuno Maduro');
+```
+
+To utilize Higher Order Expectations, you can simply chain the properties and methods directly to the `expect()` function, and Pest will take care of retrieving the property value or calling the method on the `$value` under test.
+
+Now, let's see the same test refactored to Higher Order Expectations.
+
+```php
+expect($user)
+    ->name->toBe('Nuno')
+    ->surname->toBe('Maduro')
+    ->addTitle('Mr.')->toBe('Mr. Nuno Maduro');
+```
+
+When working with arrays, you may also access the `$value` array keys and perform expectations on them.
+
+```php
+expect(['name' => 'Nuno', 'projects' => ['Pest', 'OpenAI', 'Laravel Zero']])
+    ->name->toBe('Nuno')
+    ->projects->toHaveCount(3)
+    ->each->toBeString();
+   
+expect(['Dan', 'Luke', 'Nuno'])
+    ->{0}->toBe('Dan');
+```
+
+Higher Order Expectations can be used with all [Expectations](/docs/expectations), and you may even create further Higher Order Expectations within closures.
+
+```php
+expect(['name' => 'Nuno', 'projects' => ['Pest', 'OpenAI', 'Laravel Zero']])
+    ->name->toBe('Nuno')
+    ->projects->toHaveCount(3)
+    ->sequence(
+        fn ($project) => $project->toBe('Pest'),
+        fn ($project) => $project->toBe('OpenAI'),
+        fn ($project) => $project->toBe('Laravel Zero'),
+    );
+```
+
+# Scoped Higher Order Expectations
+
+With Scoped Higher Order Expectations, you may use the method `scoped()` and a closure to gain access and lock an expectation in to a certain level in the chain.
+
+This is very useful for Laravel Eloquent models, where you want to check properties of a child relation.
+
+```php
+    expect($user)
+    ->name->toBe('Nuno')
+    ->email->toBe('enunomaduro@gmail.com')
+    ->address()->scoped(fn ($address) => $address
+        ->line1->toBe('1 Pest Street')
+        ->city->toBe('Lisbon')
+        ->country->toBe('Portugal')
+    );
+```
+
 ---
 
 Although higher order testing may appear complicated, it is a technique that can significantly simplify your test suite's code. In the next section, we will discuss Pest's community video resources: [Video Resources](/docs/video-resources)

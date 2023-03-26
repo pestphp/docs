@@ -118,15 +118,12 @@ In addition to the individual expectations available in Pest, the expectation AP
 
 This expectation ensures that both `$value` and `$expected` share the same type and value.
 
-If used with objects, it confirms that both variables refer to the exact same object.
+If used with objects, it ensures that both variables refer to the exact same object.
 
 ```php
-expect($total)->toBe(120);
-
 expect(1)->toBe(1);
 expect('1')->not->toBe(1);
-
-expect(new StdClass)->not->toBe(new StdClass);
+expect(new StdClass())->not->toBe(new StdClass());
 ```
 
 <a name="expect-toBeEmpty"></a>
@@ -143,7 +140,7 @@ expect(null)->toBeEmpty();
 <a name="expect-toBeTrue"></a>
 ### `toBeTrue()`
 
-This expectation guarantees that `$value` is true.
+This expectation ensures that `$value` is true.
 
 ```php
 expect($isPublished)->toBeTrue();
@@ -152,7 +149,7 @@ expect($isPublished)->toBeTrue();
 <a name="expect-toBeTruthy"></a>
 ### `toBeTruthy()`
 
-This expectation confirms that `$value` is truthy.
+This expectation ensures that `$value` is truthy.
 
 ```php
 expect(1)->toBeTruthy();
@@ -181,7 +178,7 @@ expect('')->toBeFalsy();
 <a name="expect-toBeGreaterThan"></a>
 ### `toBeGreaterThan($expected)`
 
-This expectation asserts that `$value` is greater than `$expected`.
+This expectation ensures that `$value` is greater than `$expected`.
 
 ```php
 expect($count)->toBeGreaterThan(20);
@@ -190,7 +187,7 @@ expect($count)->toBeGreaterThan(20);
 <a name="expect-toBeGreaterThanOrEqual"></a>
 ### `toBeGreaterThanOrEqual($expected)`
 
-This expectation asserts that `$value` is greater than or equal to `$expected`.
+This expectation ensures that `$value` is greater than or equal to `$expected`.
 
 ```php
 expect($count)->toBeGreaterThanOrEqual(21);
@@ -199,7 +196,7 @@ expect($count)->toBeGreaterThanOrEqual(21);
 <a name="expect-toBeLessThan"></a>
 ### `toBeLessThan($expected)`
 
-This expectation asserts that `$value` is lesser than `$expected`.
+This expectation ensures that `$value` is lesser than `$expected`.
 
 ```php
 expect($count)->toBeLessThan(3);
@@ -208,7 +205,7 @@ expect($count)->toBeLessThan(3);
 <a name="expect-toBeLessThanOrEqual"></a>
 ### `toBeLessThanOrEqual($expected)`
 
-This expectation asserts that `$value` is lesser than or equal to `$expected`.
+This expectation ensures that `$value` is lesser than or equal to `$expected`.
 
 ```php
 expect($count)->toBeLessThanOrEqual(2);
@@ -231,15 +228,15 @@ expect([1, 2, 3, 4])->toContain(2, 4);
 This expectation ensures that `$value` contains only instances of `$class`.
 
 ```php
-$dates =  [new DateTimeImmutable(), new DateTimeImmutable()];
+$dates = [new DateTime(), new DateTime()];
 
-expect($dates)->toContainOnlyInstancesOf(DateTimeImmutable::class);
+expect($dates)->toContainOnlyInstancesOf(DateTime::class);
 ```
 
 <a name="expect-toHaveCount"></a>
 ### `toHaveCount(int $count)`
 
-This expectation asserts that the `$count` provided matches the number of elements in an iterable `$value`.
+This expectation ensures that the `$count` provided matches the number of elements in an iterable `$value`.
 
 ```php
 expect(['Nuno', 'Luke', 'Alex', 'Dan'])->toHaveCount(4);
@@ -279,7 +276,7 @@ expect($user)->toHaveProperty('is_active', 'true');
 <a name="expect-toHaveProperties"></a>
 ### `toHaveProperties(iterable $name)`
 
-This expectation asserts that `$value` has property names matching all the names contained in `$names`.
+This expectation ensures that `$value` has property names matching all the names contained in `$names`.
 
 ```php
 expect($user)->toHaveProperties(['name', 'email']);
@@ -288,7 +285,7 @@ expect($user)->toHaveProperties(['name', 'email']);
 <a name="expect-toMatchArray"></a>
 ### `toMatchArray($array)`
 
-This expectation confirms that the `$value` array matches the given `$array` subset.
+This expectation ensures that the `$value` array matches the given `$array` subset.
 
 ```php
 $user = [
@@ -328,10 +325,8 @@ This expectation ensures that `$value` and `$expected` have the same value.
 
 ```php
 expect($title)->toEqual('Hello World');
-
 expect('1')->toEqual(1);
-
-expect(new StdClass)->toEqual(new StdClass);
+expect(new StdClass())->toEqual(new StdClass());
 ```
 
 <a name="expect-toEqualCanonicalizing"></a>
@@ -362,7 +357,7 @@ expect(14)->toEqualWithDelta(10, 0.1); // Fail
 <a name="expect-toBeIn"></a>
 ### `toBeIn()`
 
-This expectation confirms that `$value` is one of the given values.
+This expectation ensures that `$value` is one of the given values.
 
 ```php
 expect($newUser->status)->toBeIn(['pending', 'new', 'active']);
@@ -541,7 +536,6 @@ This expectation ensures that `$value` contains the provided `$key`.
 ```php
 expect(['name' => 'Nuno', 'surname' => 'Maduro'])->toHaveKey('name');
 expect(['name' => 'Nuno', 'surname' => 'Maduro'])->toHaveKey('name', 'Nuno');
-
 expect(['user' => ['name' => 'Nuno', 'surname' => 'Maduro']])->toHaveKey('user.name');
 expect(['user' => ['name' => 'Nuno', 'surname' => 'Maduro']])->toHaveKey('user.name', 'Nuno');
 ```
@@ -553,7 +547,6 @@ This expectation ensures that `$value` contains the provided `$keys`.
 
 ```php
 expect(['id' => 1, 'name' => 'Nuno'])->toHaveKeys(['id', 'name']);
-
 expect(['message' => ['from' => 'Nuno', 'to' => 'Luke'] ])->toHaveKeys(['message.from', 'message.to']);
 ```
 
@@ -682,7 +675,6 @@ Use the `dd()` modifier allows you to dump the current expectation $value and st
 
 ```php
 expect(14)->dd(); // 14
-
 expect([1, 2])->sequence(
     fn ($number) => $number->toBe(1),
     fn ($number) => $number->dd(), // 2
@@ -697,7 +689,6 @@ The `each()` modifier allows you to create an expectation on each item of the gi
 ```php
 expect([1, 2, 3])->each->toBeInt();
 expect([1, 2, 3])->each->not->toBeString();
-
 expect([1, 2, 3])->each(fn ($number) => $number->toBeLessThan(4));
 ```
 
@@ -748,7 +739,6 @@ The `not` modifier allows to invert the subsequent expectation.
 
 ```php
 expect(10)->not->toBeGreaterThan(100);
-
 expect(true)->not->toBeFalse();
 ```
 
@@ -759,7 +749,6 @@ The `ray()` modifier allows you to debug the current `$value` with **[myray.app]
 
 ```php
 expect(14)->ray(); // 14
-
 expect([1, 2])->sequence(
     fn ($number) => $number->toBe(1),
     fn ($number) => $number->ray(), // 2
