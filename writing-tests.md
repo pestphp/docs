@@ -42,7 +42,7 @@ After writing your test code, it's time to run your tests using Pest. When you e
     <img src="/assets/img/sum.webp?1" style="--lines: 5" />
 </div>
 
-As an alternative to the `test` function, Pest provides the convenient `it` function that simply prefixes the test description with the word "it", making your tests more readable.
+As an alternative to the `test()` function, Pest provides the convenient `it()` function that simply prefixes the test description with the word "it", making your tests more readable.
 
 ```php
 it('performs sums', function () {
