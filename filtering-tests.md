@@ -86,7 +86,7 @@ The `--retry` flag reorders your test suites by prioritizing the previously fail
 <a name="only"></a>
 ### `only()`
 
-If you want to run a specific test in your test suite, you can use the `only` method.
+If you want to run a specific test in your test suite, you can use the `only()` method.
 
 ```bash
 test('sum', function () {
