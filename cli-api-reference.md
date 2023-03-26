@@ -37,7 +37,6 @@ In the preceding chapters of the Pest documentation, we have covered numerous CL
 
 ## Execution
 
-- `--process-isolation`: Run each test in a separate PHP process.
 - `--globals-backup`: Backup and restore $GLOBALS for each test.
 - `--static-backup`: Backup and restore static properties for each test.
 - `--strict-coverage`: Be strict about code coverage metadata.
