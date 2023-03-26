@@ -78,7 +78,7 @@ it('validates emails')
     ->toBeTrue();
 ```
 
-# Higher Order Expectations
+## Higher Order Expectations
 
 With Higher Order Expectations, you can perform expectations directly on the `properties` or `methods` of the expectation `$value`.
 
@@ -126,7 +126,7 @@ expect(['name' => 'Nuno', 'projects' => ['Pest', 'OpenAI', 'Laravel Zero']])
     );
 ```
 
-# Scoped Higher Order Expectations
+## Scoped Higher Order Expectations
 
 With Scoped Higher Order Expectations, you may use the method `scoped()` and a closure to gain access and lock an expectation in to a certain level in the chain.
 
