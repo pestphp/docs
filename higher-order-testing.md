@@ -48,7 +48,7 @@ it('has a name')
 
 It is crucial to use lazy evaluation for the expectation value by passing a closure to the `expect()` method. This ensures that the expected value is created only when the test runs and not before.
 
-If you need to make assertions on an object that requires lazy evaluation at runtime, you can use the `defer` method.
+If you need to make assertions on an object that requires lazy evaluation at runtime, you can use the `defer()` method.
 
 ```php
 it('creates admins')
@@ -56,7 +56,7 @@ it('creates admins')
     ->assertDatabaseHas('users', ['id' => 1]);
 ```
 
-In the example above, the `assertDatabaseHas` assertion method will be called on the result of the closure passed to the `defer` method.
+In the example above, the `assertDatabaseHas()` assertion method will be called on the result of the closure passed to the `defer()` method.
 
 The principles of high-order testing can also be applied to hooks. This means that if the body of your hook consists of a sequence of methods chained to the `$this` variable, you can simply chain those methods to the hook method and omit the closure entirely.
 
@@ -78,7 +78,7 @@ it('validates emails')
     ->toBeTrue();
 ```
 
-# Higher Order Expectations
+## Higher Order Expectations
 
 With Higher Order Expectations, you can perform expectations directly on the `properties` or `methods` of the expectation `$value`.
 
@@ -126,7 +126,7 @@ expect(['name' => 'Nuno', 'projects' => ['Pest', 'OpenAI', 'Laravel Zero']])
     );
 ```
 
-# Scoped Higher Order Expectations
+## Scoped Higher Order Expectations
 
 With Scoped Higher Order Expectations, you may use the method `scoped()` and a closure to gain access and lock an expectation in to a certain level in the chain.
 

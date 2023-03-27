@@ -21,7 +21,7 @@ While comprehensive documentation for Mockery can be found on the [Mockery websi
 
 ## Method Expectations
 
-Mock objects are essential for isolating the code being tested and simulating specific behaviors or conditions from other pieces of the application. After creating a mock using the `Mockery::mock()` method, we can indicate that we expect a certain method to be invoked by calling the `shouldReceive` method.
+Mock objects are essential for isolating the code being tested and simulating specific behaviors or conditions from other pieces of the application. After creating a mock using the `Mockery::mock()` method, we can indicate that we expect a certain method to be invoked by calling the `shouldReceive()` method.
 
 ```php
 use App\Repositories\BookRepository;

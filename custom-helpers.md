@@ -7,7 +7,7 @@ description: If you're transitioning to a functional approach for writing tests,
 
 If you're transitioning to a functional approach for writing tests, you may wonder where to put your helpers that used to be protected or private methods in your test classes. When using Pest, these helper methods should be converted to simple functions.
 
-For example, if your helper is specific to a certain test file, you may create the helper in the test file directly. Within your helper, you may invoke the `test` function to access the test class instance that would normally be available via `$this`.
+For example, if your helper is specific to a certain test file, you may create the helper in the test file directly. Within your helper, you may invoke the `test()` function to access the test class instance that would normally be available via `$this`.
 
 ```php
 use App\Models\User;

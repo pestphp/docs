@@ -87,7 +87,7 @@ expect()->intercept('toBe', fn (mixed $value) => is_string($value), function (st
 
 ## Pipe Expectations
 
-There may be instances where you want to run one of Pest's built-in expectations, but include customized expectation logic under certain conditions. In these cases, you can use the `pipe` method. For example, we may want to customize the behavior of the `toBe()` expectation if the given value is an Eloquent model.
+There may be instances where you want to run one of Pest's built-in expectations, but include customized expectation logic under certain conditions. In these cases, you can use the `pipe()` method. For example, we may want to customize the behavior of the `toBe()` expectation if the given value is an Eloquent model.
 
 ```php
 use Illuminate\Database\Eloquent\Model;

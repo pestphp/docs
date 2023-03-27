@@ -42,7 +42,7 @@ After writing your test code, it's time to run your tests using Pest. When you e
     <img src="/assets/img/sum.webp?1" style="--lines: 5" />
 </div>
 
-As an alternative to the `test` function, Pest provides the convenient `it` function that simply prefixes the test description with the word "it", making your tests more readable.
+As an alternative to the `test()` function, Pest provides the convenient `it()` function that simply prefixes the test description with the word "it", making your tests more readable.
 
 ```php
 it('performs sums', function () {
@@ -60,9 +60,9 @@ In this case, when you run the `./vendor/bin/pest` command, the output will incl
 
 ## Expectation API
 
-As you may have noticed in our previous examples, we made use of Pest's expectation API to perform assertions in our test code. The `expect` function is a core part of the expectation API and is used to assert that certain conditions are met.
+As you may have noticed in our previous examples, we made use of Pest's expectation API to perform assertions in our test code. The `expect()` function is a core part of the expectation API and is used to assert that certain conditions are met.
 
-For instance, in our previous example, we used `expect($result)->toBe(3)` to ensure that the value of `$result` is equal to `3`. Pest's expectation API provides a variety of other assertion functions that you can use to test the behavior of your code, such as `toBeTrue`, `toBeFalse`, and `toContain`.
+For instance, in our previous example, we used `expect($result)->toBe(3)` to ensure that the value of `$result` is equal to `3`. Pest's expectation API provides a variety of other assertion functions that you can use to test the behavior of your code, such as `toBeTrue()`, `toBeFalse()`, and `toContain()`.
 
 By using the expectation API, you can write concise and readable assertions that make it clear what your code is doing and how it should behave. In the [next section](/docs/expectations), we will cover some of the most commonly used assertion functions in Pest's expectation API.
 

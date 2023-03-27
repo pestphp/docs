@@ -1,11 +1,11 @@
 ---
 title: Skipping Tests
-description: During the development process, there may be times when you need to temporarily disable a test. Rather than commenting out the code, we recommended using the `skip` method.
+description: During the development process, there may be times when you need to temporarily disable a test. Rather than commenting out the code, we recommended using the `skip()` method.
 ---
 
 # Skipping Tests
 
-During the development process, there may be times when you need to temporarily disable a test. Rather than commenting out the code, we recommended using the `skip` method.
+During the development process, there may be times when you need to temporarily disable a test. Rather than commenting out the code, we recommended using the `skip()` method.
 
 ```php
 it('has home', function () {
