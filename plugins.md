@@ -82,7 +82,7 @@ php artisan pest:test UsersTest --unit
 
 Executing the `pest:dataset` Artisan command will create a fresh dataset in the `tests/Datasets` directory.
 
-```
+```bash
 php artisan pest:dataset Emails
 ```
 
@@ -94,7 +94,7 @@ it('has a welcome page', function () {
 });
 ```
 
-However, with the assistance of this plugin, it is possible for you to bypass the `$this` variable and use convenient, namespaced functions that are provided by this plugin.
+In addition, with the assistance of this plugin, it is possible for you to bypass the `$this` variable while using namespaced functions such as `actingAs`, `get`, `post` and `delete`.
 
 ```php
 use function Pest\Laravel\{get};
@@ -105,11 +105,27 @@ it('has a welcome page', function () {
 });
 ```
 
+To illustrate this convenient feature using another example, we can write a test acting as an authenticated user accessing the restricted dashboard page.
+
+```php
+use App\Models\User;
+use function Pest\Laravel\{actingAs};
+
+test('authenticated user can access the dashboard', function () {
+    $user = User::factory()->create();
+
+    actingAs($user)->get('/dashboard')
+        ->assertStatus(200);
+});
+```
+
 As you may expect, all of the assertions that were previously accessible via `$this->` are available as namespace functions.
 
 ```php
 use function Pest\Laravel\{actingAs, get, post, delete, ...};
 ```
+
+You can find the full testing documentation on the Laravel's website: [laravel.com/docs/10.x/testing](https://laravel.com/docs/10.x/testing).
 
 ---
 
@@ -165,7 +181,7 @@ pest --watch
 
 By default, the plugin monitors the following directories.
 
-```
+```plain
 tests/
 app/
 src/
