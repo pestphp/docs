@@ -16,7 +16,7 @@ Today we’re finally making the long-awaited release of Pest 2.0! Our creator i
 Pest 2.0 marks a major milestone in our development, packed with an array of powerful features such as:
 
 - **[Powerful Architecture Plugin](/docs/arch-testing)**, for testing the architectural rules of your application with ease
-- **[Up To 60% Speed Improvements on "--parallel" testing](/docs/optimizing-tests#parallel)**, with our fully rewritten parallel core, enjoy significantly faster test runs
+- **[Up To 80% Speed Improvements on "--parallel" testing](/docs/optimizing-tests#parallel)**, with our fully rewritten parallel core, enjoy significantly faster test runs
 - **[--profile option](/docs/optimizing-tests#content-profiling)**, to identify the slowest tests and optimize their execution
 - **[--compact printer](/docs/optimizing-tests#content-compact-printer)**, a minimal printer that only outputs information about test failures
 - **[--retry option](/docs/filtering-tests#retry)**, for saving time by running only previously unsuccessful tests
