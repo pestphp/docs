@@ -7,7 +7,6 @@ description: When testing PHP code, you have access to a range of frameworks. Ne
 
 When testing PHP code, you have access to a range of frameworks. Nevertheless, we believe that Pest is the most elegant and sophisticated testing framework in the world. It's designed to make the testing process enjoyable, and our goal is to make tests easy to read and understand, with a code syntax that closely resembles natural human language.
 
-
 ```php
 function sum($a, $b) {
     return $a + $b;
@@ -34,7 +33,7 @@ In addition to its exceptional test reporting, Pest also offers a range of other
 - Native [profiling tools](/docs/optimizing-tests#profiling) to optimize slow-running tests
 - Out-of-the-box [Architectural Testing](/docs/arch-testing) to test application rules
 - [Coverage](/docs/test-coverage) report directly on the terminal to track code coverage
-- Dozens of [optional plugins](/docs/plugins), such as Watch Mode and Snapshot testing to customize Pest to fit your needs.
+- Dozens of [optional plugins](/docs/plugins), such as Watch Mode and [Snapshot testing](https://github.com/spatie/pest-plugin-snapshots), to customize Pest to fit your needs.
 
 Whether you're engaged in a small personal project or a large-scale enterprise application, Pest has got you covered. So if you want to make the testing process enjoyable and efficient, give Pest a try. We're confident that you'll love it as much as we do.
 
