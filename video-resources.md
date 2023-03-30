@@ -20,7 +20,7 @@ Below you will find a list of some of the video resources available online. Thes
 
 - Christoph's **PEST Driven Laravel**: [learn.christoph-rumpel.com/products/pest-driven-laravel](https://learn.christoph-rumpel.com/products/pest-driven-laravel)
 - Codecourse's **Up And Running with Pest**: [codecourse.com/courses/up-and-running-with-pest](https://codecourse.com/courses/up-and-running-with-pest)
-- Laracasts's **Pest From Scratch**: [laracasts.com/series/pest-from-scratch](https://laracasts.com/series/pest-from-scratch)
+- Laracasts's **Pest From Scratch**: [pestfromscratch.com](https://pestfromscratch.com)
 - Spatie's **Testing Laravel**: [testing-laravel.com/](https://testing-laravel.com/)
 
 ### Others
