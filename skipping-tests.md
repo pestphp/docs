@@ -43,6 +43,14 @@ it('has home', function () {
 })->skip(fn () => DB::getDriverName() !== 'mysql', 'db driver not supported');
 ```
 
+To skip a test on a particular operating system, you can make use of the `skipOnWindows()`, `skipOnMac()`, or `skipOnLinux()`.
+
+```php
+it('has home', function () {
+    //
+})->skipOnWindows(); // or skipOnMac() or skipOnLinux() ...
+```
+
 You may even invoke the `skip()` method within your `beforeEach()` hook to conveniently skip an entire test file.
 
 ```php
@@ -50,6 +58,9 @@ beforeEach(function () {
     //
 })->skip();
 ```
+
+
+
 
 ## Creating Todos
 
