@@ -144,7 +144,7 @@ uses(DuskTestCase::class);
 it('can visit home page', function () {
     $this->browse(function (Browser $browser) {
         $browser->visit('/')
-            ->AssertSee('Laravel');
+            ->assertSee('Laravel');
     });
 });
 ```
