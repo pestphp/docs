@@ -127,6 +127,28 @@ use function Pest\Laravel\{actingAs, get, post, delete, ...};
 
 You can find the full testing documentation on the Laravel website: [laravel.com/docs/10.x/testing](https://laravel.com/docs/10.x/testing).
 
+#### Laravel Dusk
+
+Laravel Dusk provides an easy-to-use browser automation testing tool. You may read more at [laravel.com/docs/10.x/dusk](https://laravel.com/docs/10.x/dusk).
+
+Here is an example of a Dusk test written in Pest. Note that you must [configure](/docs/configuring-tests) your test to use the `DuskTestCase` base test class.
+
+```php
+//Tests/Broswer/HomePageTest.php
+
+use Laravel\Dusk\Browser;
+use Tests\DuskTestCase;
+
+uses(DuskTestCase::class);
+
+it('can visit home page', function () {
+    $this->browse(function (Browser $browser) {
+        $browser->visit('/')
+            ->AssertSee('Laravel');
+    });
+});
+```
+
 ---
 
 <a name="livewire"></a>
