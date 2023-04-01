@@ -59,9 +59,6 @@ beforeEach(function () {
 })->skip();
 ```
 
-
-
-
 ## Creating Todos
 
 While skipping tests can be a helpful way to exclude specific tests temporarily from your test suite, it can also lead to situations where skipped tests are forgotten or overlooked. To prevent this, Pest provide a way to create "todos", which are essentially placeholders for tests that need attention.
