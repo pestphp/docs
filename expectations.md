@@ -281,6 +281,14 @@ This expectation ensures that `$value` has property names matching all the names
 ```php
 expect($user)->toHaveProperties(['name', 'email']);
 ```
+In addition, you can verify the name and value of multiple properties using an associative array.
+
+```php
+expect($user)->toHaveProperties([
+    'name' => 'Nuno', 
+    'email' => 'enunomaduro@gmail.com'
+]);
+```
 
 <a name="expect-toMatchArray"></a>
 ### `toMatchArray($array)`
