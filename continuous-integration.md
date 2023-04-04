@@ -116,6 +116,51 @@ Naturally, you may customize the script above according to your requirements. Fo
 
 Once you have created your `bitbucket-pipelines.yml` file, commit and push the `bitbucket-pipelines.yml` file so Bitbucket Pipelines can run your tests. Keep in mind that once you make this commit, your test suite will execute on all new pull requests and commits.
 
+## Example with Chipper CI
+
+If your application uses [Chipper CI](https://chipperci.com) as its CI platform, the following guidelines will assist you in configuring Pest so that your application is automatically tested when someone pushes a commit to your git repository.
+
+To get started, add the following configuration to your `.chipperci.yml` file. The file should have the following contents:
+
+```yaml
+version: 1
+
+environment:
+  php: 8.2
+  node: 16
+
+# Optional services
+services:
+#  - mysql: 8
+#  - redis:
+
+# Build all commits
+on:
+   push:
+      branches: .*
+
+pipeline:
+  - name: Setup
+    cmd: |
+      cp -v .env.example .env
+      composer install --no-interaction --prefer-dist --optimize-autoloader
+      php artisan key:generate
+
+  - name: Compile Assets
+    cmd: |
+      npm ci --no-audit
+      npm run build
+
+  - name: Test
+    cmd: pest
+```
+
+In addition to handling Composer and NPM caches, Chipper CI automatically adds `vendor/bin` to your PATH, so simply running the `pest` command will work when running tests.
+
+Naturally, you may customize the scripts above according to your requirements. For example, you may need to define a [database service](https://chipperci.com/docs/builds/databases/) if your tests require one.
+
+Once you have created your `.chipperci.yml` file, commit and push the `.chipperci.yml` file so Chipper CI can run your tests. Keep in mind that once you make this commit, your test suite will execute on all new commits.
+
 ---
 
 Great job setting up Continuous Integration for your project to ensure codebase stability! Now, let's take a deeper dive into Pest's concepts by exploring it's test configuration capabilities: [Configuring Pest →](/docs/configuring-tests)
