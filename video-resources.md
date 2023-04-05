@@ -20,20 +20,9 @@ We have gathered here some inspiring and exciting conference talks about Pest PH
 
 The courses listed here are endorsed by Pest and were carefully created to bring high-quality content about PHP testing.
 
-- [Up And Running with Pest](https://codecourse.com/courses/up-and-running-with-pest) by Codecourse
 - [Pest From Scratch](http://pestfromscratch.com) presented by Luke Downing at [Laracasts](https://laracasts.com/series/pest-from-scratch)
+- [Up And Running with Pest](https://codecourse.com/courses/up-and-running-with-pest) by Codecourse
 - [Testing Laravel](https://testing-laravel.com/) by Spatie
-
-### Pest in Practice
-
-The Pest in Practice series features Luke Downing creating a full test suit project in a real PHP open-source code base.
-
-- [Pest in Practice - Episode 1](https://www.youtube.com/watch?v=UW9c6Q782l8)
-- [Pest in Practice - Episode 2](https://www.youtube.com/watch?v=T5Mbr1WPa1w)
-- [Pest in Practice - Episode 3](https://www.youtube.com/watch?v=0m4lzfwnvpA)
-- [Pest in Practice - Episode 4](https://www.youtube.com/watch?v=yvcYWo4Bi6U)
-- [Pest in Practice - Episode 5](https://www.youtube.com/watch?v=hisAGJrFyC0)
-- [Pest in Practice - Episode 6](https://www.youtube.com/watch?v=1y5Ok6ARv7I)
 
 ### Pest Meetups
 
@@ -56,6 +45,7 @@ Below you find videos created by the Pest community. All the content listed in t
 - [Reviews Pest for the First Time](https://www.youtube.com/watch?v=LVYIMoOKTzg) by Laracasts
 - [Laravel Testing 21/24: What is Pest and How It Works](https://www.youtube.com/watch?v=4ubp_IF6kqY) by Laravel Daily
 - [Converting a PHPUnit testsuite to Pest](https://www.youtube.com/watch?v=81-r9THrJhI) by Spatie
+- [Pest in Practice](https://www.youtube.com/watch?v=UW9c6Q782l8) by Luke Downing
 
 #### Brazilian Portuguese
 
