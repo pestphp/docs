@@ -17,7 +17,8 @@ In the preceding chapters of the Pest documentation, we have covered numerous CL
 - `-d <key[=value]>`: Set a php.ini value.
 - `--cache-directory <dir>`: Specify cache directory.
 - `--generate-configuration`: Generate configuration file with suggested settings.
-- `--migrate-configuration`: Migrate configuration file to current format
+- `--migrate-configuration`: Migrate configuration file to current format.
+- `--test-directory`: Specify test directory containing Pest.php, TestCase.php, helpers and your tests. Default: tests
 
 ## Selection
 
