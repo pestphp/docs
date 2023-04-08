@@ -5,7 +5,7 @@ description: Our project aims to develop the world's finest testing framework th
 
 # Community Guide
 
-Our project aims to develop the world's finest testing framework that not only establishes itself as the standard choice in the PHP, ecosystem but also serves as a catalyst for change and inspiration in other ecosystems.
+Our project aims to develop the world's finest testing framework that not only establishes itself as the standard choice in the PHP ecosystem, but also serves as a catalyst for change and inspiration in other ecosystems.
 
 Your contribution is crucial to achieving our ambitious goal. We strongly believe that the PHP ecosystem has the talent and work ethic necessary to accomplish this goal. In the following section, we will outline the various areas where you can lend your assistance and become an integral part of our mission.
 
