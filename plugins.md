@@ -32,10 +32,10 @@ composer require pestphp/pest-plugin-faker --dev
 After installing the plugin, you may utilize the namespaced `fake` function to generate fake data for your tests.
 
 ```php
-use function Pest\Faker\fake;
+use function Pest\Faker\faker;
 
 it('generates a name', function () {
-    $name = fake()->name; // random name...
+    $name = faker()->name; // random name...
 
     //
 });
