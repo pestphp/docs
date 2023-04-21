@@ -47,6 +47,7 @@ Below you find videos created by the Pest community. All the content listed in t
 - [Laravel Testing 21/24: What is Pest and How It Works](https://www.youtube.com/watch?v=4ubp_IF6kqY) by Laravel Daily
 - [Converting a PHPUnit testsuite to Pest](https://www.youtube.com/watch?v=81-r9THrJhI) by Spatie
 - [Pest in Practice](https://www.youtube.com/watch?v=UW9c6Q782l8) by Luke Downing
+- [Pest v2 Release and how to intercept the expectation API](https://www.youtube.com/watch?v=Zu1U4oWJKn4) by Ruslan Steiger
 
 #### Brazilian Portuguese
 
