@@ -5,7 +5,7 @@ description: Test coverage (or code coverage) is a metric used to measure the pe
 
 # Test Coverage
 
-**Requires [XDebug 3.0+](https://xdebug.org/docs/install/)**, [PCOV](https://github.com/krakjoe/pcov), or [PHPDBG](https://www.php.net/manual/en/book.phpdbg.php).
+**Requires [XDebug 3.0+](https://xdebug.org/docs/install/)** or [PCOV](https://github.com/krakjoe/pcov).
 
 Test coverage (or code coverage) is a metric used to measure the percentage of code that is executed during testing. This can help developers identify parts of their code that may not be tested or that have low coverage, indicating a potential risk for bugs and other issues.
 
@@ -21,7 +21,7 @@ Typically, the essential configuration for gathering code coverage is already pr
     ...
 ```
 
-In addition to configuring your `phpunit.xml` file, you will also need to install [XDebug 3.0+](https://xdebug.org/docs/install/), [PCOV](https://github.com/krakjoe/pcov), or [PHPDBG](https://www.php.net/manual/en/book.phpdbg.php) to generate a code coverage report. When utilizing XDebug, the `XDEBUG_MODE` environment variable must be configured as `coverage`.
+In addition to configuring your `phpunit.xml` file, you will also need to install [XDebug 3.0+](https://xdebug.org/docs/install/) or [PCOV](https://github.com/krakjoe/pcov) to generate a code coverage report. When utilizing XDebug, the `XDEBUG_MODE` environment variable must be configured as `coverage`.
 
 Once you have configured your code coverage settings and installed a coverage driver, generating a code coverage report becomes effortless with the use of the `--coverage` option.
 
