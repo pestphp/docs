@@ -51,12 +51,12 @@ it('has home', function () {
 })->skipOnWindows(); // or skipOnMac() or skipOnLinux() ...
 ```
 
-You may even invoke the `skip()` method within your `beforeEach()` hook to conveniently skip an entire test file.
+You may even invoke the `markTestSkipped()` method within your `beforeEach()` hook to conveniently skip an entire test file.
 
 ```php
 beforeEach(function () {
-    //
-})->skip();
+    $this->markTestSkipped();
+});
 ```
 
 ## Creating Todos
