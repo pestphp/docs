@@ -11,8 +11,9 @@ For example, if your helper is specific to a certain test file, you may create t
 
 ```php
 use App\Models\User;
+use Tests\TestCase;
 
-function asAdmin(): User
+function asAdmin(): TestCase
 {
     $user = User::factory()->create([
         'admin' => true,
