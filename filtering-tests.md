@@ -43,6 +43,8 @@ The `--dirty` option instructs Pest to only run tests that have uncommitted chan
 ./vendor/bin/pest --dirty
 ```
 
+> Note that, due to a limitation in Pest, test cases written using the PHPUnit syntax will always be considered dirty.
+
 <a name="filter"></a>
 ### `--filter`
 
