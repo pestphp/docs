@@ -43,6 +43,8 @@ The `--dirty` option instructs Pest to only run tests that have uncommitted chan
 ./vendor/bin/pest --dirty
 ```
 
+> Please note that the `--dirty` option does not support classes tests. You should only have Pest tests in your suites.
+
 <a name="filter"></a>
 ### `--filter`
 
