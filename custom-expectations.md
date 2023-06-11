@@ -7,7 +7,7 @@ description: Pest's expectation API is powerful by default, but there may be tim
 
 Pest's expectation API is powerful by default, but there may be times when you need to write the same expectations repeatedly between tests. In such cases, creating custom expectations that meet your specific requirements can be incredibly useful.
 
-Custom expectations are usually defined in the `tests/Pest.php` file, but you can also organize them in a separate `tests/Expectation.php` file for better maintainability. To create a custom expectation in Pest, chain the `extend()` method onto the `expect()` function without providing any expectation value.
+Custom expectations are usually defined in the `tests/Pest.php` file, but you can also organize them in a separate `tests/Expectations.php` file for better maintainability. To create a custom expectation in Pest, chain the `extend()` method onto the `expect()` function without providing any expectation value.
 
 For example, suppose you are testing a number utility library and you need to frequently assert that numbers fall within a given range. In this case, you might create a custom expectation called `toBeWithinRange()`:
 
