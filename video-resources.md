@@ -57,7 +57,7 @@ Below you find videos created by the Pest community. All the content listed in t
 
 #### French
 
-- [Tester son application avec Pest PHP](https://www.youtube.com/watch?v=WYC_H9lR7Rw) by Nord Coders
+- [Tester son application avec Pest 🧪✅](https://www.youtube.com/watch?v=WYC_H9lR7Rw) by Laravel Jutsu
 
 #### German
 
