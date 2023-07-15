@@ -58,6 +58,26 @@ In this case, when you run the `./vendor/bin/pest` command, the output will incl
     <img src="/assets/img/itsum.webp?1" style="--lines: 5" />
 </div>
 
+Finally, you can also use the `describe()` function to group related tests together. For instance, you can use the `describe()` function to group all your tests related to the `sum()` function.
+
+```php
+describe('sum', function () {
+   it('may sum integers', function () {
+       $result = sum(1, 2);
+
+       expect($result)->toBe(3);
+    });
+   
+    it('may sum floats', function () {
+       $result = sum(1.5, 2.5);
+
+       expect($result)->toBe(4);
+    });
+});
+```
+
+When you run the `./vendor/bin/pest` command, the output will include the description "sum performs sums", along with the result of the test.
+
 ## Expectation API
 
 As you may have noticed in our previous examples, we made use of Pest's expectation API to perform assertions in our test code. The `expect()` function is a core part of the expectation API and is used to assert that certain conditions are met.

@@ -33,6 +33,8 @@ Here is an example of the output displayed when running Pest in a new, fresh pro
     <img src="/assets/img/pestinstall.webp?1" style="--lines: 10" />
 </div>
 
+**Optionally**, if you are migrating from PHPUnit, you can use the `pest-plugin-drift` package to automatically convert your PHPUnit tests to Pest. For more information, check out the [Migrating from PHPUnit](/docs/migrating-from-phpunit-guide) guide.
+
 ---
 
-After the installation process is finished, you can enhance your developer experience while working with Pest by configuring your editor: [Editor Setup →](/docs/editor-setup)
+After the installation process is finished, you can enhance your developer experience while working with Pest by configuring your editor: [Editor Setup →](/docs/editor-setup). If you're migrating from PHPUnit, check out the [Migration Guide →](/docs/migration-from-phpunit).

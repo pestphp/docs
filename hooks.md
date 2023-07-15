@@ -7,7 +7,29 @@ description: Pest hooks are similar to the steps that you might take when prepar
 
 Pest hooks are similar to the steps that you might take when preparing a meal - first, you gather and prepare the ingredients, then you cook the meal, and finally, you clean up after yourself. In the same way, hooks allow you to perform specific actions before and after each test or file, such as setting up test data, initializing the test environment, or cleaning up resources after the tests are complete.
 
-By using hooks in Pest, you can streamline your testing process, automate repetitive tasks, and ensure that your tests are executed consistently and reliably. Whether you're writing unit tests for a small project or building a complex test suite for a large application, hooks can help you save time and improve the quality of your tests.
+By using hooks in Pest, you can streamline your testing process, automate repetitive tasks. Whether you're writing unit tests for a small project or building a complex test suite for a large application, hooks can help you save time and improve the quality of your tests.
+
+In addition, if you wish to run a hook only for a specific group of tests, you may include the hook within a `describe()` function.
+
+```php
+beforeEach(function () {
+    //
+});
+
+describe('something', function () {
+    beforeEach(function () {
+        //
+    });
+
+    //
+});
+
+test('something', function () {
+    //
+});
+```
+
+Here's a list of the hooks that are available in Pest:
 
 <div class="collection-method-list" markdown="1">
 

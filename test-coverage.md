@@ -76,4 +76,4 @@ Pest supports various code coverage report formats:
 
 ---
 
-In this chapter, we discussed test coverage and its ability to aid in determining the percentage of your application that is actually tested. In the following chapter, we will dive into Pest's custom helpers: [Custom Helpers](/docs/custom-helpers)
+In this chapter, we discussed test coverage and its ability to aid in determining the percentage of your application that is actually tested. In the following chapter, we will dive into Pest's Type Coverage Plugin: [Type Coverage](/docs/type-coverage)

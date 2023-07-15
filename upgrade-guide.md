@@ -134,4 +134,4 @@ Although we previously documented in Pest 1 that datasets should only be declare
 
 ---
 
-Next, let's learn how you can contribute to the growth of Pest: [Community Guide](/docs/community-guide)
+This concludes the Pest 2 upgrade guide. On the next chapter, we'll cover how can you easily migrate your tests from PHPUnit to Pest: [Migrating From PHPUnit](/docs/migrating-from-phpunit-guide)

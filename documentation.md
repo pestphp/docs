@@ -1,9 +1,11 @@
 - ## Press
+  - [Announcing Pest 2.9](/docs/announcing-pest2-9)
   - [Announcing Pest 2.0](/docs/announcing-pest2)
   - [Why Pest](/docs/why-pest)
 
 - ## Getting Started
   - [Installation](/docs/installation)
+  - [Migration From PHPUnit](/docs/migration-from-phpunit)
   - [Editor Setup](/docs/editor-setup)
   - [Writing Tests](/docs/writing-tests)
   - [Expectations](/docs/expectations)
@@ -23,6 +25,8 @@
   - [Plugins](/docs/plugins)
   - [Architecture Testing](/docs/arch-testing)
   - [Test Coverage](/docs/test-coverage)
+  - [Type Coverage](/docs/type-coverage)
+  - [Snapshot Testing](/docs/snapshot-testing)
   - [Custom Helpers](/docs/custom-helpers)
   - [Custom Expectations](/docs/custom-expectations)
 
@@ -31,8 +35,10 @@
   - [Test Dependencies](/docs/test-dependencies)
   - [Creating Plugins](/docs/creating-plugins)
   - [Higher Order Testing](/docs/higher-order-testing)
+
 - ## More
   - [Video Resources](/docs/video-resources)
   - [Support Policy](/docs/support-policy)
   - [Upgrade Guide](/docs/upgrade-guide)
+  - [Migration From PHPUnit Guide](/docs/migration-from-phpunit-guide)
   - [Community Guide](/docs/community-guide)
