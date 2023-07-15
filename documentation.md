@@ -5,7 +5,6 @@
 
 - ## Getting Started
   - [Installation](/docs/installation)
-  - [Migration From PHPUnit](/docs/migration-from-phpunit)
   - [Editor Setup](/docs/editor-setup)
   - [Writing Tests](/docs/writing-tests)
   - [Expectations](/docs/expectations)
