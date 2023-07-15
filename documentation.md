@@ -1,5 +1,5 @@
 - ## Press
-  - [Announcing Pest 2.9](/docs/announcing-pest2-9)
+  - [Pest's Spicy Summer Release](/docs/pest-spicy-summer-release)
   - [Announcing Pest 2.0](/docs/announcing-pest2)
   - [Why Pest](/docs/why-pest)
 
