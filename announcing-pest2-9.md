@@ -5,7 +5,7 @@ description: Pest's Spicy Summer release is here - snapshot testing, describe bl
 
 # Announcing Pest 2.9
 
-On March 20, 2023, [we proudly introduced Pest v2](pestphp.com/docs/announcing-pest2), marking it as our most significant release to date, with **more than 7 million downloads** at the time of writing. This version showcased a remarkable architectural plugin, an 80% speed improvement in parallel testing, profiling options, and numerous other features.
+On March 20, 2023, [we proudly introduced Pest v2](/docs/announcing-pest2), marking it as our most significant release to date, with **more than 7 million downloads** at the time of writing. This version showcased a remarkable architectural plugin, an 80% speed improvement in parallel testing, profiling options, and numerous other features.
 
 As we approach summer, we are thrilled to announce our upcoming release: the highly anticipated "Spicy Summer" release. This release brings an array of exciting features that will make it feel like a major version without actually being one - it's Pest v2.9.0 - so **it's just a "composer update" away from you**. Without further delay, let's dive into what we have in store for you this summer:
 
