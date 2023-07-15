@@ -5,7 +5,7 @@ description: Pest's Spicy Summer release is here - snapshot testing, describe bl
 
 # Pest's Spicy Summer Release
 
-> "Spicy Summer" is the codename assigned to Pest 2.9.0
+> "Spicy Summer" is the codename assigned to Pest 2.9.
 
 On March 20, 2023, [we proudly introduced Pest v2](/docs/announcing-pest2), marking it as our most significant release to date, with **more than 7 million downloads** at the time of writing. This version showcased a remarkable architectural plugin, an 80% speed improvement in parallel testing, profiling options, and numerous other features.
 
