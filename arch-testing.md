@@ -11,27 +11,27 @@ Architecture testing enables you to specify expectations that test whether your 
 
 <div class="collection-method-list" markdown="1">
 
-- ['toBeAbstract()'](#expect-toBeAbstract)
+- [`toBeAbstract()`](#expect-toBeAbstract)
 - [`toBeClasses()`](#expect-toBeClasses)
 - [`toBeEnums()`](#expect-toBeEnums)
 - [`toBeInterfaces()`](#expect-toBeInterfaces)
 - [`toBeFinal()`](#expect-toBeFinal)
 - [`toBeReadonly()`](#expect-toBeReadonly)
 - [`toBeTraits()`](#expect-toBeTraits)
-- ['toBeUsed()'](#expect-toBeUsed)
-- ['toBeUsedIn()'](#expect-toBeUsedIn)
-- ['toExtend()'](#expect-toExtend)
-- ['toExtendNothing()'](#expect-toExtendNothing)
-- ['toImplement()'](#expect-toImplement)
-- ['toImplementNothing()'](#expect-toImplementNothing)
-- ['toHavePrefix()'](#expect-toHavePrefix)
-- ['toHaveSuffix()'](#expect-toHaveSuffix)
-- ['toOnlyImplement()'](#expect-toOnlyImplement)
-- ['toOnlyUse()'](#expect-toOnlyUse)
-- ['toOnlyBeUsedIn()'](#expect-toOnlyBeUsedIn)
-- ['toUse()'](#expect-toUse)
-- ['toUseNothing()'](#expect-toUseNothing)
-- ['toUseStrictTypes()'](#expect-toUseStrictTypes)
+- [`toBeUsed()`](#expect-toBeUsed)
+- [`toBeUsedIn()`](#expect-toBeUsedIn)
+- [`toExtend()`](#expect-toExtend)
+- [`toExtendNothing()`](#expect-toExtendNothing)
+- [`toImplement()`](#expect-toImplement)
+- [`toImplementNothing()`](#expect-toImplementNothing)
+- [`toHavePrefix()`](#expect-toHavePrefix)
+- [`toHaveSuffix()`](#expect-toHaveSuffix)
+- [`toOnlyImplement()`](#expect-toOnlyImplement)
+- [`toOnlyUse()`](#expect-toOnlyUse)
+- [`toOnlyBeUsedIn()`](#expect-toOnlyBeUsedIn)
+- [`toUse()`](#expect-toUse)
+- [`toUseNothing()`](#expect-toUseNothing)
+- [`toUseStrictTypes()`](#expect-toUseStrictTypes)
 
 </div>
 
@@ -302,11 +302,11 @@ Sometimes, you may want to apply the given expectation but excluding certain nam
 
 <div class="collection-method-list" markdown="1">
 
-- ['classes()'](#modifier-classes)
-- ['enums()'](#modifier-enums)
+- [`classes()`](#modifier-classes)
+- [`enums()`](#modifier-enums)
 - [`ignoring()`](#modifier-ignoring)
-- ['interfaces()'](#modifier-interfaces)
-- ['traits()'](#modifier-traits)
+- [`interfaces()`](#modifier-interfaces)
+- [`traits()`](#modifier-traits)
 
 </div>
 
