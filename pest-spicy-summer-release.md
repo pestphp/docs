@@ -99,6 +99,10 @@ test('controllers')
 
 > Read the full documentation at: [pestphp.com/docs/type-coverage](/docs/type-coverage)
 
+<div class="code-snippet">
+    <img src="/assets/img/type-coverage.png" />
+</div>
+
 As you may know, Pest offers a `--coverage` flag that allows you to generate a gorgeous coverage report on the terminal. This report shows you which lines of code are covered by your tests. This is a great way to ensure that your tests are covering all of your code.
 
 To add to this, we are proud to announce that Pest will now have built-in type coverage support. This means that you can now see if your source code is using "types" in every possible place. For example, let's say you have a repository that has the following method:
