@@ -39,5 +39,5 @@
   - [Video Resources](/docs/video-resources)
   - [Support Policy](/docs/support-policy)
   - [Upgrade Guide](/docs/upgrade-guide)
-  - [Migration From PHPUnit Guide](/docs/migration-from-phpunit-guide)
+  - [Migration From PHPUnit Guide](/docs/migrating-from-phpunit-guide)
   - [Community Guide](/docs/community-guide)
