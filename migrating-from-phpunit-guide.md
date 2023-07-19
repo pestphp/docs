@@ -38,18 +38,12 @@ class ExampleTest extends TestCase
 Should look like this after running `--drift`:
 
 ```php
-
-
 test('true is true', function () {
     expect(true)->toBeTrue();
 });
 ```
 
 The output will contain a summary of the conversion process, as well as a list of the files that were converted.
-
-<div class="code-snippet">
-    <img src="/assets/img/pest-drift.webp?1" style="--lines: 10" />
-</div>
 
 While most of your tests should be converted automatically, and you should be able to run them without any issues, there are some cases where you may need to manually convert some of your tests.
 
