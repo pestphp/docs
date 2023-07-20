@@ -23,9 +23,7 @@ After requiring the plugin, you may utilize the `--type-coverage` option to gene
 
 Unlike code coverage, type coverage does not require you to write any tests. Instead, it analyzes your codebase and generates a report of your type coverage. This report will display a list of files and their corresponding type coverage results.
 
-<div class="code-snippet">
-    <img src="/assets/img/type-coverage.png" />
-</div>
+<img src="/assets/img/type-coverage.png" style="width: 100%;" />
 
 If any of your files are missing type declarations, they will be highlighted in yellow and displayed using their respective line numbers, and type of declaration that is missing.
 

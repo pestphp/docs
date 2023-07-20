@@ -99,7 +99,6 @@ test('controllers')
 
 > Read the full documentation at: [pestphp.com/docs/type-coverage](/docs/type-coverage)
 
-
 <img src="/assets/img/type-coverage.png" style="width: 100%;" />
 
 As you may know, Pest offers a `--coverage` flag that allows you to generate a gorgeous coverage report on the terminal. This report shows you which lines of code are covered by your tests. This is a great way to ensure that your tests are covering all of your code.
