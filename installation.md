@@ -37,4 +37,4 @@ Here is an example of the output displayed when running Pest in a new, fresh pro
 
 ---
 
-After the installation process is finished, you can enhance your developer experience while working with Pest by configuring your editor: [Editor Setup →](/docs/editor-setup). If you're migrating from PHPUnit, check out the [Migration Guide →](/docs/migration-from-phpunit).
+After the installation process is finished, you can enhance your developer experience while working with Pest by configuring your editor: [Editor Setup →](/docs/editor-setup). If you're migrating from PHPUnit, check out the [Migration Guide →](/docs/migrating-from-phpunit-guide).
