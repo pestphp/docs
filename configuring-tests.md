@@ -29,6 +29,27 @@ it('has home', function () {
 });
 ```
 
+Additionally, Pest supports [glob patterns](https://www.php.net/manual/en/function.glob.php) in the in() method. This allows you to specify multiple directories or files with a single pattern. Glob patterns are string representations that can match various file paths, like wildcards. If you are unfamiliar with glob patterns, refer to the PHP manual [here](https://www.php.net/manual/en/function.glob.php).
+
+```php
+// tests/Pest.php
+uses(Tests\TestCase::class)->in('Feature/*Job*.php');
+
+// This will apply the Tests\TestCase to all test files in the "Feature" directory that contains "Job" in their filename.
+```
+
+Another more complex example would be using a pattern to match multiple directories in different modules while applying multiple test case classes and traits:
+
+```php
+// tests/Pest.php
+uses(
+    DuskTestCase::class,
+    DatabaseMigrations::class
+)->in('../Modules/*/Tests/Browser');
+
+// This will apply the DuskTestCase class and the DatabaseMigrations trait to all test files within any module's "Browser" directory.
+```
+
 Any method that is defined as `public` or `protected` in your base test case class can be accessed within the test closure.
 
 ```php
