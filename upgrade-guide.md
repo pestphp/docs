@@ -130,7 +130,7 @@ If you are utilizing "bound" datasets and binding a single dataset argument, you
 
 > Likelihood Of Impact: Very low
 
-Although we previously documented in Pest 1 that datasets should only be declared using the `dataset` function in the `tests/Pest.php` or `tests/Datasets.php` files, you could actually declare datasets in any test file within your test suite. However, in Pest 2, with the introduction of [scoped datasets](/docs/datasets#scoped-datasets), datasets declared in a test file can only be utilized within that same test file. Therefore, if you have a dataset that needs to be accessible globally, please ensure that it is placed in either the `tests/Pest.php` or `tests/Datasets.php` files.
+Although we previously documented in Pest 1 that datasets should only be declared using the `dataset` function in the `tests/Pest.php` or `tests/Datasets.php` files, you could actually declare datasets in any test file within your test suite. However, in Pest 2, with the introduction of [scoped datasets](/docs/datasets#content-scoped-datasets), datasets declared in a test file can only be utilized within that same test file. Therefore, if you have a dataset that needs to be accessible globally, please ensure that it is placed in either the `tests/Pest.php` or `tests/Datasets.php` files.
 
 ---
 
