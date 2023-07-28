@@ -13,11 +13,7 @@ Typically, the essential configuration for gathering code coverage is already pr
 
 ```xml
     ...
-    <coverage>
-        <include>
-            <directory suffix=".php">./app</directory>
-        </include>
-    </coverage>
+    <coverage/>
     ...
 ```
 
