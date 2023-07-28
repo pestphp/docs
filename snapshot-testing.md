@@ -35,4 +35,4 @@ And of course, you can "rebuild" the snapshots at any time by using the `--updat
 
 ---
 
-In the chapter, we've seen how powerful snapshot testing is. In the following chapter, we will dive into Pest's custom helpers: [Custom Helpers](/docs/custom-helpers)
+In this chapter, we've seen how powerful snapshot testing is. In the following chapter, we will dive into Pest's custom helpers: [Custom Helpers](/docs/custom-helpers)
