@@ -151,6 +151,18 @@ When running the example above, Pest's output will contain a description of each
     <img src="/assets/img/datasets-businesshours.webp?1" style="--lines: 10" />
 </div>
 
+## Repeating Tests
+
+In some cases, you may need to repeat a test multiple times for debugging purposes or to ensure that the test is stable. On these occasions, you may use the `repeat()` method to repeat a test a given number of times.
+
+```php
+it('can repeat a test', function () {
+    $result = /** Some code that may be unstable */;
+
+    expect($result)->toBeTrue();
+})->repeat(100); // Repeat the test 100 times
+```
+
 ---
 
 After becoming skilled at utilizing datasets for testing, the next crucial step is to gain an understanding of how to test for exceptions. This involves verifying that your code behaves correctly and throws appropriate exceptions when it encounters unexpected or erroneous input: [Exceptions →](/docs/exceptions)
