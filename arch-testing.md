@@ -15,6 +15,7 @@ Architecture testing enables you to specify expectations that test whether your 
 - [`toBeClasses()`](#expect-toBeClasses)
 - [`toBeEnums()`](#expect-toBeEnums)
 - [`toBeInterfaces()`](#expect-toBeInterfaces)
+- [`toBeInvokable()`](#expect-toBeInvokable)
 - [`toBeFinal()`](#expect-toBeFinal)
 - [`toBeReadonly()`](#expect-toBeReadonly)
 - [`toBeTraits()`](#expect-toBeTraits)
@@ -77,6 +78,17 @@ The `toBeInterfaces()` method may be used to ensure that all files within a give
 test('app')
     ->expect('App\Contracts')
     ->toBeInterfaces();
+```
+
+<a name="expect-toBeInvokable"></a>
+### `toBeInvokable()`
+
+The `toBeInvokable()` method may be used to ensure that all files within a given namespace are invokable.
+
+```php
+test('app')
+    ->expect('App\Actions')
+    ->toBeInvokable();
 ```
 
 <a name="expect-toBeTraits"></a>
