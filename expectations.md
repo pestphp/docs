@@ -100,6 +100,8 @@ In addition to the individual expectations available in Pest, the expectation AP
 
 - [`and()`](#expect-and)
 - [`dd()`](#expect-dd)
+- [`ddWhen()`](#expect-ddWhen)
+- [`ddUnless()`](#expect-ddUnless)
 - [`each()`](#expect-each)
 - [`json()`](#expect-json)
 - [`match()`](#match)
@@ -680,13 +682,35 @@ expect($id)->toBe(14)
 
 The `dd()` modifier
 
-Use the `dd()` modifier allows you to dump the current expectation $value and stop the code execution. This can be useful for debugging by allowing you to inspect the current state of the $value at a particular point in your test.
+Use the `dd()` modifier allows you to dump the current expectation `$value` and stop the code execution. This can be useful for debugging by allowing you to inspect the current state of the $value at a particular point in your test.
 
 ```php
 expect(14)->dd(); // 14
 expect([1, 2])->sequence(
     fn ($number) => $number->toBe(1),
     fn ($number) => $number->dd(), // 2
+);
+```
+
+<a name="expect-ddWhen"></a>
+### `ddWhen($condition)`
+
+Use the `ddWhen()` modifier allows you to dump the current expectation `$value` and stop the code execution when the given `$condition` is truthy.
+
+```php
+expect([1, 2])->each(
+    fn ($number) => $number->ddWhen(fn (int $number) => $number === 2) // 2
+);
+```
+
+<a name="expect-ddUnless"></a>
+### `ddUnless($condition)`
+
+Use the `ddUnless()` modifier allows you to dump the current expectation `$value` and stop the code execution when the given `$condition` is falsy.
+
+```php
+expect([1, 2])->each(
+    fn ($number) => $number->ddUnless(fn (int $number) => $number === 1) // 2
 );
 ```
 
