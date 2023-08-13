@@ -702,7 +702,7 @@ expect('pestphp')->toBeAlpha();
 This expectation ensures that `$value` only contains alphanumeric characters.
 
 ```php
-expect('pestPHP123')->toBeAlpha();
+expect('pestPHP123')->toBeAlphaNumeric();
 ```
 
 ---
