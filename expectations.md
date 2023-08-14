@@ -91,6 +91,7 @@ With the Pest expectation API, you have access to an extensive collection of ind
 - [`toEndWith()`](#expect-toEndWith)
 - [`toMatch()`](#expect-toMatch)
 - [`toMatchConstraint()`](#expect-toMatchConstraint)
+- [`toBePluralOf()`](#expect-toBePluralOf)
 
 </div>
 
@@ -663,6 +664,15 @@ This expectation ensures that `$value` matches a specified PHPUnit constraint.
 use PHPUnit\Framework\Constraint\IsTrue;
 
 expect(true)->toMatchConstraint(new IsTrue());
+```
+
+<a name="expect-toBePluralOf"></a>
+### `toBePluralOf()`
+
+This expectation ensures that `$value` is the pluralized version of the provided string.
+
+```php
+expect('dogs')->toBePluralOf('dog');
 ```
 
 ---
