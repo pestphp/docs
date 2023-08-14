@@ -91,6 +91,10 @@ With the Pest expectation API, you have access to an extensive collection of ind
 - [`toEndWith()`](#expect-toEndWith)
 - [`toMatch()`](#expect-toMatch)
 - [`toMatchConstraint()`](#expect-toMatchConstraint)
+- [`toBeUppercase`](#expect-toBeUppercase)
+- [`toBeLowercase`](#expect-toBeLowercase)
+- [`toBeAlpha`](#expect-toBeAlpha)
+- [`toBeAlphaNumeric`](#expect-toBeAlphaNumeric)
 
 </div>
 
@@ -663,6 +667,42 @@ This expectation ensures that `$value` matches a specified PHPUnit constraint.
 use PHPUnit\Framework\Constraint\IsTrue;
 
 expect(true)->toMatchConstraint(new IsTrue());
+```
+
+<a name="expect-toBeUppercase"></a>
+### `toBeUppercase(string $expected)`
+
+This expectation ensures that `$value` is uppercase.
+
+```php
+expect('PESTPHP')->toBeUppercase();
+```
+
+<a name="expect-toBeLowercase"></a>
+### `toBeLowercase(string $expected)`
+
+This expectation ensures that `$value` is lowercase.
+
+```php
+expect('pestphp')->toBeLowercase();
+```
+
+<a name="expect-toBeAlpha"></a>
+### `toBeAlpha(string $expected)`
+
+This expectation ensures that `$value` only contains alpha characters.
+
+```php
+expect('pestphp')->toBeAlpha();
+```
+
+<a name="expect-toBeAlphaNumeric"></a>
+### `toBeAlphaNumeric(string $expected)`
+
+This expectation ensures that `$value` only contains alphanumeric characters.
+
+```php
+expect('pestPHP123')->toBeAlphaNumeric();
 ```
 
 ---
