@@ -72,6 +72,7 @@ With the Pest expectation API, you have access to an extensive collection of ind
 - [`toBeInt()`](#expect-toBeInt)
 - [`toBeIterable()`](#expect-toBeIterable)
 - [`toBeNumeric()`](#expect-toBeNumeric)
+- [`toBeDigits()`](#expect-toBeDigits)
 - [`toBeObject()`](#expect-toBeObject)
 - [`toBeResource()`](#expect-toBeResource)
 - [`toBeScalar()`](#expect-toBeScalar)
@@ -469,6 +470,17 @@ This expectation ensures that `$value` is of type numeric.
 expect($age)->toBeNumeric();
 expect(10)->toBeNumeric();
 expect('10')->toBeNumeric();
+```
+
+<a name="expect-toBeDigits"></a>
+### `toBeDigits()`
+
+This expectation ensures that `$value` contains only digits.
+
+```php
+expect($year)->toBeDigits();
+expect(15)->toBeDigits();
+expect('15')->toBeDigits();
 ```
 
 <a name="expect-toBeObject"></a>
