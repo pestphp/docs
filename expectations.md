@@ -95,6 +95,14 @@ With the Pest expectation API, you have access to an extensive collection of ind
 - [`toBeLowercase`](#expect-toBeLowercase)
 - [`toBeAlpha`](#expect-toBeAlpha)
 - [`toBeAlphaNumeric`](#expect-toBeAlphaNumeric)
+- [`toBeSnakeCase`](#expect-toBeSnakeCase)
+- [`toBeKebabCase`](#expect-toBeKebabCase)
+- [`toBeCamelCase`](#expect-toBeCamelCase)
+- [`toBeStudlyCase`](#expect-toBeStudlyCase)
+- [`toHaveSnakeCaseKeys`](#expect-toHaveSnakeCaseKeys)
+- [`toHaveKebabCaseKeys`](#expect-toHaveKebabCaseKeys)
+- [`toHaveCamelCaseKeys`](#expect-toHaveCamelCaseKeys)
+- [`toHaveStudlyCaseKeys`](#expect-toHaveStudlyCaseKeys)
 
 </div>
 
@@ -703,6 +711,78 @@ This expectation ensures that `$value` only contains alphanumeric characters.
 
 ```php
 expect('pestPHP123')->toBeAlphaNumeric();
+```
+
+<a name="expect-toBeSnakeCase"></a>
+### `toBeSnakeCase()`
+
+This expectation ensures that `$value` only contains string in snake_case format.
+
+```php
+expect('snake_case')->toBeSnakeCase();
+```
+
+<a name="expect-toBeKebabCase"></a>
+### `toBeKebabCase()`
+
+This expectation ensures that `$value` only contains string in kebab-case format.
+
+```php
+expect('kebab-case')->toBeKebabCase();
+```
+
+<a name="expect-toBeCamelCase"></a>
+### `toBeCamelCase()`
+
+This expectation ensures that `$value` only contains string in camelCase format.
+
+```php
+expect('camelCase')->toBeCamelCase();
+```
+
+<a name="expect-toBeStudlyCase"></a>
+### `toBeStudlyCase()`
+
+This expectation ensures that `$value` only contains string in StudlyCase format.
+
+```php
+expect('StudlyCase')->toBeStudlyCase();
+```
+
+<a name="expect-toHaveSnakeCaseKeys"></a>
+### `toHaveSnakeCaseKeys()`
+
+This expectation ensures that `$value` only contains an array with keys in snake_case format.
+
+```php
+expect(['snake_case' => 'abc123'])->toHaveSnakeCaseKeys();
+```
+
+<a name="expect-toHaveKebabCaseKeys"></a>
+### `toHaveKebabCaseKeys()`
+
+This expectation ensures that `$value` only contains an array with keys in kebab-case format.
+
+```php
+expect(['kebab-case' => 'abc123'])->toHaveKebabCaseKeys();
+```
+
+<a name="expect-toHaveCamelCaseKeys"></a>
+### `toHaveCamelCaseKeys()`
+
+This expectation ensures that `$value` only contains an array with keys in camelCase format.
+
+```php
+expect(['camelCase' => 'abc123'])->toHaveCamelCaseKeys();
+```
+
+<a name="expect-toHaveStudlyCaseKeys"></a>
+### `toHaveStudlyCaseKeys()`
+
+This expectation ensures that `$value` only contains an array with keys in StudlyCase format.
+
+```php
+expect(['StudlyCase' => 'abc123'])->toHaveStudlyCaseKeys();
 ```
 
 ---
