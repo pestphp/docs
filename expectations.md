@@ -104,6 +104,7 @@ With the Pest expectation API, you have access to an extensive collection of ind
 - [`toHaveKebabCaseKeys`](#expect-toHaveKebabCaseKeys)
 - [`toHaveCamelCaseKeys`](#expect-toHaveCamelCaseKeys)
 - [`toHaveStudlyCaseKeys`](#expect-toHaveStudlyCaseKeys)
+- [`toHaveSameSize`](#expect-toHaveSameSize)
 
 </div>
 
@@ -795,6 +796,15 @@ This expectation ensures that `$value` only contains an array with keys in Studl
 
 ```php
 expect(['StudlyCase' => 'abc123'])->toHaveStudlyCaseKeys();
+```
+
+<a name="expect-toHaveSameSize"></a>
+### `toHaveSameSize()`
+
+This expectation ensures that the size of `$value` and the provided iterable are the same.
+
+```php
+expect(['foo', 'bar'])->toHaveSameSize(['baz', 'bazz']);
 ```
 
 ---
