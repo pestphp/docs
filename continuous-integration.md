@@ -107,7 +107,7 @@ pipelines:
           name: Test
           script:
             - composer install --no-interaction --prefer-dist --optimize-autoloader
-            - ./vendor/bin/pest --ansi
+            - ./vendor/bin/pest
           caches:
             - composer
 ```
