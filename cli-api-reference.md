@@ -95,7 +95,7 @@ In the preceding chapters of the Pest documentation, we have covered numerous CL
 ## Code Coverage
 
 - `--coverage`: Generate code coverage report and output to standard output.
-- `--coverage --min`: Set the minimum required coverage percentage, and fail if not met.
+- `--coverage --min=<value>`: Set the minimum required coverage percentage, and fail if not met.
 - `--coverage-crap4j <file>`: Write code coverage report in Crap4J XML format to file.
 - `--coverage-html <dir>`: Write code coverage report in HTML format to directory.
 - `--coverage-php <file>`: Write serialized code coverage data to file.
