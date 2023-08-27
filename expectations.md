@@ -658,7 +658,7 @@ This expectation ensures that a closure throws a specific exception class, excep
 expect(fn() => throw new Exception('Something happened.'))->toThrow(Exception::class);
 expect(fn() => throw new Exception('Something happened.'))->toThrow('Something happened.');
 expect(fn() => throw new Exception('Something happened.'))->toThrow(Exception::class, 'Something happened.');
-expect(fn() => throw new Exception('Something happened.'))->toThrow(new Exception('Something happened'));
+expect(fn() => throw new Exception('Something happened.'))->toThrow(new Exception('Something happened.'));
 ```
 
 <a name="expect-toMatch"></a>
