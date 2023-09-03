@@ -242,7 +242,7 @@ test('app')
 <a name="expect-toHaveMethod"></a>
 ### `toHaveMethod()`
 
-The `toHaveMethod()` method may be used to ensure that certain class has a specific method.
+The `toHaveMethod()` method may be used to ensure that a certain class has a specific method.
 
 ```php
 test('app')
