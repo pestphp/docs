@@ -371,7 +371,7 @@ test('app')
     ->toOnlyBeUsedIn('App\Models');
 ```
 
-<a name="expect-ignoring"></a>
+<a name="modifier-ignoring"></a>
 ### `ignoring()`
 
 When defining your architecture rules, you can use the `ignoring()` method to exclude certain namespaces or classes that would otherwise be included in the rule definition.
