@@ -51,7 +51,7 @@ test('numeric ranges', function () {
 });
 ```
 
-Although you can interact with the current value of the expectation, returning using the `and` function, for example, **will cause a new expectation instance to be created**, causing bad behavior in your custom expectations:
+While you can interact with the current value of the expectation, returning using the `and` function **will cause a new expectation instance to be created**, causing bad behavior in your custom expectations:
 
 ```php
 // Pest.php or Expectations.php...
@@ -65,7 +65,7 @@ test('decoded', function () {
 });
 ```
 
-The best approach for this is to **interact with the already created instance by manipulating the current value:**
+The best approach for this is to **interact with the instance already created by manipulating the current value:**
 
 ```php
 // Pest.php or Expectations.php...
