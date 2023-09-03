@@ -51,34 +51,6 @@ test('numeric ranges', function () {
 });
 ```
 
-While you can interact with the current value of the expectation, returning using the `and` function **will cause a new expectation instance to be created**, causing bad behavior in your custom expectations:
-
-```php
-// Pest.php or Expectations.php...
-expect()->extend('decoded', function () {
-    return $this->and(base64_decode($this->value)); // returning new instance...
-});
-
-// Tests/Unit/ExampleTest.php
-test('decoded', function () {
-    expect('Zm9vYmFy')->decoded()->toBe('foobar'); // will fail...
-});
-```
-
-The best approach for this is to **interact with the instance already created by manipulating the current value:**
-
-```php
-// Pest.php or Expectations.php...
-expect()->extend('decoded', function () {
-    return $this->value = base64_decode($this->value); // manipulating, but returning the same instance...
-});
-
-// Tests/Unit/ExampleTest.php
-test('decoded', function () {
-    expect('Zm9vYmFy')->decoded()->toBe('foobar');
-});
-```
-
 ## Intercept Expectations
 
 Although it is considered an advanced practice, you can override existing expectations with your own implementation via the `intercept()` method. When using this method, the existing expectation will be fully substituted if the expectation value is of the specified type. For example, you can replace the `toBe()` expectation to check if two objects of the `Illuminate\Database\Eloquent\Model` type have the same `id`.
