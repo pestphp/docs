@@ -25,9 +25,10 @@ Architecture testing enables you to specify expectations that test whether your 
 - [`toExtendNothing()`](#expect-toExtendNothing)
 - [`toImplement()`](#expect-toImplement)
 - [`toImplementNothing()`](#expect-toImplementNothing)
+- [`toHaveAttribute()`](#expect-toHaveAttribute)
+- [`toHaveMethod()`](#expect-toHaveMethod)
 - [`toHavePrefix()`](#expect-toHavePrefix)
 - [`toHaveSuffix()`](#expect-toHaveSuffix)
-- [`toHaveMethod()`](#expect-toHaveMethod)
 - [`toOnlyImplement()`](#expect-toOnlyImplement)
 - [`toOnlyUse()`](#expect-toOnlyUse)
 - [`toOnlyBeUsedIn()`](#expect-toOnlyBeUsedIn)
@@ -217,6 +218,28 @@ test('app')
     ->toImplementNothing();
 ```
 
+<a name="expect-toHaveAttribute"></a>
+### `toHaveAttribute()`
+
+The `toHaveAttribute()` method may be used to ensure that a certain class has a specific attribute.
+
+```php
+test('app')
+    ->expect('App\Console\Commands')
+    ->toHaveAttribute('Symfony\Component\Console\Attribute\AsCommand');
+```
+
+<a name="expect-toHaveMethod"></a>
+### `toHaveMethod()`
+
+The `toHaveMethod()` method may be used to ensure that a certain class has a specific method.
+
+```php
+test('app')
+    ->expect('App\Http\Controllers\HomeController')
+    ->toHaveMethod('index');
+```
+
 <a name="expect-toHavePrefix"></a>
 ### `toHavePrefix()`
 
@@ -237,17 +260,6 @@ The `toHaveSuffix()` method may be used to ensure that all files within a given 
 test('app')
     ->expect('App\Http\Controllers')
     ->toHaveSuffix('Controller');
-```
-
-<a name="expect-toHaveMethod"></a>
-### `toHaveMethod()`
-
-The `toHaveMethod()` method may be used to ensure that a certain class has a specific method.
-
-```php
-test('app')
-    ->expect('App\Http\Controllers\HomeController')
-    ->toHaveMethod('index');
 ```
 
 <a name="expect-toOnlyImplement"></a>
