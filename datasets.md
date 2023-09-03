@@ -67,7 +67,7 @@ Pest's global datasets can be used to define a dataset that is available to all 
 // tests/Pest.php
 dataset('features', [
     'create',
-    'udate',
+    'update',
 ]);
 
 // tests/Feature/UserFeaturesTest.php...
