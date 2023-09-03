@@ -27,6 +27,7 @@ Architecture testing enables you to specify expectations that test whether your 
 - [`toImplementNothing()`](#expect-toImplementNothing)
 - [`toHavePrefix()`](#expect-toHavePrefix)
 - [`toHaveSuffix()`](#expect-toHaveSuffix)
+- [`toHaveMethod()`](#expect-toHaveMethod)
 - [`toOnlyImplement()`](#expect-toOnlyImplement)
 - [`toOnlyUse()`](#expect-toOnlyUse)
 - [`toOnlyBeUsedIn()`](#expect-toOnlyBeUsedIn)
@@ -236,6 +237,17 @@ The `toHaveSuffix()` method may be used to ensure that all files within a given 
 test('app')
     ->expect('App\Http\Controllers')
     ->toHaveSuffix('Controller');
+```
+
+<a name="expect-toHaveMethod"></a>
+### `toHaveMethod()`
+
+The `toHaveMethod()` method may be used to ensure that a certain class has a specific method.
+
+```php
+test('app')
+    ->expect('App\Http\Controllers\HomeController')
+    ->toHaveMethod('index');
 ```
 
 <a name="expect-toOnlyImplement"></a>
