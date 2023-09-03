@@ -59,25 +59,6 @@ it('can sum', function (int $a, int $b, int $result) {
 ]);
 ```
 
-## Global Datasets
-
-Pest's global datasets can be used to define a dataset that is available to all your tests. You can do this by defining a `dataset()` function inside your `tests/Pest.php` file:
-
-```php
-// tests/Pest.php
-dataset('features', [
-    'create',
-    'update',
-]);
-
-// tests/Feature/UserFeaturesTest.php...
-it('has features', function (string $feature) {
-    expect($feature)->not->toBeEmpty();
-})->with('features');
-```
-
-Make sure **dataset names are unique** when declared globally.
-
 ## Bound Datasets
 
 Pest's bound datasets can be used to obtain a dataset that is resolved after the `beforeEach()` method of your tests. This is particularly useful in Laravel applications (or any other Pest integration) where you may need a dataset of `App\Models\User` models that are created after your database schema is prepared by the `beforeEach()` method.
