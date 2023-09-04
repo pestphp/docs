@@ -72,7 +72,7 @@ Below you find videos created by the Pest community. All the content listed in t
 Here you can find links to Pest courses created by individual producers and made accessible on various paid platforms.
 
 - [Laravel Testing 101](https://www.linkedin.com/learning/laravel-testing-101) by Ana Lisboa
-- [Pest Driven Laravel](https://learn.christoph-rumpel.com/products/pest-driven-laravel) by Christoph Rumpel
+- [Pest Driven Laravel](https://laracasts.com/series/pest-driven-laravel) by Christoph Rumpel
 
 ---
 
