@@ -27,7 +27,7 @@ The courses listed here are endorsed by Pest and were carefully created to bring
 
 ### Pest Meetups
 
-Here you will find all past episodes of our Pest Meetups Youtube live streams.
+Here you will find all past episodes of our Pest Meetups YouTube live streams.
 
 - [Pest Meetup #1](https://www.youtube.com/watch?v=q_8kRlAIyms) - "Testing Livewire with Pest" by Tio Jobs & "Testing REST API with Pest & Bypass" by @DanSysAnalyst
 - [Pest Meetup #2](https://www.youtube.com/watch?v=dyMxI1x7rRc) - "Diving Into The Expectation API" by Luke Downing & "Using Snapshots In Pest" by Freek Van der Herten
@@ -72,7 +72,7 @@ Below you find videos created by the Pest community. All the content listed in t
 Here you can find links to Pest courses created by individual producers and made accessible on various paid platforms.
 
 - [Laravel Testing 101](https://www.linkedin.com/learning/laravel-testing-101) by Ana Lisboa
-- [Pest Driven Laravel](https://learn.christoph-rumpel.com/products/pest-driven-laravel) by Christoph Rumpel
+- [Pest Driven Laravel](https://laracasts.com/series/pest-driven-laravel) by Christoph Rumpel on Laracasts
 
 ---
 
