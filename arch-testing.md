@@ -359,7 +359,6 @@ test('app')
 ```
 
 <a name="modifier-enums"></a>
-
 ### `enums()`
 
 The `enums()` modifier allows you to restrict the expectation to only enums.
