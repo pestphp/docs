@@ -105,6 +105,7 @@ With the Pest expectation API, you have access to an extensive collection of ind
 - [`toHaveCamelCaseKeys`](#expect-toHaveCamelCaseKeys)
 - [`toHaveStudlyCaseKeys`](#expect-toHaveStudlyCaseKeys)
 - [`toHaveSameSize`](#expect-toHaveSameSize)
+- [`toBeUuid`](#expect-toBeUuid)
 
 </div>
 
@@ -805,6 +806,15 @@ This expectation ensures that the size of `$value` and the provided iterable are
 
 ```php
 expect(['foo', 'bar'])->toHaveSameSize(['baz', 'bazz']);
+```
+
+<a name="expect-toBeUuid"></a>
+### `toBeUuid()`
+
+This expectation ensures that `$value` is an UUID.
+
+```php
+expect('ca0a8228-cdf6-41db-b34b-c2f31485796c')->toBeUuid();
 ```
 
 ---
