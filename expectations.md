@@ -106,6 +106,8 @@ With the Pest expectation API, you have access to an extensive collection of ind
 - [`toHaveStudlyCaseKeys`](#expect-toHaveStudlyCaseKeys)
 - [`toHaveSameSize`](#expect-toHaveSameSize)
 - [`toBeUuid`](#expect-toBeUuid)
+- [`toHaveConstructor`](#expect-toHaveConstructor)
+- [`toHaveDestructor`](#expect-toHaveDestructor)
 
 </div>
 
@@ -815,6 +817,24 @@ This expectation ensures that `$value` is an UUID.
 
 ```php
 expect('ca0a8228-cdf6-41db-b34b-c2f31485796c')->toBeUuid();
+```
+
+<a name="expect-toHaveConstructor"></a>
+### `toHaveConstructor()`
+
+This expectation ensures that `$value` has a `__construct` method.
+
+```php
+expect($value)->toHaveConstructor();
+```
+
+<a name="expect-toHaveDestructor"></a>
+### `toHaveDestructor()`
+
+This expectation ensures that `$value` has a `__destruct` method.
+
+```php
+expect($value)->toHaveDestructor();
 ```
 
 ---
