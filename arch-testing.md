@@ -337,22 +337,22 @@ test('app')
 <a name="expect-toHaveConstructor"></a>
 ### `toHaveConstructor()`
 
-This `toHaveConstructor()` method may be used to ensure that a certain class has a `__construct` method.
+This `toHaveConstructor()` method may be used to ensure that all files within a given namespace have a `__construct` method.
 
 ```php
 test('app')
-    ->expect('App\Actions')
+    ->expect('App\ValueObjects')
     ->toHaveConstructor();
 ```
 
 <a name="expect-toHaveDestructor"></a>
 ### `toHaveDestructor()`
 
-This `toHaveDestructor()` method may be used to ensure that a certain class has a `__destruct` method.
+This `toHaveDestructor()` method may be used to ensure that all files within a given namespace have a `__destruct` method.
 
 ```php
 test('app')
-    ->expect('App\Actions')
+    ->expect('App\ValueObjects')
     ->toHaveDestructor();
 ```
 
