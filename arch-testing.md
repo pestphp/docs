@@ -35,6 +35,8 @@ Architecture testing enables you to specify expectations that test whether your 
 - [`toUse()`](#expect-toUse)
 - [`toUseNothing()`](#expect-toUseNothing)
 - [`toUseStrictTypes()`](#expect-toUseStrictTypes)
+- [`toHaveConstructor()`](#expect-toHaveConstructor)
+- [`toHaveDestructor()`](#expect-toHaveDestructor)
 
 </div>
 
@@ -331,6 +333,29 @@ test('app')
     ->expect('App')
     ->toUseStrictTypes();
 ```
+
+<a name="expect-toHaveConstructor"></a>
+### `toHaveConstructor()`
+
+This `toHaveConstructor()` method may be used to ensure that a certain class has a `__construct` method.
+
+```php
+test('app')
+    ->expect('App\Actions')
+    ->toHaveConstructor();
+```
+
+<a name="expect-toHaveDestructor"></a>
+### `toHaveDestructor()`
+
+This `toHaveDestructor()` method may be used to ensure that a certain class has a `__destruct` method.
+
+```php
+test('app')
+    ->expect('App\Actions')
+    ->toHaveDestructor();
+```
+
 
 ### Modifiers
 
