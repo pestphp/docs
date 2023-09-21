@@ -29,14 +29,14 @@ Architecture testing enables you to specify expectations that test whether your 
 - [`toHaveMethod()`](#expect-toHaveMethod)
 - [`toHavePrefix()`](#expect-toHavePrefix)
 - [`toHaveSuffix()`](#expect-toHaveSuffix)
+- [`toHaveConstructor()`](#expect-toHaveConstructor)
+- [`toHaveDestructor()`](#expect-toHaveDestructor)
 - [`toOnlyImplement()`](#expect-toOnlyImplement)
 - [`toOnlyUse()`](#expect-toOnlyUse)
 - [`toOnlyBeUsedIn()`](#expect-toOnlyBeUsedIn)
 - [`toUse()`](#expect-toUse)
 - [`toUseNothing()`](#expect-toUseNothing)
 - [`toUseStrictTypes()`](#expect-toUseStrictTypes)
-- [`toHaveConstructor()`](#expect-toHaveConstructor)
-- [`toHaveDestructor()`](#expect-toHaveDestructor)
 
 </div>
 
@@ -264,6 +264,28 @@ test('app')
     ->toHaveSuffix('Controller');
 ```
 
+<a name="expect-toHaveConstructor"></a>
+### `toHaveConstructor()`
+
+This `toHaveConstructor()` method may be used to ensure that all files within a given namespace have a `__construct` method.
+
+```php
+test('app')
+    ->expect('App\ValueObjects')
+    ->toHaveConstructor();
+```
+
+<a name="expect-toHaveDestructor"></a>
+### `toHaveDestructor()`
+
+This `toHaveDestructor()` method may be used to ensure that all files within a given namespace have a `__destruct` method.
+
+```php
+test('app')
+    ->expect('App\ValueObjects')
+    ->toHaveDestructor();
+```
+
 <a name="expect-toOnlyImplement"></a>
 ### `toOnlyImplement()`
 
@@ -333,29 +355,6 @@ test('app')
     ->expect('App')
     ->toUseStrictTypes();
 ```
-
-<a name="expect-toHaveConstructor"></a>
-### `toHaveConstructor()`
-
-This `toHaveConstructor()` method may be used to ensure that all files within a given namespace have a `__construct` method.
-
-```php
-test('app')
-    ->expect('App\ValueObjects')
-    ->toHaveConstructor();
-```
-
-<a name="expect-toHaveDestructor"></a>
-### `toHaveDestructor()`
-
-This `toHaveDestructor()` method may be used to ensure that all files within a given namespace have a `__destruct` method.
-
-```php
-test('app')
-    ->expect('App\ValueObjects')
-    ->toHaveDestructor();
-```
-
 
 ### Modifiers
 
