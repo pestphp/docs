@@ -232,7 +232,7 @@ expect($count)->toBeLessThanOrEqual(2);
 <a name="expect-toBeInvokable"></a>
 ### `toBeInvokable($expected)`
 
-This expectation ensures that `$value` is a invokable class.
+This expectation ensures that `$value` is an invokable class.
 
 ```php
 expect($value)->toBeInvokable();
