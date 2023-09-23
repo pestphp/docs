@@ -50,6 +50,7 @@ With the Pest expectation API, you have access to an extensive collection of ind
 - [`toBeGreaterThanOrEqual()`](#expect-toBeGreaterThanOrEqual)
 - [`toBeLessThan()`](#expect-toBeLessThan)
 - [`toBeLessThanOrEqual()`](#expect-toBeLessThanOrEqual)
+- [`toBeInvokable()`](#expect-toBeInvokable)
 - [`toContain()`](#expect-toContain)
 - [`toContainOnlyInstancesOf()`](#expect-toContainOnlyInstancesOf)
 - [`toHaveCount()`](#expect-toHaveCount)
@@ -226,6 +227,15 @@ This expectation ensures that `$value` is lesser than or equal to `$expected`.
 
 ```php
 expect($count)->toBeLessThanOrEqual(2);
+```
+
+<a name="expect-toBeInvokable"></a>
+### `toBeInvokable($expected)`
+
+This expectation ensures that `$value` is a invokable class.
+
+```php
+expect($value)->toBeInvokable();
 ```
 
 <a name="expect-toContain"></a>
