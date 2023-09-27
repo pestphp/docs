@@ -41,6 +41,7 @@ With the Pest expectation API, you have access to an extensive collection of ind
 
 - [`toBe()`](#expect-toBe)
 - [`toBeArray()`](#expect-toBeArray)
+- [`toBeBetween()`](#expect-toBeBetween)
 - [`toBeEmpty()`](#expect-toBeEmpty)
 - [`toBeTrue()`](#expect-toBeTrue)
 - [`toBeTruthy()`](#expect-toBeTruthy)
@@ -141,6 +142,23 @@ If used with objects, it ensures that both variables refer to the exact same obj
 expect(1)->toBe(1);
 expect('1')->not->toBe(1);
 expect(new StdClass())->not->toBe(new StdClass());
+```
+
+<a name="expect-toBeBetween"></a>
+### `toBeBetween()`
+
+This expectation ensures that `$value` is between 2 values. It works with `int`,
+`float` and `DateTime`. 
+
+```php
+expect(2)->toBeBetween(1, 3);
+expect(1.5)->toBeBetween(1, 2);
+
+$expectationDate = new DateTime('2023-09-22');
+$oldestDate = new DateTime('2023-09-21');
+$latestDate = new DateTime('2023-09-23');
+
+expect($expectationDate)->toBeBetween($oldestDate, $latestDate);
 ```
 
 <a name="expect-toBeEmpty"></a>
