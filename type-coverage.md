@@ -29,6 +29,17 @@ If any of your files are missing type declarations, they will be highlighted in 
 
 As example, `rt31` means that the return type of the function on line 31 is missing. On the other hand, `pa31` means that the parameter type of the function on line 31 is missing.
 
+## Ignoring Errors
+
+Sometimes, you may want to ignore a specific error or line of code. To do so, you may use the `@pest-ignore-type` annotation:
+
+```php
+    protected $except = [ // @pest-ignore-type
+        // ...
+    ];
+}
+```
+
 ## Minimum Threshold Enforcement
 
 Just like code coverage, type coverage can also be enforced. To ensure any code that is added to your application is fully typed, you can use the `--type-coverage` and `--min` options to define the minimum threshold values for type coverage results. If the specified thresholds are not met, Pest will report a failure.
