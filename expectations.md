@@ -106,6 +106,7 @@ With the Pest expectation API, you have access to an extensive collection of ind
 - [`toHaveCamelCaseKeys()`](#expect-toHaveCamelCaseKeys)
 - [`toHaveStudlyCaseKeys()`](#expect-toHaveStudlyCaseKeys)
 - [`toHaveSameSize()`](#expect-toHaveSameSize)
+- [`toBeUrl()`](#expect-toBeUrl)
 - [`toBeUuid()`](#expect-toBeUuid)
 
 </div>
@@ -824,6 +825,15 @@ This expectation ensures that the size of `$value` and the provided iterable are
 
 ```php
 expect(['foo', 'bar'])->toHaveSameSize(['baz', 'bazz']);
+```
+
+<a name="expect-toBeUrl"></a>
+### `toBeUrl()`
+
+This expectation ensures that `$value` is a URL.
+
+```php
+expect('https://pestphp.com/')->toBeUrl();
 ```
 
 <a name="expect-toBeUuid"></a>
