@@ -11,6 +11,7 @@ In this section, you will find a list of some of the video resources available o
 
 We have gathered here some inspiring and exciting conference talks about Pest PHP.
 
+- [Laracon US 2023: What's new in Pest](https://www.youtube.com/watch?v=vb02YE2xx44) by Nuno Maduro
 - [Laracon IN 2023: Future Of Pest](https://www.youtube.com/watch?v=9EGPo_enEc8) by Nuno Maduro
 - [Laracon EU 2022: Living your Pest file](https://www.youtube.com/watch?v=b3ybZlxrZZY) by Luke Downing
 - [PHPDay 2022: Introducing Pest](https://www.youtube.com/watch?v=MqiGA34ZrQU) by Nuno Maduro
