@@ -985,7 +985,7 @@ The `sequence()` modifier can also be used with associative iterables. Each clos
 
 ```php
 expect(['hello' => 'world', 'foo' => 'bar', 'john' => 'doe'])->sequence(
-    fn ($value, $key) => $value->toEqual('hello'),
+    fn ($value, $key) => $value->toEqual('world'),
     fn ($value, $key) => $key->toEqual('foo'),
     fn ($value, $key) => $value->toBeString(),
 );
