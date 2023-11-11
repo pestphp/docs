@@ -23,7 +23,7 @@ After requiring the plugin, you may start using it in two different ways:
 - Using [the `stress()` function](#the-stress-function): It's useful when you want to stress test a URL and set expectations on the result.
 
 <a name="the-stress-command"></a>
-## The `stress` command
+## The Stress Command
 
 The `stress` command is useful when you want to quickly stress test a URL, analyze the result, and all without setting expectations on the result. It's the quickest way to launch a stress test, and it happens directly on the terminal.
 
@@ -52,7 +52,7 @@ You may want to be mindful of the number of concurrent requests you configure. I
 Once the stress test is completed, Pest will display a summary of the stress test result.
 
 <a name="the-stress-function"></a>
-## The `stress()` function
+## The Stress function
 
 Once you start understanding how stress testing works, you may want to start setting expectations on the stress test result. For example, you may want to verify that the average response time is *always* less than 100ms, and this is where the `stress()` function comes in.
 
@@ -87,6 +87,7 @@ At any time, you may `dd` the stress test result to see its details like if you 
 ```php
 $result = stress('example.com')->dd();
                              //->dump();
+                             //->verbosely();
 ```
 
 
@@ -149,7 +150,6 @@ Returns the request time to first byte duration in milliseconds.
 ```php
 $result->requests()->ttfb()->duration()->med();
                                     // ->min();
-
                                     // ->max();
                                     // ->p90();
                                     // ->p95();
@@ -165,7 +165,6 @@ Returns the request DNS lookup duration in milliseconds.
 ```php
 $result->requests()->dnsLookup()->duration()->med();
                                          // ->min();
-
                                          // ->max();
                                          // ->p90();
                                          // ->p95();
@@ -181,7 +180,6 @@ Returns the request TLS handshaking duration in milliseconds.
 ```php
 $result->requests()->tlsHandshaking()->duration()->med();
                                               // ->min();
-
                                               // ->max();
                                               // ->p90();
                                               // ->p95();
@@ -197,7 +195,6 @@ Returns the request download duration in milliseconds.
 ```php
 $result->requests()->download()->duration()->med();
                                         // ->min();
-
                                         // ->max();
                                         // ->p90();
                                         // ->p95();
@@ -231,7 +228,6 @@ Returns the request upload duration in milliseconds.
 ```php
 $result->requests()->upload()->duration()->med();
                                       // ->min();
-
                                       // ->max();
                                       // ->p90();
                                       // ->p95();
