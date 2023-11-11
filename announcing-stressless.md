@@ -1,11 +1,11 @@
 ---
 title: Announcing Stressless
-description: "We are thrilled to announce the release of a brand new plugin for Pest PHP: Stressless. This plugin is designed to change the way we approach stress testing in PHP applications, ensuring that your applications are not just passing tests, but are also robust and reliable under regular or extreme conditions."
+description: "We are thrilled to announce the release of a brand new plugin for Pest PHP: Stressless. It's a fresh new addition to the Pest PHP family, and it brings the power of stress testing to the PHP ecosystem. It integrates seamlessly with Pest PHP, combining the power of stress testing with the simplicity and elegance of Pest's Expectation API.
 ---
 
 # Announcing Stressless
 
-We are thrilled to announce the release of a brand new plugin for Pest PHP: ****[Stressless](/docs/stress-testing)**.
+We are thrilled to announce the release of a brand new plugin for Pest PHP: **[Stressless](/docs/stress-testing)**.
 
 It's a fresh new addition to the Pest PHP family, and it brings the power of stress testing to the PHP ecosystem. It integrates seamlessly with Pest PHP, combining the power of stress testing with the simplicity and elegance of Pest's Expectation API.
 
