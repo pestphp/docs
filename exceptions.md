@@ -53,6 +53,14 @@ it('throws exception', function () {
 });
 ```
 
+If you expect no exceptions to be thrown, you can use the `throwsNoExceptions()` method.
+
+```php
+it('throws no exceptions', function () {
+    $result = 1 + 1;
+})->throwsNoExceptions();
+```
+
 ---
 
 After learning how to write tests that assert exceptions, the next step is to explore "Test Filtering". This feature allows you to efficiently run specific tests based on criteria like test name, dirty files, and more: [Filtering Tests →](/docs/filtering-tests)
