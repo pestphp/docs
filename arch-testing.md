@@ -445,4 +445,4 @@ test('app')
 
 ---
 
-In this section, you have learned how to perform architectural testing, ensuring that your application or library's architecture meets a specified set of architectural requirements. Moving on, let's explore how to test the coverage of your testing code: [Test Coverage](/docs/test-coverage)
+In this section, you have learned how to perform architectural testing, ensuring that your application or library's architecture meets a specified set of architectural requirements. Next, have you ever wondered how to test the performance of your code? Let's explore [Stress Testing](/docs/stress-testing).

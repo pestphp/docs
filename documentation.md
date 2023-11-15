@@ -1,4 +1,5 @@
 - ## Press
+  - [Announcing Stressless](/docs/anouncing-stressless)
   - [Pest's Spicy Summer Release](/docs/pest-spicy-summer-release)
   - [Announcing Pest 2.0](/docs/announcing-pest2)
   - [Why Pest](/docs/why-pest)
@@ -23,6 +24,7 @@
   - [Mocking](/docs/mocking)
   - [Plugins](/docs/plugins)
   - [Architecture Testing](/docs/arch-testing)
+  - [Stress Testing](/docs/stress-testing)
   - [Test Coverage](/docs/test-coverage)
   - [Type Coverage](/docs/type-coverage)
   - [Snapshot Testing](/docs/snapshot-testing)
