@@ -7,7 +7,7 @@ description: Stress Testing is a type of testing that inspects the stability and
 
 Stress Testing is a type of testing that inspects the stability and reliability of your application under realistic or extreme conditions — depending on the scenario you setup. For example, you can use stress testing to verify that your application can handle a large number of requests or that it can handle a large amount of data.
 
-<img src="/assets/img/stressless-results.png" style="width: 100%;" />
+<iframe width="560" height="315" src="https://www.youtube.com/embed/SaMoPZwdOCY?si=KBskkVWLUUSyK0u0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 In Pest, you can combine the power of Stress Testing with the Expectation API ensuring no stability and reliability regressions over time. This can be useful to verify that your application is stable and reliable after a new release, or after a new deployment.
 
