@@ -11,6 +11,8 @@ Stress Testing is a type of testing that inspects the stability and reliability 
 
 In Pest, you can combine the power of Stress Testing with the Expectation API ensuring no stability and reliability regressions over time. This can be useful to verify that your application is stable and reliable after a new release, or after a new deployment.
 
+Behind the scenes, this project utilizes [k6](https://k6.io/), a powerful open-source load testing tool for evaluating the performance of APIs, microservices, and websites. k6 is licensed under the **[AGPL-3.0 License](https://www.gnu.org/licenses/agpl-3.0.en.html)**, and the k6 binary is downloaded when the plugin is used for the first time.
+
 To start using Pest's Stress Testing plugin (mostly known as Stressless), you need to require the stressless plugin via Composer.
 
 ```bash
