@@ -24,6 +24,8 @@ After requiring the plugin, you may start using it in two different ways:
 - Using [the `stress` command](#the-stress-command): It's useful when you want to quickly stress test a URL, without setting expectations on the result.
 - Using [the `stress()` function](#the-stress-function): It's useful when you want to stress test a URL and set expectations on the result.
 
+**Testing external domain or local IP Address?** When load testing a domain from an external network, you get a realistic picture of how your application performs under typical user loads. This includes factors like network latency and real-world internet traffic. However, when testing a local IP address within your network, the focus is on understanding the performance of your internal infrastructure in a controlled environment, without external variables like internet or DNS resolution times. It's particularly useful for identifying potential bottlenecks within your own network or server and for performance tuning of internal applications or servers. This includes tasks such as configuring PHP FPM more effectively, etc.
+
 <a name="the-stress-command"></a>
 ## The Stress Command
 
