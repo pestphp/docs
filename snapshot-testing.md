@@ -1,6 +1,6 @@
 ---
-title: Type Coverage
-description: Type Coverage is a metric used to measure the percentage of code that is covered by type declarations
+title: Snapshot Testing
+description: Snapshot Testing is a great way to test your code by comparing by the given expectation value to a previously stored snapshot of the same value
 ---
 
 # Snapshot Testing
