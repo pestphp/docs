@@ -51,6 +51,14 @@ it('has home', function () {
 })->skipOnWindows(); // or skipOnMac() or skipOnLinux() ...
 ```
 
+Alternatively, you can skip a test on all operating systems except one by using `onlyOnWindows()`, `onlyOnMac()`, or `onlyOnLinux()`.
+
+```php
+it('has home', function() {
+    //
+})->onlyOnWindows(); // or onlyOnMac() or onlyOnLinux() ...
+```
+
 You may even invoke the `skip()` method within your `beforeEach()` hook to conveniently skip an entire test file.
 
 ```php
