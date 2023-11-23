@@ -37,7 +37,7 @@ To get started, you may use the `stress` command and provide the URL you wish to
 ./vendor/bin/pest stress example.com
 ```
 
-By default, the stress test duration will be `10` seconds. However, you may customize this value using the `--duration` option:
+By default, the stress test duration will be `5` seconds. However, you may customize this value using the `--duration` option:
 
 ```bash
 ./vendor/bin/pest stress example.com --duration=5
