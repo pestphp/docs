@@ -53,6 +53,20 @@ The concurrency value represents the number of concurrent requests that will be 
 
 You may want to be mindful of the number of concurrent requests you configure. If you configure too many concurrent requests, you may overwhelm your application, server or hit rate limits / firewalls.
 
+If you want to specify the http method used for the stress test, you can use the provided `get` and `post` options.
+
+```bash
+./vendor/bin/pest stress example.com --get
+```
+
+or
+
+```bash
+./vendor/bin/pest stress example --post='{"name": "Nuno"}'
+```
+
+Using the `--post` option, you can specify as argument the payload to be used in the requests.
+
 Once the stress test is completed, Pest will display a summary of the stress test result.
 
 <a name="the-stress-function"></a>
@@ -94,6 +108,15 @@ $result = stress('example.com')->dd();
                              //->verbosely();
 ```
 
+If you want to specify the http method used for the stress test, you can use the provided `get` and `post` methods.
+
+```php
+$result = stress('example.com')->get();
+// or
+$result = stress('example.com')->post(['name' => 'Nuno']);
+```
+
+If you are using the POST http method, remember to pass to the `post` method the payload to be used in the requests.
 
 The `stress()` function return the stress test result, which you can use to set expectations. Here is the list of available methods:
 
