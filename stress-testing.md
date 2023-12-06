@@ -53,13 +53,10 @@ The concurrency value represents the number of concurrent requests that will be 
 
 You may want to be mindful of the number of concurrent requests you configure. If you configure too many concurrent requests, you may overwhelm your application, server or hit rate limits / firewalls.
 
-If you want to specify the http method used for the stress test, you can use one of the provided `delete`, `get`, `head`, `options`, `patch`, `put` or `post` options.
-
-Using `options`, `patch` and `put` options, you can specify an optional payload argument to be used in the requests.
-Using `post` option, you are required to provide the payload argument.
+If you want to specify the http method used for the stress test, you can use one of the provided `delete`, `get`, `head`, `options`, `patch`, `put` or `post` options. Using `options`, `patch` and `put` options, you can specify an optional payload argument to be used in the requests. Using `post` option, you are required to provide the payload argument.
 
 ```bash
-./vendor/bin/pest stress example.com/articles/1 --delete
+./vendor/bin/pest stress example.com/articles
 # or
 ./vendor/bin/pest stress example.com/articles --get
 # or
@@ -78,6 +75,9 @@ Using `post` option, you are required to provide the payload argument.
 ./vendor/bin/pest stress example.com/articles --put='{"name": "Nuno"}'
 # or
 ./vendor/bin/pest stress example.com/articles --post='{"name": "Nuno"}'
+# or
+./vendor/bin/pest stress example.com/articles/1 --delete
+
 ```
 
 Once the stress test is completed, Pest will display a summary of the stress test result.
