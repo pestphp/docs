@@ -53,10 +53,31 @@ The concurrency value represents the number of concurrent requests that will be 
 
 You may want to be mindful of the number of concurrent requests you configure. If you configure too many concurrent requests, you may overwhelm your application, server or hit rate limits / firewalls.
 
-If you want to specify the http method used for the stress test, you can use the provided `get` and `post` options. Using the `--post` option, you can specify as argument the payload to be used in the requests:
+If you want to specify the http method used for the stress test, you can use one of the provided `delete`, `get`, `head`, `options`, `patch`, `put` or `post` options. Using `options`, `patch` and `put` options, you can specify an optional payload argument to be used in the requests. Using `post` option, you are required to provide the payload argument.
 
 ```bash
+./vendor/bin/pest stress example.com/articles
+# or
+./vendor/bin/pest stress example.com/articles --get
+# or
+./vendor/bin/pest stress example.com/articles --head
+# or
+./vendor/bin/pest stress example.com/articles --options
+# or
+./vendor/bin/pest stress example.com/articles --options='{"name": "Nuno"}'
+# or
+./vendor/bin/pest stress example.com/articles/1 --patch
+# or
+./vendor/bin/pest stress example.com/articles/1 --patch='{"name": "Nuno"}'
+# or
+./vendor/bin/pest stress example.com/articles --put
+# or
+./vendor/bin/pest stress example.com/articles --put='{"name": "Nuno"}'
+# or
 ./vendor/bin/pest stress example.com/articles --post='{"name": "Nuno"}'
+# or
+./vendor/bin/pest stress example.com/articles/1 --delete
+
 ```
 
 Once the stress test is completed, Pest will display a summary of the stress test result.
@@ -100,15 +121,31 @@ $result = stress('example.com')->dd();
                              //->verbosely();
 ```
 
-If you want to specify the http method used for the stress test, you can use the provided `get` and `post` methods.
+If you want to specify the http method used for the stress test, you can use one of the provided `delete`, `get`, `head`, `options`, `patch`, `put` or `post` methods.
+Using `options`, `patch` and `put` methods, you can specify an optional payload argument to be used in the requests.
+Using `post` method, you are required to provide the payload argument.
 
 ```php
-$result = stress('example.com')->get();
+$result = stress('example.com/articles/1')->delete();
 // or
-$result = stress('example.com')->post(['name' => 'Nuno']);
+$result = stress('example.com/articles')->get();
+// or
+$result = stress('example.com/articles')->head();
+// or
+$result = stress('example.com/articles')->options();
+// or
+$result = stress('example.com/articles')->options(["name" => "Nuno"]);
+// or
+$result = stress('example.com/articles/1')->patch();
+// or
+$result = stress('example.com/articles/1')->patch(["name" => "Nuno"]);
+// or
+$result = stress('example.com/articles')->put();
+// or
+$result = stress('example.com/articles')->put(["name" => "Nuno"]);
+// or
+$result = stress('example.com/articles')->post(["name" => "Nuno"]);
 ```
-
-If you are using the POST http method, remember to pass to the `post` method the payload to be used in the requests.
 
 The `stress()` function return the stress test result, which you can use to set expectations. Here is the list of available methods:
 
