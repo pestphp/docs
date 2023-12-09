@@ -46,7 +46,7 @@ Architecture testing enables you to specify expectations that test whether your 
 The `toBeAbstract()` method may be used to ensure that all classes within a given namespace are abstract.
 
 ```php
-test('app')
+arch('app')
     ->expect('App\Models')
     ->toBeAbstract();
 ```
@@ -57,7 +57,7 @@ test('app')
 The `toBeClasses()` method may be used to ensure that all files within a given namespace are classes.
 
 ```php
-test('app')
+arch('app')
     ->expect('App\Models')
     ->toBeClasses();
 ```
@@ -68,7 +68,7 @@ test('app')
 The `toBeEnums()` method may be used to ensure that all files within a given namespace are enums.
 
 ```php
-test('app')
+arch('app')
     ->expect('App\Enums')
     ->toBeEnums();
 ```
@@ -79,7 +79,7 @@ test('app')
 The `toBeInterfaces()` method may be used to ensure that all files within a given namespace are interfaces.
 
 ```php
-test('app')
+arch('app')
     ->expect('App\Contracts')
     ->toBeInterfaces();
 ```
@@ -90,7 +90,7 @@ test('app')
 The `toBeInvokable()` method may be used to ensure that all files within a given namespace are invokable.
 
 ```php
-test('app')
+arch('app')
     ->expect('App\Actions')
     ->toBeInvokable();
 ```
@@ -101,7 +101,7 @@ test('app')
 The `toBeTraits()` method may be used to ensure that all files within a given namespace are traits.
 
 ```php
-test('app')
+arch('app')
     ->expect('App\Concerns')
     ->toBeTraits();
 ```
@@ -112,7 +112,7 @@ test('app')
 The `toBeFinal()` method may be used to ensure that all classes within a given namespace are final.
 
 ```php
-test('app')
+arch('app')
     ->expect('App\ValueObjects')
     ->toBeFinal();
 ```
@@ -120,7 +120,7 @@ test('app')
 Note that, typically this expectation is used in combination with the `classes()` modifier to ensure that all classes within a given namespace are final.
 
 ```php
-test('app')
+arch('app')
     ->expect('App')
     ->classes()
     ->toBeFinal();
@@ -132,7 +132,7 @@ test('app')
 The `toBeReadonly()` method may be used to ensure that certain classes are immutable and cannot be modified at runtime.
 
 ```php
-test('app')
+arch('app')
     ->expect('App\ValueObjects')
     ->toBeReadonly();
 ```
@@ -140,7 +140,7 @@ test('app')
 Note that, typically this expectation is used in combination with the `classes()` modifier to ensure that all classes within a given namespace are readonly.
 
 ```php
-test('app')
+arch('app')
     ->expect('App')
     ->classes()
     ->toBeReadonly();
@@ -152,11 +152,11 @@ test('app')
 The `not` modifier, when combined with the `toBeUsed()` method, enables you to verify that certain classes or functions are not being utilized by your application.
 
 ```php
-test('globals')
+arch('globals')
     ->expect(['dd', 'dump'])
     ->not->toBeUsed();
 
-test('facades')
+arch('facades')
     ->expect('Illuminate\Support\Facades')
     ->not->toBeUsed();
 ```
@@ -167,11 +167,11 @@ test('facades')
 By combining the `not` modifier with the `toBeUsedIn()` method, you can restrict specific classes and functions from being used within a given namespace.
 
 ```php
-test('globals')
+arch('globals')
     ->expect('request')
     ->not->toBeUsedIn('App\Domain');
 
-test('globals')
+arch('globals')
     ->expect('Illuminate\Http')
     ->not->toBeUsedIn('App\Domain');
 ```
@@ -182,7 +182,7 @@ test('globals')
 The `toExtend()` method may be used to ensure that all classes within a given namespace extend a specific class.
 
 ```php
-test('app')
+arch('app')
     ->expect('App\Models')
     ->toExtend('Illuminate\Database\Eloquent\Model');
 ```
@@ -193,7 +193,7 @@ test('app')
 The `toExtendNothing()` method may be used to ensure that all classes within a given namespace do not extend any class.
 
 ```php
-test('app')
+arch('app')
     ->expect('App\ValueObjects')
     ->toExtendNothing();
 ```
@@ -204,7 +204,7 @@ test('app')
 The `toImplement()` method may be used to ensure that all classes within a given namespace implement a specific interface.
 
 ```php
-test('app')
+arch('app')
     ->expect('App\Jobs')
     ->toImplement('Illuminate\Contracts\Queue\ShouldQueue');
 ```
@@ -215,7 +215,7 @@ test('app')
 The `toImplementNothing()` method may be used to ensure that all classes within a given namespace do not implement any interface.
 
 ```php
-test('app')
+arch('app')
     ->expect('App\ValueObjects')
     ->toImplementNothing();
 ```
@@ -226,7 +226,7 @@ test('app')
 The `toHaveAttribute()` method may be used to ensure that a certain class has a specific attribute.
 
 ```php
-test('app')
+arch('app')
     ->expect('App\Console\Commands')
     ->toHaveAttribute('Symfony\Component\Console\Attribute\AsCommand');
 ```
@@ -237,7 +237,7 @@ test('app')
 The `toHaveMethod()` method may be used to ensure that a certain class has a specific method.
 
 ```php
-test('app')
+arch('app')
     ->expect('App\Http\Controllers\HomeController')
     ->toHaveMethod('index');
 ```
@@ -248,7 +248,7 @@ test('app')
 The `toHavePrefix()` method may be used to ensure that all files within a given namespace have a specific prefix.
 
 ```php
-test('app')
+arch('app')
     ->expect('App\Helpers')
     ->not->toHavePrefix('Helper');
 ```
@@ -259,7 +259,7 @@ test('app')
 The `toHaveSuffix()` method may be used to ensure that all files within a given namespace have a specific suffix.
 
 ```php
-test('app')
+arch('app')
     ->expect('App\Http\Controllers')
     ->toHaveSuffix('Controller');
 ```
@@ -270,7 +270,7 @@ test('app')
 This `toHaveConstructor()` method may be used to ensure that all files within a given namespace have a `__construct` method.
 
 ```php
-test('app')
+arch('app')
     ->expect('App\ValueObjects')
     ->toHaveConstructor();
 ```
@@ -281,7 +281,7 @@ test('app')
 This `toHaveDestructor()` method may be used to ensure that all files within a given namespace have a `__destruct` method.
 
 ```php
-test('app')
+arch('app')
     ->expect('App\ValueObjects')
     ->toHaveDestructor();
 ```
@@ -292,7 +292,7 @@ test('app')
 The `toOnlyImplement()` method may be used to ensure that certain classes are restricted to implementing specific interfaces.
 
 ```php
-test('app')
+arch('app')
     ->expect('App\Responses')
     ->toOnlyImplement('Illuminate\Contracts\Support\Responsable');
 ```
@@ -303,7 +303,7 @@ test('app')
 The `toOnlyUse()` method may be used to guarantee that certain classes are restricted to utilizing specific functions or classes. For example, you may ensure your models are streamlined and solely dependent on the `Illuminate\Database` namespace, and not, for instance, dispatching queued jobs or events.
 
 ```php
-test('models')
+arch('models')
     ->expect('App\Models')
     ->toOnlyUse('Illuminate\Database');
 ```
@@ -314,7 +314,7 @@ test('models')
 The `toOnlyBeUsedIn()` method enables you to limit the usage of a specific class or set of classes to only particular parts of your application. For instance, you can use this method to confirm that your models are only used by your repositories and not by controllers or service providers.
 
 ```php
-test('models')
+arch('models')
     ->expect('App\Models')
     ->toOnlyBeUsedIn('App\Repositories');
 ```
@@ -325,11 +325,11 @@ test('models')
 By combining the `not` modifier with the `toUse()` method, you can indicate that files within a given namespace should not use specific functions or classes.
 
 ```php
-test('globals')
+arch('globals')
     ->expect('App\Domain')
     ->not->toUse('request');
 
-test('globals')
+arch('globals')
     ->expect('App\Domain')
     ->not->toUse('Illuminate\Http');
 ```
@@ -340,7 +340,7 @@ test('globals')
 If you want to indicate that particular namespaces or classes should not have any dependencies, you can utilize the `toUseNothing()` method.
 
 ```php
-test('value objects')
+arch('value objects')
     ->expect('App\ValueObjects')
     ->toUseNothing();
 ```
@@ -351,7 +351,7 @@ test('value objects')
 The `toUseStrictTypes()` method may be used to ensure that all files within a given namespace utilize strict types.
 
 ```php
-test('app')
+arch('app')
     ->expect('App')
     ->toUseStrictTypes();
 ```
@@ -376,7 +376,7 @@ Sometimes, you may want to apply the given expectation but excluding certain nam
 The `classes()` modifier allows you to restrict the expectation to only classes.
 
 ```php
-test('app')
+arch('app')
     ->expect('App')
     ->classes()
     ->toBeFinal();
@@ -388,7 +388,7 @@ test('app')
 The `enums()` modifier allows you to restrict the expectation to only enums.
 
 ```php
-test('app')
+arch('app')
     ->expect('App\Models')
     ->enums()
     ->toOnlyBeUsedIn('App\Models');
@@ -400,7 +400,7 @@ test('app')
 When defining your architecture rules, you can use the `ignoring()` method to exclude certain namespaces or classes that would otherwise be included in the rule definition.
 
 ```php
-test('facades')
+arch('facades')
     ->expect('Illuminate\Support\Facades')
     ->not->toBeUsed()
     ->ignoring('App\Providers');
@@ -425,7 +425,7 @@ uses()->beforeEach(function () {
 The `interfaces()` modifier allows you to restrict the expectation to only interfaces.
 
 ```php
-test('app')
+arch('app')
     ->expect('App')
     ->interfaces()
     ->toExtend('App\Contracts\Contract');
@@ -437,7 +437,7 @@ test('app')
 The `traits()` modifier allows you to restrict the expectation to only traits.
 
 ```php
-test('app')
+arch('app')
     ->expect('App')
     ->traits()
     ->toExtend('App\Traits\Trait');
