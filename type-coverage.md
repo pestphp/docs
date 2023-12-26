@@ -50,9 +50,11 @@ Just like code coverage, type coverage can also be enforced. To ensure any code 
 
 ## Different Formats
 
-Pest support reporting type coverage to a file:
+In additionm, Pest support reporting the type coverage to a specific file:
 
-- `--type-coverage-json=<file>`: Save the type coverage report in JSON format to a specified file.
+```bash
+./vendor/bin/pest --type-coverage --min=100 --type-coverage-json=my-report.json
+```
 
 ---
 
