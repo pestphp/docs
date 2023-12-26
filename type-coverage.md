@@ -48,6 +48,14 @@ Just like code coverage, type coverage can also be enforced. To ensure any code 
 ./vendor/bin/pest --type-coverage --min=100
 ```
 
+## Different Formats
+
+In additionm, Pest support reporting the type coverage to a specific file:
+
+```bash
+./vendor/bin/pest --type-coverage --min=100 --type-coverage-json=my-report.json
+```
+
 ---
 
 In the chapter, we have discussed Pest's Type Coverage plugin and how it can be used to measure the percentage of code that is covered by type declarations. In the following chapter, we explain how can you use Snapshots to test your code: [Snapshot Testing](/docs/snapshot-testing)
