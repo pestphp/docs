@@ -52,7 +52,7 @@ Just like code coverage, type coverage can also be enforced. To ensure any code 
 
 Pest support reporting type coverage to a file as well:
 
-- `--coverage-clover=<file>`: Save the type coverage report in JSON format to a specified file.
+- `--type-coverage-json=<file>`: Save the type coverage report in JSON format to a specified file.
 
 ---
 
