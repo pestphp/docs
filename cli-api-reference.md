@@ -29,8 +29,8 @@ In the preceding chapters of the Pest documentation, we have covered numerous CL
 - `--list-groups`: List available test groups.
 - `--group <name>`: Only run tests from the specified group(s).
 - `--exclude-group <name>`: Exclude tests from the specified group(s).
-- `--covers <name>`: Only run tests that intend to cover <name>.
-- `--uses <name>`: Only run tests that intend to use <name>.
+- `--covers <name>`: Only run tests that intend to cover `<name>`.
+- `--uses <name>`: Only run tests that intend to use `<name>`.
 - `--list-tests`: List available tests.
 - `--list-tests-xml <file>`: List available tests in XML format.
 - `--filter <pattern>`: Filter which tests to run
