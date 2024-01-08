@@ -50,7 +50,7 @@ Just like code coverage, type coverage can also be enforced. To ensure any code 
 
 ## Different Formats
 
-In additionm, Pest support reporting the type coverage to a specific file:
+In addition, Pest support reporting the type coverage to a specific file:
 
 ```bash
 ./vendor/bin/pest --type-coverage --min=100 --type-coverage-json=my-report.json
