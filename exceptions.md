@@ -61,6 +61,38 @@ it('throws no exceptions', function () {
 })->throwsNoExceptions();
 ```
 
+Sometimes, you may want to simply mark a test as failed. You can use the `fail()` method to do so.
+
+```php
+it('fail', function () {
+    $this->fail();
+});
+```
+
+You may also provide a message to the `fail()` method.
+
+```php
+it('fail', function () {
+    $this->fail('Something went wrong.');
+});
+```
+
+In addition, you can also use the `fails()` method to verify the test fails.
+
+```php
+it('fails', function () {
+    throw new Exception('Something happened.');
+})->fails();
+```
+
+Just like the `fail()` method, you may also provide a message to the `fails()` method.
+
+```php
+it('fails', function () {
+    throw new Exception('Something happened.');
+})->fails('Something went wrong.');
+```
+
 ---
 
 After learning how to write tests that assert exceptions, the next step is to explore "Test Filtering". This feature allows you to efficiently run specific tests based on criteria like test name, dirty files, and more: [Filtering Tests →](/docs/filtering-tests)
