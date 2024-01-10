@@ -10,7 +10,7 @@ Bug fixes will be available for outdated versions for a duration of two years fo
 
 | Major Version | PHP Compatibility | Initial Release | Bug Fixes Until
 | ---------------- | --- | --- | --- |
-| Pest 3 | >= PHP 8.2 | February X, 2023  | To be determined
+| Pest 3 | >= PHP 8.2 | February X, 2024  | To be determined
 | Pest 2 | >= PHP 8.1 | March 20, 2023  | February X, 2026
 | Pest 1 | >= PHP 7.3 | January 7, 2021 | March 20, 2025
 
