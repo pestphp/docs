@@ -15,9 +15,9 @@ Bug fixes will be available for outdated versions for a duration of two years fo
 | Pest 1 | >= PHP 7.3 | January 7, 2021 | March 20, 2025
 
 Pest adheres to semantic versioning principles, where the version number `x.y.z` conveys the following information:
-- When issuing bug fixes, the `z` number is incremented (e.g., 2.10.2 to 2.10.3).
-- When adding new non-breaking features or improvements, the `y` number is incremented (e.g., 2.10.2 to 2.12.0).
-- When introducing breaking changes, the `x` number is incremented (e.g., 2.10.2 to 3.0.0).
+- When issuing bug fixes, the `z` number is incremented (e.g., 3.10.2 to 3.10.3).
+- When adding new non-breaking features or improvements, the `y` number is incremented (e.g., 3.10.2 to 3.12.0).
+- When introducing breaking changes, the `x` number is incremented (e.g., 3.10.2 to 4.0.0).
 
 As maintainers of testing frameworks, we take the matter of breaking changes very seriously. Therefore, we always attempt to deliver incredible and robust new features without causing any disruption to the community's test suites. This is precisely why upgrading from Pest 1 to Pest 2 merely required updating your composer.json file, and we assure you that the process will be just as seamless when Pest v3 is released.
 
