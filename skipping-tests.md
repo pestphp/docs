@@ -59,7 +59,17 @@ it('has home', function() {
 })->onlyOnWindows(); // or onlyOnMac() or onlyOnLinux() ...
 ```
 
-You may even invoke the `skip()` method within your `beforeEach()` hook to conveniently skip an entire test file.
+Sometimes, you may want to skip a test on a specific PHP version. In these cases, you may use the `skipOnPhp()` method.
+
+```php
+it('has home', function () {
+    //
+})->skipOnPhp('>=8.0.0');
+```
+
+The valid operators for the `skipOnPhp()` method are `>`, `>=`, `<`, and `<=`.
+
+Finally, you may even invoke the `skip()` method within your `beforeEach()` hook to conveniently skip an entire test file.
 
 ```php
 beforeEach(function () {
