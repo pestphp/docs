@@ -193,6 +193,12 @@ To customize the watched directories, supply a comma-separated list of directori
 pest --watch=app,routes,tests
 ```
 
+By default, the output is not colored, as watch mode starts a new process, so Pest doesn't know it's running in a Terminal. To force Pest's output to be colored, you can use the `--colors` flag.
+
+```bash
+pest --watch --colors=always
+```
+
 ---
 
 In this section, we have seen how plugins can enhance your Pest experience. Now, let's dive into architectural testing and how it can benefit your development process. By performing architectural testing, you can evaluate the overall design of your application and identify potential flaws before they become significant issues: [Arch Testing](/docs/arch-testing)
