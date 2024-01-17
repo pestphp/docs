@@ -51,7 +51,7 @@ test('numeric ranges', function () {
 });
 ```
 
-Sometimes, you may need to trigger a test failure in your Custom Expectation. To do so, use the `test()` method in combination with the [fail()](/docs/exceptions) method.
+Sometimes, you may need to trigger a test failure in your Custom Expectation. To do so, use the `test()` method in combination with the [`fail()`](/docs/exceptions) method.
 
 ```php
 // Pest.php or Expectations.php
