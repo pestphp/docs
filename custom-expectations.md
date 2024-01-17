@@ -12,7 +12,7 @@ Custom expectations are usually defined in the `tests/Pest.php` file, but you ca
 For example, suppose you are testing a number utility library and you need to frequently assert that numbers fall within a given range. In this case, you might create a custom expectation called `toBeWithinRange()`:
 
 ```php
-// Pest.php or Expectations.php...
+// Pest.php or Expectations.php
 expect()->extend('toBeWithinRange', function (int $min, int $max) {
     return $this->toBeGreaterThanOrEqual($min)
                 ->toBeLessThanOrEqual($max);
@@ -35,7 +35,7 @@ expect()->extend('toBeWithinRange', function (int $min, int $max) {
 Of course, you probably want users to have the ability to "chain" expectations together with your custom expectation. To achieve this, ensure your custom expectation includes a `return $this` statement.
 
 ```php
-// Pest.php or Expectations.php...
+// Pest.php or Expectations.php
 expect()->extend('toBeWithinRange', function (int $min, int $max) {
     // Assertions based on `$this->value` and the given arguments...
 
@@ -48,6 +48,25 @@ test('numeric ranges', function () {
         ->toBeInt()
         ->toBeWithinRange(90, 110)
         ->to...
+});
+```
+
+Sometimes, you may need to trigger a test failure in your Custom Expectation. To do so, use the `test()` method in combination with the [fail()](/docs/exceptions) method.
+
+```php
+// Pest.php or Expectations.php
+expect()->extend('toBeDivisibleBy', function (int $divisor) {
+    if ($divisor === 0) {
+        test()->fail('The divisor cannot be 0.');
+    }
+
+    return expect($this->value % $divisor)->toBe(0);
+});
+
+// Tests/Unit/ExampleTest.php
+test('numeral division', function () {
+    expect(10)->toBeDivisibleBy(2); // Pass
+    expect(10)->toBeDivisibleBy(0); // Fail "The divisor cannot be 0."
 });
 ```
 
