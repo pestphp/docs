@@ -45,7 +45,7 @@ function mockPayments(): object
     return $client;
 }
 
-// tests/Features/PaymentsTest.php
+// tests/Feature/PaymentsTest.php
 it('may buy a book', function () {
     $client = mockPayments();
 
@@ -63,7 +63,7 @@ use Mockery;
 // tests/TestCase.php
 class TestCase extends BaseTestCase
 {
-    public function mockPayments(): void
+    protected function mockPayments(): void
     {
         $client = Mockery::mock(PaymentClient::class);
 
@@ -74,9 +74,9 @@ class TestCase extends BaseTestCase
 }
 
 // tests/Pest.php
-uses(TestCase::class)->in('Features');
+uses(TestCase::class)->in('Feature');
 
-// tests/Features/PaymentsTest.php
+// tests/Feature/PaymentsTest.php
 it('may buy a book', function () {
     $client = $this->mockPayments();
 
