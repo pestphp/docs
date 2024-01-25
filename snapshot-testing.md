@@ -33,6 +33,24 @@ And of course, you can "rebuild" the snapshots at any time by using the `--updat
 ./vendor/bin/pest --update-snapshots
 ```
 
+## Handling Dynamic Data
+
+Sometimes, the expected value may contain dynamic data that you cannot control, such as CSRF tokens in a form. In those cases, you can use [Expectation Pipes](/docs/custom-expectations#content-pipe-expectations) to replace that data. Here is an example:
+
+```php
+expect()->pipe('toMatchSnapshot', function (Closure $next) {
+    if (is_string($this->value)) {
+        $this->value = preg_replace(
+            '/name="_token" value=".*"/',
+            'name="_token" value="my_test"',
+            $this->value
+        );
+    }
+
+    return $next();
+});
+```
+
 ---
 
 In this chapter, we've seen how powerful snapshot testing is. In the following chapter, we will dive into Pest's custom helpers: [Custom Helpers](/docs/custom-helpers)
