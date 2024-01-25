@@ -14,10 +14,12 @@ Architecture testing enables you to specify expectations that test whether your 
 - [`toBeAbstract()`](#expect-toBeAbstract)
 - [`toBeClasses()`](#expect-toBeClasses)
 - [`toBeEnums()`](#expect-toBeEnums)
+- [`toBeIntBackedEnums()`](#expect-toBeIntBackedEnums)
 - [`toBeInterfaces()`](#expect-toBeInterfaces)
 - [`toBeInvokable()`](#expect-toBeInvokable)
 - [`toBeFinal()`](#expect-toBeFinal)
 - [`toBeReadonly()`](#expect-toBeReadonly)
+- [`toBeStringBackedEnums()`](#expect-toBeStringBackedEnums)
 - [`toBeTraits()`](#expect-toBeTraits)
 - [`toBeUsed()`](#expect-toBeUsed)
 - [`toBeUsedIn()`](#expect-toBeUsedIn)
@@ -71,6 +73,17 @@ The `toBeEnums()` method may be used to ensure that all files within a given nam
 arch('app')
     ->expect('App\Enums')
     ->toBeEnums();
+```
+
+<a name="expect-toBeIntBackedEnums"></a>
+### `toBeIntBackedEnums()`
+
+The `toBeIntBackedEnums()` method may be used to ensure that all enums within a specified namespace are int-backed.
+
+```php
+test('app')
+    ->expect('App\Enums')
+    ->toBeIntBackedEnums();
 ```
 
 <a name="expect-toBeInterfaces"></a>
@@ -144,6 +157,17 @@ arch('app')
     ->expect('App')
     ->classes()
     ->toBeReadonly();
+```
+
+<a name="expect-toBeStringBackedEnums"></a>
+### `toBeStringBackedEnums()`
+
+The `toBeStringBackedEnums()` method may be used to ensure that all enums within a specified namespace are string-backed.
+
+```php
+test('app')
+    ->expect('App\Enums')
+    ->toBeStringBackedEnums();
 ```
 
 <a name="expect-toBeUsed"></a>
