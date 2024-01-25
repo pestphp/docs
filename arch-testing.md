@@ -78,7 +78,7 @@ test('app')
 <a name="expect-toBeIntBackedEnums"></a>
 ### `toBeIntBackedEnums()`
 
-The `toBeIntBackedEnums()` method may be used to ensure that all files within a given namespace are backed by an integer.
+The `toBeIntBackedEnums()` method may be used to ensure that all enums within a specified namespace are int-backed.
 
 ```php
 test('app')
@@ -162,7 +162,7 @@ test('app')
 <a name="expect-toBeStringBackedEnums"></a>
 ### `toBeStringBackedEnums()`
 
-The `toBeStringBackedEnums()` method may be used to ensure that all files within a given namespace are backed by a string.
+The `toBeStringBackedEnums()` method may be used to ensure that all enums within a specified namespace are string-backed.
 
 ```php
 test('app')
