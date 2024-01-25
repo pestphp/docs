@@ -52,6 +52,7 @@ With the Pest expectation API, you have access to an extensive collection of ind
 - [`toBeLessThan()`](#expect-toBeLessThan)
 - [`toBeLessThanOrEqual()`](#expect-toBeLessThanOrEqual)
 - [`toContain()`](#expect-toContain)
+- [`toContainEqual()`](#expect-toContainEqual)
 - [`toContainOnlyInstancesOf()`](#expect-toContainOnlyInstancesOf)
 - [`toHaveCount()`](#expect-toHaveCount)
 - [`toHaveMethod()`](#expect-toHaveMethod)
@@ -256,6 +257,17 @@ This expectation ensures that all the given needles are elements of the `$value`
 expect('Hello World')->toContain('Hello');
 expect('Pest: an elegant PHP Testing Framework')->toContain('Pest', 'PHP', 'Framework');
 expect([1, 2, 3, 4])->toContain(2, 4);
+```
+
+
+<a name="expect-toContainEqual"></a>
+### `toContainEqual($needles)`
+
+This expectation ensures that all the given needles are elements (in terms of equality) of the `$value`.
+
+```php
+expect([1, 2, 3])->toContainEqual('1');
+expect([1, 2, 3])->toContainEqual('1', '2');
 ```
 
 <a name="expect-toContainOnlyInstancesOf"></a>
