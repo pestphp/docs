@@ -81,7 +81,7 @@ arch('app')
 The `toBeIntBackedEnums()` method may be used to ensure that all enums within a specified namespace are int-backed.
 
 ```php
-test('app')
+arch('app')
     ->expect('App\Enums')
     ->toBeIntBackedEnums();
 ```
@@ -165,7 +165,7 @@ arch('app')
 The `toBeStringBackedEnums()` method may be used to ensure that all enums within a specified namespace are string-backed.
 
 ```php
-test('app')
+arch('app')
     ->expect('App\Enums')
     ->toBeStringBackedEnums();
 ```
