@@ -12,8 +12,6 @@ To address this issue, Pest offers the `depends()` method, which allows a "Child
 ```php
 test('parent', function () {
     expect(true)->toBeTrue();
-
-    $this->assertTrue(true);
 });
 
 test('child', function () {
