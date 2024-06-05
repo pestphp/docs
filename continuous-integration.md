@@ -9,7 +9,8 @@ Up until now, we have only discussed running tests from the command line on your
 
 ## Composer 2.7+ caveat
 
-Since Composer 2.7, plugins are disabled by default when running as root, which is most often the case in the various CI platforms.
+Since Composer 2.7, plugins are disabled by default when running as root, which is most often the case in the various CI platforms (read more about this change: [composer/composer#11839](https://github.com/composer/composer/issues/11839)).
+
 You might encounter errors such as `Unknown option "--parallel"`  or `option --coverage is ambiguous`.
 
 To enable plugins and fix those issues, you can either setup your CI environment to use a regular user (varies by platform) or set `COMPOSER_ALLOW_SUPERUSER=1` before running `./vendor/bin/pest`.
