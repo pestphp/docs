@@ -7,6 +7,13 @@ description: Up until now, we have only discussed running tests from the command
 
 Up until now, we have only discussed running tests from the command line on your local machine. But, you can also run your tests from a CI platform of your choice. As `pestphp/pest` is included in your Composer development dependencies, you can easily execute the `vendor/bin/pest` command within your CI platform's deployment pipeline.
 
+## Composer 2.7+ caveat
+
+Since Composer 2.7, plugins are disabled by default when running as root, which is most often the case in the various CI platforms.
+You might encounter errors such as `Unknown option "--parallel"`  or `option --coverage is ambiguous`.
+
+To enable plugins and fix those issues, you can either setup your CI environment to use a regular user (varies by platform) or set `COMPOSER_ALLOW_SUPERUSER=1` before running `./vendor/bin/pest`.
+
 ## Example With GitHub Actions
 
 If your application uses [GitHub Actions](https://github.com/features/actions) as its CI platform, the following guidelines will assist you in configuring Pest so that your application is automatically tested when someone pushes a commit to your GitHub repository.
@@ -55,7 +62,7 @@ To get started, add the following configuration to your `.gitlab-ci.yml` file. T
 stages:
   - build
   - test
-  
+
 build:vendors:
   stage: build
   only:
@@ -70,7 +77,7 @@ build:vendors:
   image: composer:2
   script:
     - composer install --no-interaction --prefer-dist --optimize-autoloader
-      
+
 tests:
   stage: test
   only:
