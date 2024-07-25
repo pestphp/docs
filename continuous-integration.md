@@ -93,7 +93,7 @@ Once you have created your `.gitlab-ci.yml` file, commit and push the `.gitlab-c
 
 ## Example with Bitbucket Pipelines
 
-If your application uses [Bitbucket CI/CD Pipelines](https://bitbucket.org/product/features/pipelines) as its CI platform, the following guidelines will assist you in configuring Pest so that your application is automatically tested when someone pushes a commit to your GitLab repository.
+If your application uses [Bitbucket CI/CD Pipelines](https://bitbucket.org/product/features/pipelines) as its CI platform, the following guidelines will assist you in configuring Pest so that your application is automatically tested when someone pushes a commit to your Bitbucket repository.
 
 To get started, add the following configuration to your `bitbucket-pipelines.yml` file. The file should have the following contents:
 
