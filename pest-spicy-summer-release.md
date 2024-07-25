@@ -15,7 +15,7 @@ As we approach summer, we are thrilled to announce our upcoming release: the hig
 - **Describe Blocks**, for grouping tests and sharing setup and teardown logic
 - **Architectural Testing++**, even more powerful architectural testing
 - **Type Coverage Plugin**, for measuring the percentage of code that is covered by type declarations
-- **Drift Plugin**, for automatically convert your PHPUnit tests to Pest
+- **Drift Plugin**, to automatically convert your PHPUnit tests to Pest
 
 ## Built-in Snapshot Testing
 
