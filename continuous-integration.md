@@ -1,11 +1,11 @@
 ---
 title: Continuous Integration
-description: Up until now, we have only discussed running tests from the command line on your local machine. But, you can also run your tests from a CI platform of your choice. As `pestphp/pest` is included in your Composer development dependencies, you can easily execute the `vendor/bin/pest` command within your CI platform's deployment pipeline.
+description: Up until now, we have only discussed running tests from the command line on your local machine. But, you can also run your tests from a CI platform of your choice. As `pestphp/pest` is included in your Composer development dependencies, you can easily execute the `vendor/bin/pest --ci` command within your CI platform's deployment pipeline.
 ---
 
 # Continuous Integration
 
-Up until now, we have only discussed running tests from the command line on your local machine. But, you can also run your tests from a CI platform of your choice. As `pestphp/pest` is included in your Composer development dependencies, you can easily execute the `vendor/bin/pest` command within your CI platform's deployment pipeline.
+Up until now, we have only discussed running tests from the command line on your local machine. But, you can also run your tests from a CI platform of your choice. As `pestphp/pest` is included in your Composer development dependencies, you can easily execute the `vendor/bin/pest --ci` command within your CI platform's deployment pipeline.
 
 ## Example With GitHub Actions
 
@@ -37,7 +37,7 @@ jobs:
         run: composer install --no-interaction --prefer-dist --optimize-autoloader
 
       - name: Tests
-        run: ./vendor/bin/pest
+        run: ./vendor/bin/pest --ci
 ```
 
 Naturally, you may customize the script above according to your requirements. For example, you may need to set up a database if your tests require one.
@@ -84,7 +84,7 @@ tests:
     policy: pull
   image: php:8.2
   script:
-    - ./vendor/bin/pest
+    - ./vendor/bin/pest --ci
 ```
 
 Naturally, you may customize the script above according to your requirements. For example, you may need to set up a database if your tests require one.
@@ -155,7 +155,7 @@ pipeline:
     cmd: pest
 ```
 
-In addition to handling Composer and NPM caches, Chipper CI automatically adds `vendor/bin` to your PATH, so simply running the `pest` command will work when running tests.
+In addition to handling Composer and NPM caches, Chipper CI automatically adds `vendor/bin` to your PATH, so simply running the `pest --ci` command will work when running tests.
 
 Naturally, you may customize the scripts above according to your requirements. For example, you may need to define a [database service](https://chipperci.com/docs/builds/databases/) if your tests require one.
 
