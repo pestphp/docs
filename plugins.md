@@ -86,6 +86,12 @@ Executing the `pest:dataset` Artisan command will create a fresh dataset in the 
 php artisan pest:dataset Emails
 ```
 
+Executing the `pest:dusk` Artisan command will execute your Dusk browser tests.
+
+```bash
+php artisan pest:dusk
+```
+
 As you may know, Laravel provides a variety of assertions you can take advantage of in your feature tests. When using Pest's Laravel plugin, you may access all of those assertions as you typically would.
 
 ```php
