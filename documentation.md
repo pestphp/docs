@@ -26,6 +26,7 @@
   - [Architecture Testing](/docs/arch-testing)
   - [Stress Testing](/docs/stress-testing)
   - [Test Coverage](/docs/test-coverage)
+  - [Mutation Testing](/docs/mutation-testing)
   - [Type Coverage](/docs/type-coverage)
   - [Snapshot Testing](/docs/snapshot-testing)
   - [Custom Helpers](/docs/custom-helpers)
