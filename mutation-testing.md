@@ -11,8 +11,6 @@ Mutation Testing is a technique used to evaluate the quality of your application
 
 The way mutation testing works is by introducing small changes (mutations) to the source code and verifying if the tests are failing against these changes. This process helps developers identify weak spots in their test suites and improve the overall quality of their tests.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/SaMoPZwdOCY?si=KBskkVWLUUSyK0u0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
 Unlike with other mutation testing libraries, our plugin is deeply integrated into Pest PHP. So, each time a mutation is introduced, Pest PHP will:
 
 - **Only run the tests covering the mutated code** to speed up the process.
