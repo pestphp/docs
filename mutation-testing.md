@@ -108,7 +108,7 @@ it('list todos', function () {
 
     // this fails because the mutation changed the return value, proving that the test is working and testing the return value...
     $this->getJson('/todos')->assertStatus(200)->assertJsonContains([
-        ['name' => 'Buy milk'], 
+        ['name' => 'Buy milk'],
     ]);
 });
 ```
@@ -130,7 +130,7 @@ class TodoController
 it('list todos', function () {
     Todo::factory()->create(['name' => 'Buy milk']);
 
-    // this test still passes even though the return value was changed by the mutation... 
+    // this test still passes even though the return value was changed by the mutation...
     $this->getJson('/todos')->assertStatus(200);
 });
 ```

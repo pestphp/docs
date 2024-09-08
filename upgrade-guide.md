@@ -55,7 +55,7 @@ The `toHaveMethod` and `toHaveMethods` expectations were replaced by the `toHave
 
 ### Pest 2 Deprecations
 
-During Pest 2 release, some features were deprecated and will be removed in Pest 3. Here are the changes you should be aware of:
+During Pest 2 release, some features were deprecated and are now removed in Pest 3. Here are the changes you should be aware of:
 
 #### `tap()` Method
 
