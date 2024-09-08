@@ -100,6 +100,27 @@ test('plugin example', function () {
 
 Custom expectations can be incorporated into your plugin's `Autoload.php` file. For information on how to build custom expectations, please refer to the comprehensive documentation on [Custom Expectations](/docs/custom-expectations).
 
+## Adding Arch Presets
+
+If your plugin provides a custom Arch preset, you can define it within the `Autoload.php` file.
+
+```php
+pest()->preset('ddd', function () {
+    return [
+        expect('Infrastructure')->toOnlyBeUsedIn('Application'),
+        expect('Domain')->toOnlyBeUsedIn('Application'),
+    ];
+});
+```
+
+Optionally, may have access to the application PSR-4 namespaces on the first argument of your closure's callback.
+
+```php
+pest()->preset('silex', function (array $userNamespaces) {
+    dump($userNamespaces); // ['App\\']
+});
+```
+
 ---
 
 As you can see, crafting plugins on Pest can serve as a fantastic starting point for your open-source endeavors! In the next chapter, we will explore the concept of "Higher Order Testing": [Higher Order Testing](/docs/higher-order-testing)

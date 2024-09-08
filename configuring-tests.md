@@ -17,11 +17,11 @@ it('has home', function () {
 });
 ```
 
-However, you may associate a specific folder or even your entire test suite with another base test case class, thus changing the value of `$this` within tests. To accomplish this, you can utilize the `uses()` and `in()` functions within your `Pest.php` configuration file.
+However, you may associate a specific folder or even your entire test suite with another base test case class, thus changing the value of `$this` within tests. To accomplish this, you can utilize the `pest()` function and the `in()` method within your `Pest.php` configuration file.
 
 ```php
 // tests/Pest.php
-uses(Tests\TestCase::class)->in('Feature');
+pest()->extend(Tests\TestCase::class)->in('Feature');
 
 // tests/Feature/ExampleTest.php
 it('has home', function () {
@@ -33,7 +33,7 @@ Additionally, Pest supports [glob patterns](https://www.php.net/manual/en/functi
 
 ```php
 // tests/Pest.php
-uses(Tests\TestCase::class)->in('Feature/*Job*.php');
+pest()->extend(Tests\TestCase::class)->in('Feature/*Job*.php');
 
 // This will apply the Tests\TestCase to all test files in the "Feature" directory that contains "Job" in their filename.
 ```
@@ -42,10 +42,10 @@ Another more complex example would be using a pattern to match multiple director
 
 ```php
 // tests/Pest.php
-uses(
-    DuskTestCase::class,
-    DatabaseMigrations::class
-)->in('../Modules/*/Tests/Browser');
+pest()
+    ->extend(DuskTestCase::class)
+    ->use(DatabaseMigrations::class)
+    ->in('../Modules/*/Tests/Browser');
 
 // This will apply the DuskTestCase class and the DatabaseMigrations trait to all test files within any module's "Browser" directory.
 ```
@@ -65,7 +65,7 @@ class TestCase extends BaseTestCase
 }
 
 // tests/Pest.php
-uses(TestCase::class)->in('Feature');
+pest()->extend(TestCase::class)->in('Feature');
 
 // tests/Feature/ExampleTest.php
 it('has home', function () {
@@ -73,7 +73,7 @@ it('has home', function () {
 });
 ```
 
-A trait can be linked to a test or folder, much like classes. For instance, in Laravel, you can employ the `RefreshDatabase` trait to reset the database prior to each test. To include the trait in your test, pass the trait's name to the `uses()` function.
+A trait can be linked to a test or folder, much like classes. For instance, in Laravel, you can employ the `RefreshDatabase` trait to reset the database prior to each test. To include the trait in your test, pass the trait's name to the `pest()->use()` method.
 
 ```php
 <?php
@@ -81,13 +81,13 @@ A trait can be linked to a test or folder, much like classes. For instance, in L
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-uses(TestCase::class, RefreshDatabase::class)->in('Feature');
+pest()->extend(TestCase::class)->use(RefreshDatabase::class)->in('Feature');
 ```
 
-To associate a particular test with a specific test case class or trait, you can utilize the `uses()` function **within that specific test file**, omitting the use of the `in()` method.
+To associate a particular test with a specific test case class or trait, you can utilize the `pest()->extend()` and `pest()->use()` methods **within that specific test file**, omitting the use of the `in()` method.
 
 ```php
-uses(Tests\MySpecificTestCase::class);
+pest()->extend(Tests\MySpecificTestCase::class);
 
 it('has home', function () {
     echo get_class($this); // \Tests\MySpecificTestCase

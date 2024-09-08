@@ -1,7 +1,74 @@
 ---
 title: Upgrade Guide
-description: Upgrading To 2.x From 1.x
+description: Upgrading To 3.x From 2.x
 ---
+
+# Upgrading To 3.x From 2.x
+
+> **Estimated Upgrade Time**: 2 minutes
+
+We make an effort to document every potential breaking change, but some of these changes may exist in less frequently used sections of the framework. As a result, only a subset of these changes may impact your application.
+
+### Updating Dependencies
+
+> Likelihood Of Impact: High
+
+Pest 3 now requires PHP 8.2.0 or greater. To start migrating from Pest 1 to Pest 2, update the `pestphp/pest` dependency to `^2.0` in your application's `composer.json` file.
+
+```diff
+-    "pestphp/pest": "^2.0",
++    "pestphp/pest": "^3.0",
+```
+
+In addition, if you are using Laravel, please upgrade Collision to version 8. Note that, Laravel 11 is required.
+
+```diff
+-    "nunomaduro/collision": "^7.0",
++    "nunomaduro/collision": "^8.0",
+```
+
+All other Pest maintained plugins should be updated to version `^3.0` in your application's `composer.json` file.
+
+```diff
+-    "pestphp/pest-plugin-laravel": "^2.0",
++    "pestphp/pest-plugin-laravel": "^3.0",
+```
+
+### PHPUnit 11 Changes
+
+> Likelihood Of Impact: Medium
+
+Pest 3 is built on top of PHPUnit 11. This means that any notable changes made to PHPUnit 11 might have an impact on your test suite. To examine all the changes introduced in PHPUnit 11, please consult the [PHPUnit 11 changelog](https://github.com/sebastianbergmann/phpunit/blob/11.0.0/ChangeLog-11.0.md).
+
+### `toHaveMethod` and `toHaveMethods` Expectations
+
+> Likelihood Of Impact: Low
+
+The `toHaveMethod` and `toHaveMethods` expectations were replaced by the `toHaveMethod` and `toHaveMethods` architectural expectations. If you were using these expectations, you can no longer provide a object as architectural expectations expect an namespace or a class name.
+
+```diff
+-expect($object)->toHaveMethod('method');
++expect($object::class)->toHaveMethod('method');
+```
+
+### `pest()` 
+
+### Pest 2 Deprecations
+
+During Pest 2 release, some features were deprecated and will be removed in Pest 3. Here are the changes you should be aware of:
+
+#### `tap()` Method
+
+> Likelihood Of Impact: Low
+
+When performing high order testing, you might have utilized the `tap()` method to invoke assertions on an object that needs lazy evaluation during runtime. With Pest 2, the `tap()` method is deprecated, and on Pest 3 it was removed. Instead, you should use the `defer()` method.
+
+```diff
+it('creates admins')
+-    ->tap(fn () => $this->artisan('user:create --admin'))
++    ->defer(fn () => $this->artisan('user:create --admin'))
+     ->assertDatabaseHas('users', ['id' => 1]);
+```
 
 # Upgrading To 2.x From 1.x
 

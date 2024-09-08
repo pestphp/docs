@@ -65,7 +65,7 @@ You may even configure Pest to always use the compact printer so you don't have 
 
 ```php
 // tests/Pest.php
-uses()->compact();
+pest()->theme()->compact();
 
 //
 ```

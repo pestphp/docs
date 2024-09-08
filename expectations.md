@@ -55,8 +55,6 @@ With the Pest expectation API, you have access to an extensive collection of ind
 - [`toContainEqual()`](#expect-toContainEqual)
 - [`toContainOnlyInstancesOf()`](#expect-toContainOnlyInstancesOf)
 - [`toHaveCount()`](#expect-toHaveCount)
-- [`toHaveMethod()`](#expect-toHaveMethod)
-- [`toHaveMethods()`](#expect-toHaveMethods)
 - [`toHaveProperty()`](#expect-toHaveProperty)
 - [`toHaveProperties()`](#expect-toHaveProperties)
 - [`toMatchArray()`](#expect-toMatchArray)
@@ -288,24 +286,6 @@ This expectation ensures that the `$count` provided matches the number of elemen
 
 ```php
 expect(['Nuno', 'Luke', 'Alex', 'Dan'])->toHaveCount(4);
-```
-
-<a name="expect-toHaveMethod"></a>
-### `toHaveMethod(string $name)`
-
-This expectation ensures that `$value` has a method named `$name`.
-
-```php
-expect($user)->toHaveMethod('getFullname');
-```
-
-<a name="expect-toHaveMethods"></a>
-### `toHaveMethods(iterable $names)`
-
-This expectation ensures that `$value` has all the methods contained in `$names`.
-
-```php
-expect($user)->toHaveMethods(['getFullname', 'isAuthenticated']);
 ```
 
 <a name="expect-toHaveProperty"></a>

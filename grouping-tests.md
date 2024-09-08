@@ -10,7 +10,7 @@ You can assign tests folders to various groups using Pest's `group()` method. As
 For instance, consider the scenario where we assign the tests located in the `tests/Feature` folder to a group named "feature".
 
 ```php
-uses(TestCase::class)
+pest()->extend(TestCase::class)
     ->group('feature')
     ->in('Feature');
 ```
@@ -37,10 +37,10 @@ it('has home', function () {
 })->group('feature', 'browser');
 ```
 
-In some cases, you may want to assign a whole file to a group. To do so, you may combine the `uses()` and `group()` methods.
+In some cases, you may want to assign a whole file to a group. To do so, you may use the `pest()->group()` method within the file.
 
 ```php
-uses()->group('feature');
+pest()->group('feature');
 
 it('has home', function () {
     //
