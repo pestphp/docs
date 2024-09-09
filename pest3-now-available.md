@@ -15,12 +15,12 @@ Check out Pest's creator, Nuno Maduro, live demonstrating what's new in Pest 3:
 
 Below, we'll cover all the juicy details about this release. And as usual, you can find the [upgrade guide](/docs/upgrade-guide) in our website.
 
-- **[Mutation Testing](#mutation-testing)**: An innovative technique used to evaluate the quality of your application's test suite.
-- **[Arch Presets](#arch-presets)**: A set of predefined architectural rules that you can use to test your application's architecture.
+- **[Mutation Testing](#mutation-testing)**: An innovative new technique that introduces small changes to your code to see if your tests catch them.
+- **[Arch Presets](#arch-presets)**: A set of predefined rules that you can use to test your application's architecture.
 - **[Team Management](#team-management)**: A new feature that allows you to manage tasks and todos with your team directly from the console.
 - **[New Configuration API](#new-configuration-api)**: A new configuration API that is more intuitive and easier to use.
-- **[More Architectural Testing Improvements](#more-architectural-testing-improvements)**: A bunch of new architectural expectations and improvements.
-- **[And Much More...](#miscellaneous-improvements)**
+- **[More Architectural Testing Improvements](#more-architectural-testing-improvements)**: New expectations, `@pest-arch-ignore-line`, `@pest-arch-ignore-next-line`, and more.
+- **[And Much More...](#miscellaneous-improvements)**: Constants in Type Coverage, static analysis improvements, and more.
 
 <a name="mutation-testing"></a>
 ## Mutation Testing
