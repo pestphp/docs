@@ -57,7 +57,7 @@ Optionally, you may run mutation testing in parallel to speed up the process. Of
 ./vendor/bin/pest --mutate --parallel
 ```
 
-After running mutation testing, you will see a detailed report showing the number of mutations, how many were caught, and the mutation score.
+After running mutation testing, you will see a detailed report showing the number of mutations, how many were untested or uncovered, and the mutation score.
 
 <img src="/assets/mutation-testing.png" style="width: 100%;" />
 
