@@ -5,7 +5,7 @@ description: Today, we're thrilled to announce the release of Pest 3, a major up
 
 # Pest v3 Now Available
 
-Today, we're thrilled to announce the release of **Pest 3**. As we announced at Laracon US, Pest 3 introduces mutation testing, arch presets, team management, new configuration api, multiple architectural testing improvements, and more. Check out Pest's creator, Nuno Maduro, live demonstrating what's new in Pest 3:
+Today, we're thrilled to announce the release of **Pest 3**. As we announced at Laracon US, Pest 3 introduces mutation testing, arch presets, team management, new configuration API, multiple architectural testing improvements, and more. Check out Pest's creator, Nuno Maduro, live demonstrating what's new in Pest 3:
 
 <div class="content-center" markdown="0">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/BNhbgcNJyAk" title="Introducing Pest 3.0 | Nuno Maduro at Laracon US 2024 in Dallas, TX" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -13,16 +13,12 @@ Today, we're thrilled to announce the release of **Pest 3**. As we announced at 
 
 Below, we'll cover all the juicy details about this release. And as usual, you can find the [upgrade guide](/docs/upgrade-guide) in our website.
 
-<div class="collection-method-list" markdown="1">
-
-- [`Mutation Testing`](#mutation-testing)
-- [`Arch Presets`](#arch-presets)
-- [`Team Management`](#team-management)
-- [`New Configuration API`](#new-configuration-api)
-- [`More Architectural Testing Improvements`](#more-architectural-testing-improvements)
-- [`Miscellaneous Improvements`](#miscellaneous-improvements)
-
-</div>
+- **[Mutation Testing](#mutation-testing)**: An innovative technique used to evaluate the quality of your application's test suite.
+- **[Arch Presets](#arch-presets)**: A set of predefined architectural rules that you can use to test your application's architecture.
+- **[Team Management](#team-management)**: A new feature that allows you to manage tasks and todos with your team directly from the console.
+- **[New Configuration API](#new-configuration-api)**: A new configuration API that is more intuitive and easier to use.
+- **[More Architectural Testing Improvements](#more-architectural-testing-improvements)**: A bunch of new architectural expectations and improvements.
+- **[And More Much](#miscellaneous-improvements)**
 
 ## Mutation Testing
 
