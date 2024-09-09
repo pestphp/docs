@@ -74,15 +74,81 @@ As you may know, [Architecture testing](#arch-testing) enables you to specify ex
 
 It's one of the most popular features of Pest, and with Pest 3, we're introducing **Arch Presets**. Arch Presets are a set of predefined architectural rules that you can use to test your application's architecture. These presets are designed to help you get started with architecture testing quickly and easily.
 
+div class="collection-method-list" markdown="1">
+
+- [`php`](#preset-php)
+- [`security`](#preset-security)
+- [`laravel`](#preset-laravel)
+- [`strict`](#preset-strict)
+- [`strict`](#preset-strict)
+- [`custom`](#preset-custom)
+
+</div>
+
+<a name="preset-php"></a>
+### `php`
+
+The `php` preset is a predefined set of expectations that can be used on any php project. It's not coupled with any framework or library.
+
+It avoids the usage of `die`, `var_dump`, and similar functions, and ensures you are not using deprecated PHP functions.
+
 ```php
 arch()->preset()->php();
-
-arch()->preset()->security();
-
-arch()->preset()->laravel();
-
-arch()->preset()->strict(); // or ->relaxed()
 ```
+
+You may find all the expectations included in the `php` preset below in our [source code](https://github.com/pestphp/pest/blob/3.x/src/ArchPresets/Php.php).
+
+<a name="preset-security"></a>
+### `security`
+
+The `security` preset is a predefined set of expectations that can be used on any php project. It's not coupled with any framework or library.
+
+It ensures you are not using code that could lead to security vulnerabilities, such as `eval`, `md5`, and similar functions.
+
+```php
+arch()->preset()->security();
+```
+
+You may find all the expectations included in the `security` preset below in our [source code](https://github.com/pestphp/pest/blob/3.x/src/ArchPresets/Security.php).
+
+<a name="preset-laravel"></a>
+### `laravel`
+
+The `laravel` preset is a predefined set of expectations that can be used on [Laravel](https://laravel.com) projects.
+
+It ensures you project's structure is following the well-known Laravel conventions, such as controllers only have `index`, `show`, `create`, `store`, `edit`, `update`, `destroy` as public methods and are always suffixed with `Controller` and so on.
+
+```php
+arch()->preset()->laravel();
+```
+
+You may find all the expectations included in the `laravel` preset below in our [source code](https://github.com/pestphp/pest/blob/3.x/src/ArchPresets/Laravel.php).
+
+<a name="preset-strict"></a>
+### `strict`
+
+The `strict` preset is a predefined set of expectations that can be used on any php project. It's not coupled with any framework or library.
+
+It ensures you are using strict types in all your files, that all your classes are final, and more.
+
+```php
+arch()->preset()->strict();
+```
+
+You may find all the expectations included in the `strict` preset below in our [source code](https://github.com/pestphp/pest/blob/3.x/src/ArchPresets/Strict.php).
+
+<a name="preset-relaxed"></a>
+### `relaxed`
+
+The `relaxed` preset is a predefined set of expectations that can be used on any php project. It's not coupled with any framework or library.
+
+It is the opposite of the `strict` preset, ensuring you are not using strict types in all your files, that all your classes are not final, and more.
+
+```php
+arch()->preset()->relaxed();
+```
+
+You may find all the expectations included in the `relaxed` preset below in our [source code](https://github.com/pestphp/pest/blob/3.x/src/ArchPresets/Relaxed.php).
 
 Just like regular architecture tests, you may ignore specific expectation targets using the `ignoring()` method.
 
@@ -91,6 +157,8 @@ arch()->preset()->security()->ignoring('md5');
 
 arch()->preset()->laravel()->ignoring(User::class);
 ```
+
+To get started with Arch Presets, please refer to our [Architecture Testing](/docs/arch-testing#arch-presets) section.
 
 <a name="team-management"></a>
 ## Team Management
