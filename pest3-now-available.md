@@ -76,7 +76,7 @@ it('list todos', function () {
 });
 ```
 
-Once you have written the additional tests, you can re-run Pest with the `--mutate` option to see if the mutation is now covered.
+Once you have written the additional tests, you can re-run Pest with the `--mutate` option to see if the mutation is now "tested" and covered because you test the return value of the `index` method.
 
 ```bash
   Mutations: 1 tested
