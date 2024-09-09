@@ -263,14 +263,14 @@ Again, Pest comes with a bunch of new architectural expectations and improvement
 - [`toHaveFileSystemPermissions()`](/docs/arch-testing#expect-toHaveFileSystemPermissions) - Asserts that a file has the expected file system permissions.
 - [`toHaveLineCountLessThan`](/docs/arch-testing#expect-toHaveLineCountLessThan) - Asserts that a file has less than a given number of lines.
 - [`toHaveMethods()`](/docs/arch-testing#expect-toHaveMethod) - Asserts that a class has the expected methods.
-- [`toHavePrivateMethodsBesides()`](/docs/arch-testing#expect-toHavePrivateMethodsBesides) - Asserts that a class has private
-- [`toHavePrivateMethods()`](/docs/arch-testing#expect-toHavePrivateMethods) - Asserts that a class has private
-- [`toHaveProtectedMethodsBesides()`](/docs/arch-testing#expect-toHaveProtectedMethodsBesides) - Asserts that a class has protected
-- [`toHaveProtectedMethods()`](/docs/arch-testing#expect-toHaveProtectedMethods) - Asserts that a class has protected
-- [`toHavePublicMethodsBesides()`](/docs/arch-testing#expect-toHavePublicMethodsBesides) - Asserts that a class has public
-- [`toHavePublicMethods()`](/docs/arch-testing#expect-toHavePublicMethods) - Asserts that a class has public
-- [`toUseTrait()`](/docs/arch-testing#expect-toUseTrait) - Asserts that a class uses a trait
-- [`toUseTraits()`](/docs/arch-testing#expect-toUseTraits) - Asserts that a class uses traits
+- [`not->toHavePrivateMethodsBesides()`](/docs/arch-testing#expect-toHavePrivateMethodsBesides) - Asserts a class only "allows" the given private methods.
+- [`not->toHavePrivateMethods()`](/docs/arch-testing#expect-toHavePrivateMethods) - Asserts that a class does not have private methods.
+- [`not->toHaveProtectedMethodsBesides()`](/docs/arch-testing#expect-toHaveProtectedMethodsBesides) - Asserts a class only "allows" the given protected methods.
+- [`not->toHaveProtectedMethods()`](/docs/arch-testing#expect-toHaveProtectedMethods) - Asserts that a class does not have protected methods.
+- [`not->toHavePublicMethodsBesides()`](/docs/arch-testing#expect-toHavePublicMethodsBesides) - Asserts a class only "allows" the given public methods.
+- [`not->toHavePublicMethods()`](/docs/arch-testing#expect-toHavePublicMethods) - Asserts that a class does not have public methods.
+- [`toUseTrait()`](/docs/arch-testing#expect-toUseTrait) - Asserts that a class uses the given trait.
+- [`toUseTraits()`](/docs/arch-testing#expect-toUseTraits) - Asserts that a class uses the given traits.
 
 You may check all existing architectural expectations in our [Architecture Testing](/docs/arch-testing) section.
 
