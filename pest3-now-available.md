@@ -5,7 +5,9 @@ description: Today, we're thrilled to announce the release of Pest 3, a major up
 
 # Pest v3 Now Available
 
-Today, we're thrilled to announce the release of **Pest 3**. As we announced at Laracon US, Pest 3 introduces mutation testing, arch presets, team management, new configuration API, multiple architectural testing improvements, and more. Check out Pest's creator, Nuno Maduro, live demonstrating what's new in Pest 3:
+Today, we're thrilled to announce the release of **Pest 3**. As we announced at Laracon US, Pest 3 introduces Mutation Testing, arch presets, Team Management, New Configuration API, multiple improvements to Architectural Testing & more.
+
+Check out Pest's creator, Nuno Maduro, live demonstrating what's new in Pest 3:
 
 <div class="content-center" markdown="0">
     <iframe width="100%" height="315" src="https://www.youtube.com/embed/BNhbgcNJyAk" title="Introducing Pest 3.0 | Nuno Maduro at Laracon US 2024 in Dallas, TX" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -23,9 +25,7 @@ Below, we'll cover all the juicy details about this release. And as usual, you c
 <a name="mutation-testing"></a>
 ## Mutation Testing
 
-Pest 3 introduces [Mutation Testing](/docs/mutation-testing), an innovative technique used to evaluate the quality of your application's test suite by detecting "untested" code. Unlike code coverage, mutation testing is not solely about "covered" code, but more about the **actual quality of the tests**.
-
-The way mutation testing works is by introducing small changes (mutations) to the source code and verifying if the tests are failing against these changes. This process helps developers identify weak spots in their test suites and improve the overall quality of their tests.
+Mutation Testing is an innovative new technique that introduces small changes (mutations) to your code to see if your tests catch them. This ensures you’re testing your application thoroughly, beyond just achieving code coverage and more about the actual quality of the tests. It’s a great way to identify weaknesses in your test suite and improve quality.
 
 To get started with mutation testing, head over to your test file, and be specific about which part of your code your test covers using the `covers()` function.
 
