@@ -146,7 +146,7 @@ To ensure comprehensive testing and maintain testing quality, it is crucial to s
 ./vendor/bin/pest --mutate --min=40
 ```
 
-<img src="/assets/img/mutation-testing-min.png" style="width: 100%;" />
+<img src="/assets/mutation-testing-min.png" style="width: 100%;" />
 
 <a name="options-and-modifiers"></a>
 ## Options & Modifiers
