@@ -3,7 +3,7 @@ title: Upgrade Guide
 description: Upgrading To 3.x From 2.x
 ---
 
-# Upgrading To 3.x From 2.x
+## Upgrading To 3.x From 2.x
 
 > **Estimated Upgrade Time**: 2 minutes
 
@@ -70,7 +70,9 @@ it('creates admins')
      ->assertDatabaseHas('users', ['id' => 1]);
 ```
 
-# Upgrading To 2.x From 1.x
+---
+
+## Upgrading To 2.x From 1.x
 
 > **Estimated Upgrade Time**: 2 minutes
 
