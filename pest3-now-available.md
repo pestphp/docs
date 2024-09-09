@@ -18,7 +18,7 @@ Below, we'll cover all the juicy details about this release. And as usual, you c
 - **[Team Management](#team-management)**: A new feature that allows you to manage tasks and todos with your team directly from the console.
 - **[New Configuration API](#new-configuration-api)**: A new configuration API that is more intuitive and easier to use.
 - **[More Architectural Testing Improvements](#more-architectural-testing-improvements)**: A bunch of new architectural expectations and improvements.
-- **[And More Much...](#miscellaneous-improvements)**
+- **[And Much More...](#miscellaneous-improvements)**
 
 <a name="mutation-testing"></a>
 ## Mutation Testing
@@ -270,9 +270,9 @@ Again, Pest comes with a bunch of new architectural expectations and improvement
 - [`toUseTrait()`](/docs/arch-testing#expect-toUseTrait) - Asserts that a class uses a trait
 - [`toUseTraits()`](/docs/arch-testing#expect-toUseTraits) - Asserts that a class uses traits
 
-### New Ignoring Ways
+### `@pest-arch-ignore-line` and `@pest-arch-ignore-next-line`
 
-As you may know, you can ignore specific expectation targets using the `ignoring()` method. In Pest 3, we've introduced `@pest-arch-ignore-line` and `@pest-arch-ignore-next-line` annotations to ignore specific lines or the next line.
+As you may know, you can ignore specific expectation targets using the `ignoring()` method. In Pest 3, we are introducing `@pest-arch-ignore-line` and `@pest-arch-ignore-next-line` annotations to ignore specific lines or the next line.
 
 ```php
 final class User // @pest-arch-ignore-line
