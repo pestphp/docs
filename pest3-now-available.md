@@ -48,12 +48,13 @@ Then, run Pest PHP with the `--mutate` option to start mutation testing.
 Pest will then re-run your tests against "mutated" code and see if the tests are still passing. If a test is still passing against a mutation, it means that the test is not covering that specific part of the code. As, as result, Pest will output the mutation and the diff of the code.
 
 ```diff
-UNCOVERED  app/Http/TodoController.php  > Line 44: UpdateReturnValue - ID: 76d17ad63bb7c307
+UNTESTED  app/Http/TodoController.php  > Line 44: ReturnValue - ID: 76d17ad63bb7c307
 
 class TodoController {
     public function index(): array
     {
-         // in your controller, pest will mutate this line returning an empty array instead of all todos...
+         // pest detected that this code is untested because
+         // the test is not covering the return value
 -        return Todo::all()->toArray();
 +        return [];
     }
