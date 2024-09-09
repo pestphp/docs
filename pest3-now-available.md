@@ -27,6 +27,8 @@ Below, we'll cover all the juicy details about this release. And as usual, you c
 
 Mutation Testing is an innovative new technique that introduces small changes (mutations) to your code to see if your tests catch them. This ensures you’re testing your application thoroughly, beyond just achieving code coverage and more about the actual quality of the tests. It’s a great way to identify weaknesses in your test suite and improve quality.
 
+<img src="/assets/mutation-testing-1.jpg" alt="Mutation Testing" style="width: 100%;" />
+
 To get started with mutation testing, head over to your test file, and be specific about which part of your code your test covers using the `covers()` function.
 
 ```php
@@ -102,6 +104,8 @@ There is so much more to explore with Mutation Testing, like `@pest-mutate-ignor
 As you may know, [Architecture testing](#arch-testing) enables you to specify expectations that test whether your application adheres to a set of architectural rules, helping you maintain a clean and sustainable codebase.
 
 It's one of the most popular features of Pest, and with Pest 3, we're introducing **Arch Presets**. Arch Presets are a set of predefined architectural rules that you can use to test your application's architecture. These presets are designed to help you get started with architecture testing quickly and easily.
+
+<img src="/assets/presets-2.jpg" alt="Mutation Testing" style="width: 100%;" />
 
 Here are the available Arch Presets in Pest 3:
 
@@ -184,6 +188,8 @@ To get started with Arch Presets, please refer to our [Architecture Testing](/do
 ## Team Management
 
 Pest 3 also introduces **Team Management**, a new feature that allows you to manage tasks and todos with your team directly from the console. With Team Management, you can create, assign, and track tasks, as well as view the status of each task.
+
+<img src="/assets/teams-3.jpg" alt="Mutation Testing" style="width: 100%;" />
 
 To get started with team management in Pest, you need to specify the project's URL in your `Pest.php` configuration file. This URL will be used to link todos to the corresponding project management system.
 
