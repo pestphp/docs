@@ -77,28 +77,6 @@ beforeEach(function () {
 })->skip();
 ```
 
-## Creating Todos
-
-While skipping tests can be a helpful way to exclude specific tests temporarily from your test suite, it can also lead to situations where skipped tests are forgotten or overlooked. To prevent this, Pest provide a way to create "todos", which are essentially placeholders for tests that need attention.
-
-To begin working with todos, simply invoke the `todo()` method.
-
-```php
-it('has home')->todo();
-```
-
-If you invoke the `todo()` method on a test, Pest's output will inform you that the test is a todo so you don't forget about it.
-
-<div class="code-snippet">
-    <img src="/assets/img/todo.webp?1" style="--lines: 5" />
-</div>
-
-You can easily view a list of pending todos contained in your test suite by including the `--todos` option when running Pest.
-
-```bash
-./vendor/bin/pest --todos
-```
-
 ---
 
 As your codebase expands, it's advisable to consider enhancing the speed of your test suite. To assist you with that, we offer comprehensive documentation on optimizing your test suite: [Optimizing Tests](/docs/optimizing-tests)

@@ -74,7 +74,7 @@ class TestCase extends BaseTestCase
 }
 
 // tests/Pest.php
-uses(TestCase::class)->in('Feature');
+pest()->extend(TestCase::class)->in('Feature');
 
 // tests/Feature/PaymentsTest.php
 it('may buy a book', function () {

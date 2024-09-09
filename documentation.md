@@ -1,4 +1,5 @@
 - ## Press
+  - [Pest v3 Now Available](/docs/pest3-now-available)
   - [Announcing Stressless](/docs/announcing-stressless)
   - [Pest's Spicy Summer Release](/docs/pest-spicy-summer-release)
   - [Announcing Pest 2.0](/docs/announcing-pest2)

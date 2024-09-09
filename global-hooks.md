@@ -10,7 +10,7 @@ As previously discussed, hooks allow you to simplify your testing process and au
 For instance, if you need to perform some database operations before each test within the `Feature` folder, you may use the `beforeEach()` hook within your `Pest.php` configuration file.
 
 ```php
-uses(TestCase::class)->beforeEach(function () {
+pest()->extend(TestCase::class)->beforeEach(function () {
     // Interact with your database...
 })->group('integration')->in('Feature');
 ```
@@ -18,15 +18,15 @@ uses(TestCase::class)->beforeEach(function () {
 In addition, you can define global hooks that will run before or after your entire test suite, regardless of the folder or group.
 
 ```php
-uses()->beforeEach(function () {
+pest()->beforeEach(function () {
     // Interact with your database...
-})->in(__DIR__); // All folders, and all groups...
+});
 ```
 
 In fact, any of the hooks mentioned in the [hooks](/docs/hooks) documentation can also be used in your `Pest.php` configuration file.
 
 ```php
-uses(TestCase::class)->beforeAll(function () {
+pest()->extend(TestCase::class)->beforeAll(function () {
     // Runs before each file...
 })->beforeEach(function () {
     // Runs before each test...

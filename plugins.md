@@ -195,4 +195,4 @@ pest --watch=app,routes,tests
 
 ---
 
-In this section, we have seen how plugins can enhance your Pest experience. Now, let's dive into architectural testing and how it can benefit your development process. By performing architectural testing, you can evaluate the overall design of your application and identify potential flaws before they become significant issues: [Arch Testing](/docs/arch-testing)
+In this section, we have seen how plugins can enhance your Pest experience. Now, let's see how you can manage your team's tasks and responsibilities using Pest: [Team Management](/docs/team-management)

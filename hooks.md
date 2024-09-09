@@ -84,6 +84,18 @@ afterEach(function () {
 });
 ```
 
+Optionally, you can use the `after()` method to perform clean-up tasks after a specific test. This is useful when you need to clean up resources that are specific to a single test, rather than shared across all tests in the file.
+
+```php
+it('may be created', function () {
+    $this->userRepository->create();
+
+    expect($user)->toBeInstanceOf(User::class);
+})->after(function () {
+    $this->userRepository->reset();
+});
+```
+
 <a name="beforeall"></a>
 ## `beforeAll()`
 
