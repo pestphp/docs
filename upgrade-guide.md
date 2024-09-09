@@ -13,7 +13,7 @@ We make an effort to document every potential breaking change, but some of these
 
 > Likelihood Of Impact: High
 
-Pest 3 now requires PHP 8.2.0 or greater. To start migrating from Pest 1 to Pest 2, update the `pestphp/pest` dependency to `^2.0` in your application's `composer.json` file.
+Pest 3 now requires PHP 8.2.0 or greater. To start migrating from Pest 2 to Pest 3, update the `pestphp/pest` dependency to `^3.0` in your application's `composer.json` file.
 
 ```diff
 -    "pestphp/pest": "^2.0",
@@ -40,7 +40,7 @@ All other Pest maintained plugins should be updated to version `^3.0` in your ap
 
 Pest 3 is built on top of PHPUnit 11. This means that any notable changes made to PHPUnit 11 might have an impact on your test suite. To examine all the changes introduced in PHPUnit 11, please consult the [PHPUnit 11 changelog](https://github.com/sebastianbergmann/phpunit/blob/11.0.0/ChangeLog-11.0.md).
 
-### `toHaveMethod` and `toHaveMethods` Expectations
+### `toHaveMethod`&nbsp;and&nbsp;`toHaveMethods` Expectations
 
 > Likelihood Of Impact: Low
 
