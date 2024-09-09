@@ -74,14 +74,15 @@ As you may know, [Architecture testing](#arch-testing) enables you to specify ex
 
 It's one of the most popular features of Pest, and with Pest 3, we're introducing **Arch Presets**. Arch Presets are a set of predefined architectural rules that you can use to test your application's architecture. These presets are designed to help you get started with architecture testing quickly and easily.
 
-div class="collection-method-list" markdown="1">
+Here are the available Arch Presets in Pest 3:
+
+<div class="collection-method-list" markdown="1">
 
 - [`php`](#preset-php)
 - [`security`](#preset-security)
 - [`laravel`](#preset-laravel)
 - [`strict`](#preset-strict)
 - [`strict`](#preset-strict)
-- [`custom`](#preset-custom)
 
 </div>
 
