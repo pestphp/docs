@@ -9,7 +9,7 @@ With Pest, you can manage tasks and todos with your team directly from the conso
 
 ## Setting Up Project
 
-To get started with team management in Pest, you need to specify the project's URL in your `pest.php` configuration file. This URL will be used to link todos to the corresponding project management system.
+To get started with team management in Pest, you need to specify the project's URL in your `Pest.php` configuration file. This URL will be used to link todos to the corresponding project management system.
 
 ```php
 pest()->project()->github('my-organization/my-repository');
