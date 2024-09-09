@@ -1,6 +1,6 @@
 ---
 title: Pest v3 Now Available
-description: Today, we're thrilled to announce the release of Pest 3, a major update that features mutation testing, arch presets, team management, and more.
+description: Today, we're thrilled to announce the release of Pest 3. As we announced at Laracon US, Pest 3 introduces Mutation Testing, arch presets, Team Management, New Configuration API, multiple improvements to Architectural Testing & more.
 ---
 
 # Pest v3 Now Available
