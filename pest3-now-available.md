@@ -8,7 +8,7 @@ description: Today, we're thrilled to announce the release of Pest 3, a major up
 Today, we're thrilled to announce the release of **Pest 3**. As we announced at Laracon US, Pest 3 introduces mutation testing, arch presets, team management, new configuration API, multiple architectural testing improvements, and more. Check out Pest's creator, Nuno Maduro, live demonstrating what's new in Pest 3:
 
 <div class="content-center" markdown="0">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/BNhbgcNJyAk" title="Introducing Pest 3.0 | Nuno Maduro at Laracon US 2024 in Dallas, TX" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="100%" height="315" src="https://www.youtube.com/embed/BNhbgcNJyAk" title="Introducing Pest 3.0 | Nuno Maduro at Laracon US 2024 in Dallas, TX" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div>
 
 Below, we'll cover all the juicy details about this release. And as usual, you can find the [upgrade guide](/docs/upgrade-guide) in our website.
