@@ -65,7 +65,7 @@ The higher the mutation score, the better your test suite is. A mutation score o
 
 Now, if you see "untested" or "uncovered" mutations, or are a mutation score below 100%, typically means that you have **missing tests** or that **your tests are not covering all the edge cases**.
 
-There is so much more to explore with Mutation Testing, like `@pest-mutate-ignore` or `--mutate --everything`. You can learn more about it in our [Mutation Testing](#mutation-testing) section.
+There is so much more to explore with Mutation Testing, like `@pest-mutate-ignore` or `--mutate --everything`. You can learn more about it in our [Mutation Testing](/docs/mutation-testing) section.
 
 <a name="arch-presets"></a>
 ## Arch Presets
