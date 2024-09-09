@@ -111,7 +111,7 @@ Here are the available Arch Presets in Pest 3:
 - [`security`](#preset-security)
 - [`laravel`](#preset-laravel)
 - [`strict`](#preset-strict)
-- [`strict`](#preset-strict)
+- [`relaxed`](#preset-relaxed)
 
 </div>
 
