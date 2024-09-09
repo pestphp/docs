@@ -274,7 +274,7 @@ Again, Pest comes with a bunch of new architectural expectations and improvement
 
 You may check all existing architectural expectations in our [Architecture Testing](/docs/arch-testing) section.
 
-### `@pest-arch-ignore-line` and `@pest-arch-ignore-next-line`
+### `@pest-arch-ignore-line`
 
 As you may know, you can ignore specific expectation targets using the `ignoring()` method. In Pest 3, we are introducing `@pest-arch-ignore-line` and `@pest-arch-ignore-next-line` annotations to ignore specific lines or the next line.
 
