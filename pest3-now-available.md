@@ -25,7 +25,29 @@ Below, we'll cover all the juicy details about this release. And as usual, you c
 
 Pest 3 introduces [Mutation Testing](#mutation-testing), an innovative technique used to evaluate the quality of your application's test suite by detecting "untested" code. Unlike code coverage, mutation testing is not solely about "covered" code, but more about the **actual quality of the tests**.
 
-The way mutation testing works is by introducing small changes (mutations) to the source code and verifying if the tests are failing against these changes. This process helps developers identify weak spots in their test suites and improve the overall quality of their tests.
+The way mutation testing works is by introducing small changes (mutations) to the source code and verifying if the tests are failing against these changes. This process helps developers identify weak spots in their test suites and improve the overall quality of their tests. Here is an example of how mutation testing works:
+
+```diff
+class TodoController
+{
+    public function index(): array
+    {
+         // in your controller, pest will mutate this line returning an empty array instead of all todos...
+-        return Todo::all()->toArray();
++        return [];
+    }
+}
+
+it('list todos', function () {
+    Todo::factory()->create(['name' => 'Buy milk']);
+
+    // pest will re-run test against the mutated code, if the test still passes, it means the test is not covering the code...
+    $this->getJson('/todos')->assertStatus(200);
+});
+
+// result of mutation testing with diff so you know what line is not being tested yet...
+Mutations: 1 untested
+```
 
 Our plugin is deeply integrated into Pest PHP. So, each time a mutation is introduced, Pest PHP will:
 
@@ -37,6 +59,8 @@ To get started with mutation testing, head over to your test file, and be specif
 
 ```php
 <?php
+
+// ...
 
 covers(TodoController::class);
 
