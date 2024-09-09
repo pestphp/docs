@@ -59,7 +59,7 @@ Optionally, you may run mutation testing in parallel to speed up the process. Of
 
 After running mutation testing, you will see a detailed report showing the number of mutations, how many were caught, and the mutation score.
 
-<img src="/assets/img/mutation-testing.png" style="width: 100%;" />
+<img src="/assets/mutation-testing.png" style="width: 100%;" />
 
 The higher the mutation score, the better your test suite is. A mutation score of 100% means that all mutations were "tested", which is the goal of mutation testing.
 
