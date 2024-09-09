@@ -36,6 +36,7 @@ Now, let's dive into the various methods and modifiers available for architectur
 - [Presets](#presets): Allows to use predefined sets of granular architectural rules.
 - [Modifiers](#modifiers): To exclude or ignore certain types of files, classes, functions or lines of code.
 
+<a name="expectations"></a>
 ## Expectations
 
 Granular expectations allow you to define specific architectural rules for your application. Here are the available expectations:
@@ -566,6 +567,7 @@ arch('app')
     ->toUseStrictTypes();
 ```
 
+<a name="presets"></a>
 ## Presets
 
 Sometimes, writing arch expectations from scratch can be time-consuming, specifically when working on a new project, and you just want to ensure that the basic architectural rules are met.
@@ -671,6 +673,7 @@ pest()->preset('silex', function (array $userNamespaces) {
 });
 ```
 
+<a name="modifiers"></a>
 ## Modifiers
 
 Sometimes, you may want to apply the given expectation but excluding certain types of files, or ignoring certain classes, functions, or specific lines of code. For that, you may use the following methods:
