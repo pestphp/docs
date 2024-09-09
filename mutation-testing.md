@@ -5,10 +5,10 @@ description: Mutation Testing is a technique used to evaluate the quality of tes
 
 # Mutation Testing
 
-- **[`Get Started`](#get-started)**
-- **[`Tested Vs Untested Mutations`](#tested-vs-untested-mutations)**
-- **[`Minimum Threshold Enforcement`](#minimum-threshold-enforcement)**
-- **[`Options & Modifiers`](#options-and-modifiers)**
+- **[Get Started](#get-started)**
+- **[Tested Vs Untested Mutations](#tested-vs-untested-mutations)**
+- **[Minimum Threshold Enforcement](#minimum-threshold-enforcement)**
+- **[Options & Modifiers](#options-and-modifiers)**
 
 <a name="get-started"></a>
 ## Get Started
