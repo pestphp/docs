@@ -33,7 +33,7 @@ Our plugin is deeply integrated into Pest PHP. So, each time a mutation is intro
 - **Cache as much as possible** to speed up the process on subsequent runs.
 - If enabled, use **parallel execution to run multiple tests** in parallel to speed up the process.
 
-To get started with mutation testing, head over to your test file, and be specific about which part of your code your test covers using the `covers()` function or the `covers()` method.
+To get started with mutation testing, head over to your test file, and be specific about which part of your code your test covers using the `covers()` function.
 
 ```php
 <?php
