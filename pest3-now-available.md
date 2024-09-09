@@ -249,6 +249,8 @@ In Pest 3, we've introduced a new configuration API that is more intuitive and e
 +pest()->printer()->compact();
 ```
 
+And of course, any method that was available on the `uses()` API, like `->beforeEach()` or `->group()` is still available on the new `pest()` configuration API; we've just made it more intuitive and easier to use.
+
 <a name="more-architectural-testing-improvements"></a>
 ## More Architectural Testing Improvements
 
@@ -270,6 +272,8 @@ Again, Pest comes with a bunch of new architectural expectations and improvement
 - [`toUseTrait()`](/docs/arch-testing#expect-toUseTrait) - Asserts that a class uses a trait
 - [`toUseTraits()`](/docs/arch-testing#expect-toUseTraits) - Asserts that a class uses traits
 
+You may check all existing architectural expectations in our [Architecture Testing](/docs/arch-testing) section.
+
 ### `@pest-arch-ignore-line` and `@pest-arch-ignore-next-line`
 
 As you may know, you can ignore specific expectation targets using the `ignoring()` method. In Pest 3, we are introducing `@pest-arch-ignore-line` and `@pest-arch-ignore-next-line` annotations to ignore specific lines or the next line.
@@ -285,21 +289,29 @@ final class User // @pest-arch-ignore-line
 }
 ```
 
+To learn more about ignoring specific lines, please refer to our [Architecture Testing Modifiers](/docs/arch-testing#modifiers) section.
+
 ### Tear Down Improvements
 
-In Pest 3, we've introduced a new `after()` method that allows you to run a specific "teardown" callback after a specific test or group of tests using describe.
+As you may know, Pest allows you to run a specific "teardown" callback after each test using the `afterEach()` method. This is useful for cleaning up resources or resetting state between tests.
 
 ```php
 afterEach(function () {
     // This will run after each test...
 });
+````
 
+In Pest 3, we've introduced a new `after()` method that allows you to run a specific "teardown" callback after a specific test or group of tests using describe.
+
+```php
 it('may list todos', function () {
     //
 })->after(function () {
     // This will run after this test only...
 });
 ```
+
+To read more about hooks, please refer to our [Hooks](/docs/hooks) section.
 
 <a name="miscellaneous-improvements"></a>
 ## Miscellaneous Improvements
