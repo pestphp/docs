@@ -23,13 +23,34 @@ Below, we'll cover all the juicy details about this release. And as usual, you c
 <a name="mutation-testing"></a>
 ## Mutation Testing
 
-Pest 3 introduces [Mutation Testing](#mutation-testing), an innovative technique used to evaluate the quality of your application's test suite by detecting "untested" code. Unlike code coverage, mutation testing is not solely about "covered" code, but more about the **actual quality of the tests**.
+Pest 3 introduces [Mutation Testing](/docs/mutation-testing), an innovative technique used to evaluate the quality of your application's test suite by detecting "untested" code. Unlike code coverage, mutation testing is not solely about "covered" code, but more about the **actual quality of the tests**.
 
-The way mutation testing works is by introducing small changes (mutations) to the source code and verifying if the tests are failing against these changes. This process helps developers identify weak spots in their test suites and improve the overall quality of their tests. Here is an example of how mutation testing works:
+The way mutation testing works is by introducing small changes (mutations) to the source code and verifying if the tests are failing against these changes. This process helps developers identify weak spots in their test suites and improve the overall quality of their tests.
+
+To get started with mutation testing, head over to your test file, and be specific about which part of your code your test covers using the `covers()` function.
+
+```php
+covers(TodoController::class);
+
+it('list todos', function () {
+    $this->getJson('/todos')->assertStatus(200);
+});
+```
+
+Then, run Pest PHP with the `--mutate` option to start mutation testing.
+
+```bash
+./vendor/bin/pest --mutate
+# or in parallel...
+./vendor/bin/pest --mutate --parallel
+```
+
+Pest will then re-run your tests against "mutated" code and see if the tests are still passing. If a test is still passing against a mutation, it means that the test is not covering that specific part of the code. As, as result, Pest will output the mutation and the diff of the code.
 
 ```diff
-class TodoController
-{
+UNCOVERED  app/Http/TodoController.php  > Line 44: UpdateReturnValue - ID: 76d17ad63bb7c307
+
+class TodoController {
     public function index(): array
     {
          // in your controller, pest will mutate this line returning an empty array instead of all todos...
@@ -38,56 +59,39 @@ class TodoController
     }
 }
 
-it('list todos', function () {
-    Todo::factory()->create(['name' => 'Buy milk']);
-
-    // pest will re-run test against the mutated code, if the test still passes, it means the test is not covering the code...
-    $this->getJson('/todos')->assertStatus(200);
-});
-
-// result of mutation testing with diff so you know what line is not being tested yet...
-Mutations: 1 untested
+  Mutations: 1 untested
+  Score:     33.44%
 ```
+
+Once you have identified the untested code, you can write additional tests to cover it.
+
+```diff
+covers(TodoController::class);
+
+it('list todos', function () {
+  + Todo::factory()->create(['name' => 'Buy milk']);
+
+  - $this->getJson('/todos')->assertStatus(200);
+  + $this->getJson('/todos')->assertStatus(200)->assertJson([[ 'name' => 'Buy milk' ]]);
+});
+```
+
+Once you have written the additional tests, you can re-run Pest with the `--mutate` option to see if the mutation is now covered.
+
+```bash
+  Mutations: 1 tested
+  Score:     100.00%
+```
+
+The higher the mutation score, the better your test suite is. A mutation score of 100% means that all mutations were "tested", which is the goal of mutation testing.
+
+Now, if you see "untested" or "uncovered" mutations, or are a mutation score below 100%, typically means that you have **missing tests** or that **your tests are not covering all the edge cases**.
 
 Our plugin is deeply integrated into Pest PHP. So, each time a mutation is introduced, Pest PHP will:
 
 - **Only run the tests covering the mutated code** to speed up the process.
 - **Cache as much as possible** to speed up the process on subsequent runs.
 - If enabled, use **parallel execution to run multiple tests** in parallel to speed up the process.
-
-To get started with mutation testing, head over to your test file, and be specific about which part of your code your test covers using the `covers()` function.
-
-```php
-<?php
-
-// ...
-
-covers(TodoController::class);
-
-it('list todos', function () {
-    //
-});
-```
-
-Finally, run Pest PHP with the `--mutate` option to start mutation testing.
-
-```bash
-./vendor/bin/pest --mutate
-```
-
-Optionally, you may run mutation testing in parallel to speed up the process. Of course, your test suite must be able to run in tests in parallel.
-
-```bash
-./vendor/bin/pest --mutate --parallel
-```
-
-After running mutation testing, you will see a detailed report showing the number of mutations, how many were untested or uncovered, and the mutation score.
-
-<img src="/assets/mutation-testing.png" style="width: 100%;" />
-
-The higher the mutation score, the better your test suite is. A mutation score of 100% means that all mutations were "tested", which is the goal of mutation testing.
-
-Now, if you see "untested" or "uncovered" mutations, or are a mutation score below 100%, typically means that you have **missing tests** or that **your tests are not covering all the edge cases**.
 
 There is so much more to explore with Mutation Testing, like `@pest-mutate-ignore` or `--mutate --everything`. You can learn more about it in our [Mutation Testing](/docs/mutation-testing) section.
 
