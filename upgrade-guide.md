@@ -13,7 +13,7 @@ We make an effort to document every potential breaking change, but some of these
 
 > Likelihood Of Impact: High
 
-Pest 3 now requires PHP 8.2.0 or greater. To start migrating from Pest 1 to Pest 2, update the `pestphp/pest` dependency to `^2.0` in your application's `composer.json` file.
+Pest 3 now requires PHP 8.2.0 or greater. To start migrating from Pest 2 to Pest 3, update the `pestphp/pest` dependency to `^3.0` in your application's `composer.json` file.
 
 ```diff
 -    "pestphp/pest": "^2.0",
