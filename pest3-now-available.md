@@ -5,7 +5,7 @@ description: Today, we're thrilled to announce the release of Pest 3. As we anno
 
 # Pest v3 Now Available
 
-Today, we're thrilled to announce the release of **Pest 3**. As we announced at Laracon US, Pest 3 introduces Mutation Testing, arch presets, Team Management, New Configuration API, multiple improvements to Architectural Testing & more.
+Today, we're thrilled to announce the release of **Pest 3**. As we announced at Laracon US, Pest 3 introduces Mutation Testing, Arch Presets, Team Management, New Configuration API, multiple improvements to Architectural Testing & more.
 
 Check out Pest's creator, Nuno Maduro, live demonstrating what's new in Pest 3:
 
