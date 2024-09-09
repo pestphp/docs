@@ -69,10 +69,10 @@ Once you have identified the untested code, you can write additional tests to co
 covers(TodoController::class);
 
 it('list todos', function () {
-  + Todo::factory()->create(['name' => 'Buy milk']);
++    Todo::factory()->create(['name' => 'Buy milk']);
 
-  - $this->getJson('/todos')->assertStatus(200);
-  + $this->getJson('/todos')->assertStatus(200)->assertJson([[ 'name' => 'Buy milk' ]]);
+-    $this->getJson('/todos')->assertStatus(200);
++    $this->getJson('/todos')->assertStatus(200)->assertJson([['name' => 'Buy milk']]);
 });
 ```
 
