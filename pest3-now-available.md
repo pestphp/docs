@@ -18,8 +18,9 @@ Below, we'll cover all the juicy details about this release. And as usual, you c
 - **[Team Management](#team-management)**: A new feature that allows you to manage tasks and todos with your team directly from the console.
 - **[New Configuration API](#new-configuration-api)**: A new configuration API that is more intuitive and easier to use.
 - **[More Architectural Testing Improvements](#more-architectural-testing-improvements)**: A bunch of new architectural expectations and improvements.
-- **[And More Much](#miscellaneous-improvements)**
+- **[And More Much...](#miscellaneous-improvements)**
 
+<a name="mutation-testing"></a>
 ## Mutation Testing
 
 Pest 3 introduces [Mutation Testing](#mutation-testing), an innovative technique used to evaluate the quality of your application's test suite by detecting "untested" code. Unlike code coverage, mutation testing is not solely about "covered" code, but more about the **actual quality of the tests**.
@@ -66,6 +67,7 @@ Now, if you see "untested" or "uncovered" mutations, or are a mutation score bel
 
 There is so much more to explore with Mutation Testing, like `@pest-mutate-ignore` or `--mutate --everything`. You can learn more about it in our [Mutation Testing](#mutation-testing) section.
 
+<a name="arch-presets"></a>
 ## Arch Presets
 
 As you may know, [Architecture testing](#arch-testing) enables you to specify expectations that test whether your application adheres to a set of architectural rules, helping you maintain a clean and sustainable codebase.
@@ -90,6 +92,7 @@ arch()->preset()->security()->ignoring('md5');
 arch()->preset()->laravel()->ignoring(User::class);
 ```
 
+<a name="team-management"></a>
 ## Team Management
 
 Pest 3 also introduces **Team Management**, a new feature that allows you to manage tasks and todos with your team directly from the console. With Team Management, you can create, assign, and track tasks, as well as view the status of each task.
@@ -138,6 +141,7 @@ Finally, you can view todos separately from the rest of your test suite by inclu
 
 There is so much more to explore with Team Management, you can learn more about it in our [Team Management](#team-management) section.
 
+<a name="new-configuration-api"></a>
 ## New Configuration API
 
 Pest 1 / Pest 2's configuration API was a little bit confusing, the `uses()` function that was originally made only for having the `$this` variable within closure bound to the test case instance, ended up being used for pretty much everything.
@@ -157,6 +161,7 @@ In Pest 3, we've introduced a new configuration API that is more intuitive and e
 +pest()->printer()->compact();
 ```
 
+<a name="more-architectural-testing-improvements"></a>
 ## More Architectural Testing Improvements
 
 ### New Expectations
@@ -208,6 +213,7 @@ it('may list todos', function () {
 });
 ```
 
+<a name="miscellaneous-improvements"></a>
 ## Miscellaneous Improvements
 
 Because Pest 3 is based on PHPUnit 11, you can now use any PHPUnit 11 feature within Pest. Also, Pest 3 also comes with a bunch minor bug-fixes and improvements, below are some of the them:
