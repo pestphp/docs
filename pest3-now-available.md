@@ -19,7 +19,7 @@ Below, we'll cover all the juicy details about this release. And as usual, you c
 - **[Arch Presets](#arch-presets)**: A set of predefined rules that you can use to test your application's architecture.
 - **[Team Management](#team-management)**: A new feature that allows you to manage tasks and todos with your team directly from the console.
 - **[New Configuration API](#new-configuration-api)**: A new configuration API that is more intuitive and easier to use.
-- **[More Architectural Testing Improvements](#more-architectural-testing-improvements)**: New expectations, `@pest-arch-ignore-line`, `@pest-arch-ignore-next-line`, and more.
+- **[More Architectural Testing Improvements](#more-architectural-testing-improvements)**: New expectations, `@pest-arch-ignore-line`, and more.
 - **[And Much More...](#miscellaneous-improvements)**: Constants in Type Coverage, static analysis improvements, and more.
 
 <a name="mutation-testing"></a>
