@@ -18,7 +18,7 @@ arch()
 arch()
     ->expect('App\Models')
     ->toBeClasses()
-    ->toExtend('Illuminate\Database\Eloquent\Model');
+    ->toExtend('Illuminate\Database\Eloquent\Model')
     ->toOnlyBeUsedIn('App\Repositories')
     ->ignoring('App\Models\User');
 
@@ -579,7 +579,6 @@ Presets are predefined sets of granular expectations that you can use to test yo
 - [`php`](#preset-php)
 - [`security`](#preset-security)
 - [`laravel`](#preset-laravel)
-- [`strict`](#preset-strict)
 - [`strict`](#preset-strict)
 - [`custom`](#preset-custom)
 
