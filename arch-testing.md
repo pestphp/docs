@@ -580,7 +580,6 @@ Presets are predefined sets of granular expectations that you can use to test yo
 - [`security`](#preset-security)
 - [`laravel`](#preset-laravel)
 - [`strict`](#preset-strict)
-- [`strict`](#preset-strict)
 - [`custom`](#preset-custom)
 
 </div>
