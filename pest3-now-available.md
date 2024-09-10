@@ -19,7 +19,7 @@ Below, we'll cover all the juicy details about this release. And as usual, you c
 - **[Arch Presets](#arch-presets)**: A set of predefined rules that you can use to test your application's architecture.
 - **[Team Management](#team-management)**: A new feature that allows you to manage tasks and todos with your team directly from the console.
 - **[New Configuration API](#new-configuration-api)**: A new configuration API that is more intuitive and easier to use.
-- **[More Architectural Testing Improvements](#more-architectural-testing-improvements)**: New expectations, `@pest-arch-ignore-line`, and more.
+- **[More Architectural Testing Improvements](#more-architectural-testing-improvements)**: `toHaveAllMethodsDocumented`, `->not->toHaveProtectedMethods`, and more.
 - **[And Much More...](#miscellaneous-improvements)**: Constants in Type Coverage, static analysis improvements, and more.
 
 <a name="mutation-testing"></a>
@@ -279,23 +279,6 @@ Again, Pest comes with a bunch of new architectural expectations and improvement
 - [`toUseTraits()`](/docs/arch-testing#expect-toUseTraits) - Asserts that a class uses the given traits.
 
 You may check all existing architectural expectations in our [Architecture Testing](/docs/arch-testing) section.
-
-### `@pest-arch-ignore-line`
-
-As you may know, you can ignore specific expectation targets using the `ignoring()` method. In Pest 3, we are introducing `@pest-arch-ignore-line` and `@pest-arch-ignore-next-line` annotations to ignore specific lines or the next line.
-
-```php
-final class User // @pest-arch-ignore-line
-{
-    // @pest-arch-ignore-next-line
-    public function name()
-    {
-        //
-    }
-}
-```
-
-To learn more about ignoring specific lines, please refer to our [Architecture Testing Modifiers](/docs/arch-testing#modifiers) section.
 
 ### Tear Down Improvements
 

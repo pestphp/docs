@@ -705,15 +705,6 @@ arch()
     ->ignoring('App\Providers');
 ```
 
-You may also ignore a specific line of code by using the `@pest-arch-ignore-line` or `@pest-arch-ignore-next-line` directives.
-
-```php
-die('This line will be ignored'); // @pest-arch-ignore-line
-
-// @pest-arch-ignore-next-line
-die('This line will be ignored');
-```
-
 In some cases, certain components may not be regarded as "dependencies" as they are part of the native PHP library. To customize the definition of "native" code and exclude it during testing, Pest allows you to specify what to ignore.
 
 For example, if you do not want to consider Laravel a "dependency", you can use the `arch()` method inside the `beforeEach()` function to disregard any code within the "Illuminate" namespace. This approach allows you to focus only on the actual dependencies of your application.
