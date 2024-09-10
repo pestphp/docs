@@ -252,7 +252,7 @@ In Pest 3, we've introduced a new configuration API that is more intuitive and e
 +pest()->extends(TestCase::class)->use(RefreshDatabase::class)->in('Features');
 
 -uses()->compact();
-+pest()->printer()->compact();
++pest()->theme()->compact();
 ```
 
 And of course, any method that was available on the `uses()` API, like `->beforeEach()` or `->group()` is still available on the new `pest()` configuration API; we've just made it more intuitive and easier to use.
