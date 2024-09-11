@@ -101,7 +101,7 @@ There is so much more to explore with Mutation Testing, like `@pest-mutate-ignor
 <a name="arch-presets"></a>
 ## Arch Presets
 
-As you may know, [Architecture testing](#arch-testing) enables you to specify expectations that test whether your application adheres to a set of architectural rules, helping you maintain a clean and sustainable codebase.
+As you may know, [Architecture testing](/docs/arch-testing) enables you to specify expectations that test whether your application adheres to a set of architectural rules, helping you maintain a clean and sustainable codebase.
 
 It's one of the most popular features of Pest, and with Pest 3, we're introducing **Arch Presets**. Arch Presets are a set of predefined architectural rules that you can use to test your application's architecture. These presets are designed to help you get started with architecture testing quickly and easily.
 
