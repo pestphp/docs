@@ -63,7 +63,7 @@ Granular expectations allow you to define specific architectural rules for your 
 - [`toHaveAllPropertiesDocumented()`](#expect-toHaveAllPropertiesDocumented)
 - [`toHaveAttribute()`](#expect-toHaveAttribute)
 - [`toHaveFileSystemPermissions()`](#expect-toHaveFileSystemPermissions)
-- [`toHaveLineCountLessThan`](#expect-toHaveLineCountLessThan)
+- [`toHaveLineCountLessThan()`](#expect-toHaveLineCountLessThan)
 - [`toHaveMethod()`](#expect-toHaveMethod)
 - [`toHaveMethods()`](#expect-toHaveMethod)
 - [`toHavePrivateMethodsBesides()`](#expect-toHavePrivateMethodsBesides)
