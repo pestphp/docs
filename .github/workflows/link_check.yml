@@ -11,12 +11,10 @@ jobs:
   linkChecker:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: 🔗 Check Links
         uses: lycheeverse/lychee-action@v1.10.0
         with:
           fail: true
           args: --config .github/workflows/lychee.toml './**/*.md'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
