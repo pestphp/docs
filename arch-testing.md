@@ -59,8 +59,8 @@ Granular expectations allow you to define specific architectural rules for your 
 - [`toExtendNothing()`](#expect-toExtendNothing)
 - [`toImplement()`](#expect-toImplement)
 - [`toImplementNothing()`](#expect-toImplementNothing)
-- [`toHaveAllMethodsDocumented()`](#expect-toHaveAllMethodsDocumented)
-- [`toHaveAllPropertiesDocumented()`](#expect-toHaveAllPropertiesDocumented)
+- [`toHaveMethodsDocumented()`](#expect-toHaveMethodsDocumented)
+- [`toHavePropertiesDocumented()`](#expect-toHavePropertiesDocumented)
 - [`toHaveAttribute()`](#expect-toHaveAttribute)
 - [`toHaveFileSystemPermissions()`](#expect-toHaveFileSystemPermissions)
 - [`toHaveLineCountLessThan()`](#expect-toHaveLineCountLessThan)
@@ -289,26 +289,26 @@ arch('app')
     ->toImplementNothing();
 ```
 
-<a name="expect-toHaveAllMethodsDocumented"></a>
-### `toHaveAllMethodsDocumented()`
+<a name="expect-toHaveMethodsDocumented"></a>
+### `toHaveMethodsDocumented()`
 
-The `toHaveAllMethodsDocumented()` method may be used to ensure that all methods within a given namespace are documented.
+The `toHaveMethodsDocumented()` method may be used to ensure that all methods within a given namespace are documented.
 
 ```php
 arch('app')
     ->expect('App')
-    ->toHaveAllMethodsDocumented();
+    ->toHaveMethodsDocumented();
 ```
 
-<a name="expect-toHaveAllPropertiesDocumented"></a>
-### `toHaveAllPropertiesDocumented()`
+<a name="expect-toHavePropertiesDocumented"></a>
+### `toHavePropertiesDocumented()`
 
-The `toHaveAllPropertiesDocumented()` method may be used to ensure that all properties within a given namespace are documented.
+The `toHavePropertiesDocumented()` method may be used to ensure that all properties within a given namespace are documented.
 
 ```php
 arch('app')
     ->expect('App')
-    ->toHaveAllPropertiesDocumented();
+    ->toHavePropertiesDocumented();
 ```
 
 <a name="expect-toHaveAttribute"></a>
