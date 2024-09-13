@@ -73,7 +73,7 @@ remap = [ "https://example.com http://example.invalid" ]
 # HTTP basic auth support. This will be the username and password passed to the
 # authorization HTTP header. See
 # <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization>
-basic_auth = "user:pwd"
+#basic_auth = ["example.com user:pwd"]
 
 #############################  Exclusions  ##########################
 
@@ -90,7 +90,7 @@ glob_ignore_case = false
 # Exclude URLs and mail addresses from checking (supports regex).
 #exclude = [ '.*\.github.com\.*' ]
 # receiving forbidden but valid link, receiving timeout but valid link
-exclude = ['https://opensource.org/licenses/MIT', 'https://twitter.com/pestphp' ]
+exclude = ['https://opensource.org/licenses/MIT', 'https://twitter.com/pestphp', '^https://laracasts.com/series/(pest-driven-laravel|pest-from-scratch)$']
 
 
 # Exclude these filesystem paths from getting checked.
