@@ -187,6 +187,31 @@ public function rules(): array
 }
 ```
 
+> [!NOTE]
+> Lines that aren't considered executable will always be marked as UNCOVERED.
+
+For such cases, like with model properties, you may apply `@pest-mutate-ignore` in the following way. 
+
+```php
+/**
+ * @pest-mutate-ignore
+ */
+protected $guarded = [
+    'id',
+    'created_at',
+    'updated_at',
+];
+
+/**
+ * @pest-mutate-ignore
+ */
+protected $hidden = [
+    'id',
+    'created_at',
+    'updated_at',
+];
+```
+
 <a name="id"></a>
 ### `--id`
 
