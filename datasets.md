@@ -50,7 +50,6 @@ If a key is added, Pest will use the key when generating the description for the
 If the test name includes `:dataset`, the description will be interpolated into the test name at that location.
 
 ```bash
-   PASS  Tests\Feature\ValidationTest
   ✓ it validates the "first_name" field
   ✓ it validates the "email" field
 ```
