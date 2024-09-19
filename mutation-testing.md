@@ -17,15 +17,17 @@ description: Mutation Testing is a technique used to evaluate the quality of tes
 
 Mutation Testing is an innovative new technique that introduces small changes (mutations) to your code to see if your tests catch them. This ensures you’re testing your application thoroughly, beyond just achieving code coverage and more about the actual quality of the tests. It’s a great way to identify weaknesses in your test suite and improve quality.
 
-To get started with mutation testing, head over to your test file, and be specific about which part of your code your test covers using the `covers()` function.
+To get started with mutation testing, head over to your test file, and be specific about which part of your code your test covers using the `covers()` function or the `mutates` function.
 
 ```php
-covers(TodoController::class);
+covers(TodoController::class); // or mutates(TodoController::class);
 
 it('list todos', function () {
     $this->getJson('/todos')->assertStatus(200);
 });
 ```
+
+Both the `covers` and `mutates` functions are identical when it comes to mutation testing. However, `covers` also affects the code coverage report. If provided, it filters the code coverage report to include only the executed code from the referenced code parts.
 
 Then, run Pest PHP with the `--mutate` option to start mutation testing. Ideally, using the `--parallel` option to speed up the process.
 
