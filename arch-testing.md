@@ -80,6 +80,7 @@ Granular expectations allow you to define specific architectural rules for your 
 - [`toOnlyUse()`](#expect-toOnlyUse)
 - [`toOnlyBeUsedIn()`](#expect-toOnlyBeUsedIn)
 - [`toUse()`](#expect-toUse)
+- [`toUseStrictEquality()`](#expect-toUseStrictEquality)
 - [`toUseTrait()`](#expect-toUseTrait)
 - [`toUseTraits()`](#expect-toUseTraits)
 - [`toUseNothing()`](#expect-toUseNothing)
@@ -521,6 +522,25 @@ arch('globals')
 arch('globals')
     ->expect('App\Domain')
     ->not->toUse('Illuminate\Http');
+```
+
+<a name="expect-toUseStrictEquality"></a>
+### `toUseStrictEquality()`
+
+The `toUseStrictEquality()` method may be used to ensure that all files within a given namespace use strict equality. In other words, the `===` operator is used instead of the `==` operator.
+
+```php
+arch('models')
+    ->expect('App')
+    ->toUseStrictEquality();
+```
+
+Or, if you rather want to ensure that all files within a given namespace do not use strict equality, you may use the `not` modifier.
+
+```php
+arch('models')
+    ->expect('App')
+    ->not->toUseStrictEquality();
 ```
 
 <a name="expect-toUseTrait"></a>
