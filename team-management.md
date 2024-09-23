@@ -101,7 +101,7 @@ it('has a contact page', function () {
 NOTE);
 ```
 
-The notes will be displayed bellow the todo in the test results.
+The notes will be displayed below the todo in the test results.
 
 ## Marking Todos as Work in Progress
 

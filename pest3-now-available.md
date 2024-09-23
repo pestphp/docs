@@ -19,7 +19,7 @@ Below, we'll cover all the juicy details about this release. And as usual, you c
 - **[Arch Presets](#arch-presets)**: A set of predefined rules that you can use to test your application's architecture.
 - **[Team Management](#team-management)**: A new feature that allows you to manage tasks and todos with your team directly from the console.
 - **[New Configuration API](#new-configuration-api)**: A new configuration API that is more intuitive and easier to use.
-- **[More Architectural Testing Improvements](#more-architectural-testing-improvements)**: `toHaveAllMethodsDocumented`, `->not->toHaveProtectedMethods`, and more.
+- **[More Architectural Testing Improvements](#more-architectural-testing-improvements)**: `toHaveMethodsDocumented`, `->not->toHaveProtectedMethods`, and more.
 - **[And Much More...](#miscellaneous-improvements)**: Constants in Type Coverage, static analysis improvements, and more.
 
 <a name="mutation-testing"></a>
@@ -101,7 +101,7 @@ There is so much more to explore with Mutation Testing, like `@pest-mutate-ignor
 <a name="arch-presets"></a>
 ## Arch Presets
 
-As you may know, [Architecture testing](#arch-testing) enables you to specify expectations that test whether your application adheres to a set of architectural rules, helping you maintain a clean and sustainable codebase.
+As you may know, [Architecture testing](/docs/arch-testing) enables you to specify expectations that test whether your application adheres to a set of architectural rules, helping you maintain a clean and sustainable codebase.
 
 It's one of the most popular features of Pest, and with Pest 3, we're introducing **Arch Presets**. Arch Presets are a set of predefined architectural rules that you can use to test your application's architecture. These presets are designed to help you get started with architecture testing quickly and easily.
 
@@ -264,8 +264,8 @@ And of course, any method that was available on the `uses()` API, like `->before
 
 Again, Pest comes with a bunch of new architectural expectations and improvements. Some of them are already being used in the new Arch Presets, but you can use them individually as well.
 
-- [`toHaveAllMethodsDocumented()`](/docs/arch-testing#expect-toHaveAllMethodsDocumented) - Asserts that a class has all its methods documented.
-- [`toHaveAllPropertiesDocumented()`](/docs/arch-testing#expect-toHaveAllPropertiesDocumented) - Asserts that a class has all its properties documented.
+- [`toHaveMethodsDocumented()`](/docs/arch-testing#expect-toHaveMethodsDocumented) - Asserts that a class has all its methods documented.
+- [`toHavePropertiesDocumented()`](/docs/arch-testing#expect-toHavePropertiesDocumented) - Asserts that a class has all its properties documented.
 - [`toHaveFileSystemPermissions()`](/docs/arch-testing#expect-toHaveFileSystemPermissions) - Asserts that a file has the expected file system permissions.
 - [`toHaveLineCountLessThan`](/docs/arch-testing#expect-toHaveLineCountLessThan) - Asserts that a file has less than a given number of lines.
 - [`toHaveMethods()`](/docs/arch-testing#expect-toHaveMethod) - Asserts that a class has the expected methods.
