@@ -43,6 +43,27 @@ test('true is true', function () {
 });
 ```
 
+---
+## Convert Phpunit tests only for certain folder
+
+If you want to convert Phpunit tests only for certain folder, you can pass _path_ as first argument when calling `--drift`:
+
+Example of call if you want to run the conversion for folder `/tests/Helpers`: 
+```console 
+/vendor/bin/est --drift tests/Helpers
+```
+
+Output in console after running the above command:
+```console
+/vendor/bin/est --drift tests/Helpers
+
+✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔
+
+INFO  The [tests/Helpers] directory has been migrated to PEST with 26 files changed.
+```
+
+---
+
 The output will contain a summary of the conversion process, as well as a list of the files that were converted.
 
 While most of your tests should be converted automatically, and you should be able to run them without any issues, there are some cases where you may need to manually convert some of your tests.
