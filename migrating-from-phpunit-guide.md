@@ -48,18 +48,18 @@ test('true is true', function () {
 
 If you want to convert Phpunit tests only for certain folder, you can pass _path_ as first argument when calling `--drift`:
 
-Example of call if you want to run the conversion for folder `/tests/Helpers`: 
+Example call, if you want to run the conversion for folder `/tests/Helpers`: 
 ```console 
-/vendor/bin/est --drift tests/Helpers
+/vendor/bin/pest --drift tests/Helpers
 ```
 
-Output in console after running the above command:
+Output:
 ```console
-/vendor/bin/est --drift tests/Helpers
+/vendor/bin/pest --drift tests/Helpers
 
 ✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔
 
-INFO  The [tests/Helpers] directory has been migrated to PEST with 26 files changed.
+INFO  The [tests/Helpers] directory has been migrated to PEST with XY files changed.
 ```
 
 ---
