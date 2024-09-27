@@ -502,6 +502,8 @@ This expectation ensures that `$value` contains only digits.
 expect($year)->toBeDigits();
 expect(15)->toBeDigits();
 expect('15')->toBeDigits();
+expect(0.123)->not->toBeDigits();
+expect('0.123')->not->toBeDigits();
 ```
 
 <a name="expect-toBeObject"></a>
