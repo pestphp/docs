@@ -672,11 +672,11 @@ You may find all the expectations included in the `relaxed` preset below in our 
 <a name="preset-custom"></a>
 ### `custom`
 
-Typically you don't need to use the `custom` preset, as you can use the `arch()` method to write your granular expectations. However, if you want to create your own preset, you can use the `custom` preset.
+Typically, you don't need to create a `custom` preset, as you can use the `arch()` method to write your granular expectations. However, if you want to create your own preset, you can use the `custom` method to define the preset.
 
-This may be useful if you have a set of expectations that you use frequently across multiple projects, or if you are plugin author and want to provide a set of expectations for your users.
+This may be useful if you have a set of expectations that you use frequently across multiple projects, or if you are a plugin author and want to provide a set of expectations for your users.
 ```php
-pest()->preset('ddd', function () {
+pest()->presets()->custom('ddd', function () {
     return [
         expect('Infrastructure')->toOnlyBeUsedIn('Application'),
         expect('Domain')->toOnlyBeUsedIn('Application'),
@@ -684,12 +684,21 @@ pest()->preset('ddd', function () {
 });
 ```
 
-With the `preset` method, you may have access to the application PSR-4 namespaces on the first argument of your closure's callback.
+Within the `custom` method, you may have access to the application PSR-4 namespaces on the first argument of your closure's callback.
 
 ```php
-pest()->preset('silex', function (array $userNamespaces) {
-    dump($userNamespaces); // ['App\\']
+pest()->presets()->custom('silex', function (array $userNamespaces) {
+    var_dump($userNamespaces); // array(1) { [0]=> string(3) "App" }
+    return [
+        expect($userNamespaces)->toBeArray(),
+    ];
 });
+```
+
+You can then use the `custom` preset by chaining the `preset()` method with the name of the custom preset.
+
+```php
+arch()->preset()->silex();
 ```
 
 <a name="modifiers"></a>
