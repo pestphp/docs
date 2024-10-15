@@ -160,8 +160,6 @@ class ExampleTest extends TestCase
 You can run `./vendor/bin/pest --drift` and Pest will automatically convert your PHPUnit test to a Pest test:
 
 ```php
-
-
 test('true is true', function () {
     expect(true)->toBeTrue();
 });
