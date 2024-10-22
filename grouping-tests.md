@@ -37,6 +37,16 @@ it('has home', function () {
 })->group('feature', 'browser');
 ```
 
+If you want to assign a group to a describe block, you can do so by chaining the `group()` method onto the describe function.
+
+```php
+describe('home', function () {
+    test('main page', function ()
+        //
+    });
+})->group('feature');
+```
+
 In some cases, you may want to assign a whole file to a group. To do so, you may use the `pest()->group()` method within the file.
 
 ```php

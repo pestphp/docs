@@ -18,6 +18,7 @@ Below, we'll cover all the juicy details about this release. And as usual, you c
 - **[Mutation Testing](#mutation-testing)**: An innovative new technique that introduces small changes to your code to see if your tests catch them.
 - **[Arch Presets](#arch-presets)**: A set of predefined rules that you can use to test your application's architecture.
 - **[Team Management](#team-management)**: A new feature that allows you to manage tasks and todos with your team directly from the console.
+- **[Nested Describes](#nested-describes)**: You can now nest describe blocks within other describe blocks.
 - **[New Configuration API](#new-configuration-api)**: A new configuration API that is more intuitive and easier to use.
 - **[More Architectural Testing Improvements](#more-architectural-testing-improvements)**: `toUseStrictEquality`, `toHaveMethodsDocumented`, `->not->toHaveProtectedMethods`, and more.
 - **[And Much More...](#miscellaneous-improvements)**: Constants in Type Coverage, static analysis improvements, and more.
@@ -234,6 +235,29 @@ Finally, you can view todos separately from the rest of your test suite by inclu
 ```
 
 There is so much more to explore with Team Management, you can learn more about it in our [Team Management](#team-management) section.
+
+<a name="nested-describes"></a>
+## Nested Describes
+
+In Pest 3, you can now nest describe blocks within other describe blocks. This allows you to group tests more effectively and keep your test suite organized.
+
+```php
+describe('home', function () {
+    beforeEach(function () {
+        //
+    });
+
+    it('can be visited', function () {
+        //
+    });
+
+    describe('footer', function () {
+        it('contains a link to the contact page', function () {
+            //
+        });
+    });
+});
+```
 
 <a name="new-configuration-api"></a>
 ## New Configuration API

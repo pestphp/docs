@@ -22,6 +22,14 @@ describe('something', function () {
     });
 
     //
+
+    describe('something else', function () {
+        beforeEach(function () {
+            //
+        });
+
+        //
+    });
 });
 
 test('something', function () {
