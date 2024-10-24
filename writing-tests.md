@@ -98,7 +98,7 @@ test('sum', function () {
 });
 ```
 
-You can find the full documentation for PHPUnit's assertion API on the PHPUnit website: [docs.phpunit.de/en/11.3/assertions.html](https://docs.phpunit.de/en/11.3/assertions.html)
+You can find the full documentation for PHPUnit's assertion API on the PHPUnit website: [docs.phpunit.de/en/11.4/assertions.html](https://docs.phpunit.de/en/11.4/assertions.html)
 
 ---
 
