@@ -204,7 +204,7 @@ Run only the mutation with the given ID. Note, you need to provide the same opti
 Generate mutations for all your project's classes, bypassing the `covers()` method. This option is very resource-intensive and should be used combined with the `--covered-only` option.
 
 ```bash
-./vendor/bin/pest --everything --parallel --covered-only
+./vendor/bin/pest --mutate --everything --parallel --covered-only
 ```
 
 Ideally, you would also combine the `--parallel` option to speed up the process.
