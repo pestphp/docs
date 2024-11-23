@@ -41,7 +41,7 @@ If you want to assign a group to a describe block, you can do so by chaining the
 
 ```php
 describe('home', function () {
-    test('main page', function ()
+    test('main page', function () {
         //
     });
 })->group('feature');
