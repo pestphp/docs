@@ -1,6 +1,6 @@
 ---
 title: Writing Tests
-description: Next let's get a brief overview of how to write tests using Pest. After successfully installing Pest, you will find the following files and folders in your project:
+description: Next let's get a brief overview of how to write tests using Pest.
 ---
 
 # Writing Tests
