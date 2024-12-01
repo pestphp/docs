@@ -1,6 +1,6 @@
 ---
 title: Writing Tests
-description: Next let's get a brief overview of how to write tests using Pest. After successfully installing Pest, you will find the following files and folders in your project:
+description: Next let's get a brief overview of how to write tests using Pest.
 ---
 
 # Writing Tests
@@ -98,7 +98,7 @@ test('sum', function () {
 });
 ```
 
-You can find the full documentation for PHPUnit's assertion API on the PHPUnit website: [docs.phpunit.de/en/11.3/assertions.html](https://docs.phpunit.de/en/11.3/assertions.html)
+You can find the full documentation for PHPUnit's assertion API on the PHPUnit website: [docs.phpunit.de/en/11.4/assertions.html](https://docs.phpunit.de/en/11.4/assertions.html)
 
 ---
 
