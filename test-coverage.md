@@ -40,7 +40,7 @@ If there are any uncovered lines in your current test suite, they will be highli
 
 ## Minimum Threshold Enforcement
 
-To ensure comprehensive testing and maintain code quality, it is crucial to set minimum threshold values for coverage results. In Pest, you can use the `--coverage` and `--min` options to define the minimum threshold values for coverage results. If the specified thresholds are not met, Pest will report a failure.
+To ensure comprehensive testing and maintain code quality, it is crucial to set minimum threshold values for coverage results. In Pest, you can use the `--coverage` and `--min` or `--exactly` options to define the minimum threshold values for coverage results. If the specified thresholds are not met, Pest will report a failure.
 
 ```bash
 ./vendor/bin/pest --coverage --min=90
@@ -49,6 +49,12 @@ To ensure comprehensive testing and maintain code quality, it is crucial to set 
 <div class="code-snippet">
     <img src="/assets/img/coverage-min.webp?1" style="--lines: 9" />
 </div>
+
+Or, you can use the `--exactly` option to enforce that the coverage results match the specified value exactly.
+
+```bash
+./vendor/bin/pest --coverage --exactly=99.3
+```
 
 ## Ignoring Code
 
