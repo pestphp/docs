@@ -80,6 +80,23 @@ Pest supports various code coverage report formats:
 - `--coverage-text <file>`: Save the code coverage report in text format to a specified file. (Default: php://stdout)
 - `--coverage-xml <dir>`: Save the code coverage report in XML format to a specified directory.
 
+## Continuous Integration
+
+It can be handy to integrate the results of your code coverage into the source control of your choice.
+See below on how to do this for various providers.
+
+### GitLab
+
+Have a read over [GitLab Code Coverage](https://docs.gitlab.com/ee/ci/testing/code_coverage.html) and [GitLab Code Coverage yaml](https://docs.gitlab.com/ee/ci/yaml/index.html#coverage)
+
+However it is important to note, that as of Pest 2, an example provided on the GitLab documentation for how to capture the code coverage % is no longer picked up by:
+
+`coverage: /Statement coverage[A-Za-z\.*]\s*:\s*([^%]+)/`
+
+The output of Pest 2 has changed and is detected by something more like:
+
+ `coverage: '/Total:\s?\d+\.\d+\s?\%/'`
+
 ---
 
 In this chapter, we discussed test coverage and its ability to aid in determining the percentage of your application that is actually tested. In the following chapter, we will dive into Pest's Type Coverage Plugin: [Type Coverage](/docs/type-coverage)
