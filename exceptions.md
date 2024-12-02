@@ -64,7 +64,7 @@ it('throws no exceptions', function () {
 Sometimes, you may want to simply mark a test as failed. You can use the `fail()` method to do so.
 
 ```php
-it('fail', function () {
+it('fails', function () {
     $this->fail();
 });
 ```
@@ -72,25 +72,29 @@ it('fail', function () {
 You may also provide a message to the `fail()` method.
 
 ```php
-it('fail', function () {
+it('fails', function () {
     $this->fail('Something went wrong.');
 });
 ```
 
-In addition, you can also use the `fails()` method to verify the test fails.
+In addition, you can also use the `fails()` method to verify if a test fails.
 
 ```php
 it('fails', function () {
-    throw new Exception('Something happened.');
+    $this->fail('Something happened.');
 })->fails();
 ```
 
-Just like the `fail()` method, you may also provide a message to the `fails()` method.
+You can also assert the failure reason by providing a message to the `fails()` method.
 
 ```php
-it('fails', function () {
-    throw new Exception('Something happened.');
-})->fails('Something went wrong.');
+it('fails as expected', function () {
+    $this->fail('Something happened.');
+})->fails('Something happened.'); // Pass
+
+it('fails in an unexpected way', function () {
+    $this->fail('Something unexpected happened.');
+})->fails('Something happened.'); // Fail
 ```
 
 ---
