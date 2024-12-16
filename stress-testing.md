@@ -151,8 +151,8 @@ If you want to specify request headers, you can use the provided `headers` metho
 
 ```php
 $result = stress('example.com/articles')->headers([
-    "Authorization" => "Bearer SecretToken",
-])->get()
+    'Authorization' => 'Bearer SecretToken',
+])->get();
 ```
 
 The `stress()` function return the stress test result, which you can use to set expectations. Here is the list of available methods:
