@@ -234,7 +234,7 @@ Finally, you can view todos separately from the rest of your test suite by inclu
 ./vendor/bin/pest --todos --assignee=taylor # or --issue=123
 ```
 
-There is so much more to explore with Team Management, you can learn more about it in our [Team Management](#team-management) section.
+There is so much more to explore with Team Management, you can learn more about it in our [Team Management](/docs/team-management) section.
 
 <a name="nested-describes"></a>
 ## Nested Describes
