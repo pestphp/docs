@@ -147,6 +147,14 @@ $result = stress('example.com/articles')->put(["name" => "Nuno"]);
 $result = stress('example.com/articles')->post(["name" => "Nuno"]);
 ```
 
+If you want to specify request headers, you can use the provided `headers` method.
+
+```php
+$result = stress('example.com/articles')->headers([
+    'Authorization' => 'Bearer SecretToken',
+])->get();
+```
+
 The `stress()` function return the stress test result, which you can use to set expectations. Here is the list of available methods:
 
 <a name="the-stress-function-request-duration"></a>
