@@ -19,7 +19,7 @@ Pest adheres to semantic versioning principles, where the version number `x.y.z`
 - When adding new non-breaking features or improvements, the `y` number is incremented (e.g., 3.10.2 to 3.12.0).
 - When introducing breaking changes, the `x` number is incremented (e.g., 3.10.2 to 4.0.0).
 
-As maintainers of testing frameworks, we take the matter of breaking changes very seriously. Therefore, we always attempt to deliver incredible and robust new features without causing any disruption to the community's test suites. This is precisely why upgrading from Pest 1 to Pest 2 merely required updating your composer.json file, and we assure you that the process will be just as seamless when Pest v3 is released.
+As maintainers of testing frameworks, we take breaking changes very seriously. Our goal is to deliver robust, cutting-edge features without disrupting the community's test suites. This commitment is why upgrading from Pest 1 to Pest 2 was as simple as updating your composer.json file. Similarly, the transition to Pest 3 has been designed to be just as seamless, ensuring an effortless upgrade experience for our users.
 
 ----
 
