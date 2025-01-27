@@ -77,6 +77,16 @@ beforeEach(function () {
 })->skip();
 ```
 
+## Creating todos
+
+You might want to add a couple of empty tests to make sure you don't forget to add them later. The `todo()` can be useful in this situation.
+
+```php
+it('has home', function () {
+    //
+})->todo();
+```
+
 ---
 
 As your codebase expands, it's advisable to consider enhancing the speed of your test suite. To assist you with that, we offer comprehensive documentation on optimizing your test suite: [Optimizing Tests](/docs/optimizing-tests)
