@@ -23,6 +23,7 @@ In the preceding chapters of the Pest documentation, we have covered numerous CL
 ## Selection
 
 - `--bail`: Stop execution upon first not-passed test.
+- `--ci`: Ignore focused tests using `->only()` and run the entire test suite.
 - `--todos`: Output to standard output the list of todos.
 - `--retry`: Run non-passing tests first and stop execution upon first error or failure.
 - `--exclude-testsuite <name>`: Exclude tests from the specified test suite(s).
