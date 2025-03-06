@@ -30,7 +30,7 @@ arch()->preset()->php();
 arch()->preset()->security()->ignoring('md5');
 ```
 
-## Note: arch() is not to be used within a test block
+## Note: arch() is Not to be Used Within a Test Block
 
 Calls to arch() are meant to be run outside of test blocks. 
 
