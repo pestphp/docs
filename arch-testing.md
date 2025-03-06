@@ -50,7 +50,7 @@ You should define your arch test in a Test.php file like so:
 arch()...
 ```
 
-## Methods and Expectations
+## Methods, Expectations and Modifiers
 
 Now, let's dive into the various methods and modifiers available for architectural testing. In this section, you will learn:
 
