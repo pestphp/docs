@@ -10,34 +10,50 @@ In the preceding chapters of the Pest documentation, we have covered numerous CL
 ## Configuration
 
 - `--init`: Initialize a standard Pest configuration.
+- `--bootstrap <file>` A PHP script that is included before the tests run.
 - `-c|--configuration <file>`: Read configuration from XML file.
 - `--no-configuration`: Ignore default configuration file (phpunit.xml).
+- `--extension <class>`: Register test runner extension with bootstrap <class>.
 - `--no-extensions`: Do not load PHPUnit extensions.
 - `--include-path <path(s)>`: Prepend PHP's include_path with given path(s).
 - `-d <key[=value]>`: Set a php.ini value.
 - `--cache-directory <dir>`: Specify cache directory.
 - `--generate-configuration`: Generate configuration file with suggested settings.
 - `--migrate-configuration`: Migrate configuration file to current format.
+- `--generate-baseline <file>`: Generate baseline for issues.
+- `--use-baseline <file>`: Use baseline to ignore issues.
+- `--ignore-baseline`: Do not use baseline to ignore issues.
 - `--test-directory`: Specify test directory containing Pest.php, TestCase.php, helpers and your tests. Default: tests
 
 ## Selection
 
 - `--bail`: Stop execution upon first not-passed test.
 - `--todos`: Output to standard output the list of todos.
+- `--notes`: Output to standard output tests with notes.
+- `--issue`: Output to standard output tests with the given issue number.
+- `--pr`: Output to standard output tests with the given pull request number.
+- `--pull-request`: Output to standard output tests with the given pull request number (alias for `--pr`).
 - `--retry`: Run non-passing tests first and stop execution upon first error or failure.
+- `--list-suites` List available test suites.
+- `--testsuite <name>`: Only run tests from the specified test suite(s).
 - `--exclude-testsuite <name>`: Exclude tests from the specified test suite(s).
 - `--list-groups`: List available test groups.
 - `--group <name>`: Only run tests from the specified group(s).
 - `--exclude-group <name>`: Exclude tests from the specified group(s).
 - `--covers <name>`: Only run tests that intend to cover `<name>`.
 - `--uses <name>`: Only run tests that intend to use `<name>`.
+- `--requires-php-extension <name>`: Only run tests that require PHP extension <name>.
+- `--list-test-files`: List available test files.
 - `--list-tests`: List available tests.
 - `--list-tests-xml <file>`: List available tests in XML format.
 - `--filter <pattern>`: Filter which tests to run
+- `--exclude-filter <pattern>`: Exclude tests for the specified filter pattern.
 - `--test-suffix <suffixes>`: Only search for test in files with specified suffix(es). Default: Test.php,.phpt
 
 ## Execution
 
+- `--parallel` Run tests in parallel.
+- `--update-snapshots`: Update snapshots for tests using the "toMatchSnapshot" expectation.
 - `--globals-backup`: Backup and restore $GLOBALS for each test.
 - `--static-backup`: Backup and restore static properties for each test.
 - `--strict-coverage`: Be strict about code coverage metadata.
@@ -51,12 +67,18 @@ In the preceding chapters of the Pest documentation, we have covered numerous CL
 - `--stop-on-failure`: Stop execution upon first error or failure.
 - `--stop-on-warning`: Stop execution upon first warning.
 - `--stop-on-risky`: Stop execution upon first risky test.
+- `--stop-on-deprecation`: Stop after first test that triggered a deprecation.
+- `--stop-on-notice`: Stop after first test that triggered a notice.
 - `--stop-on-skipped`: Stop execution upon first skipped test.
 - `--stop-on-incomplete`: Stop execution upon first incomplete test.
-- `--fail-on-incomplete`: Treat incomplete tests as failures.
-- `--fail-on-risky`: Treat risky tests as failures.
-- `--fail-on-skipped`: Treat skipped tests as failures.
+- `--fail-on-empty-test-suite`: Signal failure using shell exit code when no tests were run.
 - `--fail-on-warning`: Treat tests with warnings as failures.
+- `--fail-on-risky`: Treat risky tests as failures.
+- `--fail-on-deprecation`: Signal failure using shell exit code when a deprecation was triggered.
+- `--fail-on-phpunit-deprecation`: Signal failure using shell exit code when a PHPUnit deprecation was triggered.
+- `--fail-on-notice`: Signal failure using shell exit code when a notice was triggered.
+- `--fail-on-skipped`: Treat skipped tests as failures.
+- `--fail-on-incomplete`: Signal failure using shell exit code when a test was marked incomplete.
 - `--cache-result`: Write test results to cache file.
 - `--do-not-cache-result`: Do not write test results to cache file
 - `--order-by <order>`: Run tests in order: default|defects|depends|duration|no-depends|random|reverse|size.
@@ -74,12 +96,15 @@ In the preceding chapters of the Pest documentation, we have covered numerous CL
 - `--display-incomplete`: Display details for incomplete tests.
 - `--display-skipped`: Display details for skipped tests.
 - `--display-deprecations`: Display details for deprecations triggered by tests.
+- `--display-phpunit-deprecations`: Display details for PHPUnit deprecations.
 - `--display-errors`: Display details for errors triggered by tests.
 - `--display-notices`: Display details for notices triggered by tests.
 - `--display-warnings`: Display details for warnings triggered by tests.
 - `--reverse-list`: Print defects in reverse order.
 - `--teamcity`: Replace default progress and result output with TeamCity format.
 - `--testdox`: Replace default result output with TestDox format
+- `--testdox-summary`: Repeat TestDox output for tests with errors, failures, or issues.
+- `--debug`: Replace default progress and result output with debugging information.
 - `--compact`:  Replace default result output with Compact format
 
 ## Logging
@@ -96,16 +121,40 @@ In the preceding chapters of the Pest documentation, we have covered numerous CL
 
 - `--coverage`: Generate code coverage report and output to standard output.
 - `--coverage --min=<value>`: Set the minimum required coverage percentage, and fail if not met.
+- `--coverage-clover <file>`: Write code coverage report in Clover XML format to file.
+- `--coverage-cobertura <file>`: Write code coverage report in Cobertura XML format to file.
 - `--coverage-crap4j <file>`: Write code coverage report in Crap4J XML format to file.
 - `--coverage-html <dir>`: Write code coverage report in HTML format to directory.
 - `--coverage-php <file>`: Write serialized code coverage data to file.
 - `--coverage-text=<file>`: Write code coverage report in text format to file [default: standard output].
+- `--only-summary-for-coverage-text`: Option for code coverage report in text format: only show summary.
+- `--show-uncovered-for-coverage-text`: Option for code coverage report in text format: show uncovered files.
 - `--coverage-xml <dir>`: Write code coverage report in XML format to directory.
 - `--warm-coverage-cache`: Warm static analysis cache.
 - `--coverage-filter <dir>`: Include `<dir>`: in code coverage reporting.
 - `--path-coverage`: Report path coverage in addition to line coverage.
 - `--disable-coverage-ignore`: Disable metadata for ignoring code coverage.
 - `--no-coverage`: Ignore code coverage reporting configured in the XML configuration file
+
+## Mutation Testing
+
+- `--mutate`: Runs mutation testing, to understand the quality of your tests.
+- `--mutate --parallel`: Runs mutation testing in parallel.
+- `--mutate --min`: Set the minimum required mutation score, and fail if not met.
+- `--mutate --id`:  Run only the mutation with the given ID. But E.g. --id=ecb35ab30ffd3491. Note, you need to provide the same options as the original run.
+- `--mutate --covered-only`: Only generate mutations for classes that are covered by tests.
+- `--mutate --bail`: Stop mutation testing execution upon first untested or uncovered mutation.
+- `--mutate --class`: Generate mutations for the given class(es). E.g. --class=App\\Models.
+- `--mutate --ignore`: Ignore the given class(es) when generating mutations. E.g. --ignore=App\\Http\\Requests.
+- `--mutate --clear-cache`: Clear the mutation cache.
+- `--mutate --no-cache`: Clear the mutation cache.
+- `--mutate --ignore-min-score-on-zero-mutations`: Ignore the minimum score requirement when there are no mutations.
+- `--mutate --covered-only`: Only generate mutations for classes that are covered by tests.
+- `--mutate --everything`: Generate mutations for all classes, even if they are not covered by tests.
+- `--mutate --profile`: Output to standard output the top ten slowest mutations.
+- `--mutate --retry`: Run untested or uncovered mutations first and stop execution upon first error or failure.
+- `--mutate --stop-on-uncovered`: Stop mutation testing execution upon first untested mutation.
+- `--mutate --stop-on-untested`: Stop mutation testing execution upon first untested mutation.
 
 ## Profiling
 
