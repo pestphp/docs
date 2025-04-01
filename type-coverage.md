@@ -40,6 +40,14 @@ Sometimes, you may want to ignore a specific error or line of code. To do so, yo
 }
 ```
 
+## Compact Output
+
+Often, when checking type coverage, you only want to see files that do not currently have 100% type coverage. To do this, you can use the `--compact` option:
+
+```bash
+./vendor/bin/pest --type-coverage --compact
+``` 
+
 ## Minimum Threshold Enforcement
 
 Just like code coverage, type coverage can also be enforced. To ensure any code that is added to your application is fully typed, you can use the `--type-coverage` and `--min` options to define the minimum threshold values for type coverage results. If the specified thresholds are not met, Pest will report a failure.

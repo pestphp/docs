@@ -25,6 +25,10 @@ arch()
 arch()
     ->expect('App\Http')
     ->toOnlyBeUsedIn('App\Http');
+    
+arch()
+    ->expect('App\*\Traits')
+    ->toBeTraits();
 
 arch()->preset()->php();
 arch()->preset()->security()->ignoring('md5');
@@ -713,6 +717,9 @@ Sometimes, you may want to apply the given expectation but excluding certain typ
 - [`enums()`](#modifier-enums)
 - [`interfaces()`](#modifier-interfaces)
 - [`traits()`](#modifier-traits)
+- [`extending()`](#modifier-extending)
+- [`implementing()`](#modifier-implementing)
+- [`using()`](#modifier-using)
 
 </div>
 
@@ -794,6 +801,41 @@ arch('app')
     ->toExtend('App\Traits\Trait');
 ```
 
+<a name="modifier-extending"></a>
+### `extending()`
+
+The `extending()` modifier allows you to restrict the expectation to only classes or interfaces that extend the given class.
+
+```php
+arch('app')
+    ->expect('App')
+    ->extending(Model::class)
+    ->toUseTrait(HasFactory::class);
+```
+
+<a name="modifier-implementing"></a>
+### `implementing()`
+
+The `implementing()` modifier allows you to restrict the expectation to only classes that implement the given interface.
+
+```php
+arch('app')
+    ->expect('App')
+    ->implementing(ShouldQueue::class)
+    ->toUseTrait(Dispatchable::class);
+```
+
+<a name="modifier-using"></a>
+### `using()`
+
+The `using()` modifier allows you to restrict the expectation to only classes that use the given trait.
+
+```php
+arch('app')
+    ->expect('App')
+    ->using(HasFactory::class)
+    ->toExtend(Model::class);
+```
 ---
 
 In this section, you have learned how to perform architectural testing, ensuring that your application or library's architecture meets a specified set of architectural requirements. Next, have you ever wondered how to test the performance of your code? Let's explore [Stress Testing](/docs/stress-testing).
