@@ -66,6 +66,25 @@ it('can sum', function (int $a, int $b, int $result) {
 ]);
 ```
 
+For larger or more complex scenarios, closures can be used.
+
+```php
+
+// Returning an array
+test('The array contains only integers', function ($i) {
+    expect($i)->toBeInt();
+})->with(fn (): array => range(1, 99));
+
+// Using a generator
+test('The generator produces only integers', function ($i) {
+    expect($i)->toBeInt();
+})->with(function (): Generator {
+    for ($i = 1 ; $i < 100_000_000_000 ; $i++) {
+        yield $i;
+    }
+});
+```
+
 ## Bound Datasets
 
 Pest's bound datasets can be used to obtain a dataset that is resolved after the `beforeEach()` method of your tests. This is particularly useful in Laravel applications (or any other Pest integration) where you may need a dataset of `App\Models\User` models that are created after your database schema is prepared by the `beforeEach()` method.
