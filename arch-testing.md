@@ -34,6 +34,48 @@ arch()->preset()->php();
 arch()->preset()->security()->ignoring('md5');
 ```
 
+## Choosing What Code Test
+
+Unlike other tests that start with `it()` or `test()` and accept a closure for the testing, architectural tests start with the `arch()` 
+function followed by a chained `expect()` method that will determine the scope of code to be tested.
+
+The `expect()` method accepts a class name, or a namespace string; if you pass in a namespace string, all code within the namespace will be tested recursively.
+
+```php
+arch()
+    ->expect('App') // Test all files within the App namespace, e.g. App, App\Models, App\Http etc.
+    ->toUseStrictTypes();
+
+arch()
+    ->expect('App/Models') // Test all files within the App\Models namespace
+    ->toExtend('Illuminate\Database\Eloquent\Model');
+```
+
+### Excluding Code
+
+You can also exclude certain code from the test by using the `ignoring()` method. This method accepts a class name, or a namespace string:
+
+```php
+arch()
+    ->expect('App\Models')
+    ->ignoring('App\Models\Scopes') // Ignore all files within the App\Models\Scopes namespace
+    ->toExtend('Illuminate\Database\Eloquent\Model');
+```
+
+See [Modifiers](#modifiers) for more information on how to include or exclude certain types of code.
+
+### Wildcards
+
+Since Pest 3.8, you can pass wildcards to the `expect()` method to match code in multiple namespaces. For example, if you want to ensure all code within any `Traits` subdirectory contain traits, you can use the following:
+
+```php
+arch()
+    ->expect('App\*\Traits') // All code within any App\*\Traits namespace, e.g. App\Traits, App\Models\Traits, etc.
+    ->toBeTraits();
+```
+
+## Writing Tests
+
 Now, let's dive into the various methods and modifiers available for architectural testing. In this section, you will learn:
 
 - [Expectations](#expectations): Allows to specify granular architectural rules.
