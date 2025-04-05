@@ -34,6 +34,28 @@ arch()->preset()->php();
 arch()->preset()->security()->ignoring('md5');
 ```
 
+## Note: arch() is Not to be Used Within a Test Block
+
+Calls to arch() are meant to be run outside of test blocks. 
+
+For example, the following **will not work:**
+```php
+test('test arch test', function () {
+    arch()...
+}
+
+it('test arch test', function() {
+    arch()...
+}
+```
+
+You should define your arch test in a Test.php file like so:
+```php
+arch()...
+```
+
+## Methods, Expectations and Modifiers
+
 Now, let's dive into the various methods and modifiers available for architectural testing. In this section, you will learn:
 
 - [Expectations](#expectations): Allows to specify granular architectural rules.
