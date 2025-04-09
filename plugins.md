@@ -125,7 +125,7 @@ As you may expect, all of the assertions that were previously accessible via `$t
 use function Pest\Laravel\{actingAs, get, post, delete, ...};
 ```
 
-You can find the full testing documentation on the Laravel website: [laravel.com/docs/11.x/testing](https://laravel.com/docs/11.x/testing).
+You can find the full testing documentation on the Laravel website: [laravel.com/docs/12.x/testing](https://laravel.com/docs/12.x/testing).
 
 ---
 
