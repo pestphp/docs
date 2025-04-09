@@ -34,8 +34,6 @@ arch()->preset()->php();
 arch()->preset()->security()->ignoring('md5');
 ```
 
-## Writing Tests
-
 Now, let's dive into the various methods and modifiers available for architectural testing. In this section, you will learn:
 
 - [Expectations](#expectations): Allows to specify granular architectural rules.
