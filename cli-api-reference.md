@@ -28,6 +28,7 @@ In the preceding chapters of the Pest documentation, we have covered numerous CL
 ## Selection
 
 - `--bail`: Stop execution upon first not-passed test.
+- `--ci`: Ignore focused tests using `->only()` and run the entire test suite.
 - `--todos`: Output to standard output the list of todos.
 - `--notes`: Output to standard output tests with notes.
 - `--issue`: Output to standard output tests with the given issue number.
