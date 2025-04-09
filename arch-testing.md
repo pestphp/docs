@@ -705,6 +705,21 @@ You can then use the `custom` preset by chaining the `preset()` method with the 
 arch()->preset()->silex();
 ```
 
+<a name="wirldcards"></a>
+## Wirldcards
+
+Since Pest 3.8, you can pass wildcards to the `expect()` method to match code in multiple namespaces. For example, if you want to ensure all code within any `Traits` subdirectory contain traits, you can use the following:
+
+```php
+arch()
+    ->expect('App\*\Traits') // All code within any App\*\Traits namespace, e.g. App\Models\Traits, etc.
+    ->toBeTraits();
+
+arch()
+    ->expect('App\*\*\Traits') // All code within any App\*\*\Traits namespace, e.g. App\A\B\Traits, App\C\D\Traits, etc.
+    ->toBeTraits();
+```
+
 <a name="modifiers"></a>
 ## Modifiers
 
