@@ -705,8 +705,8 @@ You can then use the `custom` preset by chaining the `preset()` method with the 
 arch()->preset()->silex();
 ```
 
-<a name="wirldcards"></a>
-## Wirldcards
+<a name="wildcards"></a>
+## Wildcards
 
 Since Pest 3.8, you can pass wildcards to the `expect()` method to match code in multiple namespaces. For example, if you want to ensure all code within any `Traits` subdirectory contain traits, you can use the following:
 
