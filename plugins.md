@@ -193,6 +193,12 @@ To customize the watched directories, supply a comma-separated list of directori
 pest --watch=app,routes,tests
 ```
 
+By default, the output is not colored, as watch mode starts a new process, so Pest doesn't know it's running in a Terminal. To force Pest's output to be colored, you can use the `--colors` flag.
+
+```bash
+pest --watch --colors=always
+```
+
 ---
 
 In this section, we have seen how plugins can enhance your Pest experience. Now, let's see how you can manage your team's tasks and responsibilities using Pest: [Team Management](/docs/team-management)
