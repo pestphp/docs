@@ -238,7 +238,7 @@ arch('facades')
 <a name="expect-toBeUsedIn"></a>
 ### `toBeUsedIn()`
 
-By combining the `not` modifier with the `toBeUsedIn()` method, you can restrict specific classes and functions from being used within a given namespace.
+By combining the `not` modifier with the `toBeUsedIn(array|string $targets)` method, you can restrict specific classes and functions from being used within a given namespace.
 
 ```php
 arch('globals')
@@ -253,7 +253,7 @@ arch('globals')
 <a name="expect-toExtend"></a>
 ### `toExtend()`
 
-The `toExtend()` method may be used to ensure that all classes within a given namespace extend a specific class.
+The `toExtend(string $class)` method may be used to ensure that all classes within a given namespace extend a specific class.
 
 ```php
 arch('app')
@@ -275,7 +275,7 @@ arch('app')
 <a name="expect-toImplement"></a>
 ### `toImplement()`
 
-The `toImplement()` method may be used to ensure that all classes within a given namespace implement a specific interface.
+The `toImplement(array|string $interfaces)` method may be used to ensure that all classes within a given namespace implement a specific interface.
 
 ```php
 arch('app')
@@ -319,7 +319,7 @@ arch('app')
 <a name="expect-toHaveAttribute"></a>
 ### `toHaveAttribute()`
 
-The `toHaveAttribute()` method may be used to ensure that a certain class has a specific attribute.
+The `toHaveAttribute(string $attribute)` method may be used to ensure that a certain class has a specific attribute.
 
 ```php
 arch('app')
@@ -330,7 +330,7 @@ arch('app')
 <a name="expect-toHaveFileSystemPermissions"></a>
 ### `toHaveFileSystemPermissions()`
 
-The `toHaveFileSystemPermissions()` method may be used to ensure that all files within a given namespace have specific file system permissions.
+The `toHaveFileSystemPermissions(string $permissions)` method may be used to ensure that all files within a given namespace have specific file system permissions.
 
 ```php
 arch('app')
@@ -341,7 +341,7 @@ arch('app')
 <a name="expect-toHaveLineCountLessThan"></a>
 ### `toHaveLineCountLessThan()`
 
-The `toHaveLineCountLessThan()` method may be used to ensure that all files within a given namespace have a line count less than a specified value.
+The `toHaveLineCountLessThan(int $lines)` method may be used to ensure that all files within a given namespace have a line count less than a specified value.
 
 ```php
 arch('app')
@@ -352,7 +352,7 @@ arch('app')
 <a name="expect-toHaveMethod"></a>
 ### `toHaveMethod()`
 
-The `toHaveMethod()` method may be used to ensure that a certain class has a specific method.
+The `toHaveMethod(array|string $method)` method may be used to ensure that a certain class has a specific method.
 
 ```php
 arch('app')
@@ -363,7 +363,7 @@ arch('app')
 <a name="expect-toHaveMethods"></a>
 ### `toHaveMethods()`
 
-The `toHaveMethods()` method may be used to ensure that a certain class has specific methods.
+The `toHaveMethods(array $methods)` method may be used to ensure that a certain class has specific methods.
 ```php
 arch('app')
     ->expect('App\Http\Controllers\HomeController')
@@ -373,7 +373,7 @@ arch('app')
 <a name="expect-toHavePrivateMethodsBesides"></a>
 ### `toHavePrivateMethodsBesides()`
 
-The `toHavePrivateMethodsBesides()` method may be used to ensure that a certain class does not have any private methods besides the specified ones.
+The `toHavePrivateMethodsBesides(array|string $methods)` method may be used to ensure that a certain class does not have any private methods besides the specified ones.
 
 ```php
 arch('app')
@@ -395,7 +395,7 @@ arch('app')
 <a name="expect-toHaveProtectedMethodsBesides"></a>
 ### `toHaveProtectedMethodsBesides()`
 
-The `toHaveProtectedMethodsBesides()` method may be used to ensure that a certain class does not have any protected methods besides the specified ones.
+The `toHaveProtectedMethodsBesides(array|string $methods)` method may be used to ensure that a certain class does not have any protected methods besides the specified ones.
 
 ```php
 arch('app')
@@ -417,7 +417,7 @@ arch('app')
 <a name="expect-toHavePublicMethodsBesides"></a>
 ### `toHavePublicMethodsBesides()`
 
-The `toHavePublicMethodsBesides()` method may be used to ensure that a certain class does not have any public methods besides the specified ones.
+The `toHavePublicMethodsBesides(array|string $method)` method may be used to ensure that a certain class does not have any public methods besides the specified ones.
 
 ```php
 arch('app')
@@ -439,7 +439,7 @@ arch('app')
 <a name="expect-toHavePrefix"></a>
 ### `toHavePrefix()`
 
-The `toHavePrefix()` method may be used to ensure that all files within a given namespace have a specific prefix.
+The `toHavePrefix(string $prefix)` method may be used to ensure that all files within a given namespace have a specific prefix.
 
 ```php
 arch('app')
@@ -450,7 +450,7 @@ arch('app')
 <a name="expect-toHaveSuffix"></a>
 ### `toHaveSuffix()`
 
-The `toHaveSuffix()` method may be used to ensure that all files within a given namespace have a specific suffix.
+The `toHaveSuffix(string $suffix)` method may be used to ensure that all files within a given namespace have a specific suffix.
 
 ```php
 arch('app')
@@ -483,7 +483,7 @@ arch('app')
 <a name="expect-toOnlyImplement"></a>
 ### `toOnlyImplement()`
 
-The `toOnlyImplement()` method may be used to ensure that certain classes are restricted to implementing specific interfaces.
+The `toOnlyImplement(array|string $interfaces)` method may be used to ensure that certain classes are restricted to implementing specific interfaces.
 
 ```php
 arch('app')
@@ -494,7 +494,7 @@ arch('app')
 <a name="expect-toOnlyUse"></a>
 ### `toOnlyUse()`
 
-The `toOnlyUse()` method may be used to guarantee that certain classes are restricted to utilizing specific functions or classes. For example, you may ensure your models are streamlined and solely dependent on the `Illuminate\Database` namespace, and not, for instance, dispatching queued jobs or events.
+The `toOnlyUse(array|string $targets)` method may be used to guarantee that certain classes are restricted to utilizing specific functions or classes. For example, you may ensure your models are streamlined and solely dependent on the `Illuminate\Database` namespace, and not, for instance, dispatching queued jobs or events.
 
 ```php
 arch('models')
@@ -505,7 +505,7 @@ arch('models')
 <a name="expect-toOnlyBeUsedIn"></a>
 ### `toOnlyBeUsedIn()`
 
-The `toOnlyBeUsedIn()` method enables you to limit the usage of a specific class or set of classes to only particular parts of your application. For instance, you can use this method to confirm that your models are only used by your repositories and not by controllers or service providers.
+The `toOnlyBeUsedIn(array|string $targets)` method enables you to limit the usage of a specific class or set of classes to only particular parts of your application. For instance, you can use this method to confirm that your models are only used by your repositories and not by controllers or service providers.
 
 ```php
 arch('models')
@@ -516,7 +516,7 @@ arch('models')
 <a name="expect-toUse"></a>
 ### `toUse()`
 
-By combining the `not` modifier with the `toUse()` method, you can indicate that files within a given namespace should not use specific functions or classes.
+By combining the `not` modifier with the `toUse(array|string $targets)` method, you can indicate that files within a given namespace should not use specific functions or classes.
 
 ```php
 arch('globals')
@@ -550,7 +550,7 @@ arch('models')
 <a name="expect-toUseTrait"></a>
 ### `toUseTrait()`
 
-The `toUseTrait()` method may be used to ensure that all files within a given namespace use a specific trait.
+The `toUseTrait(string $trait)` method may be used to ensure that all files within a given namespace use a specific trait.
 
 ```php
 arch('models')
@@ -561,7 +561,7 @@ arch('models')
 <a name="expect-toUseTraits"></a>
 ### `toUseTraits()`
 
-The `toUseTraits()` method may be used to ensure that all files within a given namespace use specific traits.
+The `toUseTraits(array|string $traits)` method may be used to ensure that all files within a given namespace use specific traits.
 
 ```php
 arch('models')
