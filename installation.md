@@ -22,6 +22,21 @@ composer require pestphp/pest --dev --with-all-dependencies
 ./vendor/bin/pest --init
 ```
 
+**Third step**: add the following snippet to your composer.json:
+
+```
+"autoload-dev": {
+  "psr-4": {
+    "Tests\\": "tests/"
+  }
+}
+```
+
+And run the composer command below to refresh it's autoloader:
+```
+composer dump-autoload
+```
+
 **Finally**, you can run your tests by executing the `pest` command.
 
 ```bash
