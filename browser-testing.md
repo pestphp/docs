@@ -203,6 +203,19 @@ Sometimes, you need to define where the browser believes it is physically on the
 ```php
 $page = visit('/')
      ->geolocation(39.399872, -8.224454);
+
+$page->assertSee('Portugal');
+```
+
+You may also define one of several specific preset cities which will configure the browser's geolocation, timezone and locale:
+
+```php
+$page = visit('/')
+     ->from()->losAngeles();
+
+$page->assertSee('Los Angeles');
+$page->assertSee('America/Los_Angeles');
+$page->assertSee('en-US');
 ```
 
 ### Configuring Locale
