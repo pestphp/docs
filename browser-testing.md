@@ -164,7 +164,7 @@ pest()->browser()
 
 The browser plugin provides various methods to interact with web pages:
 
-````php
+`````php
 test('page navigation and interaction', function () {
     $page = visit('/')
         // Basic navigation
@@ -195,7 +195,67 @@ By default, the `visit()` method uses Chrome as the browser. However, if you wan
 ```bash
 ./vendor/bin/pest --browser firefox
 ./vendor/bin/pest --browser safari
-````
+```
+
+### Toolbar Operations (InteractsWithToolbar)
+
+The Toolbar Operations feature provides methods to interact with browser's DevTools and various browser controls.
+
+```php
+$page = visit('/')
+    // DevTools Operations
+    ->openDevTools()                 // Open Chrome DevTools
+    ->closeDevTools()                // Close DevTools
+
+    // Navigation Controls
+    ->reload()                       // Reload the current page
+    ->reloadWithCache()             // Force reload with cache
+    ->reloadWithoutCache()          // Force reload bypassing cache
+
+    // Browser Controls
+    ->maximize()                    // Maximize browser window
+    ->minimize()                    // Minimize browser window
+    ->fullScreen()                  // Enter full screen mode
+    ->exitFullScreen()              // Exit full screen mode
+
+    // Network Operations
+    ->setOffline(true)             // Enable offline mode
+    ->setOffline(false)            // Disable offline mode
+
+    // Performance
+    ->emulateCPUThrottling(4)      // Simulate slower CPU
+    ->emulateNetworkConditions([    // Simulate network conditions
+        'offline' => false,
+        'latency' => 100,
+        'downloadThroughput' => 1024 * 1024,
+        'uploadThroughput' => 1024 * 1024
+    ]);
+
+// Example with debugging workflow
+$page->visit('/complex-page')
+    ->openDevTools()
+    ->assertSee('Loading...')
+    ->waitForText('Loaded')
+    ->screenshot('debug-view.png')
+    ->closeDevTools();
+```
+
+Toolbar Features:
+1. DevTools management
+2. Page reload controls
+3. Window state management
+4. Network condition simulation
+5. Performance throttling
+6. Cache control
+7. Full screen handling
+
+Common Use Cases:
+- Debugging complex interactions
+- Testing offline behavior
+- Performance testing
+- Network condition testing
+- Cache-related testing
+- Responsive design testing`
 
 If you wish to use a different browser by default without specifying it in the command line, you can set it in your `Pest.php` configuration file:
 
@@ -274,12 +334,12 @@ $page->visit('/products')
 
 Screenshot Options:
 
-- `fullPage`: Capture entire scrollable page
-- `clip`: Capture specific area
-- `omitBackground`: Make background transparent
-- `quality`: JPEG quality (0-100)
-- `timeout`: Maximum time to wait for screenshot
-- `type`: Image format (png/jpeg)
+-   `fullPage`: Capture entire scrollable page
+-   `clip`: Capture specific area
+-   `omitBackground`: Make background transparent
+-   `quality`: JPEG quality (0-100)
+-   `timeout`: Maximum time to wait for screenshot
+-   `type`: Image format (png/jpeg)
 
 Visual Regression Features:
 
@@ -291,13 +351,13 @@ Visual Regression Features:
 
 Common Use Cases:
 
-- Visual regression testing
-- Documentation generation
-- Bug reporting
-- State verification
-- Responsive design testing
-- Cross-browser testing
-- Animation testing (with multiple screenshots)
+-   Visual regression testing
+-   Documentation generation
+-   Bug reporting
+-   State verification
+-   Responsive design testing
+-   Cross-browser testing
+-   Animation testing (with multiple screenshots)
 
 Best Practices:
 
@@ -356,14 +416,14 @@ $page->visit('/checkout')
 
 Frame Handling Features:
 
-- Support for single and nested iframes
-- Frame selection by CSS selector or name
-- Automatic waiting for frame availability
-- Full access to page interaction methods within frames
-- Support for assertions within frames
-- Ability to chain frame interactions
-- Automatic frame context switching
-- Error handling for missing frames
+-   Support for single and nested iframes
+-   Frame selection by CSS selector or name
+-   Automatic waiting for frame availability
+-   Full access to page interaction methods within frames
+-   Support for assertions within frames
+-   Ability to chain frame interactions
+-   Automatic frame context switching
+-   Error handling for missing frames
 
 Common Use Cases:
 
@@ -441,13 +501,13 @@ Tab Management Features:
 
 Common Use Cases:
 
-- Testing "Open in New Tab" functionality
-- Handling popup windows
-- Multi-window workflows
-- Compare views across tabs
-- Testing tab-specific behavior
-- Social media authentication flows
-- Document preview features
+-   Testing "Open in New Tab" functionality
+-   Handling popup windows
+-   Multi-window workflows
+-   Compare views across tabs
+-   Testing tab-specific behavior
+-   Social media authentication flows
+-   Document preview features
 
 Best Practices:
 
@@ -500,35 +560,35 @@ $page->assertVisible('.mobile-menu')    // On mobile view
 
 Available Device Presets:
 
-- Mobile Devices
+-   Mobile Devices
 
-  - `iPhone14()`
-  - `iPhone14Plus()`
-  - `iPhone14Pro()`
-  - `iPhone14ProMax()`
-  - `iPhone13()`
-  - `iPhone13Pro()`
-  - `iPhone13ProMax()`
-  - `iPadAir()`
-  - `iPadMini()`
-  - `pixel7()`
-  - `galaxyS23()`
+    -   `iPhone14()`
+    -   `iPhone14Plus()`
+    -   `iPhone14Pro()`
+    -   `iPhone14ProMax()`
+    -   `iPhone13()`
+    -   `iPhone13Pro()`
+    -   `iPhone13ProMax()`
+    -   `iPadAir()`
+    -   `iPadMini()`
+    -   `pixel7()`
+    -   `galaxyS23()`
 
-- Desktop Devices
-  - `macbook13()`
-  - `macbook14()`
-  - `macbook16()`
-  - `desktop4K()`
-  - `desktopHD()`
+-   Desktop Devices
+    -   `macbook13()`
+    -   `macbook14()`
+    -   `macbook16()`
+    -   `desktop4K()`
+    -   `desktopHD()`
 
 Each device preset automatically configures:
 
-- Viewport dimensions
-- Device scale factor
-- User agent string
-- Touch capability
-- Mobile mode
-- Default orientation
+-   Viewport dimensions
+-   Device scale factor
+-   User agent string
+-   Touch capability
+-   Mobile mode
+-   Default orientation
 
 You can also create custom viewport settings:
 
@@ -541,15 +601,82 @@ $page->setViewport([
     'hasTouch' => true,             // Enable touch events
     'isLandscape' => true           // Set landscape orientation
 ]);
-```### Console and Error Handling (MakesConsoleAssertions)
+```
+
+### Console and Error Handling (MakesConsoleAssertions)
+
+The Console and Error Handling feature allows you to monitor and assert browser console output, JavaScript errors, and other browser-level messages. This is crucial for detecting client-side issues and debugging JavaScript applications.
 
 ```php
 $page = visit('/')
-    ->assertNoConsoleErrors()
-    ->assertNoJavaScriptErrors()
+    // Basic Console Assertions
+    ->assertNoConsoleErrors()              // No error-level messages
+    ->assertNoJavaScriptErrors()           // No JavaScript exceptions
+    ->assertNoConsoleLogs()                // No console messages at all
+
+    // Console Message Type Assertions
     ->assertConsoleLogContains('Debug message')
-    ->assertConsoleWarningContains('Warning');
-````
+    ->assertConsoleWarningContains('Warning')
+    ->assertConsoleErrorContains('Error')
+
+    // Multiple Message Assertions
+    ->assertConsoleLogContains([
+        'First message',
+        'Second message'
+    ])
+
+    // Regex Pattern Matching
+    ->assertConsoleLogMatches('/API response: .*/')
+
+    // Combined Assertions
+    ->assertNoSmoke()                      // No errors/warnings/logs
+
+    // Timing and Performance
+    ->assertNoSlowResources()              // Check for slow loading resources
+    ->assertNoNetworkErrors()              // Check for failed network requests
+
+    // Custom Console Handling
+    ->tap(function ($page) {
+        $consoleLogs = $page->getConsoleLogs();
+        // Custom log processing
+    });
+
+// Example with error tracking
+$page->visit('/js-heavy-page')
+    ->waitForText('Loaded')
+    ->tap(function ($page) {
+        $errors = $page->getJavaScriptErrors();
+        expect($errors)->toBeEmpty();
+    });
+```
+
+Console Message Types:
+1. `log` - General logging messages
+2. `info` - Informational messages
+3. `warning` - Warning messages
+4. `error` - Error messages
+5. `debug` - Debug messages
+
+Available Assertions:
+- `assertNoConsoleErrors()` - No error messages
+- `assertNoJavaScriptErrors()` - No JS exceptions
+- `assertNoConsoleLogs()` - No console messages
+- `assertConsoleLogContains()` - Check log content
+- `assertConsoleWarningContains()` - Check warning content
+- `assertConsoleErrorContains()` - Check error content
+- `assertNoSmoke()` - No issues of any kind
+- `assertNoSlowResources()` - Performance check
+- `assertNoNetworkErrors()` - Network check
+
+Best Practices:
+1. Clear console before critical assertions
+2. Handle asynchronous console messages
+3. Use specific assertions for message types
+4. Consider environment-specific logging
+5. Monitor resource loading errors
+6. Track performance issues
+7. Handle expected console output
+`````
 
 ### Element Assertions (MakesElementAssertions)
 
@@ -580,24 +707,154 @@ $page = visit('/')
 
 ### Location Simulation (From)
 
+The Location Simulation feature allows you to test location-specific behavior by simulating different geographical locations and related settings.
+
 ```php
 $page = visit('/')->from()
-    ->amsterdam()  // Simulate being in Amsterdam
-    ->london()     // Simulate being in London
-    ->withLocale('nl-NL')
-    ->withTimezone('Europe/Amsterdam');
+    // Predefined Locations
+    ->amsterdam()                    // Simulate being in Amsterdam
+    ->london()                       // Simulate being in London
+    ->newYork()                     // Simulate being in New York
+    ->tokyo()                       // Simulate being in Tokyo
+
+    // Locale and Timezone
+    ->withLocale('nl-NL')           // Set Dutch locale
+    ->withTimezone('Europe/Amsterdam') // Set Amsterdam timezone
+
+    // Custom Location
+    ->location(52.3676, 4.9041)    // Custom coordinates
+
+    // Combined Settings
+    ->from()
+        ->paris()
+        ->withLocale('fr-FR')
+        ->withTimezone('Europe/Paris')
+        ->withCurrency('EUR');
+
+// Example with location-based testing
+$page->visit('/weather')
+    ->from()->tokyo()
+    ->assertSee('°C')               // Metric units
+    ->assertSee('JST')              // Japan timezone
+
+    ->from()->newYork()
+    ->assertSee('°F')               // Imperial units
+    ->assertSee('EST');             // US timezone
 ```
+
+Available Features:
+
+1. Predefined city locations
+2. Custom GPS coordinates
+3. Locale settings
+4. Timezone configuration
+5. Currency formatting
+6. Language preferences
+7. Regional settings
+
+Predefined Locations:
+
+- `amsterdam()` - Amsterdam, Netherlands
+- `london()` - London, UK
+- `newYork()` - New York, USA
+- `tokyo()` - Tokyo, Japan
+- `paris()` - Paris, France
+- `berlin()` - Berlin, Germany
+- And more...
+
+Common Use Cases:
+
+- Testing geo-restricted content
+- Language/locale testing
+- Timezone-specific features
+- Currency formatting
+- Regional pricing
+- Content localization
+- Weather applications
+- Maps and navigation
 
 ### Livewire Support
 
+The Livewire Support feature provides comprehensive testing capabilities for Laravel Livewire components, allowing you to interact with and assert against Livewire-specific functionality.
+
 ```php
 $page = visit('/')
+    // Basic Livewire Testing
     ->livewire()
     ->assertSeeText('Component content')
     ->assertSet('property', 'value')
     ->call('method')
-    ->assertEmitted('event');
+    ->assertEmitted('event')
+
+    // Component State
+    ->assertSet('counter', 0)
+    ->call('increment')
+    ->assertSet('counter', 1)
+
+    // Event Testing
+    ->assertEmitted('counter-updated')
+    ->assertEmittedUp('parent-notified')
+    ->assertNotEmitted('unused-event')
+
+    // Property Updates
+    ->updateProperty('name', 'Test')
+    ->assertSet('name', 'Test')
+
+    // Form Interaction
+    ->fillForm([
+        'email' => 'test@example.com',
+        'password' => 'secret'
+    ])
+    ->call('submit')
+
+    // File Uploads
+    ->upload('avatar', '/path/to/image.jpg')
+    ->assertSet('hasAvatar', true)
+
+    // Validation
+    ->assertHasErrors(['email'])
+    ->assertHasNoErrors(['name']);
+
+// Example with complex Livewire interaction
+$page->visit('/todos')
+    ->livewire()
+    ->assertSet('todos', [])
+    ->updateProperty('newTodo', 'Buy groceries')
+    ->call('addTodo')
+    ->assertSet('todos', ['Buy groceries'])
+    ->assertEmitted('todo-added')
+    ->assertSeeText('Buy groceries');
 ```
+
+Available Features:
+
+1. Component state assertions
+2. Method calling
+3. Event handling
+4. Property manipulation
+5. Form interaction
+6. File upload testing
+7. Validation testing
+8. Real-time updates
+
+Common Assertions:
+
+- `assertSet()` - Check property values
+- `assertEmitted()` - Verify events
+- `assertHasErrors()` - Validate form errors
+- `assertSeeHtml()` - Check rendered HTML
+- `assertDispatched()` - Verify dispatched events
+- `assertRedirect()` - Check redirects
+
+Best Practices:
+
+1. Test component isolation
+2. Verify state changes
+3. Test event propagation
+4. Validate form submission
+5. Check error handling
+6. Test real-time updates
+7. Verify component mounting
 
 You can visit multiple pages simultaneously by passing an array of URLs to the `visit()` method. This is useful for testing scenarios where you need to interact with multiple pages at once:
 
