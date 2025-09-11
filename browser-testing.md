@@ -220,54 +220,328 @@ $page = visit('/')->on()->iPhone14Pro();
 
 ### Screen Interactions (InteractsWithScreen)
 
+Screen Interactions provide powerful capabilities for capturing and validating visual aspects of your application, including screenshots and visual regression testing.
+
 ```php
 $page = visit('/')
-    // Taking screenshots
+    // Basic Screenshot
     ->screenshot('homepage.png')
-    ->screenshotElement('#header', 'header.png')
 
-    // Assertions
-    ->assertScreenshotMatches('expected.png')
-    ->assertElementScreenshotMatches('#element', 'element.png');
+    // Full Page Screenshot
+    ->screenshot('full-page.png', fullPage: true)
+
+    // Screenshot with Specific Dimensions
+    ->screenshot('custom-size.png', clip: [
+        'x' => 0,
+        'y' => 0,
+        'width' => 1920,
+        'height' => 1080
+    ])
+
+    // Element Screenshots
+    ->screenshotElement('#header', 'header.png')
+    ->screenshotElement('.product-card', 'product.png')
+
+    // Screenshot with Options
+    ->screenshot('homepage-dark.png', options: [
+        'omitBackground' => true,
+        'quality' => 80,
+        'timeout' => 5000
+    ])
+
+    // Visual Regression Testing
+    ->assertScreenshotMatches()  // Uses test name as baseline
+    ->assertScreenshotMatches('custom-baseline.png')
+    ->assertScreenshotMatches(fullPage: true)
+    ->assertElementScreenshotMatches('#element', 'element-baseline.png')
+
+    // Mobile/Responsive Screenshots
+    ->on()->iPhone14()
+    ->screenshot('mobile-view.png')
+    ->on()->desktop()
+    ->screenshot('desktop-view.png');
+
+// Advanced Screenshot Testing
+$page->visit('/products')
+    // Take screenshots in different states
+    ->screenshot('products-initial.png')
+    ->click('#filter-button')
+    ->waitForText('Filtered Results')
+    ->screenshot('products-filtered.png')
+    ->hover('.product-card')
+    ->screenshot('product-hover.png');
 ```
 
-### Frame Handling (InteractsWithFrames)
+Screenshot Options:
+
+- `fullPage`: Capture entire scrollable page
+- `clip`: Capture specific area
+- `omitBackground`: Make background transparent
+- `quality`: JPEG quality (0-100)
+- `timeout`: Maximum time to wait for screenshot
+- `type`: Image format (png/jpeg)
+
+Visual Regression Features:
+
+1. Automatic baseline creation
+2. Pixel-by-pixel comparison
+3. Tolerance settings for minor differences
+4. Diff image generation
+5. Multiple comparison strategies
+
+Common Use Cases:
+
+- Visual regression testing
+- Documentation generation
+- Bug reporting
+- State verification
+- Responsive design testing
+- Cross-browser testing
+- Animation testing (with multiple screenshots)
+
+Best Practices:
+
+1. Use consistent viewport sizes
+2. Consider dynamic content
+3. Handle loading states
+4. Set appropriate tolerances
+5. Organize screenshots by feature
+6. Version control baselines
+7. Regular baseline updates### Frame Handling (InteractsWithFrames)
+
+The Frame Handling feature allows you to interact with content inside iframes. This is particularly useful when testing applications that embed third-party content or use frame-based layouts.
 
 ```php
 $page = visit('/')
+    // Basic frame interaction
     ->withinFrame('#iframe', function ($frame) {
         $frame->click('.button')
               ->assertSee('Frame Content')
               ->type('email', 'test@example.com');
+    })
+
+    // Multiple frames handling
+    ->withinFrame(['#parent-frame', '#child-frame'], function ($frame) {
+        // Interact with nested frames
+        $frame->click('.nested-button');
+    })
+
+    // Frame by name or selector
+    ->withinFrame('frame-name', function ($frame) {
+        $frame->assertVisible('.frame-content');
+    })
+
+    // Wait for frame to be available
+    ->waitForFrame('#loading-frame')
+
+    // Assertions within frames
+    ->withinFrame('#payment-frame', function ($frame) {
+        $frame->assertVisible('#card-number')
+              ->type('#card-number', '4242424242424242')
+              ->assertValue('#card-number', '4242424242424242');
     });
+
+// Example with complex frame interactions
+$page->visit('/checkout')
+    ->withinFrame('#payment-widget', function ($frame) {
+        // Fill payment form in iframe
+        $frame->type('cardNumber', '4242424242424242')
+              ->type('expiryDate', '12/25')
+              ->type('cvv', '123')
+              ->press('Pay Now')
+              ->waitForText('Payment Successful');
+    })
+    ->assertPathIs('/confirmation');
 ```
+
+Frame Handling Features:
+
+- Support for single and nested iframes
+- Frame selection by CSS selector or name
+- Automatic waiting for frame availability
+- Full access to page interaction methods within frames
+- Support for assertions within frames
+- Ability to chain frame interactions
+- Automatic frame context switching
+- Error handling for missing frames
+
+Common Use Cases:
+
+1. Testing embedded payment forms
+2. Interacting with rich text editors
+3. Testing embedded maps or media players
+4. Working with third-party widgets
+5. Testing administrative dashboards with frame-based layouts
 
 ### Tab Management (InteractsWithTab)
 
+Tab Management allows you to work with multiple browser tabs/windows, essential for testing scenarios that involve pop-ups, new window interactions, or multi-window workflows.
+
 ```php
 $page = visit('/')
-    ->openNewTab()
-    ->switchToTab(1)
+    // Basic Tab Operations
+    ->openNewTab()                      // Opens a new empty tab
+    ->switchToTab(1)                    // Switch to tab by index
+    ->visit('/new-page')               // Navigate in new tab
     ->assertUrlIs('/new-page')
-    ->closeTab()
-    ->switchToTab(0);
+    ->closeTab()                        // Close current tab
+    ->switchToTab(0)                    // Return to first tab
+
+    // Advanced Tab Management
+    ->openNewTab(url: '/direct-page')   // Open with specific URL
+    ->waitForTab(2)                     // Wait for specific number of tabs
+    ->getAllTabs()                      // Get all open tabs
+    ->switchToLastTab()                 // Switch to most recent tab
+    ->switchToFirstTab()                // Switch to first tab
+
+    // Working with Multiple Tabs
+    ->openNewTab()
+    ->within(1, function ($tab) {       // Work in specific tab
+        $tab->assertSee('New Tab Content');
+    })
+
+    // Handling Popup Windows
+    ->click('#open-popup')
+    ->waitForNewTab()
+    ->switchToLastTab()
+    ->assertSee('Popup Content')
+
+    // Tab Context Preservation
+    ->switchToTab(0)
+    ->assertSee('Original Content');
+
+// Complex Multi-tab Scenario
+$page->visit('/products')
+    // Open product in new tab
+    ->click('#view-in-new-tab', modifiers: ['Control'])
+    ->waitForNewTab()
+    ->switchToLastTab()
+    ->assertUrlContains('/product/')
+    ->assertSee('Product Details')
+
+    // Compare in multiple tabs
+    ->switchToFirstTab()
+    ->assertSee('Product List')
+
+    // Clean up
+    ->closeAllOtherTabs()              // Close all except current
+    ->assertTabCount(1);               // Verify cleanup
 ```
 
+Tab Management Features:
+
+1. Create new tabs with or without URLs
+2. Switch between tabs by index
+3. Close individual or multiple tabs
+4. Wait for tab operations
+5. Handle popup windows
+6. Preserve context across tabs
+7. Access all open tabs
+8. Tab count assertions
+
+Common Use Cases:
+
+- Testing "Open in New Tab" functionality
+- Handling popup windows
+- Multi-window workflows
+- Compare views across tabs
+- Testing tab-specific behavior
+- Social media authentication flows
+- Document preview features
+
+Best Practices:
+
+1. Always clean up tabs after tests
+2. Use explicit waits for new tabs
+3. Handle tab indices carefully
+4. Verify correct context after switching
+5. Consider tab lifecycle management
+6. Handle unexpected popups
+7. Test tab-specific keyboard shortcuts
+
 ### Viewport Control (InteractsWithViewPort)
+
+The viewport control allows you to manipulate the browser's viewport size and emulate different devices. This is particularly useful for testing responsive designs and mobile-specific features.
 
 ```php
 $page = visit('/')
     // Set specific dimensions
     ->resize(1920, 1080)
+    ->setViewport([
+        'width' => 1280,
+        'height' => 720,
+        'deviceScaleFactor' => 1,
+        'isMobile' => false,
+        'hasTouch' => false,
+        'isLandscape' => false
+    ])
 
-    // Use predefined device settings
+    // Predefined device settings
     ->on()->iPhone14()
+    ->on()->iPhone14Pro()
+    ->on()->iPhone14ProMax()
+    ->on()->macbook14()
     ->on()->macbook16()
+
+    // Generic device types
     ->on()->mobile()
-    ->on()->desktop();
+    ->on()->tablet()
+    ->on()->desktop()
+
+    // Orientation control
+    ->on()->landscape()
+    ->on()->portrait();
+
+// Chain with other assertions
+$page->assertVisible('.mobile-menu')    // On mobile view
+    ->on()->desktop()                   // Switch to desktop
+    ->assertMissing('.mobile-menu');    // Verify responsive behavior
 ```
 
-### Console and Error Handling (MakesConsoleAssertions)
+Available Device Presets:
+
+- Mobile Devices
+
+  - `iPhone14()`
+  - `iPhone14Plus()`
+  - `iPhone14Pro()`
+  - `iPhone14ProMax()`
+  - `iPhone13()`
+  - `iPhone13Pro()`
+  - `iPhone13ProMax()`
+  - `iPadAir()`
+  - `iPadMini()`
+  - `pixel7()`
+  - `galaxyS23()`
+
+- Desktop Devices
+  - `macbook13()`
+  - `macbook14()`
+  - `macbook16()`
+  - `desktop4K()`
+  - `desktopHD()`
+
+Each device preset automatically configures:
+
+- Viewport dimensions
+- Device scale factor
+- User agent string
+- Touch capability
+- Mobile mode
+- Default orientation
+
+You can also create custom viewport settings:
+
+````php
+$page->setViewport([
+    'width' => 1024,
+    'height' => 768,
+    'deviceScaleFactor' => 2,       // For retina/high-DPI displays
+    'isMobile' => true,             // Enable mobile mode
+    'hasTouch' => true,             // Enable touch events
+    'isLandscape' => true           // Set landscape orientation
+]);
+```### Console and Error Handling (MakesConsoleAssertions)
 
 ```php
 $page = visit('/')
@@ -275,7 +549,7 @@ $page = visit('/')
     ->assertNoJavaScriptErrors()
     ->assertConsoleLogContains('Debug message')
     ->assertConsoleWarningContains('Warning');
-```
+````
 
 ### Element Assertions (MakesElementAssertions)
 
