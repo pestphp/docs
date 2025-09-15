@@ -1,11 +1,167 @@
 ---
 title: Browser Testing
-description: Browser testing capabilities in Pest PHP
+description: Browser testing enables you to automate web application interactions in real browsers, helping you validate functionality across different browsers and devices.
 ---
 
 # Browser Testing
 
-Browser testing is an essential part of modern web development, allowing you to ensure that your application works correctly across different browsers and devices. Pest provides a comprehensive browser testing API through its browser plugin. This documentation covers all available features based on the official API implementation.
+Pest's browser testing plugin provides a powerful API for automating browser interactions. Here's everything you need to know to get started:
+
+```bash
+# Installation
+composer require pestphp/pest-plugin-browser --dev
+npm install playwright@latest
+npx playwright install
+```
+
+## Basic Usage
+
+```php
+test('user can log in', function () {
+    visit('/login')
+        ->type('email', 'test@example.com')
+        ->type('password', 'password')
+        ->click('Login')
+        ->assertPathIs('/dashboard');
+});
+```
+
+## Available Methods
+
+<div class="collection-method-list" markdown="1">
+
+### Navigation
+
+[visit()](#visit) - Visit a URL
+[navigate()](#navigate) - Navigate to another URL
+[back()](#back) - Go back
+[forward()](#forward) - Go forward
+[refresh()](#refresh) - Refresh page
+
+### Interactions
+
+[click()](#click) - Click element
+[type()](#type) - Type text
+[select()](#select) - Select option
+[check()](#check) - Check checkbox
+[uncheck()](#uncheck) - Uncheck checkbox
+[attach()](#attach) - Attach file
+[press()](#press) - Press key
+[hover()](#hover) - Hover over element
+[drag()](#drag) - Drag element
+
+### Assertions
+
+[assertSee()](#assert-see) - Assert text visible
+[assertDontSee()](#assert-dont-see) - Assert text not visible
+[assertTitle()](#assert-title) - Assert page title
+[assertUrlIs()](#assert-url-is) - Assert current URL
+[assertPathIs()](#assert-path-is) - Assert current path
+[assertVisible()](#assert-visible) - Assert element visible
+[assertMissing()](#assert-missing) - Assert element not visible
+[assertValue()](#assert-value) - Assert input value
+
+### Device & Network
+
+[mobile()](#mobile) - Mobile viewport
+[tablet()](#tablet) - Tablet viewport
+[desktop()](#desktop) - Desktop viewport
+[setNetwork()](#set-network) - Set network conditions
+[setGeolocation()](#set-geolocation) - Set location
+
+### Debug & Screenshots
+
+[screenshot()](#screenshot) - Take screenshot
+[debug()](#debug) - Start debugging
+[pause()](#pause) - Pause execution
+
+</div>
+
+## Common Examples
+
+### Form Testing
+
+```php
+test('contact form submission', function () {
+    visit('/contact')
+        ->type('name', 'John Doe')
+        ->type('email', 'john@example.com')
+        ->type('message', 'Hello')
+        ->attach('attachment', '/path/to/file.pdf')
+        ->click('Submit')
+        ->assertSee('Message sent successfully');
+});
+```
+
+### Responsive Testing
+
+```php
+test('menu is responsive', function () {
+    visit('/')
+        ->desktop()
+        ->assertVisible('#desktop-menu')
+        ->assertMissing('#mobile-menu')
+        ->mobile()
+        ->assertVisible('#mobile-menu')
+        ->assertMissing('#desktop-menu');
+});
+```
+
+### Multi-page Testing
+
+```php
+test('multiple pages', function () {
+    $pages = visit(['/', '/about']);
+    [$home, $about] = $pages;
+
+    $home->assertSee('Welcome');
+    $about->assertSee('About Us');
+});
+```
+
+### Error Handling
+
+```php
+test('form validation', function () {
+    visit('/register')
+        ->click('Register')
+        ->assertSee('Email is required')
+        ->type('email', 'invalid')
+        ->click('Register')
+        ->assertSee('Valid email required')
+        ->assertPathIs('/register');
+});
+```
+
+## Configuration
+
+Configure browser testing in your `Pest.php`:
+
+```php
+pest()->browser()
+    ->inChrome()           // Use Chrome (default)
+    ->inFirefox()          // Use Firefox
+    ->timeout(10000)       // Set timeout (ms)
+    ->headed()             // Show browser
+    ->headless();          // Hide browser (default)
+```
+
+<div class="collection-method-list" markdown="1">
+
+[Installation](#installation)
+[Basic Usage](#basic-usage)
+[Navigation](#navigation)
+[Element Interactions](#element-interactions)
+[Assertions](#assertions)
+[Screenshots](#screenshots)
+[Device Emulation](#device-emulation)
+[Network Conditions](#network-conditions)
+[Console and Errors](#console-and-errors)
+[Frames and Windows](#frames-and-windows)
+[Geolocation](#geolocation)
+[Accessibility Testing](#accessibility-testing)
+
+</div>
 
 ## Table of Contents
 
@@ -60,9 +216,11 @@ Browser testing is an essential part of modern web development, allowing you to 
 
 ## Getting Started
 
+<a name="installation"></a>
+
 ### Installation
 
-To get started with browser testing in Pest, follow these steps:
+Browser testing in Pest requires both the Pest Browser plugin and Playwright. You can install them using the following commands:
 
 ```bash
 # Install the browser plugin
@@ -75,7 +233,7 @@ npm install playwright@latest
 npx playwright install
 ```
 
-Add the following to your `.gitignore` file:
+After installation, add the following path to your `.gitignore` file to exclude browser test screenshots:
 
 ```
 tests/Browser/screenshots/
