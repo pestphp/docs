@@ -11,10 +11,9 @@ Browser testing is an essential part of modern web development, allowing you to 
 
 - [Getting Started](#getting-started)
 
-  - [Installation](#getting-started)
-  - [Running Tests and Configuration](#running-tests-and-configuration)
-  - [Multiple Page Testing](#multiple-page-testing)
-  - [Configuration Options](#configuration-options)
+  - [Installation](#installation)
+  - [Basic Configuration](#basic-configuration)
+  - [Running Tests](#running-tests)
 
 - [Core Features](#core-features)
 
@@ -23,18 +22,66 @@ Browser testing is an essential part of modern web development, allowing you to 
   - [Frame Handling](#frame-handling)
   - [Tab Management](#tab-management)
   - [Viewport Control](#viewport-control)
+  - [Toolbar Operations](#toolbar-operations)
 
-- [Assertions and Testing](#assertions-and-testing)
+- [Testing Capabilities](#testing-capabilities)
 
-  - [Console and Error Handling](#console-and-error-handling)
+  - [Element Interactions](#element-interactions)
+  - [Form Handling](#form-handling)
+  - [Mouse and Keyboard](#mouse-and-keyboard)
+  - [Screenshots](#screenshots)
+  - [Console and Network](#console-and-network)
+
+- [Assertions](#assertions)
+
   - [Element Assertions](#element-assertions)
   - [URL Assertions](#url-assertions)
+  - [Console Assertions](#console-assertions)
+  - [Screenshot Assertions](#screenshot-assertions)
 
 - [Advanced Features](#advanced-features)
+
+  - [Multiple Page Testing](#multiple-page-testing)
   - [Location Simulation](#location-simulation)
+  - [Device Emulation](#device-emulation)
   - [Livewire Support](#livewire-support)
 
-## Basic Example
+- [Configuration](#configuration)
+
+  - [Browser Options](#browser-options)
+  - [Viewport Settings](#viewport-settings)
+  - [Network Conditions](#network-conditions)
+  - [Screenshot Settings](#screenshot-settings)
+
+- [Debugging](#debugging)
+  - [Visual Debugging](#visual-debugging)
+  - [Console Debugging](#console-debugging)
+  - [Network Debugging](#network-debugging)
+
+## Getting Started
+
+### Installation
+
+To get started with browser testing in Pest, follow these steps:
+
+```bash
+# Install the browser plugin
+composer require pestphp/pest-plugin-browser --dev
+
+# Install Playwright
+npm install playwright@latest
+
+# Install browser drivers
+npx playwright install
+```
+
+Add the following to your `.gitignore` file:
+
+```
+tests/Browser/screenshots/
+```
+
+### Basic Example
 
 Here's a simple example of a browser test using Pest:
 
@@ -48,34 +95,33 @@ test('homepage shows welcome message', function () {
 });
 ```
 
-This is a basic example of a browser test that checks if the homepage contains the text "Welcome". However, Pest's browser testing capabilities go beyond this simple example. You can use various methods to interact with the page, such as clicking buttons, filling out forms, and navigating between pages.
+For a more complex example, here's a Laravel authentication test:```php
+test('user can sign in', function () {
+// Setup
+Event::fake();
+User::factory()->create([
+'email' => 'test@example.com',
+'password' => 'password',
+]);
 
-Here is an example of a more complex browser test, on Laravel, that checks if a user can sign in:
-
-```php
-it('may sign in the user', function () {
-    Event::fake();
-
-    User::factory()->create([ // assumes RefreshDatabase trait is used on Pest.php...
-        'email' => 'nuno@laravel.com',
-        'password' => 'password',
-    ]);
-
+    // Test
     $page = visit('/')->on()->mobile()->firefox();
 
     $page->click('Sign In')
          ->assertUrlIs('/login')
          ->assertSee('Sign In to Your Account')
-         ->fill('email', 'nuno@laravel.com')
+         ->fill('email', 'test@example.com')
          ->fill('password', 'password')
          ->click('Submit')
          ->assertSee('Dashboard');
 
-    $this->assertAuthenticated();
-
+    // Assertions
+    expect()->toBeAuthenticated();
     Event::assertDispatched(UserLoggedIn::class);
+
 });
-```
+
+````
 
 Note that, you are leveraging the full power of Laravel's testing capabilities, such as refresh database, event faking, and authentication assertions, while also actually doing browser testing.
 
@@ -88,7 +134,7 @@ composer require pestphp/pest-plugin-browser --dev
 
 npm install playwright@latest
 npx playwright install
-```
+````
 
 Finally, add `tests/Browser/Screenshots` to your `.gitignore` file to avoid committing screenshots taken during browser tests.
 
