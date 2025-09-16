@@ -32,48 +32,48 @@ test('user can log in', function () {
 
 ### Navigation
 
-[visit()](#visit) - Visit a URL
-[navigate()](#navigate) - Navigate to another URL
-[back()](#back) - Go back
-[forward()](#forward) - Go forward
-[refresh()](#refresh) - Refresh page
+- [visit()](#visit) - Visit a URL
+- [navigate()](#navigate) - Navigate to another URL
+- [back()](#back) - Go back
+- [forward()](#forward) - Go forward
+- [refresh()](#refresh) - Refresh page
 
 ### Interactions
 
-[click()](#click) - Click element
-[type()](#type) - Type text
-[select()](#select) - Select option
-[check()](#check) - Check checkbox
-[uncheck()](#uncheck) - Uncheck checkbox
-[attach()](#attach) - Attach file
-[press()](#press) - Press key
-[hover()](#hover) - Hover over element
-[drag()](#drag) - Drag element
+- [click()](#click) - Click element
+- [type()](#type) - Type text
+- [select()](#select) - Select option
+- [check()](#check) - Check checkbox
+- [uncheck()](#uncheck) - Uncheck checkbox
+- [attach()](#attach) - Attach file
+- [press()](#press) - Press key
+- [hover()](#hover) - Hover over element
+- [drag()](#drag) - Drag element
 
 ### Assertions
 
-[assertSee()](#assert-see) - Assert text visible
-[assertDontSee()](#assert-dont-see) - Assert text not visible
-[assertTitle()](#assert-title) - Assert page title
-[assertUrlIs()](#assert-url-is) - Assert current URL
-[assertPathIs()](#assert-path-is) - Assert current path
-[assertVisible()](#assert-visible) - Assert element visible
-[assertMissing()](#assert-missing) - Assert element not visible
-[assertValue()](#assert-value) - Assert input value
+- [assertSee()](#assert-see) - Assert text visible
+- [assertDontSee()](#assert-dont-see) - Assert text not visible
+- [assertTitle()](#assert-title) - Assert page title
+- [assertUrlIs()](#assert-url-is) - Assert current URL
+- [assertPathIs()](#assert-path-is) - Assert current path
+- [assertVisible()](#assert-visible) - Assert element visible
+- [assertMissing()](#assert-missing) - Assert element not visible
+- [assertValue()](#assert-value) - Assert input value
 
 ### Device & Network
 
-[mobile()](#mobile) - Mobile viewport
-[tablet()](#tablet) - Tablet viewport
-[desktop()](#desktop) - Desktop viewport
-[setNetwork()](#set-network) - Set network conditions
-[setGeolocation()](#set-geolocation) - Set location
+- [mobile()](#mobile) - Mobile viewport
+- [tablet()](#tablet) - Tablet viewport
+- [desktop()](#desktop) - Desktop viewport
+- [setNetwork()](#set-network) - Set network conditions
+- [setGeolocation()](#set-geolocation) - Set location
 
 ### Debug & Screenshots
 
-[screenshot()](#screenshot) - Take screenshot
-[debug()](#debug) - Start debugging
-[pause()](#pause) - Pause execution
+- [screenshot()](#screenshot) - Take screenshot
+- [debug()](#debug) - Start debugging
+- [pause()](#pause) - Pause execution
 
 </div>
 
@@ -137,13 +137,19 @@ test('form validation', function () {
 
 Configure browser testing in your `Pest.php`:
 
+- `inChrome()` - Use Chrome (default)
+- `inFirefox()` - Use Firefox
+- `timeout(10000)` - Set timeout (ms)
+- `headed()` - Show browser
+- `headless()` - Hide browser (default)
+
 ```php
 pest()->browser()
-    ->inChrome()           // Use Chrome (default)
-    ->inFirefox()          // Use Firefox
-    ->timeout(10000)       // Set timeout (ms)
-    ->headed()             // Show browser
-    ->headless();          // Hide browser (default)
+    ->inChrome()
+    ->inFirefox()
+    ->timeout(10000)
+    ->headed()
+    ->headless();
 ```
 
 <div class="collection-method-list" markdown="1">
@@ -253,7 +259,9 @@ test('homepage shows welcome message', function () {
 });
 ```
 
-For a more complex example, here's a Laravel authentication test:```php
+For a more complex example, here's a Laravel authentication test:
+
+```php
 test('user can sign in', function () {
 // Setup
 Event::fake();
@@ -278,8 +286,7 @@ User::factory()->create([
     Event::assertDispatched(UserLoggedIn::class);
 
 });
-
-````
+```
 
 Note that, you are leveraging the full power of Laravel's testing capabilities, such as refresh database, event faking, and authentication assertions, while also actually doing browser testing.
 
@@ -292,26 +299,19 @@ composer require pestphp/pest-plugin-browser --dev
 
 npm install playwright@latest
 npx playwright install
-````
+```
 
 Finally, add `tests/Browser/Screenshots` to your `.gitignore` file to avoid committing screenshots taken during browser tests.
 
 ### Running Tests and Configuration
 
-```bash
-# Run all tests
-./vendor/bin/pest
+Available test running options:
 
-# Run tests in parallel
-./vendor/bin/pest --parallel
-
-# Run in debug mode (headed browser)
-./vendor/bin/pest --debug
-
-# Run with specific browser
-./vendor/bin/pest --browser firefox
-./vendor/bin/pest --browser safari
-```
+- `./vendor/bin/pest` - Run all tests
+- `./vendor/bin/pest --parallel` - Run tests in parallel
+- `./vendor/bin/pest --debug` - Run in debug mode (headed browser)
+- `./vendor/bin/pest --browser firefox` - Run with Firefox browser
+- `./vendor/bin/pest --browser safari` - Run with Safari browser
 
 ### Multiple Page Testing
 
@@ -339,6 +339,28 @@ test('multiple pages', function () {
 
 You can configure the browser behavior in your `Pest.php` file:
 
+Browser selection:
+
+- `inChrome()` - Use Chrome browser
+- `inFirefox()` - Use Firefox browser
+- `inSafari()` - Use Safari browser
+
+Display modes:
+
+- `headed()` - Show browser window
+- `headless()` - Hide browser window
+- `inDarkMode()` - Enable dark mode
+
+Timing and behavior:
+
+- `timeout(10000)` - Set timeout in milliseconds
+- `userAgent('Custom/1.0')` - Set custom user agent
+
+Screenshot configuration:
+
+- `screenshotsPath('tests/Browser/screenshots')` - Set screenshots path
+- `failedScreenshotsPath('tests/Browser/screenshots/failures')` - Set failed screenshots path
+
 ```php
 use Pest\Plugin\Browser\Configuration;
 
@@ -349,13 +371,13 @@ pest()->browser()
     ->inSafari()
 
     // Display modes
-    ->headed()     // Show browser window
-    ->headless()   // Hide browser window
-    ->inDarkMode() // Enable dark mode
+    ->headed()
+    ->headless()
+    ->inDarkMode()
 
     // Timing and behavior
-    ->timeout(10000)           // Set timeout in milliseconds
-    ->userAgent('Custom/1.0')  // Set custom user agent
+    ->timeout(10000)
+    ->userAgent('Custom/1.0')
 
     // Screenshot configuration
     ->screenshotsPath('tests/Browser/screenshots')
@@ -368,7 +390,32 @@ pest()->browser()
 
 The browser plugin provides various methods to interact with web pages:
 
-`````php
+``Browser navigation and interaction methods:
+
+Navigation methods:
+
+- `navigate('/about')` - Navigate to another URL
+- `back()` - Go back one page
+- `forward()` - Go forward one page
+- `refresh()` - Refresh current page
+
+Waiting methods:
+
+- `waitForNavigation()` - Wait for page navigation
+- `waitFor('.element')` - Wait for element
+- `waitForText('Loading completed')` - Wait for text
+
+Element interaction methods:
+
+- `click('.button')` - Click an element
+- `type('email', 'value')` - Type into input
+- `fill('message', 'text')` - Fill form field
+- `select('country', 'USA')` - Select dropdown option
+- `check('terms')` - Check checkbox
+- `uncheck('newsletter')` - Uncheck checkbox
+- `press('Submit')` - Press button
+
+```php
 test('page navigation and interaction', function () {
     $page = visit('/')
         // Basic navigation
@@ -377,12 +424,12 @@ test('page navigation and interaction', function () {
         ->forward()
         ->refresh()
 
-        // Waiting capabilities (HasWaitCapabilities)
+        // Waiting capabilities
         ->waitForNavigation()
         ->waitFor('.element')
         ->waitForText('Loading completed')
 
-        // Element interaction (InteractsWithElements)
+        // Element interaction
         ->click('.button')
         ->type('email', 'test@example.com')
         ->fill('message', 'Hello')
@@ -391,44 +438,71 @@ test('page navigation and interaction', function () {
         ->uncheck('newsletter')
         ->press('Submit');
 });
+```
 
 ### Using Other Browsers
 
-By default, the `visit()` method uses Chrome as the browser. However, if you want to use a different browser, you can specify it using the `--browser` option when running the tests:
+By default, the `visit()` method uses Chrome as the browser. Available browser options:
 
-```bash
-./vendor/bin/pest --browser firefox
-./vendor/bin/pest --browser safari
-```
+- `./vendor/bin/pest --browser firefox` - Run tests in Firefox
+- `./vendor/bin/pest --browser safari` - Run tests in Safari
 
 ### Toolbar Operations (InteractsWithToolbar)
 
 The Toolbar Operations feature provides methods to interact with browser's DevTools and various browser controls.
 
+DevTools Operations:
+
+- `openDevTools()` - Open Chrome DevTools
+- `closeDevTools()` - Close DevTools
+
+Navigation Controls:
+
+- `reload()` - Reload the current page
+- `reloadWithCache()` - Force reload with cache
+- `reloadWithoutCache()` - Force reload bypassing cache
+
+Browser Controls:
+
+- `maximize()` - Maximize browser window
+- `minimize()` - Minimize browser window
+- `fullScreen()` - Enter full screen mode
+- `exitFullScreen()` - Exit full screen mode
+
+Network Operations:
+
+- `setOffline(true)` - Enable offline mode
+- `setOffline(false)` - Disable offline mode
+
+Performance Controls:
+
+- `emulateCPUThrottling(4)` - Simulate slower CPU
+- `emulateNetworkConditions()` - Simulate network conditions
+
 ```php
 $page = visit('/')
     // DevTools Operations
-    ->openDevTools()                 // Open Chrome DevTools
-    ->closeDevTools()                // Close DevTools
+    ->openDevTools()
+    ->closeDevTools()
 
     // Navigation Controls
-    ->reload()                       // Reload the current page
-    ->reloadWithCache()             // Force reload with cache
-    ->reloadWithoutCache()          // Force reload bypassing cache
+    ->reload()
+    ->reloadWithCache()
+    ->reloadWithoutCache()
 
     // Browser Controls
-    ->maximize()                    // Maximize browser window
-    ->minimize()                    // Minimize browser window
-    ->fullScreen()                  // Enter full screen mode
-    ->exitFullScreen()              // Exit full screen mode
+    ->maximize()
+    ->minimize()
+    ->fullScreen()
+    ->exitFullScreen()
 
     // Network Operations
-    ->setOffline(true)             // Enable offline mode
-    ->setOffline(false)            // Disable offline mode
+    ->setOffline(true)
+    ->setOffline(false)
 
     // Performance
-    ->emulateCPUThrottling(4)      // Simulate slower CPU
-    ->emulateNetworkConditions([    // Simulate network conditions
+    ->emulateCPUThrottling(4)
+    ->emulateNetworkConditions([
         'offline' => false,
         'latency' => 100,
         'downloadThroughput' => 1024 * 1024,
@@ -444,22 +518,14 @@ $page->visit('/complex-page')
     ->closeDevTools();
 ```
 
-Toolbar Features:
-1. DevTools management
-2. Page reload controls
-3. Window state management
-4. Network condition simulation
-5. Performance throttling
-6. Cache control
-7. Full screen handling
-
 Common Use Cases:
+
 - Debugging complex interactions
 - Testing offline behavior
 - Performance testing
 - Network condition testing
 - Cache-related testing
-- Responsive design testing`
+- Responsive design testing
 
 If you wish to use a different browser by default without specifying it in the command line, you can set it in your `Pest.php` configuration file:
 
@@ -538,12 +604,12 @@ $page->visit('/products')
 
 Screenshot Options:
 
--   `fullPage`: Capture entire scrollable page
--   `clip`: Capture specific area
--   `omitBackground`: Make background transparent
--   `quality`: JPEG quality (0-100)
--   `timeout`: Maximum time to wait for screenshot
--   `type`: Image format (png/jpeg)
+- `fullPage`: Capture entire scrollable page
+- `clip`: Capture specific area
+- `omitBackground`: Make background transparent
+- `quality`: JPEG quality (0-100)
+- `timeout`: Maximum time to wait for screenshot
+- `type`: Image format (png/jpeg)
 
 Visual Regression Features:
 
@@ -555,13 +621,13 @@ Visual Regression Features:
 
 Common Use Cases:
 
--   Visual regression testing
--   Documentation generation
--   Bug reporting
--   State verification
--   Responsive design testing
--   Cross-browser testing
--   Animation testing (with multiple screenshots)
+- Visual regression testing
+- Documentation generation
+- Bug reporting
+- State verification
+- Responsive design testing
+- Cross-browser testing
+- Animation testing (with multiple screenshots)
 
 Best Practices:
 
@@ -620,14 +686,14 @@ $page->visit('/checkout')
 
 Frame Handling Features:
 
--   Support for single and nested iframes
--   Frame selection by CSS selector or name
--   Automatic waiting for frame availability
--   Full access to page interaction methods within frames
--   Support for assertions within frames
--   Ability to chain frame interactions
--   Automatic frame context switching
--   Error handling for missing frames
+- Support for single and nested iframes
+- Frame selection by CSS selector or name
+- Automatic waiting for frame availability
+- Full access to page interaction methods within frames
+- Support for assertions within frames
+- Ability to chain frame interactions
+- Automatic frame context switching
+- Error handling for missing frames
 
 Common Use Cases:
 
@@ -705,13 +771,13 @@ Tab Management Features:
 
 Common Use Cases:
 
--   Testing "Open in New Tab" functionality
--   Handling popup windows
--   Multi-window workflows
--   Compare views across tabs
--   Testing tab-specific behavior
--   Social media authentication flows
--   Document preview features
+- Testing "Open in New Tab" functionality
+- Handling popup windows
+- Multi-window workflows
+- Compare views across tabs
+- Testing tab-specific behavior
+- Social media authentication flows
+- Document preview features
 
 Best Practices:
 
@@ -764,52 +830,83 @@ $page->assertVisible('.mobile-menu')    // On mobile view
 
 Available Device Presets:
 
--   Mobile Devices
+- Mobile Devices
 
-    -   `iPhone14()`
-    -   `iPhone14Plus()`
-    -   `iPhone14Pro()`
-    -   `iPhone14ProMax()`
-    -   `iPhone13()`
-    -   `iPhone13Pro()`
-    -   `iPhone13ProMax()`
-    -   `iPadAir()`
-    -   `iPadMini()`
-    -   `pixel7()`
-    -   `galaxyS23()`
+  - `iPhone14()`
+  - `iPhone14Plus()`
+  - `iPhone14Pro()`
+  - `iPhone14ProMax()`
+  - `iPhone13()`
+  - `iPhone13Pro()`
+  - `iPhone13ProMax()`
+  - `iPadAir()`
+  - `iPadMini()`
+  - `pixel7()`
+  - `galaxyS23()`
 
--   Desktop Devices
-    -   `macbook13()`
-    -   `macbook14()`
-    -   `macbook16()`
-    -   `desktop4K()`
-    -   `desktopHD()`
+- Desktop Devices
+  - `macbook13()`
+  - `macbook14()`
+  - `macbook16()`
+  - `desktop4K()`
+  - `desktopHD()`
 
 Each device preset automatically configures:
 
--   Viewport dimensions
--   Device scale factor
--   User agent string
--   Touch capability
--   Mobile mode
--   Default orientation
+- Viewport dimensions
+- Device scale factor
+- User agent string
+- Touch capability
+- Mobile mode
+- Default orientation
 
-You can also create custom viewport settings:
+### Custom Viewport Settings
 
-````php
+You can configure custom viewport settings using these options:
+
+- `width` - Viewport width in pixels
+- `height` - Viewport height in pixels
+- `deviceScaleFactor` - Screen density (e.g., 2 for Retina displays)
+- `isMobile` - Enable mobile device mode
+- `hasTouch` - Enable touch screen capabilities
+- `isLandscape` - Set landscape orientation
+
+```php
 $page->setViewport([
     'width' => 1024,
     'height' => 768,
-    'deviceScaleFactor' => 2,       // For retina/high-DPI displays
-    'isMobile' => true,             // Enable mobile mode
-    'hasTouch' => true,             // Enable touch events
-    'isLandscape' => true           // Set landscape orientation
+    'deviceScaleFactor' => 2,
+    'isMobile' => true,
+    'hasTouch' => true,
+    'isLandscape' => true
 ]);
 ```
 
 ### Console and Error Handling (MakesConsoleAssertions)
 
 The Console and Error Handling feature allows you to monitor and assert browser console output, JavaScript errors, and other browser-level messages. This is crucial for detecting client-side issues and debugging JavaScript applications.
+
+Available Console Message Types:
+
+1. `log` - General logging messages
+2. `info` - Informational messages
+3. `warning` - Warning messages
+4. `error` - Error messages
+5. `debug` - Debug messages
+
+Available Assertions:
+
+- `assertNoConsoleErrors()` - No error messages
+- `assertNoJavaScriptErrors()` - No JS exceptions
+- `assertNoConsoleLogs()` - No console messages
+- `assertConsoleLogContains()` - Check log content
+- `assertConsoleWarningContains()` - Check warning content
+- `assertConsoleErrorContains()` - Check error content
+- `assertNoSmoke()` - No issues of any kind
+- `assertNoSlowResources()` - Performance check
+- `assertNoNetworkErrors()` - Network check
+
+Example usage:
 
 ```php
 $page = visit('/')
@@ -854,25 +951,8 @@ $page->visit('/js-heavy-page')
     });
 ```
 
-Console Message Types:
-1. `log` - General logging messages
-2. `info` - Informational messages
-3. `warning` - Warning messages
-4. `error` - Error messages
-5. `debug` - Debug messages
-
-Available Assertions:
-- `assertNoConsoleErrors()` - No error messages
-- `assertNoJavaScriptErrors()` - No JS exceptions
-- `assertNoConsoleLogs()` - No console messages
-- `assertConsoleLogContains()` - Check log content
-- `assertConsoleWarningContains()` - Check warning content
-- `assertConsoleErrorContains()` - Check error content
-- `assertNoSmoke()` - No issues of any kind
-- `assertNoSlowResources()` - Performance check
-- `assertNoNetworkErrors()` - Network check
-
 Best Practices:
+
 1. Clear console before critical assertions
 2. Handle asynchronous console messages
 3. Use specific assertions for message types
@@ -880,21 +960,48 @@ Best Practices:
 5. Monitor resource loading errors
 6. Track performance issues
 7. Handle expected console output
-`````
 
 ### Element Assertions (MakesElementAssertions)
 
+Element assertions allow you to verify the presence, visibility, and state of elements on the page. These assertions help ensure your page structure and content are correct.
+
+Available Element Assertions:
+
+- `assertVisible()` - Assert element is visible
+- `assertHidden()` - Assert element is hidden
+- `assertExists()` - Assert element exists in DOM
+- `assertMissing()` - Assert element doesn't exist
+- `assertValue()` - Assert input value matches
+- `assertSelected()` - Assert option is selected
+- `assertChecked()` - Assert checkbox is checked
+- `assertNotChecked()` - Assert checkbox is not checked
+
+Example usage:
+
 ```php
 $page = visit('/')
-    ->assertVisible('.element')
-    ->assertHidden('.hidden-element')
-    ->assertExists('#id')
-    ->assertMissing('.not-found')
-    ->assertValue('input[name="email"]', 'test@example.com')
-    ->assertSelected('select[name="country"]', 'USA')
-    ->assertChecked('#terms')
-    ->assertNotChecked('#newsletter');
+    // Visibility assertions
+    ->assertVisible('.element')            // Check if element is visible
+    ->assertHidden('.hidden-element')      // Check if element is hidden
+
+    // Existence assertions
+    ->assertExists('#id')                  // Check if element exists in DOM
+    ->assertMissing('.not-found')         // Check if element doesn't exist
+
+    // Form element assertions
+    ->assertValue('input[name="email"]', 'test@example.com')  // Check input value
+    ->assertSelected('select[name="country"]', 'USA')         // Check selected option
+    ->assertChecked('#terms')                                 // Check if checked
+    ->assertNotChecked('#newsletter');                        // Check if unchecked
 ```
+
+Best Practices:
+
+1. Use specific selectors to avoid ambiguity
+2. Check both positive and negative cases
+3. Verify form states after interactions
+4. Consider async behavior when checking visibility
+5. Test both initial and changed states
 
 ### URL Assertions (MakesUrlAssertions)
 
@@ -1170,65 +1277,85 @@ $page->assertSee('Welcome, bot!');
 
 <div class="collection-method-list" markdown="1">
 
-[assertTitle](#assert-title)
-[assertTitleContains](#assert-title-contains)
-[assertSee](#assert-see)
-[assertDontSee](#assert-dont-see)
-[assertSeeIn](#assert-see-in)
-[assertDontSeeIn](#assert-dont-see-in)
-[assertSeeAnythingIn](#assert-see-anything-in)
-[assertSeeNothingIn](#assert-see-nothing-in)
-[assertCount](#assert-count)
-[assertScript](#assert-script)
-[assertSourceHas](#assert-source-has)
-[assertSourceMissing](#assert-source-missing)
-[assertSeeLink](#assert-see-link)
-[assertDontSeeLink](#assert-dont-see-link)
-[assertChecked](#assert-checked)
-[assertNotChecked](#assert-not-checked)
-[assertIndeterminate](#assert-indeterminate)
-[assertRadioSelected](#assert-radio-selected)
-[assertRadioNotSelected](#assert-radio-not-selected)
-[assertSelected](#assert-selected)
-[assertNotSelected](#assert-not-selected)
-[assertValue](#assert-value)
-[assertValueIsNot](#assert-value-is-not)
-[assertAttribute](#assert-attribute)
-[assertAttributeMissing](#assert-attribute-missing)
-[assertAttributeContains](#assert-attribute-contains)
-[assertAttributeDoesntContain](#assert-attribute-doesnt-contain)
-[assertAriaAttribute](#assert-aria-attribute)
-[assertDataAttribute](#assert-data-attribute)
-[assertVisible](#assert-visible)
-[assertPresent](#assert-present)
-[assertNotPresent](#assert-not-present)
-[assertMissing](#assert-missing)
-[assertEnabled](#assert-enabled)
-[assertDisabled](#assert-disabled)
-[assertButtonEnabled](#assert-button-enabled)
-[assertButtonDisabled](#assert-button-disabled)
-[assertUrlIs](#assert-url-is)
-[assertSchemeIs](#assert-scheme-is)
-[assertSchemeIsNot](#assert-scheme-is-not)
-[assertHostIs](#assert-host-is)
-[assertHostIsNot](#assert-host-is-not)
-[assertPortIs](#assert-port-is)
-[assertPortIsNot](#assert-port-is-not)
-[assertPathBeginsWith](#assert-path-begins-with)
-[assertPathEndsWith](#assert-path-ends-with)
-[assertPathContains](#assert-path-contains)
-[assertPathIs](#assert-path-is)
-[assertPathIsNot](#assert-path-is-not)
-[assertQueryStringHas](#assert-query-string-has)
-[assertQueryStringMissing](#assert-query-string-missing)
-[assertFragmentIs](#assert-fragment-is)
-[assertFragmentBeginsWith](#assert-fragment-begins-with)
-[assertFragmentIsNot](#assert-fragment-is-not)
-[assertNoSmoke](#assert-no-smoke)
-[assertNoConsoleLogs](#assert-no-console-logs)
-[assertNoJavaScriptErrors](#assert-no-javascript-errors)
-[assertNoAccessibilityIssues](#assert-no-accessibility-issues)
-[assertScreenshotMatches](#assert-screenshot-matches)
+Content Assertions:
+
+- [assertSee](#assert-see) - Assert text is visible on page
+- [assertDontSee](#assert-dont-see) - Assert text is not visible on page
+- [assertSeeIn](#assert-see-in) - Assert text is visible in selector
+- [assertDontSeeIn](#assert-dont-see-in) - Assert text is not visible in selector
+- [assertSeeAnythingIn](#assert-see-anything-in) - Assert any content in selector
+- [assertSeeNothingIn](#assert-see-nothing-in) - Assert no content in selector
+- [assertCount](#assert-count) - Assert element count matches
+
+Element Assertions:
+
+- [assertTitle](#assert-title) - Assert page title matches
+- [assertTitleContains](#assert-title-contains) - Assert page title contains text
+- [assertVisible](#assert-visible) - Assert element is visible
+- [assertPresent](#assert-present) - Assert element exists in DOM
+- [assertNotPresent](#assert-not-present) - Assert element doesn't exist
+- [assertMissing](#assert-missing) - Assert element is not visible
+
+Form Assertions:
+
+- [assertValue](#assert-value) - Assert input value matches
+- [assertValueIsNot](#assert-value-is-not) - Assert input value doesn't match
+- [assertChecked](#assert-checked) - Assert checkbox is checked
+- [assertNotChecked](#assert-not-checked) - Assert checkbox is not checked
+- [assertIndeterminate](#assert-indeterminate) - Assert checkbox is indeterminate
+- [assertRadioSelected](#assert-radio-selected) - Assert radio is selected
+- [assertRadioNotSelected](#assert-radio-not-selected) - Assert radio not selected
+- [assertSelected](#assert-selected) - Assert dropdown option selected
+- [assertNotSelected](#assert-not-selected) - Assert option not selected
+- [assertEnabled](#assert-enabled) - Assert field is enabled
+- [assertDisabled](#assert-disabled) - Assert field is disabled
+- [assertButtonEnabled](#assert-button-enabled) - Assert button enabled
+- [assertButtonDisabled](#assert-button-disabled) - Assert button disabled
+
+URL Assertions:
+
+- [assertUrlIs](#assert-url-is) - Assert full URL matches
+- [assertSchemeIs](#assert-scheme-is) - Assert URL scheme matches
+- [assertSchemeIsNot](#assert-scheme-is-not) - Assert scheme doesn't match
+- [assertHostIs](#assert-host-is) - Assert URL host matches
+- [assertHostIsNot](#assert-host-is-not) - Assert host doesn't match
+- [assertPortIs](#assert-port-is) - Assert URL port matches
+- [assertPortIsNot](#assert-port-is-not) - Assert port doesn't match
+- [assertPathIs](#assert-path-is) - Assert URL path matches
+- [assertPathIsNot](#assert-path-is-not) - Assert path doesn't match
+- [assertPathBeginsWith](#assert-path-begins-with) - Assert path starts with
+- [assertPathEndsWith](#assert-path-ends-with) - Assert path ends with
+- [assertPathContains](#assert-path-contains) - Assert path contains
+- [assertQueryStringHas](#assert-query-string-has) - Assert query param exists
+- [assertQueryStringMissing](#assert-query-string-missing) - Assert no query param
+- [assertFragmentIs](#assert-fragment-is) - Assert URL fragment matches
+- [assertFragmentBeginsWith](#assert-fragment-begins-with) - Assert fragment starts
+- [assertFragmentIsNot](#assert-fragment-is-not) - Assert fragment doesn't match
+
+Source Assertions:
+
+- [assertScript](#assert-script) - Assert JS expression result
+- [assertSourceHas](#assert-source-has) - Assert source contains code
+- [assertSourceMissing](#assert-source-missing) - Assert source lacks code
+- [assertSeeLink](#assert-see-link) - Assert link exists
+- [assertDontSeeLink](#assert-dont-see-link) - Assert link doesn't exist
+
+Attribute Assertions:
+
+- [assertAttribute](#assert-attribute) - Assert attribute value matches
+- [assertAttributeMissing](#assert-attribute-missing) - Assert no attribute
+- [assertAttributeContains](#assert-attribute-contains) - Assert attribute contains
+- [assertAttributeDoesntContain](#assert-attribute-doesnt-contain) - Assert not in attribute
+- [assertAriaAttribute](#assert-aria-attribute) - Assert ARIA attribute
+- [assertDataAttribute](#assert-data-attribute) - Assert data attribute
+
+Debug Assertions:
+
+- [assertNoSmoke](#assert-no-smoke) - Assert no console errors
+- [assertNoConsoleLogs](#assert-no-console-logs) - Assert no console logs
+- [assertNoJavaScriptErrors](#assert-no-javascript-errors) - Assert no JS errors
+- [assertNoAccessibilityIssues](#assert-no-accessibility-issues) - Assert accessible
+- [assertScreenshotMatches](#assert-screenshot-matches) - Assert visual match
 
 </div>
 
@@ -1236,33 +1363,47 @@ $page->assertSee('Welcome, bot!');
 
 <div class="collection-method-list" markdown="1">
 
-[click](#click)
-[text](#text)
-[attribute](#attribute)
-[keys](#keys)
-[withKeyDown](#withKeyDown)
-[type](#type)
-[typeSlowly](#type-slowly)
-[select](#select)
-[append](#append)
-[clear](#clear)
-[radio](#radio)
-[check](#check)
-[uncheck](#uncheck)
-[attach](#attach)
-[press](#press)
-[pressAndWaitFor](#press-and-wait-for)
-[drag](#drag)
-[hover](#hover)
-[submit](#submit)
-[value](#value)
-[withinIframe](#within-iframe)
-[resize](#resize)
-[script](#script)
-[content](#content)
-[url](#url)
-[wait](#wait)
-[waitForKey](#wait-for-key)
+Mouse Interactions:
+
+- [click](#click) - Click an element
+- [hover](#hover) - Hover over element
+- [drag](#drag) - Drag and drop elements
+
+Form Interactions:
+
+- [type](#type) - Type text into input
+- [typeSlowly](#type-slowly) - Type text with delay
+- [select](#select) - Select dropdown option
+- [append](#append) - Add text to existing input
+- [clear](#clear) - Clear input field
+- [radio](#radio) - Select radio button
+- [check](#check) - Check checkbox
+- [uncheck](#uncheck) - Uncheck checkbox
+- [attach](#attach) - Upload file
+- [submit](#submit) - Submit form
+
+Button/Key Interactions:
+
+- [press](#press) - Press a button
+- [pressAndWaitFor](#press-and-wait-for) - Press and wait
+- [keys](#keys) - Send keyboard input
+- [withKeyDown](#withKeyDown) - Hold key while executing
+
+Element State:
+
+- [text](#text) - Get element text
+- [attribute](#attribute) - Get element attribute
+- [value](#value) - Get input value
+- [withinIframe](#within-iframe) - Work with iframes
+
+Page Control:
+
+- [resize](#resize) - Resize browser window
+- [script](#script) - Execute JavaScript
+- [content](#content) - Get page content
+- [url](#url) - Get current URL
+- [wait](#wait) - Wait for duration
+- [waitForKey](#wait-for-key) - Wait for keypress
 
 </div>
 
@@ -1270,11 +1411,19 @@ $page->assertSee('Welcome, bot!');
 
 <div class="collection-method-list" markdown="1">
 
-[debug](#debug)
-[screenshot](#screenshot)
-[screenshotElement](#screenshot-element)
-[tinker](#tinker)
-[headed](#headed)
+Debugging Tools:
+
+- [debug](#debug) - Enable debugging mode
+- [tinker](#tinker) - Interactive debugging session
+
+Screenshot Tools:
+
+- [screenshot](#screenshot) - Capture page screenshot
+- [screenshotElement](#screenshot-element) - Capture element screenshot
+
+Browser Display:
+
+- [headed](#headed) - Show browser window while testing
 
 </div>
 
@@ -2261,3 +2410,7 @@ However, if you are using GitHub Actions, you need to add the following steps to
 ---
 
 Now, let's dive into architectural testing and how it can benefit your development process. By performing architectural testing, you can evaluate the overall design of your application and identify potential flaws before they become significant issues: [Arch Testing](/docs/arch-testing)
+
+```
+
+```
