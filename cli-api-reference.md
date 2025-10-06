@@ -61,7 +61,7 @@ In the preceding chapters of the Pest documentation, we have covered numerous CL
 - `--strict-global-state`: Be strict about changes to global state.
 - `--disallow-test-output`: Be strict about output during tests.
 - `--enforce-time-limit`: Enforce time limit based on test size.
-- `--default-time-limit <sec>`: Timeout in seconds for tests that have no declared size.
+- `--default-time-limit=<sec>`: Timeout in seconds for tests that have no declared size.
 - `--dont-report-useless-tests`: Do not report tests that do not test anything.
 - `--stop-on-defect`: Stop execution upon first not-passed test.
 - `--stop-on-error`: Stop execution upon first error.
