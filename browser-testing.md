@@ -2409,8 +2409,13 @@ However, if you are using GitHub Actions, you need to add the following steps to
 
 ---
 
-Now, let's dive into architectural testing and how it can benefit your development process. By performing architectural testing, you can evaluate the overall design of your application and identify potential flaws before they become significant issues: [Arch Testing](/docs/arch-testing)
+Now, let's dive into architectural testing and how it can benefit your development process. By performing architectural testing, you can evaluate the overall design of your application and identify potential flaws before they become significant issues.
 
-```
+See the full guide: [Arch Testing](/docs/arch-testing)
 
+Try it locally (macOS):
+
+```bash
+# Open the Arch Testing guide in your default editor / browser
+open docs/arch-testing.md
 ```
