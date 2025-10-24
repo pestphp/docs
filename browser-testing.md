@@ -2409,8 +2409,6 @@ However, if you are using GitHub Actions, you need to add the following steps to
 
 ---
 
----
-
 In this section, you have learned how to perform browser testing with Pest, enabling you to verify your application's behavior in real browsers. From form interactions to network conditions, you now have the tools to ensure your web application works correctly across different browsers and devices.
 
 Next, let's explore how you can ensure your application's architecture remains clean and maintainable through [Arch Testing](/docs/arch-testing).
