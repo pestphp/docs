@@ -36,6 +36,9 @@ jobs:
       - name: Install Dependencies
         run: composer install --no-interaction --prefer-dist --optimize-autoloader
 
+      - name: Setup Application
+        run: cp .env.example .env && php artisan key:generate
+
       - name: Tests
         run: ./vendor/bin/pest --ci
 ```
