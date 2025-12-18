@@ -100,14 +100,42 @@ The `--retry` flag reorders your test suites by prioritizing the previously fail
 <a name="only"></a>
 ### `only()`
 
-If you want to run a specific test in your test suite, you can use the `only()` method.
+During development, you may want to focus on running specific tests while excluding all others. Pest provides two ways to do this: running only tests in a specific file, or running only a specific test within a file.
 
-```bash
+#### Running Only Tests in a File
+
+When working on a specific feature, you can mark all tests in a file to run exclusively by calling the `only()` function at the top of your test file:
+
+```php
+<?php
+
+only();
+
+test('first test', function () {
+    // This will run
+});
+
+test('second test', function () {
+    // This will also run
+});
+```
+
+All tests in files with `only()` will run, while tests in other files will be skipped.
+
+#### Running a Single Test
+
+To run only a specific test within a file, chain the `->only()` method to the test:
+
+```php
 test('sum', function () {
   $result = sum(1, 2);
 
   expect($result)->toBe(3);
 })->only();
+
+test('another test', function () {
+  // This will be skipped
+});
 ```
 
 ---
