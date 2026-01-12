@@ -1245,7 +1245,6 @@ $downloads = $page->expectDownloads(
 );
 
 $downloads->each->assertSuccessful();
-$downloads->each(fn ($download, $i) => $download->saveAs("/path/to/file-{$i}.pdf"));
 ```
 
 ## Debugging tests
