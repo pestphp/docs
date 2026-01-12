@@ -356,6 +356,15 @@ $page->assertSee('Welcome to Some Subdomain');
 
 </div>
 
+### Downloads
+
+<div class="collection-method-list" markdown="1">
+
+[expectDownload](#expect-download)
+[expectDownloads](#expect-downloads)
+
+</div>
+
 ### Debugging tests
 
 <div class="collection-method-list" markdown="1">
@@ -1192,6 +1201,51 @@ The `waitForKey` method opens the current page URL in the default web browser an
 
 ```php
 $page->waitForKey(); // Useful for debugging
+```
+
+## Downloads
+
+<a name="expect-download"></a>
+### expectDownload
+
+The `expectDownload` method executes a callback and captures the download it triggers:
+
+```php
+$download = $page->expectDownload(fn ($page) => $page->click('a[download]'));
+
+$download->assertFilename('report.pdf');
+$download->assertSuccessful();
+$download->saveAs('/path/to/report.pdf');
+```
+
+The returned `Download` object provides methods for file access and assertions:
+
+```php
+$download->url();
+$download->suggestedFilename();
+$download->path();
+$download->contents();
+$download->assertFilename('data.csv');
+$download->assertFilenameContains('report');
+$download->assertUrlContains('/export');
+$download->assertContentContains('Name,Email');
+$download->assertSuccessful();
+$download->assertFailed();
+```
+
+<a name="expect-downloads"></a>
+### expectDownloads
+
+The `expectDownloads` method executes a callback and captures multiple downloads:
+
+```php
+$downloads = $page->expectDownloads(
+    fn ($page) => $page->click('#download-all'),
+    count: 3
+);
+
+$downloads->each->assertSuccessful();
+$downloads->each(fn ($download, $i) => $download->saveAs("/path/to/file-{$i}.pdf"));
 ```
 
 ## Debugging tests
