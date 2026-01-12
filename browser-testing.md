@@ -1244,7 +1244,9 @@ $downloads = $page->expectDownloads(
     count: 3
 );
 
-$downloads->each->assertSuccessful();
+foreach ($downloads as $download) {
+    $download->assertSuccessful();
+}
 ```
 
 ## Debugging tests
