@@ -76,7 +76,7 @@ describe('sum', function () {
 });
 ```
 
-When you run the `./vendor/bin/pest` command, the output will include the description "sum performs sums", along with the result of the test.
+When you run the `./vendor/bin/pest` command, the output will include the description "sum", along with the result of the test.
 
 ## Expectation API
 
