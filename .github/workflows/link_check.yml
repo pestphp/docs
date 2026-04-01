@@ -20,7 +20,7 @@ jobs:
             args: >
               --base https://pestphp.com
               --user-agent "Mozilla 5.0"
-              --exclude "https?://(www\.)?(twitter\.com|instagram\.com|linkedin\.com)"
+              --exclude "https?://(www\.)?(twitter\.com|instagram\.com|linkedin\.com|gnu\.org)"
               --max-retries 5
               --verbose
               --no-progress
