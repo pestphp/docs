@@ -1,27 +1,27 @@
-# This action checks for broken links
-name: Check Links
+name: Check for broken links
 
 on:
   push:
   pull_request:
   schedule:
-    - cron: "00 00 * * *"
+    # Runs weekly on Monday at 00:00
+    - cron: "0 0 * * 1"
 
 jobs:
   linkChecker:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-
-      - name: Restore lychee cache
-        uses: actions/cache@v5
-        with:
-          path: .lycheecache
-          key: cache-lychee-${{ github.sha }}
-          restore-keys: cache-lychee-
-
       - name: 🔗 Check Links
         uses: lycheeverse/lychee-action@v2
         with:
-          jobSummary: true
-          args: --base-url "$(pwd)" --cache --max-cache-age 1d --config .github/workflows/lychee.toml './**/*.md'
+            lycheeVersion: latest
+            format: markdown
+            args: >
+              --base https://pestphp.com
+              --user-agent "Mozilla 5.0"
+              --exclude "https?://(www\.)?(twitter\.com|instagram\.com|linkedin\.com)"
+              --max-retries 5
+              --verbose
+              --no-progress
+              "**/*.md"
