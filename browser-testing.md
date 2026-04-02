@@ -1131,9 +1131,9 @@ $value = $page->value('input[name=email]');
 The `withinFrame` method allows you to interact with elements inside an iframe:
 
 ```php
-use Pest\Browser\Api\PendingAwaitablePage;
+use Pest\Browser\Api\AwaitableWebpage;
 
-$page->withinFrame('.iframe-container', function (PendingAwaitablePage $page) {
+$page->withinFrame('.iframe-container', function (AwaitableWebpage $page) {
     $page->type('frame-input', 'Hello iframe')
         ->click('frame-button');
 });
