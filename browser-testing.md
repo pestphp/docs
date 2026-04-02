@@ -346,7 +346,7 @@ $page->assertSee('Welcome to Some Subdomain');
 [hover](#hover)
 [submit](#submit)
 [value](#value)
-[withinIframe](#within-iframe)
+[withinFrame](#within-frame)
 [resize](#resize)
 [script](#script)
 [content](#content)
@@ -1124,16 +1124,16 @@ The `value` method gets the value of the element matching the given selector:
 $value = $page->value('input[name=email]');
 ```
 
-<a name="with-in-iframe"></a>
+<a name="within-frame"></a>
 
-### withinIframe
+### withinFrame
 
-The `withinIframe` method allows you to interact with elements inside an iframe:
+The `withinFrame` method allows you to interact with elements inside an iframe:
 
 ```php
 use Pest\Browser\Api\PendingAwaitablePage;
 
-$page->withinIframe('.iframe-container', function (PendingAwaitablePage $page) {
+$page->withinFrame('.iframe-container', function (PendingAwaitablePage $page) {
     $page->type('frame-input', 'Hello iframe')
         ->click('frame-button');
 });
