@@ -56,6 +56,20 @@ Or, you can use the `--exactly` option to enforce that the coverage results matc
 ./vendor/bin/pest --coverage --exactly=99.3
 ```
 
+## Hiding Uncovered Files
+
+When working on a large codebase, the coverage report can be noisy with many files showing 0% coverage. You can use the `--only-covered` option to hide files with no coverage from the report, allowing you to focus on the files that are partially covered.
+
+```bash
+./vendor/bin/pest --coverage --only-covered
+```
+
+This option can be combined with `--min` or `--exactly` for threshold enforcement.
+
+```bash
+./vendor/bin/pest --coverage --only-covered --min=90
+```
+
 ## Ignoring Code
 
 If there are certain sections of your application that cannot be tested and should be excluded from code coverage analysis, you can use `@codeCoverageIgnoreStart` and `@codeCoverageIgnoreEnd` comments in your source code to achieve this.

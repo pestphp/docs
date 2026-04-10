@@ -17,6 +17,7 @@ This chapter will cover even more ways to filter which tests are executed by Pes
 
 - [`--bail`](#bail)
 - [`--dirty`](#dirty)
+- [`--flaky`](#flaky)
 - [`--filter`](#filter)
 - [`--group`](#group)
 - [`--exclude-group`](#exclude-group)
@@ -44,6 +45,52 @@ The `--dirty` option instructs Pest to only run tests that have uncommitted chan
 ```
 
 > Note that, due to a limitation in Pest, test cases written using the PHPUnit syntax will always be considered dirty.
+
+<a name="flaky"></a>
+### `--flaky`
+
+Some tests may occasionally fail due to external factors like network latency, timing issues, or third-party service instability. You can mark these tests as "flaky" using the `flaky()` method, and Pest will automatically retry them before reporting a failure.
+
+```php
+it('may have external dependencies', function () {
+    $response = Http::get('https://example.com/api');
+
+    expect($response->status())->toBe(200);
+})->flaky();
+```
+
+By default, `flaky()` retries the test up to **3 times**. You can customize the number of retries by passing the `tries` parameter.
+
+```php
+it('may have external dependencies', function () {
+    $response = Http::get('https://example.com/api');
+
+    expect($response->status())->toBe(200);
+})->flaky(tries: 5);
+```
+
+Between retries, Pest properly re-runs your `setUp` and `tearDown` lifecycle hooks, clears mock objects, and resets dynamic properties — ensuring each attempt starts from a clean state.
+
+Note that `flaky()` will not retry tests that are skipped, incomplete, or that throw an expected exception (via `->throws()`). It only retries on unexpected failures.
+
+The `flaky()` method can be combined with other test methods like `with()`, `repeat()`, and `describe()` blocks.
+
+```php
+it('works with datasets', function (string $url) {
+    $response = Http::get($url);
+
+    expect($response->status())->toBe(200);
+})->flaky(tries: 2)->with([
+    'https://example.com/api/users',
+    'https://example.com/api/posts',
+]);
+```
+
+To list all tests marked as flaky in your test suite, use the `--flaky` option.
+
+```bash
+./vendor/bin/pest --flaky
+```
 
 <a name="filter"></a>
 ### `--filter`

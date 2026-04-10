@@ -34,6 +34,7 @@ In the preceding chapters of the Pest documentation, we have covered numerous CL
 - `--issue`: Output to standard output tests with the given issue number.
 - `--pr`: Output to standard output tests with the given pull request number.
 - `--pull-request`: Output to standard output tests with the given pull request number (alias for `--pr`).
+- `--flaky`: Output to standard output tests marked as flaky.
 - `--retry`: Run non-passing tests first and stop execution upon first error or failure.
 - `--list-suites` List available test suites.
 - `--testsuite <name>`: Only run tests from the specified test suite(s).
@@ -122,6 +123,8 @@ In the preceding chapters of the Pest documentation, we have covered numerous CL
 
 - `--coverage`: Generate code coverage report and output to standard output.
 - `--coverage --min=<value>`: Set the minimum required coverage percentage, and fail if not met.
+- `--coverage --exactly=<value>`: Set the exact required coverage percentage, and fail if not met.
+- `--coverage --only-covered`: Hide files with 0% coverage from the code coverage report.
 - `--coverage-clover <file>`: Write code coverage report in Clover XML format to file.
 - `--coverage-cobertura <file>`: Write code coverage report in Cobertura XML format to file.
 - `--coverage-crap4j <file>`: Write code coverage report in Crap4J XML format to file.

@@ -85,6 +85,36 @@ test('The generator produces only integers', function ($i) {
 });
 ```
 
+## Named Parameters
+
+When using datasets with associative arrays, Pest matches the dataset keys to the closure parameter names, regardless of order. This allows you to define your dataset in any key order and have the values automatically mapped to the correct parameters.
+
+```php
+it('has user data', function (string $email, string $name) {
+    expect($name)->toBeString();
+    expect($email)->toContain('@');
+})->with([
+    ['name' => 'Taylor', 'email' => 'taylor@laravel.com'],
+    ['name' => 'Nuno', 'email' => 'enunomaduro@gmail.com'],
+]);
+```
+
+In the example above, even though the dataset defines `name` before `email`, Pest maps them correctly to the closure parameters `$email` and `$name`.
+
+Named parameters also work with shared datasets and bound closures.
+
+```php
+dataset('users', [
+    ['name' => 'Taylor', 'email' => 'taylor@laravel.com'],
+    ['name' => 'Nuno', 'email' => 'enunomaduro@gmail.com'],
+]);
+
+it('has user data', function (string $email, string $name) {
+    expect($name)->toBeString();
+    expect($email)->toContain('@');
+})->with('users');
+```
+
 ## Bound Datasets
 
 Pest's bound datasets can be used to obtain a dataset that is resolved after the `beforeEach()` method of your tests. This is particularly useful in Laravel applications (or any other Pest integration) where you may need a dataset of `App\Models\User` models that are created after your database schema is prepared by the `beforeEach()` method.
@@ -175,6 +205,34 @@ When running the example above, Pest's output will contain a description of each
 <div class="code-snippet">
     <img src="/assets/img/datasets-businesshours.webp?1" style="--lines: 10" />
 </div>
+
+## Describe Blocks With Datasets
+
+You can attach a dataset to a `describe()` block, and all tests within that block will receive the dataset values.
+
+```php
+describe('user notifications', function () {
+    test('can send notification', function (string $channel) {
+        expect($channel)->toBeString();
+    });
+
+    test('can queue notification', function (string $channel) {
+        expect($channel)->toBeIn(['mail', 'sms']);
+    });
+})->with(['mail', 'sms']);
+```
+
+You can also use `beforeEach()->with()` inside a `describe()` block to apply a dataset to all tests within that scope.
+
+```php
+describe('user settings', function () {
+    beforeEach()->with([10, 20, 30]);
+
+    test('receives the dataset value', function (int $value) {
+        expect($value)->toBeGreaterThan(0);
+    });
+});
+```
 
 ## Repeating Tests
 

@@ -48,6 +48,7 @@ Granular expectations allow you to define specific architectural rules for your 
 <div class="collection-method-list" markdown="1">
 
 - [`toBeAbstract()`](#expect-toBeAbstract)
+- [`toBeCasedCorrectly()`](#expect-toBeCasedCorrectly)
 - [`toBeClasses()`](#expect-toBeClasses)
 - [`toBeEnums()`](#expect-toBeEnums)
 - [`toBeIntBackedEnums()`](#expect-toBeIntBackedEnums)
@@ -103,6 +104,19 @@ arch('app')
     ->expect('App\Models')
     ->toBeAbstract();
 ```
+
+<a name="expect-toBeCasedCorrectly"></a>
+### `toBeCasedCorrectly()`
+
+The `toBeCasedCorrectly()` method may be used to ensure that all class names match their file and directory path casing, verifying PSR-4 autoloading compliance.
+
+```php
+arch('app')
+    ->expect('App')
+    ->toBeCasedCorrectly();
+```
+
+For example, if a class is named `App\Models\UserProfile`, this expectation verifies that the file is located at `app/Models/UserProfile.php` — and not `app/Models/Userprofile.php` or `app/models/UserProfile.php`.
 
 <a name="expect-toBeClasses"></a>
 ### `toBeClasses()`
