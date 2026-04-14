@@ -49,6 +49,26 @@ For example, imagine you run your test suite and see the following output:
 
 You can see that the `UserTest > create user` and `OrderTest > create order` tests are taking significantly longer than the other tests. By analyzing this test, you may discover that it's executing several inefficient database queries or performing other expensive operations that could be optimized to reduce its execution time.
 
+## Test Sharding
+
+When running tests in CI, you can split your test suite across multiple jobs using the `--shard` option. Pest supports **time-balanced sharding** — instead of splitting tests evenly by count (which can leave one shard running much longer than others), Pest can distribute tests based on actual execution time.
+
+To enable time-balanced sharding, generate a `tests/.pest/shards.json` file with timing data:
+
+```bash
+./vendor/bin/pest --update-shards
+```
+
+Then commit `tests/.pest/shards.json` to your repository. When `--shard` is used and this file exists, Pest automatically balances shards by time:
+
+```bash
+./vendor/bin/pest --shard=1/4
+```
+
+If you add new test files before updating `shards.json`, your tests will still run — new files are distributed evenly across shards while known files remain time-balanced. Pest will display a warning reminding you to run `--update-shards`.
+
+For more details on configuring sharding in CI, including GitHub Actions examples, see [Continuous Integration - Sharding Your Tests](/docs/continuous-integration#sharding-your-tests).
+
 ## Compact Printer
 
 If you're working with a large number of tests, it can be beneficial to concentrate solely on the failing tests. You can use the `--compact` printer to instruct Pest to only display test failures, making it easier to pinpoint and resolve any problems without the noise of all of your successful tests.

@@ -55,6 +55,8 @@ In the preceding chapters of the Pest documentation, we have covered numerous CL
 ## Execution
 
 - `--parallel` Run tests in parallel.
+- `--shard <index/total>`: Run only the given shard of tests (e.g. `--shard=1/5`). Uses time-balanced distribution when `tests/.pest/shards.json` exists.
+- `--update-shards`: Update `tests/.pest/shards.json` with test timing data for time-balanced sharding. Can be combined with `--parallel`.
 - `--update-snapshots`: Update snapshots for tests using the "toMatchSnapshot" expectation.
 - `--globals-backup`: Backup and restore $GLOBALS for each test.
 - `--static-backup`: Backup and restore static properties for each test.

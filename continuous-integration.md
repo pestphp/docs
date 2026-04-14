@@ -191,7 +191,71 @@ To shard your tests, you can use the `--shard` option when running Pest. For exa
 ./vendor/bin/pest --shard=1/5
 ```
 
-To implement test sharding in your CI configuration, you can create multiple jobs that run different shards of your test suite. Here is an example of how to do this with GitHub Actions:
+By default, Pest splits tests evenly by **count** — each shard gets roughly the same number of test files. This works well when all tests take similar time, but can create imbalanced shards when some tests (like payment processing or report generation) are significantly slower than others.
+
+### Time-Balanced Sharding
+
+For better shard balance, Pest can distribute tests based on their **actual execution time** using the `--update-shards` option. This ensures each shard takes roughly the same wall-clock time, minimizing how long your slowest CI job runs.
+
+**Step 1:** Generate the timing data by running your full test suite with `--update-shards`:
+
+```bash
+./vendor/bin/pest --update-shards
+```
+
+This runs all tests and records each test class's duration into `tests/.pest/shards.json`. You can also combine it with `--parallel` to speed things up:
+
+```bash
+./vendor/bin/pest --parallel --update-shards
+```
+
+**Step 2:** Commit `tests/.pest/shards.json` to your repository. This file is human-readable and looks like this:
+
+```json
+{
+    "timings": {
+        "Tests\\Feature\\Payments\\StripeCheckoutTest": 1.608,
+        "Tests\\Feature\\Reports\\SalesReportTest": 2.105,
+        "Tests\\Unit\\Models\\UserTest": 0.050
+    },
+    "checksum": "...",
+    "updated_at": "2026-04-14T10:30:00+00:00"
+}
+```
+
+**Step 3:** When you run `--shard` and `tests/.pest/shards.json` exists, Pest automatically uses time-balanced distribution:
+
+```bash
+./vendor/bin/pest --shard=1/5
+```
+
+The output will indicate that time-balanced sharding is active:
+
+```
+Shard:    1 of 5 — 12 files ran, out of 50 (time-balanced).
+```
+
+### Keeping Shards Up to Date
+
+When you add or rename test files, Pest will detect that `tests/.pest/shards.json` is out of date. Your tests **will still run** — new test files are distributed evenly across shards, while known tests remain time-balanced. However, Pest will display a warning after the run:
+
+```
+WARN  The [tests/.pest/shards.json] file is out of date. Run [--update-shards] to update it.
+```
+
+Simply re-run `--update-shards` and commit the updated file to restore optimal balancing.
+
+Here is how Pest handles common changes to your test suite:
+
+- **Adding test files**: Tests run with a warning. New files are distributed across shards, known files stay time-balanced.
+- **Deleting test files**: Tests run without a warning. Stale timing entries are harmlessly ignored.
+- **Adding tests inside an existing file**: Tests run without a warning. The test class is already known — only its internal timing shifts.
+- **Renaming a test file**: Tests run with a warning. The old name is ignored, the new name is treated as a new file.
+- **Corrupted `shards.json`**: Pest stops with a clear error asking you to delete it or run `--update-shards` to regenerate.
+
+### GitHub Actions Example
+
+Here is a complete example of time-balanced sharding with GitHub Actions:
 
 ```yml
 strategy:
@@ -202,10 +266,34 @@ name: Tests (Shard ${{ matrix.shard }}/5)
 
 steps:
   - name: Run tests
-    run: pest --parallel --shard ${{ matrix.shard }}/5
+    run: ./vendor/bin/pest --shard=${{ matrix.shard }}/5
 ```
 
-This configuration will create five jobs, each running a different shard of your test suite. You can adjust the number of shards based on the size of your test suite and the resources available in your CI environment.
+To refresh timing data, you can add a scheduled or manual workflow:
+
+```yml
+name: Update Shards
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * 1' # Weekly on Monday
+
+jobs:
+  update-shards:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update shards.json
+        run: ./vendor/bin/pest --parallel --update-shards
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add tests/.pest/shards.json
+          git commit -m "chore: update shards.json" || true
+          git push
+```
 
 ---
 
