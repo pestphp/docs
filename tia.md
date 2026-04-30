@@ -51,7 +51,8 @@ Pest supports a few flags alongside `--tia`:
 |---|---|
 | `--tia` | Replay if a baseline graph exists, otherwise record. |
 | `--tia --fresh` | Discard any existing graph and re-record from scratch. Use this after large refactors or when the graph feels stale. |
-| `--tia --refetch` | Force a CI baseline fetch even within the 24-hour cooldown after a previous failed fetch.
+| `--tia --refetch` | Force a CI baseline fetch even within the 24-hour cooldown after a previous failed fetch. |
+| `--tia --filtered` | Narrow PHPUnit to only the affected test files rather than loading all tests and replaying cached results for unaffected ones. |
 
 ## Sharing The Baseline From CI
 
@@ -74,7 +75,7 @@ jobs:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
       - uses: shivammathur/setup-php@v2
-        with: { php-version: '8.5', coverage: xdebug }
+        with: { php-version: '8.4', coverage: xdebug }
       - run: composer install --no-interaction --prefer-dist
       - run: ./vendor/bin/pest --parallel --tia --coverage
       - name: Stage baseline for upload
@@ -97,19 +98,36 @@ Pest stores its state at `~/.pest/tia/<project-key>/`, where the project key is 
 
 Sharing state per remote URL means multiple worktrees of the same repository share one cache, while unrelated projects on the same machine stay isolated.
 
+## Configuration
+
+You can configure TIA behaviour in `tests/Pest.php` via `pest()->tia()`:
+
+```php
+pest()->tia()
+    ->always()   // run TIA on every invocation, no --tia flag needed
+    ->locally(); // restrict always() to local environments only
+```
+
+**`always()`** activates TIA for every `pest` run without requiring the `--tia` flag. Pair it with **`locally()`** to restrict that behaviour to local machines — on CI (detected via the `--ci` flag or the `CI` environment variable) TIA is skipped automatically. An explicit `--tia` on the command line always takes effect regardless.
+
+**`filtered()`** enables filtered mode, equivalent to `--tia --filtered`. In this mode Pest narrows PHPUnit to only the affected test files rather than loading the full suite and replaying cached results for unaffected tests:
+
+```php
+pest()->tia()->filtered();
+```
+
 ## Custom Watch Patterns
 
 If your project has a directory layout that doesn't match the framework defaults, you can register custom watch patterns in `tests/Pest.php`:
 
 ```php
 pest()->tia()->watch([
-    'config/billing/**/*.php' => ['tests/Feature/Billing'],
-
-    //
+    'config/billing/**/*.php' => 'tests/Feature/Billing',
+    'public/build/**/*'       => 'tests/Browser',
 ]);
 ```
 
-Each glob maps to a list of test directories; whenever a matching file changes, every test under those directories is invalidated. Use this when you have specific test directories that genuinely depend on a file Pest can't see otherwise.
+Each glob maps to a single test directory. Whenever a matching file changes, every test under that directory is invalidated. Duplicate glob keys overwrite the built-in defaults, so you can redirect a pattern to a narrower directory.
 
 ---
 
