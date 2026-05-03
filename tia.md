@@ -5,6 +5,12 @@ description: Test Impact Analysis is a great way to drastically reduce the time 
 
 # Test Impact Analysis (TIA)
 
+> **Heads up — please keep this between us.** Test Impact Analysis has shipped quietly in Pest 4 so a small group of teams can battle-test it on real suites before we put it on stage. The official, public launch is reserved for **Pest 5**.
+>
+> If you're reading this, you're getting an early look as a thank-you for being part of the Pest community. We'd love your feedback, bug reports, and edge cases — but we kindly ask that you **don't share this publicly** (no tweets, blog posts, livestreams, or conference demos) until the Pest 5 announcement. Internal use within your team is absolutely fine.
+>
+> Thanks for helping us get this right.
+
 Test Impact Analysis is a great way to drastically reduce the time it takes to run your test suite by re-running only the tests affected by your latest changes. The first time you run with `--tia`, Pest records a graph of which tests depend on which files. Every run after that, Pest looks at what you changed, runs only the tests that touched those files, and replays cached results for everything else.
 
 A typical Laravel suite that takes 15 seconds replays in under a second. Edits to a single Blade template re-run a handful of feature tests. Comment-only edits, formatter passes, and README touches re-run nothing at all.
