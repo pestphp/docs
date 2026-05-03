@@ -20,11 +20,11 @@ The first run is the **baseline** — Pest enables a coverage driver (PCOV or Xd
 Every subsequent run is a **replay**. Pest compares your working tree against the baseline and re-runs only the tests affected by your changes:
 
 ```
-Tests:    774 passed (2658 assertions, 7 affected, 767 replayed)
+Tests:    774 passed (2658 assertions, 7 affected, 2 uncached, 765 replayed)
 Duration: 0.74s
 ```
 
-`affected` is the set of tests Pest actually executed. `replayed` is the set whose results were served from cache.
+`affected` is the set of tests Pest re-ran because their dependencies changed. `uncached` means Pest had to execute a test because no cached result existed yet. `replayed` is the set whose results were served from cache.
 
 ## How Pest Decides What To Run
 
@@ -34,14 +34,32 @@ For each file you've changed, Pest looks for tests that depend on it:
 - **Migrations** are intersected with the tables each test queried during the baseline. A column rename in `create_users_table.php` re-runs only the tests that queried the `users` table.
 - **Inertia pages** under `resources/js/Pages` re-run only the tests that server-side-rendered them.
 - **Shared JS components** under `resources/js/Components`, `Layouts`, and friends re-run only the tests whose pages import them — Pest walks Vite's module graph to figure this out.
+- **Frontend runtime files** like `resources/js/App.jsx`, `resources/js/bootstrap.js`, `resources/js/echo.js`, and `resources/js/favicon.js` re-run tests that rendered Inertia components, because they can affect the whole client runtime.
 - **Blade templates** re-run only the tests that rendered them, including renders triggered by browser tests.
-- **Anything else** — config files, route files, `.env`, files outside the recorded graph — falls through to a broader pattern. Editing `config/app.php` re-runs every test, because Pest can't statically prove which tests depend on it.
+- **Arch tests** re-run for project PHP source changes, because Arch expectations inspect files by namespace and path instead of executing those files.
+- **Browser assets** such as CSS, public build files, static public assets, and `public/hot` re-run browser tests only.
+- **Anything else** — config files, route files, fixture data, files outside the recorded graph — falls through to a broader pattern. Editing `config/app.php` re-runs every test, because Pest can't statically prove which tests depend on it.
+
+Some files change the shape of the graph itself rather than a single test result. Pest rebuilds the graph when structural inputs drift, including `composer.json`, `composer.lock`, `phpunit.xml`, `vite.config.*`, `package.json`, Node lockfiles, and `tsconfig` / `jsconfig` files. Environment files such as `.env`, `.env.testing`, and local variants drop cached results and re-execute the suite while keeping the graph.
 
 ## Cosmetic Edits Don't Run Anything
 
 Pest normalises file content before comparing, so cosmetic changes don't trigger any tests. PHP files have whitespace, line comments, and docblocks stripped before hashing. Blade strips `{{-- … --}}` comments. JS, TS, Vue, and Svelte files have line and block comments removed too.
 
 The result: a comment-only edit, a Prettier reformat, a Pint pass, or a README tweak produces an identical hash, and the file never enters the changed set. Zero tests run.
+
+## Built-in Environments
+
+Pest ships with watch defaults for the most common PHP stacks, and applies them automatically when their packages are installed:
+
+- **PHP** — always-on baseline rules for `composer.json`, `composer.lock`, `phpunit.xml`, and similar structural inputs.
+- **Laravel** — `app/`, `routes/`, `config/`, `database/migrations/`, `resources/views/`, and friends.
+- **Symfony** — `config/`, `migrations/`, `src/Migrations/`, `templates/`, `translations/`, `config/doctrine/`, `assets/`, `webpack.config.js`, and `importmap.php`.
+- **Livewire** — `resources/views/livewire/`, `resources/views/components/`, `resources/views/pages/`, plus JS/TS under `resources/js/`.
+- **Inertia** — server-side-rendered pages under `resources/js/Pages` and the Vite module graph for `Components`, `Layouts`, and runtime entry files.
+- **Browser** — CSS, public build files, static public assets, and `public/hot` re-run browser tests only.
+
+You don't have to configure anything to opt in to these — Pest detects each framework via Composer and merges the relevant rules. To extend or override them, see [Custom Watch Patterns](#custom-watch-patterns).
 
 ## Modes
 
@@ -50,15 +68,30 @@ Pest supports a few flags alongside `--tia`:
 | Flag | Behaviour |
 |---|---|
 | `--tia` | Replay if a baseline graph exists, otherwise record. |
+| `--no-tia` | Disable TIA for this run, even if `pest()->tia()->always()` is configured. |
 | `--tia --fresh` | Discard any existing graph and re-record from scratch. Use this after large refactors or when the graph feels stale. |
 | `--tia --refetch` | Force a CI baseline fetch even within the 24-hour cooldown after a previous failed fetch. |
 | `--tia --filtered` | Narrow PHPUnit to only the affected test files rather than loading all tests and replaying cached results for unaffected ones. |
+| `--tia --locally` | Equivalent to `pest()->tia()->always()->locally()` — run TIA automatically on local machines but skip on CI. |
+| `--tia --baselined` | Opt in to fetching the shared baseline from CI when no local graph exists or the local graph drifts. |
+| `--baseline` | Print the absolute path of this project's TIA storage directory and exit. Designed for CI uploads — see [Sharing The Baseline From CI](#sharing-the-baseline-from-ci). |
+
+### Environment Variables
+
+Each enabling flag has an environment variable equivalent, useful for CI matrices, container entry points, and shared developer configs:
+
+| Variable | Equivalent flag |
+|---|---|
+| `PEST_TIA=1` | `--tia` |
+| `PEST_TIA_FILTERED=1` | `--filtered` |
+| `PEST_TIA_LOCALLY=1` | `--locally` |
+| `PEST_TIA_BASELINED=1` | `--baselined` |
 
 ## Sharing The Baseline From CI
 
 Recording the baseline locally takes minutes on large suites. Instead, you can have CI record it once per merge to `main`, and every developer downloads the result.
 
-When Pest detects no local graph (or the local graph is out of date), it uses GitHub's CLI to download the latest successful run of a `tia-baseline.yml` workflow's `pest-tia-baseline` artifact. Pest validates the fetched graph against your project state — if it matches, it's adopted. Otherwise it's discarded and a local rebuild proceeds.
+Baseline fetching is **opt-in**. Enable it either with `--tia --baselined` on the command line, the `PEST_TIA_BASELINED=1` environment variable, or — preferred for teams — by calling `pest()->tia()->baselined()` in `tests/Pest.php`. Once enabled, when Pest detects no local graph (or the local graph is out of date) it uses GitHub's CLI to download the latest successful run of a `tia-baseline.yml` workflow's `pest-tia-baseline` artifact. Pest validates the fetched graph against your project state — if it matches, it's adopted. Otherwise it's discarded and a local rebuild proceeds.
 
 Here's a starter workflow you can drop into `.github/workflows/tia-baseline.yml`:
 
@@ -77,20 +110,26 @@ jobs:
       - uses: shivammathur/setup-php@v2
         with: { php-version: '8.4', coverage: xdebug }
       - run: composer install --no-interaction --prefer-dist
-      - run: ./vendor/bin/pest --parallel --tia --coverage
-      - name: Stage baseline for upload
-        shell: bash
-        run: |
-          mkdir -p .pest-tia-baseline
-          cp -R "$HOME/.pest/tia"/*/. .pest-tia-baseline/
-      - uses: actions/upload-artifact@v4
+
+      - name: Run tests
+        run: ./vendor/bin/pest --parallel --tia --coverage
+
+      - name: Resolve TIA baseline path
+        id: baseline
+        run: echo "path=$(vendor/bin/pest --baseline)" >> "$GITHUB_OUTPUT"
+
+      - name: Upload TIA baseline
+        uses: actions/upload-artifact@v4
         with:
           name: pest-tia-baseline
-          path: .pest-tia-baseline/
+          path: ${{ steps.baseline.outputs.path }}
+          include-hidden-files: true
           retention-days: 30
 ```
 
-After CI runs, every developer who runs `pest --tia` for the first time on the repo will download this baseline and start replaying immediately, paying no record cost.
+`vendor/bin/pest --baseline` prints the absolute path to this project's TIA storage directory (typically `~/.pest/tia/<project-key>/`), which is exactly what `actions/upload-artifact` needs to bundle the recorded graph and coverage cache. `include-hidden-files: true` is required because the baseline lives under a dot-prefixed directory.
+
+After CI runs, every developer with `baselined()` enabled who runs `pest --tia` for the first time on the repo will download this baseline and start replaying immediately, paying no record cost.
 
 ## Storage
 
@@ -104,16 +143,24 @@ You can configure TIA behaviour in `tests/Pest.php` via `pest()->tia()`:
 
 ```php
 pest()->tia()
-    ->always()   // run TIA on every invocation, no --tia flag needed
-    ->locally(); // restrict always() to local environments only
+    ->always()     // run TIA on every invocation, no --tia flag needed
+    ->locally()    // restrict always() to local environments only
+    ->baselined()  // fetch the shared baseline from CI when no local graph exists
+    ->filtered();  // narrow PHPUnit to only affected test files
 ```
 
-**`always()`** activates TIA for every `pest` run without requiring the `--tia` flag. Pair it with **`locally()`** to restrict that behaviour to local machines — on CI (detected via the `--ci` flag or the `CI` environment variable) TIA is skipped automatically. An explicit `--tia` on the command line always takes effect regardless.
+**`always()`** activates TIA for every `pest` run without requiring the `--tia` flag. Pair it with **`locally()`** to restrict that behaviour to local machines — on CI (detected via the `--ci` flag or the `CI` environment variable) TIA is skipped automatically. An explicit `--tia` on the command line always takes effect regardless, and `--no-tia` can disable it for a single run.
 
 **`filtered()`** enables filtered mode, equivalent to `--tia --filtered`. In this mode Pest narrows PHPUnit to only the affected test files rather than loading the full suite and replaying cached results for unaffected tests:
 
 ```php
 pest()->tia()->filtered();
+```
+
+**`baselined()`** opts in to fetching the shared TIA baseline from CI when no local graph exists or the local graph drifts. See [Sharing The Baseline From CI](#sharing-the-baseline-from-ci) for the recommended workflow:
+
+```php
+pest()->tia()->baselined();
 ```
 
 ## Custom Watch Patterns
@@ -127,7 +174,7 @@ pest()->tia()->watch([
 ]);
 ```
 
-Each glob maps to a single test directory. Whenever a matching file changes, every test under that directory is invalidated. Duplicate glob keys overwrite the built-in defaults, so you can redirect a pattern to a narrower directory.
+Each glob maps to a test directory or an exact test file. Whenever a matching file changes, every test under that directory is invalidated. If a glob already exists in Pest's defaults, your target is merged with the existing targets instead of replacing them.
 
 ---
 
