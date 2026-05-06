@@ -1203,7 +1203,7 @@ Sometimes you may want to debug your browser tests. Pest provides a convenient w
 ./vendor/bin/pest --debug
 ```
 
-Optionally, you can also use the `debug()` method in your test. It will limit execution to this test (like using [`only()`](filtering-tests.md#only)), pause the execution and open the browser window:
+Optionally, you can also use the `debug()` method in your test. It will limit execution to this test (like using [`only()`](/docs/filtering-tests#only)), pause the execution and open the browser window:
 
 ```php
 $page->debug();
