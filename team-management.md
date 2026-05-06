@@ -105,7 +105,7 @@ The notes will be displayed below the todo in the test results.
 
 ## Marking Todos as Work in Progress
 
-Once a todo is completed, you can mark it as work in progress by using the `wip()` method. This method will remove the todo status from the test and mark it as a regular test while keeping all the context like assignees, issues, etc.
+When a todo is being worked on, you can mark it as work in progress by using the `wip()` method. This method will remove the todo status from the test and mark it as a regular test while keeping all the context like assignees, issues, etc.
 
 ```php
 it('has a contact page', function () {
