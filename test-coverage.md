@@ -91,7 +91,7 @@ Pest supports various code coverage report formats:
 - `--coverage-crap4j <file>`: Save the code coverage report in Crap4J XML format to a specified file.
 - `--coverage-html <dir>`: Save the code coverage report in HTML format to a specified directory.
 - `--coverage-php <file>`: Serialize the code coverage data and save it to a specified file.
-- `--coverage-text <file>`: Save the code coverage report in text format to a specified file. (Default: php://stdout)
+- `--coverage-text=<file>`: Save the code coverage report in text format to a specified file. (Default: php://stdout)
 - `--coverage-xml <dir>`: Save the code coverage report in XML format to a specified directory.
 
 ---
