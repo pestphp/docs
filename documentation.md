@@ -27,6 +27,7 @@
   - [Plugins](/docs/plugins)
   - [Team Management](/docs/team-management)
   - [Browser Testing](/docs/browser-testing)
+  - [Browser Recording](/docs/browser-recording)
   - [Architecture Testing](/docs/arch-testing)
   - [Stress Testing](/docs/stress-testing)
   - [Test Coverage](/docs/test-coverage)

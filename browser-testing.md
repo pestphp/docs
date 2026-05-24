@@ -79,6 +79,8 @@ For debugging purposes, you can run the tests in a headed mode and pause the exe
 ./vendor/bin/pest --debug
 ```
 
+You can also generate browser tests automatically by recording your interactions with the application. For more information, see [Browser Recording](/docs/browser-recording).
+
 ### Navigation
 
 The `visit()` method is used to navigate to a specific URL in your browser test. It provides various methods to interact with the page:
