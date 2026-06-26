@@ -105,6 +105,7 @@ With the Pest expectation API, you have access to an extensive collection of ind
 - [`toHaveCamelCaseKeys()`](#expect-toHaveCamelCaseKeys)
 - [`toHaveStudlyCaseKeys()`](#expect-toHaveStudlyCaseKeys)
 - [`toHaveSameSize()`](#expect-toHaveSameSize)
+- [`toBeEmail()`](#expect-toBeEmail)
 - [`toBeUrl()`](#expect-toBeUrl)
 - [`toBeUuid()`](#expect-toBeUuid)
 
@@ -819,6 +820,15 @@ This expectation ensures that the size of `$value` and the provided iterable are
 
 ```php
 expect(['foo', 'bar'])->toHaveSameSize(['baz', 'bazz']);
+```
+
+<a name="expect-toBeEmail"></a>
+### `toBeEmail()`
+
+This expectation ensures that `$value` is a valid email address.
+
+```php
+expect('user@example.com')->toBeEmail();
 ```
 
 <a name="expect-toBeUrl"></a>
