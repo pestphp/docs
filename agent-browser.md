@@ -32,6 +32,14 @@ npm install playwright@latest
 npx playwright install
 ```
 
+Finally, teach your AI agent how to use the plugin by installing its guidelines and skills through [Laravel Boost](https://github.com/laravel/boost):
+
+```bash
+php artisan boost:install
+```
+
+When prompted for third-party AI guidelines and skills, select `pestphp/pest-plugin-agent-browser`. This installs the guidelines and the `pest-plugin-agent-browser` skill, so your agent knows exactly when and how to reach for the `--agent-browser` command.
+
 That's it. Your agent can now verify backend behavior, frontend behavior, or both, from a single command.
 
 ## Why Agent Browser?
