@@ -117,10 +117,55 @@ parameters:
             - tests/Pest.php
 ```
 
-## Return Types
+## Migrating from PestStan
 
-The plugin provides accurate return types for all of Pest's global functions — `expect()`, `pest()`, `uses()`, `it()`, `describe()`, `beforeEach()`, `afterEach()`, and more. Methods like `not()` and `each()` are typed correctly, and `TestCall` chains (including `with()`, `group()`, `skip()`, `throws()`, etc.) are fully fluent.
+If you were using the original `mrpunyapal/peststan` package, here's how to migrate to the new official Pest PHPStan plugin.
+
+**1. Update your Composer dependencies**
+
+```bash
+composer remove mrpunyapal/peststan --dev
+composer require pestphp/pest-plugin-phpstan --dev
+```
+
+**2. Update your `phpstan.neon` configuration**
+
+```neon
+# Old
+includes:
+    - vendor/mrpunyapal/peststan/extension.neon
+
+# New
+includes:
+    - vendor/pestphp/pest-plugin-phpstan/extension.neon
+```
+
+**3. Update configuration parameters**
+
+```neon
+# Old
+parameters:
+    peststan:
+        testCaseClass: App\Testing\TestCase
+
+# New
+parameters:
+    pest:
+        testCaseClass: App\Testing\TestCase
+```
+
+**4. Update namespace references in your code**
+
+```php
+// Old
+use PestStan\SomeClass;
+
+// New
+use Pest\Phpstan\SomeClass;
+```
+
+> The new plugin requires PHP ^8.4 and Pest ^3.0, ^4.0, or ^5.0.
 
 ---
 
-In this chapter, we've seen how the PHPStan plugin brings static analysis to your Pest test suite. In the next chapter, we'll explore team management: [Team Management](/docs/team-management)
+In this chapter, we've seen how the PHPStan plugin brings static analysis to your Pest test suite. In the next chapter, we'll explore automated refactoring with Rector: [Rector](/docs/rector)
