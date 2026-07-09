@@ -5,7 +5,9 @@ description: Today, we're thrilled to announce the release of Pest 5. Built on P
 
 # Pest 5 Now Available
 
-Today, we're thrilled to announce the release of **Pest 5** — the fastest, smartest Pest yet.
+After shipping Pest 4, with the best browser testing in the world, we honestly thought a release as big as Pest 4 simply wouldn't be possible again.
+
+And yet — yet — today I'm proud to introduce you to the biggest release of Pest yet: **Pest 5**.
 
 Where Pest 4 was all about **real browser testing**, Pest 5 is about a test suite that keeps up with you: it runs only the tests your changes actually affect, gives your AI coding agents a way to *prove* their work, and helps you test a new class of software — the AI agents and LLM-powered features now shipping in your applications.
 
