@@ -38,6 +38,53 @@ return RectorConfig::configure()
     ]);
 ```
 
+The `PEST_CHAIN` set merges consecutive `expect()` calls into a single chained expectation and orders type checks first. It is best applied alongside `PEST_CODE_QUALITY` so that newly introduced matchers can be chained together.
+
+#### PHPUnit To Pest Migration
+
+Converts PHPUnit assertion methods and `expectException()` patterns to Pest's `expect()` API. These are structural transformations, so you should review the result after applying them.
+
+```php
+use Pest\Rector\Set\PestSetList;
+use Rector\Config\RectorConfig;
+
+return RectorConfig::configure()
+    ->withPaths([__DIR__ . '/tests'])
+    ->withSets([
+        PestSetList::PEST_MIGRATION,
+    ]);
+```
+
+#### Laravel
+
+Converts `Illuminate\Support\Str` equality checks to Pest's string case matchers, such as `toBeSnakeCase()` and `toBeKebabCase()`. This set requires the `illuminate/support` package.
+
+```php
+use Pest\Rector\Set\PestSetList;
+use Rector\Config\RectorConfig;
+
+return RectorConfig::configure()
+    ->withPaths([__DIR__ . '/tests'])
+    ->withSets([
+        PestSetList::PEST_LARAVEL,
+    ]);
+```
+
+#### Browser
+
+Converts generic `expect($page->getter())->matcher()` patterns into the dedicated assertions provided by the [Browser Testing](/docs/browser-testing) plugin, resulting in more readable tests and clearer failure messages. This set requires the `pestphp/pest-plugin-browser` package.
+
+```php
+use Pest\Rector\Set\PestSetList;
+use Rector\Config\RectorConfig;
+
+return RectorConfig::configure()
+    ->withPaths([__DIR__ . '/tests'])
+    ->withSets([
+        PestSetList::PEST_BROWSER,
+    ]);
+```
+
 #### Pest Version Upgrades
 
 Upgrade your test suite between major Pest versions.
@@ -96,6 +143,21 @@ Chains multiple `expect()` calls on the same value into a single chained expecta
 +    ->and($b)->toBe(10);
 ```
 
+### ConvertAssertToExpectRector
+
+Converts PHPUnit assertion method calls to Pest `expect()` chains
+
+- class: `Pest\Rector\Rules\ConvertAssertToExpectRector`
+
+```diff
+-$this->assertEquals('expected', $result);
+-$this->assertTrue($value);
+-$this->assertCount(3, $items);
++expect($result)->toEqual('expected');
++expect($value)->toBeTrue();
++expect($items)->toHaveCount(3);
+```
+
 ### ConvertBeforeAllInDescribeRector
 
 Replaces invalid `beforeAll()` and `afterAll()` hooks inside `describe()` with `beforeEach()` and `afterEach()`
@@ -109,6 +171,19 @@ Replaces invalid `beforeAll()` and `afterAll()` hooks inside `describe()` with `
          refreshDatabase();
      });
  });
+```
+
+### ConvertExpectExceptionToThrowRector
+
+Converts `expectException()` and `expectExceptionMessage()` patterns to `expect()->toThrow()`
+
+- class: `Pest\Rector\Rules\ConvertExpectExceptionToThrowRector`
+
+```diff
+-$this->expectException(RuntimeException::class);
+-$this->expectExceptionMessage('error');
+-doSomething();
++expect(fn () => doSomething())->toThrow(RuntimeException::class, 'error');
 ```
 
 ### EnsureTypeChecksFirstRector
@@ -167,6 +242,21 @@ Removes redundant literal type expectations when a later matcher keeps the chain
  expect('pest')
 -    ->toBeString()
      ->toStartWith('p');
+```
+
+### RemoveRedundantPestUsesRector
+
+Removes redundant local Pest `uses` already configured globally in `tests/Pest.php`
+
+- class: `Pest\Rector\Rules\RemoveRedundantPestUsesRector`
+
+```diff
+ // tests/Pest.php contains:
+ // pest()->use(RefreshDatabase::class)->in('Feature');
+
+ // tests/Feature/UserTest.php
+-pest()->use(RefreshDatabase::class, SomeOtherTrait::class);
++pest()->use(SomeOtherTrait::class);
 ```
 
 ### RemoveStaticTestClosureRector
@@ -274,6 +364,74 @@ Changes `expect($object)->toHaveMethod()` to `expect($object::class)->toHaveMeth
 +expect($user::class)->toHaveMethod('getName');
 ```
 
+### UseBrowserAriaAndDataAttributeAssertionsRector
+
+Converts `expect($page->attribute($selector, 'aria-*'))->toBe($value)` to `$page->assertAriaAttribute()`, and the `data-*` equivalent (requires the Browser Testing plugin)
+
+- class: `Pest\Rector\Rules\Browser\UseBrowserAriaAndDataAttributeAssertionsRector`
+
+```diff
+-expect($page->attribute('button', 'aria-label'))->toBe('Close');
+-expect($page->attribute('div', 'data-id'))->toBe('123');
++$page->assertAriaAttribute('button', 'label', 'Close');
++$page->assertDataAttribute('div', 'id', '123');
+```
+
+### UseBrowserAttributeAssertionsRector
+
+Converts `expect($page->attribute($selector, $attr))->toBe($value)` to `$page->assertAttribute()` (requires the Browser Testing plugin)
+
+- class: `Pest\Rector\Rules\Browser\UseBrowserAttributeAssertionsRector`
+
+```diff
+-expect($page->attribute('img', 'alt'))->toBe('Profile Picture');
++$page->assertAttribute('img', 'alt', 'Profile Picture');
+```
+
+### UseBrowserScriptAssertionsRector
+
+Converts `expect($page->script($expression))->toBe($value)` to `$page->assertScript()` (requires the Browser Testing plugin)
+
+- class: `Pest\Rector\Rules\Browser\UseBrowserScriptAssertionsRector`
+
+```diff
+-expect($page->script('document.title'))->toBe('Home Page');
++$page->assertScript('document.title', 'Home Page');
+```
+
+### UseBrowserSourceAssertionsRector
+
+Converts `expect($page->content())->toContain($html)` to `$page->assertSourceHas()` (requires the Browser Testing plugin)
+
+- class: `Pest\Rector\Rules\Browser\UseBrowserSourceAssertionsRector`
+
+```diff
+-expect($page->content())->toContain('<h1>Welcome</h1>');
++$page->assertSourceHas('<h1>Welcome</h1>');
+```
+
+### UseBrowserUrlAssertionsRector
+
+Converts `expect($page->url())->toBe($url)` to `$page->assertUrlIs()` (requires the Browser Testing plugin)
+
+- class: `Pest\Rector\Rules\Browser\UseBrowserUrlAssertionsRector`
+
+```diff
+-expect($page->url())->toBe('https://example.com/home');
++$page->assertUrlIs('https://example.com/home');
+```
+
+### UseBrowserValueAssertionsRector
+
+Converts `expect($page->value($selector))->toBe($value)` to `$page->assertValue()` (requires the Browser Testing plugin)
+
+- class: `Pest\Rector\Rules\Browser\UseBrowserValueAssertionsRector`
+
+```diff
+-expect($page->value('input[name=email]'))->toBe('test@example.com');
++$page->assertValue('input[name=email]', 'test@example.com');
+```
+
 ### UseEachModifierRector
 
 Converts foreach loops with `expect()` calls to use the `->each` modifier
@@ -354,6 +512,17 @@ Converts `expect($value >= $min && $value <= $max)->toBeTrue()` to `expect($valu
 +expect($value)->toBeBetween(1, 10);
 ```
 
+### UseToBeCamelCaseRector
+
+Converts `Str::camel()` equality checks to `toBeCamelCase()` matcher (requires `illuminate/support`)
+
+- class: `Pest\Rector\Rules\UseToBeCamelCaseRector`
+
+```diff
+-expect(Str::camel($value) === $value)->toBeTrue();
++expect($value)->toBeCamelCase();
+```
+
 ### UseToBeDigitsRector
 
 Converts `ctype_digit()` checks to `toBeDigits()` matcher
@@ -431,6 +600,17 @@ Converts `json_decode()` null checks to `toBeJson()` matcher
 +expect($string)->toBeJson();
 ```
 
+### UseToBeKebabCaseRector
+
+Converts `Str::kebab()` equality checks to `toBeKebabCase()` matcher (requires `illuminate/support`)
+
+- class: `Pest\Rector\Rules\UseToBeKebabCaseRector`
+
+```diff
+-expect(Str::kebab($value) === $value)->toBeTrue();
++expect($value)->toBeKebabCase();
+```
+
 ### UseToBeListRector
 
 Converts `array_is_list()` checks to `toBeList()` matcher
@@ -473,6 +653,39 @@ Converts `is_readable()/is_writable()` checks to `toBeReadable()/toBeWritable()`
 ```diff
 -expect(is_readable($path))->toBeTrue();
 +expect($path)->toBeReadable();
+```
+
+### UseToBeSlugRector
+
+Converts `Str::slug()` equality checks to `toBeSlug()` matcher (requires `illuminate/support`)
+
+- class: `Pest\Rector\Rules\UseToBeSlugRector`
+
+```diff
+-expect(Str::slug($value) === $value)->toBeTrue();
++expect($value)->toBeSlug();
+```
+
+### UseToBeSnakeCaseRector
+
+Converts `Str::snake()` equality checks to `toBeSnakeCase()` matcher (requires `illuminate/support`)
+
+- class: `Pest\Rector\Rules\UseToBeSnakeCaseRector`
+
+```diff
+-expect(Str::snake($value) === $value)->toBeTrue();
++expect($value)->toBeSnakeCase();
+```
+
+### UseToBeStudlyCaseRector
+
+Converts `Str::studly()` equality checks to `toBeStudlyCase()` matcher (requires `illuminate/support`)
+
+- class: `Pest\Rector\Rules\UseToBeStudlyCaseRector`
+
+```diff
+-expect(Str::studly($value) === $value)->toBeTrue();
++expect($value)->toBeStudlyCase();
 ```
 
 ### UseToBeUppercaseRector
@@ -695,6 +908,23 @@ Converts `str_starts_with()` checks to `toStartWith()` matcher
 ```diff
 -expect(str_starts_with($string, 'Hello'))->toBeTrue();
 +expect($string)->toStartWith('Hello');
+```
+
+### UseToThrowRector
+
+Converts `try`/`catch` patterns in Pest tests to `expect()->toThrow()`
+
+- class: `Pest\Rector\Rules\UseToThrowRector`
+
+```diff
+ test('it throws an error', function () {
+-    try {
+-        doSomething();
+-    } catch (RuntimeException $e) {
+-        expect($e->getMessage())->toBe('error');
+-    }
++    expect(fn () => doSomething())->toThrow(RuntimeException::class, 'error');
+ });
 ```
 
 ### UseTypeMatchersRector
