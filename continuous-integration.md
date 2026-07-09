@@ -29,7 +29,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.3
+          php-version: 8.4
           tools: composer:v2
           coverage: xdebug
 
@@ -146,7 +146,7 @@ To get started, add the following configuration to your `.chipperci.yml` file. T
 version: 1
 
 environment:
-  php: 8.3
+  php: 8.4
   node: 16
 
 # Optional services

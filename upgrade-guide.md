@@ -1,6 +1,38 @@
 ---
 title: Upgrade Guide
-description: Upgrading To 4.x From 3.x
+description: Upgrading To 5.x From 4.x
+---
+
+## Upgrading To 5.x From 4.x
+
+> **Estimated Upgrade Time**: 2 minutes
+
+We make an effort to document every potential breaking change, but some of these changes may exist in less frequently used sections of the framework. As a result, only a subset of these changes may impact your application.
+
+### Updating Dependencies
+
+> Likelihood Of Impact: High
+
+Pest 5 now requires PHP 8.4.0 or greater. To start migrating from Pest 4 to Pest 5, update the `pestphp/pest` dependency to `^5.0` in your application's `composer.json` file.
+
+```diff
+-    "pestphp/pest": "^4.0",
++    "pestphp/pest": "^5.0",
+```
+
+All other Pest maintained plugins should be updated to version `^5.0` in your application's `composer.json` file.
+
+```diff
+-    "pestphp/pest-plugin-laravel": "^4.0",
++    "pestphp/pest-plugin-laravel": "^5.0",
+```
+
+### PHPUnit 13 Changes
+
+> Likelihood Of Impact: Medium
+
+Pest 5 is built on top of PHPUnit 13. This means that any notable changes made to PHPUnit 13 might have an impact on your test suite. To examine all the changes introduced in PHPUnit 13, please consult the [PHPUnit 13 changelog](https://github.com/sebastianbergmann/phpunit/blob/13.0.0/ChangeLog-13.0.md).
+
 ---
 
 ## Upgrading To 4.x From 3.x
