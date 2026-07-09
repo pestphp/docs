@@ -950,12 +950,6 @@ The `click` method clicks the link with the given text:
 $page->click('Login');
 ```
 
-You may also pass options:
-
-```php
-$page->click('#button', options: ['clickCount' => 2]);
-```
-
 <a name="text"></a>
 ### text
 
