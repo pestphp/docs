@@ -81,19 +81,188 @@ it('knows the property types', function () {
 
 ## Static Analysis Rules
 
-Beyond type inference, the plugin ships with rules that catch common mistakes before your tests run. For example, it flags impossible assertions — cases where the static type guarantees failure:
-
-```php
-expect(42)->toBeString();
-// ✘ Calling toBeString() on Expectation<int>; assertion is impossible.
-```
-
-It also detects redundant assertions, empty test bodies, static closures (which break `$this` binding), and many other issues. All rules use PHPStan identifiers, so you can suppress them individually:
+Beyond type inference, the plugin ships with rules that catch common mistakes before your tests run. All rules use PHPStan identifiers, so you can suppress them individually:
 
 ```neon
 parameters:
     ignoreErrors:
         - identifier: pest.test.emptyClosure
+```
+
+### Empty Test Body
+
+Detects tests whose closure contains no statements.
+
+- identifier: `pest.test.emptyClosure`
+
+```php
+it('does something'); // fine — todo test
+it('does something', function () {});
+// ✘ Test 'does something' has an empty closure body. Did you forget to add assertions?
+```
+
+### Static Test Closure
+
+Pest binds `$this` inside every test closure to the `TestCase` instance. Marking the closure `static` prevents that binding.
+
+- identifier: `pest.test.staticClosure`
+
+```php
+it('example', static function () {
+// ✘ Test closure passed to it() must not be static.
+    expect(true)->toBeTrue();
+});
+```
+
+### Lifecycle Hooks Inside `describe()`
+
+Pest does not support `beforeAll()` or `afterAll()` inside `describe()` blocks — calling them throws at runtime.
+
+- identifiers: `pest.lifecycle.beforeAllDisallowed`, `pest.lifecycle.afterAllDisallowed`
+
+```php
+describe('suite', function () {
+    beforeAll(function () { /* ... */ });
+    // ✘ beforeAll() cannot be used inside describe() blocks.
+
+    afterAll(function () { /* ... */ });
+    // ✘ afterAll() cannot be used inside describe() blocks.
+});
+```
+
+### Invalid `repeat()` Count
+
+`repeat()` requires a positive integer greater than zero.
+
+- identifier: `pest.execution.invalidRepeatValue`
+
+```php
+it('runs multiple times', function () { /* ... */ })->repeat(0);
+// ✘ repeat() requires a value greater than 0, got 0.
+```
+
+### Duplicate Test Description
+
+Two tests in the same file with the same description will collide at runtime.
+
+- identifier: `pest.test.duplicateDescription`
+
+```php
+it('does something', fn () => expect(1)->toBe(1));
+it('does something', fn () => expect(2)->toBe(2));
+// ✘ A test with the description 'it does something' already exists in this file.
+```
+
+### Impossible Assertions
+
+When the static type already makes an assertion impossible, the plugin reports it.
+
+- identifier: `pest.expectation.impossible`
+
+```php
+expect(42)->toBeString();
+// ✘ Calling toBeString() on Expectation<int>; assertion is impossible.
+
+expect('hello')->toBeNull();
+// ✘ Calling toBeNull() on Expectation<string>; assertion is impossible.
+```
+
+Covered assertions: `toBeString`, `toBeInt`, `toBeFloat`, `toBeBool`, `toBeTrue`, `toBeFalse`, `toBeNull`, `toBeArray`, `toBeList`, `toBeObject`, `toBeCallable`, `toBeIterable`, `toBeNumeric`, `toBeScalar`, `toBeInstanceOf`.
+
+### Redundant Assertions
+
+When the static type already guarantees an assertion will always succeed, the assertion is redundant.
+
+- identifier: `pest.expectation.redundant`
+
+```php
+expect(true)->toBeTrue();
+// ✘ Calling toBeTrue() on Expectation<true>; assertion is redundant.
+
+expect('hello')->toBeString();
+// ✘ Calling toBeString() on Expectation<string>; assertion is redundant.
+
+expect(42)->toBeNumeric();
+// ✘ Calling toBeNumeric() on Expectation<int>; assertion is redundant.
+```
+
+Covered assertions: `toBeString`, `toBeInt`, `toBeFloat`, `toBeBool`, `toBeTrue`, `toBeFalse`, `toBeNull`, `toBeArray`, `toBeList`, `toBeObject`, `toBeCallable`, `toBeIterable`, `toBeNumeric`, `toBeScalar`, `toBeInstanceOf`.
+
+### Incompatible Value Type
+
+Some expectation methods require the value to satisfy a pre-condition.
+
+- identifiers: `pest.expectation.requiresIterable`, `pest.expectation.requiresString`
+
+```php
+expect(42)->each(fn ($e) => $e->toBeInt());
+// ✘ Calling each() on Expectation<int>; matcher requires iterable.
+
+expect(42)->toBeJson();
+// ✘ Calling toBeJson() on Expectation<int>; matcher requires string.
+```
+
+Methods requiring an iterable: `each`, `sequence`. Methods requiring a string: `json`, `toStartWith`, `toEndWith`, `toBeJson`, `toBeDirectory`, `toBeFile`, `toBeReadableFile`, `toBeWritableFile`, `toBeReadableDirectory`, `toBeWritableDirectory`.
+
+### `$this` in `beforeAll()`
+
+`beforeAll()` runs once in a static context before any tests in the file. `$this` is not available.
+
+- identifier: `pest.lifecycle.beforeAllThisUsage`
+
+```php
+beforeAll(function () {
+    $this->db = new Database; // ✘ beforeAll() runs in static context — $this is not available. Use beforeEach() instead.
+});
+```
+
+### Invalid `throws()` Argument
+
+`throws()` accepts a class name that implements `Throwable`.
+
+- identifiers: `pest.throws.classNotFound`, `pest.throws.invalidException`
+
+```php
+it('fails', function () { ... })->throws('App\NonExistentException');
+// ✘ Class App\NonExistentException passed to throws() does not exist.
+
+it('fails', function () { ... })->throws(stdClass::class);
+// ✘ throws() expects a Throwable class, got stdClass.
+```
+
+### Non-Existent Symbol in `covers()`
+
+`coversClass()`, `coversTrait()`, and `coversFunction()` reference symbols by name. The plugin verifies those symbols exist.
+
+- identifiers: `pest.covers.classNotFound`, `pest.covers.functionNotFound`
+
+```php
+it('covers something', function () { ... })->coversClass('App\Nonexistent\Service');
+// ✘ Class App\Nonexistent\Service referenced in coversClass() does not exist.
+```
+
+### Empty `describe()` Block
+
+A `describe()` block that contains no `it()` or `test()` calls (only hooks, or nothing at all) is likely a mistake.
+
+- identifier: `pest.describe.withoutTests`
+
+```php
+describe('UserService', function () {
+    beforeEach(fn () => null);
+    // ✘ describe() block 'UserService' contains no tests.
+});
+```
+
+### Invalid `group()` Name
+
+`group()` requires at least one non-empty, non-whitespace string argument.
+
+- identifier: `pest.group.invalidName`
+
+```php
+it('example', fn () => null)->group('');
+// ✘ group() requires a non-empty string argument.
 ```
 
 ## Configuration
