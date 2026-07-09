@@ -7,24 +7,20 @@ description: Pest's Rector plugin provides automated refactoring rules powered b
 
 **Source code**: [github.com/pestphp/pest-plugin-rector](https://github.com/pestphp/pest-plugin-rector)
 
-Pest's Rector plugin provides automated refactoring rules powered by [Rector](https://getrector.org/). It helps simplify and modernize your test code, and upgrade between major Pest versions.
-
-To get started, require the plugin via Composer and install Rector:
+Manually updating your test suite to use Pest's latest features — or upgrading between major versions — can be tedious and error-prone. The Rector plugin automates this by providing refactoring rules powered by [Rector](https://getrector.org/).
 
 ```bash
 composer require pestphp/pest-plugin-rector --dev
 composer require rector/rector --dev
 ```
 
----
+## Rule Sets
 
-### Rule Sets
+You can apply groups of refactoring rules using predefined sets in your `rector.php`.
 
-You can configure which rules to apply by using predefined rule sets in your `rector.php` file.
+### Pest Code Quality
 
-#### Pest Code Quality
-
-Converts raw PHP assertions to Pest's built-in matchers, chains multiple `expect()` calls on the same value, and simplifies redundant patterns.
+Converts raw PHP assertions to Pest's built-in matchers, chains multiple `expect()` calls on the same value, and simplifies redundant patterns:
 
 ```php
 use Pest\Rector\Set\PestSetList;
@@ -38,9 +34,9 @@ return RectorConfig::configure()
     ]);
 ```
 
-#### Pest Version Upgrades
+### Pest Version Upgrades
 
-Upgrade your test suite between major Pest versions.
+Upgrade your test suite between major Pest versions:
 
 ```php
 use Pest\Rector\Set\PestLevelSetList;
@@ -56,29 +52,25 @@ return RectorConfig::configure()
     ->withLevelSet(PestLevelSetList::UP_TO_PEST_40);
 ```
 
----
-
 ### Preview & Apply Changes
 
-Run Rector with the `--dry-run` flag to preview changes before applying them:
+Preview changes before applying them:
 
 ```bash
 vendor/bin/rector process --dry-run
 ```
 
-Once you are satisfied with the proposed changes, run Rector without the flag to apply them:
+Once you are satisfied, apply them:
 
 ```bash
 vendor/bin/rector process
 ```
 
----
-
 ## All Rules
 
 ### ChainExpectCallsRector
 
-Chains multiple `expect()` calls on the same value into a single chained expectation
+Chains multiple `expect()` calls on the same value into a single chained expectation.
 
 - class: `Pest\Rector\Rules\ChainExpectCallsRector`
 
@@ -98,7 +90,7 @@ Chains multiple `expect()` calls on the same value into a single chained expecta
 
 ### ConvertBeforeAllInDescribeRector
 
-Replaces invalid `beforeAll()` and `afterAll()` hooks inside `describe()` with `beforeEach()` and `afterEach()`
+Replaces invalid `beforeAll()` and `afterAll()` hooks inside `describe()` with `beforeEach()` and `afterEach()`.
 
 - class: `Pest\Rector\Rules\ConvertBeforeAllInDescribeRector`
 
@@ -113,7 +105,7 @@ Replaces invalid `beforeAll()` and `afterAll()` hooks inside `describe()` with `
 
 ### EnsureTypeChecksFirstRector
 
-Ensure type-check matchers (e.g. toBeInt, toBeInstanceOf) appear before value assertions in `expect()` chains and consecutive expects
+Ensure type-check matchers (e.g. toBeInt, toBeInstanceOf) appear before value assertions in `expect()` chains and consecutive expects.
 
 - class: `Pest\Rector\Rules\EnsureTypeChecksFirstRector`
 
@@ -124,7 +116,7 @@ Ensure type-check matchers (e.g. toBeInt, toBeInstanceOf) appear before value as
 
 ### FixInvalidRepeatValueRector
 
-Normalizes invalid literal `repeat()` counts to 1
+Normalizes invalid literal `repeat()` counts to 1.
 
 - class: `Pest\Rector\Rules\FixInvalidRepeatValueRector`
 
@@ -137,7 +129,7 @@ Normalizes invalid literal `repeat()` counts to 1
 
 ### RemoveDebugExpectationsRector
 
-Removes debug method calls (dump, dd, ray) from expect chains
+Removes debug method calls (dump, dd, ray) from expect chains.
 
 - class: `Pest\Rector\Rules\RemoveDebugExpectationsRector`
 
@@ -148,7 +140,7 @@ Removes debug method calls (dump, dd, ray) from expect chains
 
 ### RemoveOnlyRector
 
-Removes `only()` from all tests
+Removes `only()` from all tests.
 
 - class: `Pest\Rector\Rules\RemoveOnlyRector`
 
@@ -159,7 +151,7 @@ Removes `only()` from all tests
 
 ### RemoveRedundantLiteralTypeExpectationRector
 
-Removes redundant literal type expectations when a later matcher keeps the chain meaningful
+Removes redundant literal type expectations when a later matcher keeps the chain meaningful.
 
 - class: `Pest\Rector\Rules\RemoveRedundantLiteralTypeExpectationRector`
 
@@ -171,7 +163,7 @@ Removes redundant literal type expectations when a later matcher keeps the chain
 
 ### RemoveStaticTestClosureRector
 
-Removes static from Pest test and hook callbacks that use the test case instance
+Removes static from Pest test and hook callbacks that use the test case instance.
 
 - class: `Pest\Rector\Rules\RemoveStaticTestClosureRector`
 
@@ -184,7 +176,7 @@ Removes static from Pest test and hook callbacks that use the test case instance
 
 ### SimplifyComparisonExpectationsRector
 
-Converts `expect($x > 10)->toBeTrue()` to `expect($x)->toBeGreaterThan(10)`
+Converts `expect($x > 10)->toBeTrue()` to `expect($x)->toBeGreaterThan(10)`.
 
 - class: `Pest\Rector\Rules\SimplifyComparisonExpectationsRector`
 
@@ -197,7 +189,7 @@ Converts `expect($x > 10)->toBeTrue()` to `expect($x)->toBeGreaterThan(10)`
 
 ### SimplifyExpectNotRector
 
-Simplifies negated expectations by flipping the matcher
+Simplifies negated expectations by flipping the matcher.
 
 - class: `Pest\Rector\Rules\SimplifyExpectNotRector`
 
@@ -208,7 +200,7 @@ Simplifies negated expectations by flipping the matcher
 
 ### SimplifyFilesystemMatchersRector
 
-Simplifies combined filesystem checks to single Pest matchers
+Simplifies combined filesystem checks to single Pest matchers.
 
 - class: `Pest\Rector\Rules\SimplifyFilesystemMatchersRector`
 
@@ -219,7 +211,7 @@ Simplifies combined filesystem checks to single Pest matchers
 
 ### SimplifyToBeTruthyFalsyRector
 
-Converts bool cast assertions to `toBeTruthy()/toBeFalsy()` matchers
+Converts bool cast assertions to `toBeTruthy()/toBeFalsy()` matchers.
 
 - class: `Pest\Rector\Rules\SimplifyToBeTruthyFalsyRector`
 
@@ -230,7 +222,7 @@ Converts bool cast assertions to `toBeTruthy()/toBeFalsy()` matchers
 
 ### SimplifyToLiteralBooleanRector
 
-Simplifies `expect($x)->toBe(true)` to `expect($x)->toBeTrue()`
+Simplifies `expect($x)->toBe(true)` to `expect($x)->toBeTrue()`.
 
 - class: `Pest\Rector\Rules\SimplifyToLiteralBooleanRector`
 
@@ -243,7 +235,7 @@ Simplifies `expect($x)->toBe(true)` to `expect($x)->toBeTrue()`
 
 ### TapToDeferRector
 
-Replaces deprecated `->tap()` method with `->defer()` for Pest v3 migration
+Replaces deprecated `->tap()` method with `->defer()` for Pest v3 migration.
 
 - class: `Pest\Rector\Rules\Pest2ToPest3\TapToDeferRector`
 
@@ -254,7 +246,7 @@ Replaces deprecated `->tap()` method with `->defer()` for Pest v3 migration
 
 ### ToBeTrueNotFalseRector
 
-Simplifies double-negative expectations like `->not->toBeFalse()` to `->toBeTrue()`
+Simplifies double-negative expectations like `->not->toBeFalse()` to `->toBeTrue()`.
 
 - class: `Pest\Rector\Rules\ToBeTrueNotFalseRector`
 
@@ -265,7 +257,7 @@ Simplifies double-negative expectations like `->not->toBeFalse()` to `->toBeTrue
 
 ### ToHaveMethodOnClassRector
 
-Changes `expect($object)->toHaveMethod()` to `expect($object::class)->toHaveMethod()` for Pest v3
+Changes `expect($object)->toHaveMethod()` to `expect($object::class)->toHaveMethod()` for Pest v3.
 
 - class: `Pest\Rector\Rules\Pest2ToPest3\ToHaveMethodOnClassRector`
 
@@ -276,7 +268,7 @@ Changes `expect($object)->toHaveMethod()` to `expect($object::class)->toHaveMeth
 
 ### UseEachModifierRector
 
-Converts foreach loops with `expect()` calls to use the `->each` modifier
+Converts foreach loops with `expect()` calls to use the `->each` modifier.
 
 - class: `Pest\Rector\Rules\UseEachModifierRector`
 
@@ -289,7 +281,7 @@ Converts foreach loops with `expect()` calls to use the `->each` modifier
 
 ### UseInstanceOfMatcherRector
 
-Converts `expect($obj instanceof User)->toBeTrue()` to `expect($obj)->toBeInstanceOf(User::class)`
+Converts `expect($obj instanceof User)->toBeTrue()` to `expect($obj)->toBeInstanceOf(User::class)`.
 
 - class: `Pest\Rector\Rules\UseInstanceOfMatcherRector`
 
@@ -300,7 +292,7 @@ Converts `expect($obj instanceof User)->toBeTrue()` to `expect($obj)->toBeInstan
 
 ### UseSequenceMatcherRector
 
-Converts consecutive indexed `expect()` calls to `sequence()`
+Converts consecutive indexed `expect()` calls to `sequence()`.
 
 - class: `Pest\Rector\Rules\UseSequenceMatcherRector`
 
@@ -312,7 +304,7 @@ Converts consecutive indexed `expect()` calls to `sequence()`
 
 ### UseStrictEqualityMatchersRector
 
-Converts strict equality expressions to `toBe()` matcher
+Converts strict equality expressions to `toBe()` matcher.
 
 - class: `Pest\Rector\Rules\UseStrictEqualityMatchersRector`
 
@@ -323,7 +315,7 @@ Converts strict equality expressions to `toBe()` matcher
 
 ### UseToBeAlphaNumericRector
 
-Converts `ctype_alnum()` checks to `toBeAlphaNumeric()` matcher
+Converts `ctype_alnum()` checks to `toBeAlphaNumeric()` matcher.
 
 - class: `Pest\Rector\Rules\UseToBeAlphaNumericRector`
 
@@ -334,7 +326,7 @@ Converts `ctype_alnum()` checks to `toBeAlphaNumeric()` matcher
 
 ### UseToBeAlphaRector
 
-Converts `ctype_alpha()` checks to `toBeAlpha()` matcher
+Converts `ctype_alpha()` checks to `toBeAlpha()` matcher.
 
 - class: `Pest\Rector\Rules\UseToBeAlphaRector`
 
@@ -345,7 +337,7 @@ Converts `ctype_alpha()` checks to `toBeAlpha()` matcher
 
 ### UseToBeBetweenRector
 
-Converts `expect($value >= $min && $value <= $max)->toBeTrue()` to `expect($value)->toBeBetween($min, $max)`
+Converts `expect($value >= $min && $value <= $max)->toBeTrue()` to `expect($value)->toBeBetween($min, $max)`.
 
 - class: `Pest\Rector\Rules\UseToBeBetweenRector`
 
@@ -356,7 +348,7 @@ Converts `expect($value >= $min && $value <= $max)->toBeTrue()` to `expect($valu
 
 ### UseToBeDigitsRector
 
-Converts `ctype_digit()` checks to `toBeDigits()` matcher
+Converts `ctype_digit()` checks to `toBeDigits()` matcher.
 
 - class: `Pest\Rector\Rules\UseToBeDigitsRector`
 
@@ -367,7 +359,7 @@ Converts `ctype_digit()` checks to `toBeDigits()` matcher
 
 ### UseToBeDirectoryRector
 
-Converts `is_dir()` checks to `toBeDirectory()` matcher
+Converts `is_dir()` checks to `toBeDirectory()` matcher.
 
 - class: `Pest\Rector\Rules\UseToBeDirectoryRector`
 
@@ -378,7 +370,7 @@ Converts `is_dir()` checks to `toBeDirectory()` matcher
 
 ### UseToBeEmptyRector
 
-Converts empty checks and count-zero comparisons to `toBeEmpty()` matcher
+Converts empty checks and count-zero comparisons to `toBeEmpty()` matcher.
 
 - class: `Pest\Rector\Rules\UseToBeEmptyRector`
 
@@ -389,7 +381,7 @@ Converts empty checks and count-zero comparisons to `toBeEmpty()` matcher
 
 ### UseToBeFileRector
 
-Converts `is_file()` checks to `toBeFile()` matcher
+Converts `is_file()` checks to `toBeFile()` matcher.
 
 - class: `Pest\Rector\Rules\UseToBeFileRector`
 
@@ -400,7 +392,7 @@ Converts `is_file()` checks to `toBeFile()` matcher
 
 ### UseToBeInRector
 
-Converts `in_array()` with value first to `toBeIn()` matcher
+Converts `in_array()` with value first to `toBeIn()` matcher.
 
 - class: `Pest\Rector\Rules\UseToBeInRector`
 
@@ -411,7 +403,7 @@ Converts `in_array()` with value first to `toBeIn()` matcher
 
 ### UseToBeInfiniteRector
 
-Converts `is_infinite()` checks to `toBeInfinite()` matcher
+Converts `is_infinite()` checks to `toBeInfinite()` matcher.
 
 - class: `Pest\Rector\Rules\UseToBeInfiniteRector`
 
@@ -422,7 +414,7 @@ Converts `is_infinite()` checks to `toBeInfinite()` matcher
 
 ### UseToBeJsonRector
 
-Converts `json_decode()` null checks to `toBeJson()` matcher
+Converts `json_decode()` null checks to `toBeJson()` matcher.
 
 - class: `Pest\Rector\Rules\UseToBeJsonRector`
 
@@ -433,7 +425,7 @@ Converts `json_decode()` null checks to `toBeJson()` matcher
 
 ### UseToBeListRector
 
-Converts `array_is_list()` checks to `toBeList()` matcher
+Converts `array_is_list()` checks to `toBeList()` matcher.
 
 - class: `Pest\Rector\Rules\UseToBeListRector`
 
@@ -444,7 +436,7 @@ Converts `array_is_list()` checks to `toBeList()` matcher
 
 ### UseToBeLowercaseRector
 
-Converts `strtolower()` equality checks to `toBeLowercase()` matcher
+Converts `strtolower()` equality checks to `toBeLowercase()` matcher.
 
 - class: `Pest\Rector\Rules\UseToBeLowercaseRector`
 
@@ -455,7 +447,7 @@ Converts `strtolower()` equality checks to `toBeLowercase()` matcher
 
 ### UseToBeNanRector
 
-Converts `is_nan()` checks to `toBeNan()` matcher
+Converts `is_nan()` checks to `toBeNan()` matcher.
 
 - class: `Pest\Rector\Rules\UseToBeNanRector`
 
@@ -466,7 +458,7 @@ Converts `is_nan()` checks to `toBeNan()` matcher
 
 ### UseToBeReadableWritableRector
 
-Converts `is_readable()/is_writable()` checks to `toBeReadable()/toBeWritable()` matchers
+Converts `is_readable()/is_writable()` checks to `toBeReadable()/toBeWritable()` matchers.
 
 - class: `Pest\Rector\Rules\UseToBeReadableWritableRector`
 
@@ -477,7 +469,7 @@ Converts `is_readable()/is_writable()` checks to `toBeReadable()/toBeWritable()`
 
 ### UseToBeUppercaseRector
 
-Converts `strtoupper()` equality checks to `toBeUppercase()` matcher
+Converts `strtoupper()` equality checks to `toBeUppercase()` matcher.
 
 - class: `Pest\Rector\Rules\UseToBeUppercaseRector`
 
@@ -488,7 +480,7 @@ Converts `strtoupper()` equality checks to `toBeUppercase()` matcher
 
 ### UseToBeUrlRector
 
-Converts `filter_var($url, FILTER_VALIDATE_URL)` checks to `toBeUrl()` matcher
+Converts `filter_var($url, FILTER_VALIDATE_URL)` checks to `toBeUrl()` matcher.
 
 - class: `Pest\Rector\Rules\UseToBeUrlRector`
 
@@ -499,7 +491,7 @@ Converts `filter_var($url, FILTER_VALIDATE_URL)` checks to `toBeUrl()` matcher
 
 ### UseToBeUuidRector
 
-Converts UUID regex validation to `toBeUuid()` matcher
+Converts UUID regex validation to `toBeUuid()` matcher.
 
 - class: `Pest\Rector\Rules\UseToBeUuidRector`
 
@@ -510,7 +502,7 @@ Converts UUID regex validation to `toBeUuid()` matcher
 
 ### UseToContainEqualRector
 
-Converts `in_array(..., false)` checks to `toContainEqual()` matcher
+Converts `in_array(..., false)` checks to `toContainEqual()` matcher.
 
 - class: `Pest\Rector\Rules\UseToContainEqualRector`
 
@@ -521,7 +513,7 @@ Converts `in_array(..., false)` checks to `toContainEqual()` matcher
 
 ### UseToContainOnlyInstancesOfRector
 
-Converts `->each->toBeInstanceOf()` pattern to `toContainOnlyInstancesOf()` matcher
+Converts `->each->toBeInstanceOf()` pattern to `toContainOnlyInstancesOf()` matcher.
 
 - class: `Pest\Rector\Rules\UseToContainOnlyInstancesOfRector`
 
@@ -532,7 +524,7 @@ Converts `->each->toBeInstanceOf()` pattern to `toContainOnlyInstancesOf()` matc
 
 ### UseToContainRector
 
-Converts `in_array()` checks to `toContain()` matcher
+Converts `in_array()` checks to `toContain()` matcher.
 
 - class: `Pest\Rector\Rules\UseToContainRector`
 
@@ -543,7 +535,7 @@ Converts `in_array()` checks to `toContain()` matcher
 
 ### UseToEndWithRector
 
-Converts `str_ends_with()` checks to `toEndWith()` matcher
+Converts `str_ends_with()` checks to `toEndWith()` matcher.
 
 - class: `Pest\Rector\Rules\UseToEndWithRector`
 
@@ -554,7 +546,7 @@ Converts `str_ends_with()` checks to `toEndWith()` matcher
 
 ### UseToEqualCanonicalizingRector
 
-Converts sort-then-compare to `toEqualCanonicalizing()` matcher
+Converts sort-then-compare to `toEqualCanonicalizing()` matcher.
 
 - class: `Pest\Rector\Rules\UseToEqualCanonicalizingRector`
 
@@ -565,7 +557,7 @@ Converts sort-then-compare to `toEqualCanonicalizing()` matcher
 
 ### UseToEqualWithDeltaRector
 
-Converts `expect(abs($a - $b) < $delta)->toBeTrue()` to `expect($a)->toEqualWithDelta($b, $delta)`
+Converts `expect(abs($a - $b) < $delta)->toBeTrue()` to `expect($a)->toEqualWithDelta($b, $delta)`.
 
 - class: `Pest\Rector\Rules\UseToEqualWithDeltaRector`
 
@@ -576,7 +568,7 @@ Converts `expect(abs($a - $b) < $delta)->toBeTrue()` to `expect($a)->toEqualWith
 
 ### UseToHaveCountRector
 
-Converts `expect(count($arr))->toBe(5)` to `expect($arr)->toHaveCount(5)`
+Converts `expect(count($arr))->toBe(5)` to `expect($arr)->toHaveCount(5)`.
 
 - class: `Pest\Rector\Rules\UseToHaveCountRector`
 
@@ -587,7 +579,7 @@ Converts `expect(count($arr))->toBe(5)` to `expect($arr)->toHaveCount(5)`
 
 ### UseToHaveKeyRector
 
-Converts `array_key_exists()` checks to `toHaveKey()` matcher
+Converts `array_key_exists()` checks to `toHaveKey()` matcher.
 
 - class: `Pest\Rector\Rules\UseToHaveKeyRector`
 
@@ -598,7 +590,7 @@ Converts `array_key_exists()` checks to `toHaveKey()` matcher
 
 ### UseToHaveKeysRector
 
-Converts chained `toHaveKey()` calls to `toHaveKeys()` with array of keys
+Converts chained `toHaveKey()` calls to `toHaveKeys()` with array of keys.
 
 - class: `Pest\Rector\Rules\UseToHaveKeysRector`
 
@@ -609,7 +601,7 @@ Converts chained `toHaveKey()` calls to `toHaveKeys()` with array of keys
 
 ### UseToHaveLengthRector
 
-Converts `strlen()/mb_strlen()` comparisons to `toHaveLength()` matcher
+Converts `strlen()/mb_strlen()` comparisons to `toHaveLength()` matcher.
 
 - class: `Pest\Rector\Rules\UseToHaveLengthRector`
 
@@ -620,7 +612,7 @@ Converts `strlen()/mb_strlen()` comparisons to `toHaveLength()` matcher
 
 ### UseToHavePropertiesRector
 
-Converts chained `toHaveProperty()` calls to `toHaveProperties()` with array of properties
+Converts chained `toHaveProperty()` calls to `toHaveProperties()` with array of properties.
 
 - class: `Pest\Rector\Rules\UseToHavePropertiesRector`
 
@@ -631,7 +623,7 @@ Converts chained `toHaveProperty()` calls to `toHaveProperties()` with array of 
 
 ### UseToHavePropertyRector
 
-Converts `property_exists()` checks to `toHaveProperty()` matcher
+Converts `property_exists()` checks to `toHaveProperty()` matcher.
 
 - class: `Pest\Rector\Rules\UseToHavePropertyRector`
 
@@ -642,7 +634,7 @@ Converts `property_exists()` checks to `toHaveProperty()` matcher
 
 ### UseToHaveSameSizeRector
 
-Converts `expect(count($a))->toBe(count($b))` to `expect($a)->toHaveSameSize($b)`
+Converts `expect(count($a))->toBe(count($b))` to `expect($a)->toHaveSameSize($b)`.
 
 - class: `Pest\Rector\Rules\UseToHaveSameSizeRector`
 
@@ -653,7 +645,7 @@ Converts `expect(count($a))->toBe(count($b))` to `expect($a)->toHaveSameSize($b)
 
 ### UseToMatchArrayRector
 
-Converts multiple array element assertions to `toMatchArray()` matcher
+Converts multiple array element assertions to `toMatchArray()` matcher.
 
 - class: `Pest\Rector\Rules\UseToMatchArrayRector`
 
@@ -665,7 +657,7 @@ Converts multiple array element assertions to `toMatchArray()` matcher
 
 ### UseToMatchObjectRector
 
-Converts consecutive `toHaveProperty()` with values to `toMatchObject()` matcher
+Converts consecutive `toHaveProperty()` with values to `toMatchObject()` matcher.
 
 - class: `Pest\Rector\Rules\UseToMatchObjectRector`
 
@@ -677,7 +669,7 @@ Converts consecutive `toHaveProperty()` with values to `toMatchObject()` matcher
 
 ### UseToMatchRector
 
-Converts `expect(preg_match("/pattern/", $str))->toBe(1)` to `expect($str)->toMatch("/pattern/")`
+Converts `expect(preg_match("/pattern/", $str))->toBe(1)` to `expect($str)->toMatch("/pattern/")`.
 
 - class: `Pest\Rector\Rules\UseToMatchRector`
 
@@ -688,7 +680,7 @@ Converts `expect(preg_match("/pattern/", $str))->toBe(1)` to `expect($str)->toMa
 
 ### UseToStartWithRector
 
-Converts `str_starts_with()` checks to `toStartWith()` matcher
+Converts `str_starts_with()` checks to `toStartWith()` matcher.
 
 - class: `Pest\Rector\Rules\UseToStartWithRector`
 
@@ -699,7 +691,7 @@ Converts `str_starts_with()` checks to `toStartWith()` matcher
 
 ### UseTypeMatchersRector
 
-Converts `expect(is_array($x))->toBeTrue()` to `expect($x)->toBeArray()`
+Converts `expect(is_array($x))->toBeTrue()` to `expect($x)->toBeArray()`.
 
 - class: `Pest\Rector\Rules\UseTypeMatchersRector`
 
@@ -710,7 +702,7 @@ Converts `expect(is_array($x))->toBeTrue()` to `expect($x)->toBeArray()`
 
 ### UsesToExtendRector
 
-Converts `uses()` and `pest()->uses()` to `pest()->extend()` for classes and `pest()->use()` for traits
+Converts `uses()` and `pest()->uses()` to `pest()->extend()` for classes and `pest()->use()` for traits.
 
 - class: `Pest\Rector\Rules\Pest2ToPest3\UsesToExtendRector`
 
@@ -719,4 +711,39 @@ Converts `uses()` and `pest()->uses()` to `pest()->extend()` for classes and `pe
 +pest()->extend(Tests\TestCase::class)->in('Feature');
 ```
 
-Now that you know how to automate refactoring your test suite, you may also be interested in [type coverage](/docs/type-coverage) to further improve your test code quality.
+## Migrating from rector-pest
+
+If you were using the original `mrpunyapal/rector-pest` package, here's how to migrate to the new official Pest Rector plugin.
+
+**1. Update your Composer dependencies**
+
+```bash
+composer remove mrpunyapal/rector-pest --dev
+composer require pestphp/pest-plugin-rector --dev
+```
+
+**2. Update namespace references in your `rector.php`**
+
+```php
+// Old
+use RectorPest\Set\PestSetList;
+
+// New
+use Pest\Rector\Set\PestSetList;
+```
+
+**3. Update rule class references in custom configurations**
+
+```php
+// Old
+use RectorPest\Rules\ChainExpectCallsRector;
+
+// New
+use Pest\Rector\Rules\ChainExpectCallsRector;
+```
+
+> The new plugin requires PHP ^8.4.
+
+---
+
+Now that you know how to automate refactoring your test suite, you may also want to improve your code quality with [type coverage](/docs/type-coverage).
