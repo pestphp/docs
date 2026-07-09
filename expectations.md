@@ -108,6 +108,7 @@ With the Pest expectation API, you have access to an extensive collection of ind
 - [`toBeEmail()`](#expect-toBeEmail)
 - [`toBeUrl()`](#expect-toBeUrl)
 - [`toBeUuid()`](#expect-toBeUuid)
+- [`toBeUlid()`](#expect-toBeUlid)
 
 </div>
 
@@ -847,6 +848,15 @@ This expectation ensures that `$value` is an UUID.
 
 ```php
 expect('ca0a8228-cdf6-41db-b34b-c2f31485796c')->toBeUuid();
+```
+
+<a name="expect-toBeUlid"></a>
+### `toBeUlid()`
+
+This expectation ensures that `$value` is a ULID.
+
+```php
+expect('01ARZ3NDEKTSV4RRFFQ69G5FAV')->toBeUlid();
 ```
 
 ---
