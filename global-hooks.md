@@ -41,4 +41,4 @@ Any `before*` hooks defined in the `Pest.php` configuration file will be execute
 
 ---
 
-When setting up a test suite, it may be necessary to mock certain functionality or objects in order to isolate the code being tested and to simulate certain conditions or behaviors. This can be done through the use of mocking libraries or frameworks, such as Mockery: [Mocking](/docs/mocking)
+Next, let's look at how to reduce duplication across your test suite by extracting reusable logic into custom helper functions: [Custom Helpers](/docs/custom-helpers)

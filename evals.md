@@ -296,4 +296,4 @@ To inspect the input, output, reasoning, and score behind each assertion, add th
 
 ---
 
-Now that you know how to evaluate AI agents with Pest, you may also be interested in [Architecture Testing](/docs/arch-testing) to enforce structure and conventions across your codebase.
+Now that you know how to evaluate AI agents with Pest, let's explore how to measure how much of your code your tests actually exercise: [Test Coverage](/docs/test-coverage)

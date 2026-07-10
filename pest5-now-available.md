@@ -1,34 +1,32 @@
 ---
 title: Pest 5 Now Available
-description: Today, we're thrilled to announce the release of Pest 5. Built on PHP 8.4 and PHPUnit 13, Pest 5 introduces Test Impact Analysis, the Agent Browser, AI Evals, a first-party PHPStan plugin, automated refactoring with Rector, time-balanced sharding, and much more.
+description: Today, we're thrilled to announce the release of Pest 5. Built on PHP 8.4 and PHPUnit 13, Pest 5 introduces the Tia Engine, the Agent Browser, AI Evals, a first-party PHPStan plugin, automated refactoring with Rector, time-balanced sharding, and much more.
 ---
 
 # Pest 5 Now Available
 
 After shipping Pest 4, with the best browser testing in the world, we honestly thought a release as big as Pest 4 simply wouldn't be possible again.
 
-And yet — yet — today I'm proud to introduce you to the biggest release of Pest yet: **Pest 5**.
-
-Where Pest 4 was all about **real browser testing**, Pest 5 is about a test suite that keeps up with you: it runs only the tests your changes actually affect, gives your AI coding agents a way to *prove* their work, and helps you test a new class of software — the AI agents and LLM-powered features now shipping in your applications.
-
-Built on top of **PHP 8.4** and **PHPUnit 13**, this release brings together a set of features and first-party plugins that have been maturing quietly across the Pest 4 cycle — now stable, polished, and ready for prime time.
+And yet... today I'm proud to introduce you to the biggest release of Pest yet: **Pest 5**.
 
 Below, we'll cover all the juicy details about this release. And as usual, you can find the [upgrade guide](/docs/upgrade-guide) on our website.
 
-- **[Test Impact Analysis](#test-impact-analysis)**: Re-run only the tests affected by your latest changes — a 15-second suite replays in under a second.
-- **[The Agent Browser](#the-agent-browser)**: Give your AI coding agents a single command to verify that a change actually works.
-- **[Evals](#evals)**: Evaluate the quality of LLM agents and AI-generated output directly from your test suite.
-- **[First-Party PHPStan Plugin](#first-party-phpstan-plugin)**: Teach PHPStan about Pest for accurate type inference and Pest-specific rules.
-- **[Automated Refactoring With Rector](#automated-refactoring-with-rector)**: Modernize your test code and upgrade between Pest versions automatically.
-- **[Time-Balanced Sharding](#time-balanced-sharding)**: Split your suite across CI jobs by real execution time, not naive test count.
+- **[Tia Engine](#test-impact-analysis)**: The engine that re-runs only the tests affected by your latest changes, powered by the smartest dependency tree ever seen — editing a `button.tsx`, for example, re-runs only the browser tests and the tests rendering the Inertia pages that use it. A 15-second suite replays in under a second.
+- **[The Agent Browser](#the-agent-browser)**: Give your AI coding agents a single command to verify that a change actually works. Unlike Vercel's agent browser, a single bash/tool call creates users, logs them in, runs the full navigation and clicks, and makes assertions — including backend assertions that check things like whether emails actually got sent.
+- **[Evals](#evals)**: Evaluate the quality of LLM agents and AI-generated output directly from your test suite, combining deterministic checks with AI-powered scorers — LLM-as-judge, semantic similarity, safety, and tool-trajectory analysis — all through the same `expect()` API.
+- **[First-Party PHPStan Plugin](#first-party-phpstan-plugin)**: Teach PHPStan about Pest's functional API — `it()`, `expect()`, `$this` — so your tests are as fully typed as your app, catching impossible expectations and dozens of Pest-specific mistakes before you even run the suite.
+- **[Automated Refactoring With Rector](#automated-refactoring-with-rector)**: Over 70 rules that modernize your test code, convert raw PHP and PHPUnit assertions into Pest's expressive matchers, and upgrade you between major Pest versions — automatically.
+- **[Time-Balanced Sharding](#time-balanced-sharding)**: Split your suite across CI jobs by real execution time, not naive test count, so every shard finishes at the same moment instead of waiting on the slow one.
 - **[On Top of PHP 8.4 & PHPUnit 13](#on-top-of-php-84--phpunit-13)**: The latest platform, under the hood.
 
+Built on top of **PHP 8.4** and **PHPUnit 13**, this release brings together a set of features and first-party plugins that have been maturing quietly across the Pest 4 cycle — now stable, polished, and ready for prime time.
+
 <a name="test-impact-analysis"></a>
-## Test Impact Analysis
+## Tia Engine
 
-This is the one we've been most excited to share. **Test Impact Analysis (TIA)** drastically reduces the time it takes to run your test suite by re-running only the tests affected by your latest changes.
+This is the one we've been most excited to share. The **Tia Engine** — short for Test Impact Analysis — drastically reduces the time it takes to run your test suite by re-running only the tests affected by your latest changes.
 
-The first time you run with `--tia`, Pest records a graph of which tests depend on which files. Every run after that, Pest looks at what you changed, runs only the tests that touched those files, and replays cached results for everything else.
+The first time you run with `--tia`, the engine records a graph of which tests depend on which files. Every run after that, the engine looks at what you changed, runs only the tests that touched those files, and replays cached results for everything else.
 
 ```bash
 ./vendor/bin/pest --parallel --tia
@@ -41,11 +39,13 @@ Tests:    774 passed (2658 assertions, 7 affected, 2 uncached, 765 replayed)
 Duration: 0.74s
 ```
 
-Edits to a single Blade template re-run a handful of feature tests. Comment-only edits, formatter passes, and README touches re-run nothing at all — Pest normalises file content before comparing, so cosmetic changes never enter the changed set.
+What makes this possible is the smartest dependency tree we've ever built. The engine doesn't just map files to tests — it understands your whole stack. A column rename in a migration re-runs only the tests that queried that table. A change to an Inertia page re-runs only the tests that server-side-rendered it, and editing a shared JS component walks Vite's module graph to find every page that imports it. Blade templates re-run the tests that rendered them, browser assets re-run only browser tests, and arch tests re-run whenever your source's shape changes. Edit a single Blade template and a handful of feature tests run; touch `config/app.php` and Pest honestly re-runs everything, because it can't statically prove otherwise.
 
-Pest ships with sensible defaults for the most common PHP stacks (Laravel, Symfony, Livewire, Inertia, and browser assets), detecting each framework via Composer automatically. And for teams, CI can record the baseline once per merge to `main` so every developer downloads the result and starts replaying immediately — paying no record cost.
+Comment-only edits, formatter passes, and README touches re-run nothing at all — the engine normalises file content before comparing (stripping whitespace, comments, and docblocks), so a Pint pass or a Prettier reformat produces an identical hash and never enters the changed set.
 
-To learn more, check out the [Test Impact Analysis documentation](/docs/tia).
+The engine ships with sensible defaults for the most common PHP stacks (Laravel, Symfony, Livewire, Inertia, and browser assets), detecting each framework via Composer automatically. And for teams, CI can record the baseline once per merge to `main` so every developer downloads the result and starts replaying immediately — paying no record cost.
+
+To learn more, check out the [Tia Engine documentation](/docs/tia).
 
 <a name="the-agent-browser"></a>
 ## The Agent Browser
@@ -58,7 +58,9 @@ The **Agent Browser** plugin closes that loop. It gives your agent a single comm
 vendor/bin/pest --agent-browser="visit('/')->assertSee('Welcome');"
 ```
 
-The agent gets a definitive pass or fail instead of a hopeful guess — with the full power of Pest at its disposal. Unlike browser-only agent tools that can only see the page, the Agent Browser runs *inside your real test suite*. Your agent can drive the UI **and** assert the side effects it triggered — submit a contact form, then assert the mail was sent — all in a single probe, with your factories, `RefreshDatabase`, and Laravel fakes available exactly as in a real feature test.
+The agent gets a definitive pass or fail instead of a hopeful guess — with the full power of Pest at its disposal. This is where the Agent Browser pulls ahead of browser-only agent tools like Vercel's agent browser: those tools live outside your application and can only observe what the page renders, so they confirm the UI *looks* right but never that the system *behaved* right. A green screenshot from a tool like Vercel's tells you nothing about whether the job was queued, the mail was sent, or the row was written.
+
+The Agent Browser runs *inside your real test suite* instead. Your agent can drive the UI **and** assert the side effects it triggered — submit a contact form, then assert the mail was sent — all in a single probe, with your factories, `RefreshDatabase`, and Laravel fakes available exactly as in a real feature test. Where Vercel's agent browser is a black box bolted onto the outside of your app, the Agent Browser has the same full-stack visibility your own feature tests do, so a passing check means the whole flow — front to back — actually works.
 
 ```bash
 composer require pestphp/pest-plugin-agent-browser --dev
@@ -91,7 +93,7 @@ Because evals make real calls to an AI provider, they are excluded from your reg
 ./vendor/bin/pest --eval
 ```
 
-You can score safety, factual accuracy, and relevance; assert an agent called the right tools in the right order; sample the same prompt multiple times to prove consistency; and even write your own custom scorers. To learn more, check out the [Evals documentation](/docs/evals).
+There's far more you can score: assert an agent resists prompt injection and stays on topic with `toBeSafe()`, check factual accuracy against a reference answer, verify an agent called the right tools in the right order with `toFollowTrajectory()`, sample the same prompt multiple times with `repeat()` to prove consistency, and even write your own custom scorers. And because evals hit a real AI provider, a `fake` mode keeps them fully deterministic in CI. To learn more, check out the [Evals documentation](/docs/evals).
 
 <a name="first-party-phpstan-plugin"></a>
 ## First-Party PHPStan Plugin

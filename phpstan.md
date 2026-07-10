@@ -151,4 +151,4 @@ Reports `covers()` calls that reference a class or function that does not exist.
 
 ---
 
-Now that you know how to add static analysis to your test suite, you may also be interested in [type coverage](/docs/type-coverage) to ensure your application code is fully typed.
+Now that you know how to add static analysis to your test suite, let's explore the wider ecosystem of plugins that can enhance your Pest experience: [Plugins](/docs/plugins)

@@ -123,4 +123,4 @@ expect()->pipe('toBe', function (Closure $next, mixed $expected) {
 
 ---
 
-As demonstrated, creating custom expectations can significantly simplify your code by eliminating the need to duplicate the logic to verify that your tests are behaving as anticipated. In the following chapter, we will explore how Pest can scan for Profanity, to help you maintain a professional codebase: [Profanity Plugin](/docs/profanity)
+As demonstrated, creating custom expectations can significantly simplify your code by eliminating the need to duplicate the logic to verify that your tests are behaving as anticipated. Next, let's explore how to isolate the code under test by mocking its dependencies: [Mocking](/docs/mocking)

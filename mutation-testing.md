@@ -336,4 +336,4 @@ Stop mutation testing execution upon the first untested mutation.
 
 ---
 
-As you can see Pest PHP's mutation testing feature is a powerful tool to improve the quality of your test suite. In the following chapter, we explain how can you use Snapshots to test your code: [Snapshot Testing](/docs/snapshot-testing)
+As you can see Pest PHP's mutation testing feature is a powerful tool to improve the quality of your test suite. Next, let's explore how the Tia Engine speeds up your suite by re-running only the tests affected by your latest changes: [Tia Engine](/docs/tia)

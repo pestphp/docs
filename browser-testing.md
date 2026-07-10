@@ -1275,4 +1275,4 @@ However, if you are using GitHub Actions, you need to add the following steps to
 
 ---
 
-Now, let's dive into architectural testing and how it can benefit your development process. By performing architectural testing, you can evaluate the overall design of your application and identify potential flaws before they become significant issues: [Arch Testing](/docs/arch-testing)
+Now, let's look at how the Agent Browser gives your AI coding agents a single command to verify a change actually works — driving a real browser and your full test suite behind the scenes: [Agent Browser](/docs/agent-browser)

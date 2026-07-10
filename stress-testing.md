@@ -335,4 +335,4 @@ $result->testRun()->duration();
 
 ---
 
-Here, we've seen how to use Pest's Stress Testing plugin (aka stressless) to stress test a given URL and set expectations on the result. Moving on, let's explore how to test the coverage of your testing code: [Test Coverage](/docs/test-coverage)
+Here, we've seen how to use Pest's Stress Testing plugin (aka stressless) to stress test a given URL and set expectations on the result. Moving on, let's explore how to evaluate the quality of LLM agents and AI-generated output directly from your test suite: [Evals](/docs/evals)

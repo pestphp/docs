@@ -137,4 +137,4 @@ $mock->shouldReceive('delete')->atMost()->times(3);
 
 ---
 
-The primary objective of this section is to provide you with an introduction to Mockery, the mocking library we prefer. However, for a more comprehensive understanding of Mockery, we suggest checking out its [official documentation](https://docs.mockery.io). Next, let's explore Pest's plugins and discover how they can enhance your Pest experience: [Plugins](/docs/plugins)
+The primary objective of this section is to provide you with an introduction to Mockery, the mocking library we prefer. However, for a more comprehensive understanding of Mockery, we suggest checking out its [official documentation](https://docs.mockery.io). Next, let's explore how snapshot testing lets you assert against large or complex output without writing it all out by hand: [Snapshot Testing](/docs/snapshot-testing)

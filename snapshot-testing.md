@@ -53,4 +53,4 @@ expect()->pipe('toMatchSnapshot', function (Closure $next) {
 
 ---
 
-In this chapter, we've seen how powerful snapshot testing is. In the following chapter, we will dive into Pest's custom helpers: [Custom Helpers](/docs/custom-helpers)
+In this chapter, we've seen how powerful snapshot testing is. Next, let's explore browser testing and how Pest can drive a real browser to test your application's user interface: [Browser Testing](/docs/browser-testing)

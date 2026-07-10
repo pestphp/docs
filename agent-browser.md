@@ -5,6 +5,8 @@ description: The Agent Browser plugin gives AI coding agents a single command to
 
 # Agent Browser
 
+**Source code**: [github.com/pestphp/pest-plugin-agent-browser](https://github.com/pestphp/pest-plugin-agent-browser)
+
 AI coding agents are great at writing code, but they are terrible at knowing whether that code actually works. After editing a Blade template, a Livewire component, a controller, or a bit of CSS, an agent has no way to *see* the result — so it guesses, and moves on.
 
 The Agent Browser plugin closes that loop. It gives your agent a single command to run a one-off verification against your application:
@@ -132,4 +134,4 @@ When the behavior deserves a lasting regression guard, write a real test in `tes
 
 ---
 
-Next, let's look at how to keep your test suite fast as it grows: [Optimizing Tests](/docs/optimizing-tests)
+Next, let's dive into architectural testing and how it can help you evaluate the overall design of your application and catch potential flaws before they become significant issues: [Architecture Testing](/docs/arch-testing)

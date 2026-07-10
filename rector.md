@@ -18,11 +18,11 @@ composer require rector/rector --dev
 
 ---
 
-### Rule Sets
+## Rule Sets
 
 You can configure which rules to apply by using predefined rule sets in your `rector.php` file.
 
-#### Pest Code Quality
+### Pest Code Quality
 
 Converts raw PHP assertions to Pest's built-in matchers, chains multiple `expect()` calls on the same value, and simplifies redundant patterns.
 
@@ -40,7 +40,7 @@ return RectorConfig::configure()
 
 The `PEST_CHAIN` set merges consecutive `expect()` calls into a single chained expectation and orders type checks first. It is best applied alongside `PEST_CODE_QUALITY` so that newly introduced matchers can be chained together.
 
-#### PHPUnit To Pest Migration
+### PHPUnit To Pest Migration
 
 Converts PHPUnit assertion methods and `expectException()` patterns to Pest's `expect()` API. These are structural transformations, so you should review the result after applying them.
 
@@ -55,7 +55,7 @@ return RectorConfig::configure()
     ]);
 ```
 
-#### Laravel
+### Laravel
 
 Converts `Illuminate\Support\Str` equality checks to Pest's string case matchers, such as `toBeSnakeCase()` and `toBeKebabCase()`. This set requires the `illuminate/support` package.
 
@@ -70,7 +70,7 @@ return RectorConfig::configure()
     ]);
 ```
 
-#### Browser
+### Browser
 
 Converts generic `expect($page->getter())->matcher()` patterns into the dedicated assertions provided by the [Browser Testing](/docs/browser-testing) plugin, resulting in more readable tests and clearer failure messages. This set requires the `pestphp/pest-plugin-browser` package.
 
@@ -85,7 +85,7 @@ return RectorConfig::configure()
     ]);
 ```
 
-#### Pest Version Upgrades
+### Pest Version Upgrades
 
 Upgrade your test suite between major Pest versions.
 
@@ -105,7 +105,7 @@ return RectorConfig::configure()
 
 ---
 
-### Preview & Apply Changes
+## Preview & Apply Changes
 
 Run Rector with the `--dry-run` flag to preview changes before applying them:
 
@@ -949,4 +949,4 @@ Converts `uses()` and `pest()->uses()` to `pest()->extend()` for classes and `pe
 +pest()->extend(Tests\TestCase::class)->in('Feature');
 ```
 
-Now that you know how to automate refactoring your test suite, you may also be interested in [type coverage](/docs/type-coverage) to further improve your test code quality.
+Now that you know how to automate refactoring your test suite, let's look at how Pest's PHPStan plugin brings accurate static analysis to your tests: [PHPStan](/docs/phpstan)

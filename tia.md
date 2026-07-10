@@ -1,11 +1,11 @@
 ---
-title: Test Impact Analysis (TIA)
-description: Test Impact Analysis is a great way to drastically reduce the time it takes to run your test suite by re-running only the tests affected by your latest changes.
+title: Tia Engine
+description: The Tia Engine (Test Impact Analysis) is a great way to drastically reduce the time it takes to run your test suite by re-running only the tests affected by your latest changes.
 ---
 
-# Test Impact Analysis (TIA)
+# Tia Engine
 
-Test Impact Analysis is a great way to drastically reduce the time it takes to run your test suite by re-running only the tests affected by your latest changes. The first time you run with `--tia`, Pest records a graph of which tests depend on which files. Every run after that, Pest looks at what you changed, runs only the tests that touched those files, and replays cached results for everything else.
+The **Tia Engine** — short for Test Impact Analysis — is a great way to drastically reduce the time it takes to run your test suite by re-running only the tests affected by your latest changes. The first time you run with `--tia`, the engine records a graph of which tests depend on which files. Every run after that, the engine looks at what you changed, runs only the tests that touched those files, and replays cached results for everything else.
 
 A typical Laravel suite that takes 15 seconds replays in under a second. Edits to a single Blade template re-run a handful of feature tests. Comment-only edits, formatter passes, and README touches re-run nothing at all.
 
@@ -15,9 +15,9 @@ To get started, just add the `--tia` flag to any Pest invocation:
 ./vendor/bin/pest --parallel --tia
 ```
 
-The first run is the **baseline** — Pest enables a coverage driver (PCOV or Xdebug) and records the dependency graph as your tests execute. Expect a small overhead on this run only.
+The first run is the **baseline** — the engine enables a coverage driver (PCOV or Xdebug) and records the dependency graph as your tests execute. Expect a small overhead on this run only.
 
-Every subsequent run is a **replay**. Pest compares your working tree against the baseline and re-runs only the tests affected by your changes:
+Every subsequent run is a **replay**. The engine compares your working tree against the baseline and re-runs only the tests affected by your changes:
 
 ```
 Tests:    774 passed (2658 assertions, 7 affected, 2 uncached, 765 replayed)
@@ -26,9 +26,9 @@ Duration: 0.74s
 
 `affected` is the set of tests Pest re-ran because their dependencies changed. `uncached` means Pest had to execute a test because no cached result existed yet. `replayed` is the set whose results were served from cache.
 
-## How Pest Decides What To Run
+## How The Engine Decides What To Run
 
-For each file you've changed, Pest looks for tests that depend on it:
+For each file you've changed, the engine looks for tests that depend on it:
 
 - **PHP source files** — your `app/` classes, controllers, models, helpers — are tracked through the coverage driver. A change to `app/Models/User.php` re-runs only the tests that touched `User`.
 - **Migrations** are intersected with the tables each test queried during the baseline. A column rename in `create_users_table.php` re-runs only the tests that queried the `users` table.
@@ -178,4 +178,4 @@ Each glob maps to a test directory or an exact test file. Whenever a matching fi
 
 ---
 
-Now that you've learned how to use Test Impact Analysis to speed up your test suite, let's discuss how to integrate Pest with your continuous integration workflow: [Continuous Integration](/docs/continuous-integration)
+Now that you've learned how to use the Tia Engine to speed up your test suite, let's explore how to automatically modernize and refactor your test code with Rector: [Rector](/docs/rector)
