@@ -107,7 +107,7 @@ composer require pestphp/pest-plugin-phpstan --dev
 composer require phpstan/phpstan --dev
 ```
 
-Now the type flowing through an `expect()` chain is fully understood, `$this` resolves to your configured test case, and PHPStan flags genuine mistakes in your tests — like an impossible expectation:
+Now the type flowing through an `expect()` chain is fully understood — including higher-order expectations like `expect($user)->name->toBe('Nuno')` and any methods you share through `pest()->extend()` or `uses()`. `$this` resolves to your configured test case, and PHPStan flags genuine mistakes in your tests — like an impossible expectation:
 
 ```php
 expect(10)->toStartWith('1'); // int can never satisfy toStartWith()
