@@ -195,7 +195,7 @@ arch('app')
     ->toBeFinal();
 ```
 
-Note that, typically this expectation is used in combination with the `classes()` modifier to ensure that all classes within a given namespace are final.
+Typically, you should use this expectation in combination with the `classes()` modifier to ensure that all classes within a given namespace are final.
 
 ```php
 arch('app')
@@ -215,7 +215,7 @@ arch('app')
     ->toBeReadonly();
 ```
 
-Note that, typically this expectation is used in combination with the `classes()` modifier to ensure that all classes within a given namespace are readonly.
+Typically, you should use this expectation in combination with the `classes()` modifier to ensure that all classes within a given namespace are readonly.
 
 ```php
 arch('app')
@@ -567,7 +567,7 @@ arch('models')
     ->toUseStrictEquality();
 ```
 
-Or, if you rather want to ensure that all files within a given namespace do not use strict equality, you may use the `not` modifier.
+Or, if you would rather ensure that all files within a given namespace do not use strict equality, you may use the `not` modifier.
 
 ```php
 arch('models')
@@ -622,9 +622,9 @@ arch('app')
 <a name="presets"></a>
 ## Presets
 
-Sometimes, writing arch expectations from scratch can be time-consuming, specifically when working on a new project, and you just want to ensure that the basic architectural rules are met.
+Sometimes you may find that writing arch expectations from scratch is time-consuming, particularly when working on a new project where you only want to ensure that the basic architectural rules are met.
 
-Presets are predefined sets of granular expectations that you can use to test your application's architecture.
+Thankfully, presets are predefined sets of granular expectations that you may use to test your application's architecture.
 
 <div class="collection-method-list" markdown="1">
 
@@ -706,9 +706,9 @@ You may find all the expectations included in the `relaxed` preset below in our 
 <a name="preset-custom"></a>
 ### `custom`
 
-Typically, you don't need to create a `custom` preset, as you can use the `arch()` method to write your granular expectations. However, if you want to create your own preset, you can use the `custom` method to define the preset.
+Typically, you don't need to create a `custom` preset, as you may use the `arch()` method to write your granular expectations. However, if you wish to create your own preset, you may use the `custom` method to define it.
 
-This may be useful if you have a set of expectations that you use frequently across multiple projects, or if you are a plugin author and want to provide a set of expectations for your users.
+This may be helpful if you have a set of expectations that you use frequently across multiple projects, or if you are a plugin author and want to provide a set of expectations for your users.
 ```php
 pest()->presets()->custom('ddd', function () {
     return [
@@ -729,7 +729,7 @@ pest()->presets()->custom('silex', function (array $userNamespaces) {
 });
 ```
 
-You can then use the `custom` preset by chaining the `preset()` method with the name of the custom preset.
+You may then use the `custom` preset by chaining the `preset()` method with the name of the custom preset.
 
 ```php
 arch()->preset()->silex();
@@ -738,7 +738,7 @@ arch()->preset()->silex();
 <a name="wildcards"></a>
 ## Wildcards
 
-Since Pest 3.8, you can pass wildcards to the `expect()` method to match code in multiple namespaces. For example, if you want to ensure all code within any `Traits` subdirectory contain traits, you can use the following:
+Since Pest 3.8, you may pass wildcards to the `expect()` method to match code in multiple namespaces. For example, if you wish to ensure all code within any `Traits` subdirectory contains traits, you may use the following:
 
 ```php
 arch()

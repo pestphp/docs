@@ -1,6 +1,6 @@
 ---
 title: Browser Testing
-description:
+description: Browser testing lets you drive a real browser to ensure your application works correctly across different browsers and devices, all with Pest's simple and elegant syntax.
 ---
 
 # Browser Testing
@@ -15,7 +15,7 @@ it('may welcome the user', function () {
 });
 ```
 
-This is a basic example of a browser test that checks if the homepage contains the text "Welcome". However, Pest's browser testing capabilities go beyond this simple example. You can use various methods to interact with the page, such as clicking buttons, filling out forms, and navigating between pages.
+This is a basic example of a browser test that checks whether the homepage contains the text "Welcome". However, Pest's browser testing capabilities go well beyond this simple example. You may use various methods to interact with the page, such as clicking buttons, filling out forms, and navigating between pages.
 
 Here is an example of a more complex browser test, on Laravel, that checks if a user can sign in:
 
@@ -44,11 +44,11 @@ it('may sign in the user', function () {
 });
 ```
 
-Note that, you are leveraging the full power of Laravel's testing capabilities, such as refresh database, event faking, and authentication assertions, while also actually doing browser testing.
+Note that you are leveraging the full power of Laravel's testing capabilities — refresh database, event faking, and authentication assertions — while also performing real browser testing.
 
 ## Getting Started
 
-To get started with browser testing in Pest, you need to install the Pest Browser plugin. You can do this by running the following command:
+To get started with browser testing in Pest, you first need to install the Pest Browser plugin, which you may do by running the following command:
 
 ```bash
 composer require pestphp/pest-plugin-browser --dev
@@ -73,7 +73,7 @@ We recommend running tests in parallel using the `--parallel` option to speed up
 ./vendor/bin/pest --parallel
 ```
 
-For debugging purposes, you can run the tests in a headed mode and pause the execution at the end of the failed test run:
+For debugging purposes, you may run the tests in a headed mode and pause the execution at the end of the failed test run:
 
 ```bash
 ./vendor/bin/pest --debug
@@ -93,14 +93,14 @@ test('example', function () {
 
 ### Using Other Browsers
 
-By default, the `visit()` method uses Chrome as the browser. However, if you want to use a different browser, you can specify it using the `--browser` option when running the tests:
+By default, the `visit()` method uses Chrome as the browser. However, if you wish to use a different browser, you may specify it using the `--browser` option when running your tests:
 
 ```bash
 ./vendor/bin/pest --browser firefox
 ./vendor/bin/pest --browser safari
 ```
 
-If you wish to use a different browser by default without specifying it in the command line, you can set it in your `Pest.php` configuration file:
+If you wish to use a different browser by default without specifying it on the command line, you may set it in your `Pest.php` configuration file:
 
 ```php
 pest()->browser()->inFirefox();
@@ -109,13 +109,13 @@ pest()->browser()->inSafari();
 
 ### Using Other Devices
 
-The `visit()` method uses a desktop viewport. However, you can specify a mobile viewport using the `onMobile()` method. For example:
+By default, the `visit()` method uses a desktop viewport. However, you may specify a mobile viewport using the `onMobile()` method. For example:
 
 ```php
 $page = visit('/')->on()->mobile();
 ```
 
-If you wish to use a specific device, you can use the `on()` method and chain it with the `macbook14`, `iPhone14Pro`, etc:
+If you wish to use a specific device, you may use the `on()` method and chain it with `macbook14`, `iPhone14Pro`, etc:
 
 ```php
 $page = visit('/')->on()->iPhone14Pro();
@@ -123,7 +123,7 @@ $page = visit('/')->on()->iPhone14Pro();
 
 ### Using Dark Mode
 
-Pest enforces a light color scheme by default. However, you can specify a dark color scheme using the `inDarkMode()` method:
+By default, Pest enforces a light color scheme. However, you may specify a dark color scheme using the `inDarkMode()` method:
 
 ```php
 $page = visit('/')->inDarkMode();
@@ -131,7 +131,7 @@ $page = visit('/')->inDarkMode();
 
 ### Visiting Multiple Pages
 
-You can visit multiple pages simultaneously by passing an array of URLs to the `visit()` method. This is useful for testing scenarios where you need to interact with multiple pages at once:
+You may visit multiple pages simultaneously by passing an array of URLs to the `visit()` method. This is convenient for testing scenarios where you need to interact with multiple pages at once:
 
 ```php
 $pages = visit(['/', '/about']);
@@ -149,7 +149,7 @@ $aboutPage->assertSee('About Us');
 
 ### Navigation
 
-After visiting a page, you can navigate to other pages using the `navigate()` method. This method allows you to navigate to a different URL while keeping the current browser context:
+After visiting a page, you may navigate to other pages using the `navigate()` method. This method allows you to navigate to a different URL while keeping the current browser context:
 
 ```php
 $page = visit('/');
@@ -160,7 +160,7 @@ $page->navigate('/about')
 
 ### Locating Elements
 
-You can locate elements in the DOM using text or CSS selectors. Pest provides a simple syntax for locating elements:
+You may locate elements in the DOM using text or CSS selectors. Pest provides a simple syntax for doing so:
 
 ```php
 // Clicks the first link with the text "Login"
@@ -180,7 +180,7 @@ $page->click('#submit-button');
 
 ### Configuring Timeouts
 
-Sometimes, elements may take time to appear on the page. By default, Pest waits for `5` seconds before timing out. You can configure the default timeout for browser tests in your `Pest.php` configuration file:
+Sometimes elements may take time to appear on the page. By default, Pest waits `5` seconds before timing out. However, you may configure the default timeout for browser tests in your `Pest.php` configuration file:
 
 ```php
 pest()->browser()->timeout(10000);
@@ -190,7 +190,7 @@ pest()->browser()->timeout(10000);
 
 By default, the User Agent will default to the Browser you're running for tests such as: `Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/133.0.6943.16 Safari/537.36` 
 
-You may wish to override the User Agent of the browser for all of your tests, you can configure this in the `Pest.php` configuration file:
+Sometimes you may wish to override the User Agent of the browser for all of your tests. You may configure this in the `Pest.php` configuration file:
 
 ```php
 pest()->browser()->userAgent('CustomUserAgent');
@@ -200,7 +200,7 @@ pest()->browser()->userAgent('CustomUserAgent');
 
 By default, the server will bind to `127.0.0.1` for all browser tests.
 
-You may wish to override the host for subdomain applications. You can configure this in the `Pest.php` configuration file:
+You may wish to override the host for subdomain applications. You may configure this in the `Pest.php` configuration file:
 
 ```php
 pest()->browser()->withHost('some-subdomain.localhost');
@@ -208,7 +208,7 @@ pest()->browser()->withHost('some-subdomain.localhost');
 
 ### Geolocation
 
-Sometimes, you need to define where the browser believes it is physically on the earth.  This method takes a latitude and longitude and will set the `geolocation` permission in the browser and then make the coordinates available via Javascript's getCurrentPosition API:
+Sometimes you may need to define where the browser believes it is physically located on the earth. This method takes a latitude and longitude, sets the `geolocation` permission in the browser, and then makes the coordinates available via JavaScript's getCurrentPosition API:
 
 ```php
 $page = visit('/')
@@ -230,7 +230,7 @@ $page->assertSee('en-US');
 
 ### Configuring Locale
 
-You can set the locale for your test requests using the `withLocale` method. This is particularly useful for testing multilingual applications.
+You may set the locale for your test requests using the `withLocale` method. This is particularly convenient for testing multilingual applications:
 
 ```php
 $page = visit('/')->withLocale('fr-FR');
@@ -239,7 +239,7 @@ $page->assertSee('Bienvenue');
 ```
 ### Configuring Timezone
 
-You can set the timezone for your test requests using the `withTimezone` method. This is useful for testing date and time displays in different time zones.
+You may set the timezone for your test requests using the `withTimezone` method. This is helpful for testing date and time displays across different time zones:
 
 ```php
 $page = visit('/')->withTimezone('America/New_York');
@@ -249,7 +249,7 @@ $page->assertSee('EST');
 
 ### Configuring UserAgent
 
-You can set the User-Agent header for your test requests using the `withUserAgent` method. This is useful for testing how your application responds to different types of clients, such as mobile browsers or bots.
+You may set the User-Agent header for your test requests using the `withUserAgent` method. This is helpful for testing how your application responds to different types of clients, such as mobile browsers or bots:
 
 ```php
 $page = visit('/')->withUserAgent('Googlebot');
@@ -259,7 +259,7 @@ $page->assertSee('Welcome, bot!');
 
 ### Configuring Host
 
-You can set the host for your test server using the `withHost` method. This is useful for testing subdomains or where different hosts serve different content.
+You may set the host for your test server using the `withHost` method. This is helpful for testing subdomains, or where different hosts serve different content:
 
 ```php
 $page = visit('/dashboard')->withHost('some-subdomain.localhost');
@@ -1204,13 +1204,13 @@ $page->waitForKey(); // Useful for debugging
 ## Debugging tests
 
 <a name="debug"></a>
-Sometimes you may want to debug your browser tests. Pest provides a convenient way to do this by using the `--debug` option, which makes pest to open the browser window and pause the execution of the test when it fails. You can then inspect the page and see what went wrong.
+Sometimes you may wish to debug your browser tests. Pest provides a convenient way to do this through the `--debug` option, which opens the browser window and pauses the execution of the test when it fails. You may then inspect the page and see what went wrong:
 
 ```bash
 ./vendor/bin/pest --debug
 ```
 
-Optionally, you can also use the `debug()` method in your test. It will limit execution to this test (like using [`only()`](/docs/filtering-tests#only)), pause the execution and open the browser window:
+Alternatively, you may use the `debug()` method in your test. It will limit execution to this test (like using [`only()`](/docs/filtering-tests#only)), pause the execution, and open the browser window:
 
 ```php
 $page->debug();
@@ -1218,7 +1218,7 @@ $page->debug();
 
 
 <a name="screenshot"></a>
-You can also take a screenshot of the current page using the `screenshot()` method. This is useful for visual debugging:
+You may also take a screenshot of the current page using the `screenshot()` method, which is convenient for visual debugging:
 
 NOTE: If you don't pass the filename, it will use the test name as the filename.
 
@@ -1229,27 +1229,27 @@ $page->screenshot(filename: 'custom-name');
 ```
 
 <a name="screenshotElement"></a>
-You can also take a screenshot of a specific element using the `screenshotElement()` method:
+You may also take a screenshot of a specific element using the `screenshotElement()` method:
 
 ```php
 $page->screenshotElement('#my-element');
 ```
 
 <a name="tinker"></a>
-You can also use the `tinker()` method to open a Tinker session in the context of the current page. This allows you to interact with the page using PHP code:
+You may also use the `tinker()` method to open a Tinker session in the context of the current page, allowing you to interact with the page using PHP code:
 
 ```php
 $page->tinker();
 ```
 
 <a name="headed"></a>
-After you can run your tests with the `--headed` option to open the browser window:
+You may also run your tests with the `--headed` option to open the browser window:
 
 ```bash
 ./vendor/bin/pest --headed
 ```
 
-If you wish to run the tests in a headed mode by default, you can set it in your `Pest.php` configuration file:
+If you wish to run the tests in a headed mode by default, you may set it in your `Pest.php` configuration file:
 
 ```php
 pest()->browser()->headed();

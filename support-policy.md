@@ -1,10 +1,10 @@
 ---
 title: Support Policy
-description: We strive to resolve all reported bugs or issues to the best of our abilities as an open-source project. Nevertheless, we cannot ensure a fixed resolution time or guarantee the availability of a fix for every problem.
+description: As an open-source project, we strive to resolve every reported bug or issue to the best of our abilities, while being clear about what we can and cannot guarantee.
 ---
 # Support Policy
 
-We strive to resolve all reported bugs or issues to the best of our abilities as an open-source project. Nevertheless, we cannot ensure a fixed resolution time or guarantee the availability of a fix for every problem.
+As an open-source project, we strive to resolve every reported bug or issue to the best of our abilities. Nevertheless, we cannot ensure a fixed resolution time or guarantee the availability of a fix for every problem.
 
 Bug fixes will be available for outdated versions for a duration of 12 months following the latest version's release. The previous version will be regarded as outdated once a new version of Pest is released.
 
@@ -21,7 +21,7 @@ Pest adheres to semantic versioning principles, where the version number `x.y.z`
 - When adding new non-breaking features or improvements, the `y` number is incremented (e.g., 4.10.2 to 4.12.0).
 - When introducing breaking changes, the `x` number is incremented (e.g., 4.10.2 to 5.0.0).
 
-As maintainers of testing frameworks, we take breaking changes very seriously. Our goal is to deliver robust, cutting-edge features without disrupting the community's test suites. This commitment is why upgrading from Pest 2 to Pest 3 was as simple as updating your composer.json file. Similarly, the transition to Pest 4 has been designed to be just as seamless, ensuring an effortless upgrade experience for our users.
+As maintainers of testing frameworks, we take breaking changes very seriously. Our goal is to deliver robust features without disrupting the community's test suites. This commitment is why upgrading from Pest 2 to Pest 3 was as convenient as updating your `composer.json` file. Similarly, the transition to Pest 4 has been designed to be just as seamless, ensuring a painless upgrade experience for our users.
 
 ----
 

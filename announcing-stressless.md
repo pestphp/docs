@@ -13,7 +13,7 @@ Check out this YouTube video where we walk you through the installation and setu
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/SaMoPZwdOCY?si=KBskkVWLUUSyK0u0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-As you can see, it's effortless to get started with Stressless — all you need to do is require the package using Composer, and you're ready to go!
+As you can see, getting started with Stressless is painless — you require the package using Composer, and you're ready to go.
 
 There are two main ways to use Stressless. You may use it to quickly stress test your application from the command line:
 
@@ -21,7 +21,7 @@ There are two main ways to use Stressless. You may use it to quickly stress test
 ./vendor/bin/pest stress example.com --concurrency=5 --duration=10
 ````
 
-Or you can use it to write stress tests in your Pest PHP test files:
+Or, you may use it to write stress tests in your Pest PHP test files:
 
 ```php
 <?php

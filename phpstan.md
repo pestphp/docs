@@ -25,7 +25,7 @@ includes:
     - vendor/pestphp/pest-plugin-phpstan/extension.neon
 ```
 
-Then, analyse your `tests` directory as usual:
+Then, analyze your `tests` directory as usual:
 
 ```bash
 vendor/bin/phpstan analyse tests
@@ -60,7 +60,7 @@ parameters:
 
 ## Type Inference
 
-Once installed, the plugin makes PHPStan aware of Pest's dynamic API. As a result, analysing your test suite becomes as accurate as analysing your application code. Among other things, the plugin understands:
+Once installed, the plugin makes PHPStan aware of Pest's dynamic API. As a result, analyzing your test suite becomes as accurate as analyzing your application code. Among other things, the plugin understands:
 
 - The type flowing through an `expect()` chain, so matchers such as `toHaveLength()` or `toHaveKey()` know the value they are asserting against.
 - The `$this` instance inside test and hook closures, resolving to your configured `testCaseClass` along with its methods and properties.
@@ -77,7 +77,7 @@ In addition to type inference, the plugin registers a number of rules that detec
 
 ### Impossible Expectations
 
-Reports expectations that can never pass because the value's type is incompatible with the matcher.
+Reports expectations that can never pass because the value's type is incompatible with the matcher:
 
 ```php
 expect(10)->toStartWith('1'); // int can never satisfy toStartWith()
@@ -85,7 +85,7 @@ expect(10)->toStartWith('1'); // int can never satisfy toStartWith()
 
 ### Redundant Expectations
 
-Reports expectations that are always true because the value's type already guarantees the assertion.
+Reports expectations that are always true because the value's type already guarantees the assertion:
 
 ```php
 expect('pest')->toBeString(); // $value is already known to be a string
@@ -93,7 +93,7 @@ expect('pest')->toBeString(); // $value is already known to be a string
 
 ### Matcher Value Types
 
-Reports matchers called on a value that does not meet their requirements, such as a string, iterable, or countable value.
+Reports matchers called on a value that does not meet their requirements, such as a string, iterable, or countable value:
 
 ```php
 expect(42)->toHaveLength(2); // toHaveLength() requires a string
@@ -101,7 +101,7 @@ expect(42)->toHaveLength(2); // toHaveLength() requires a string
 
 ### Static Test Closures
 
-Reports test and hook closures declared as `static`, which prevents Pest from binding the test case instance to `$this`.
+Reports test and hook closures declared as `static`, which prevents Pest from binding the test case instance to `$this`:
 
 ```php
 it('does something', static function () { // remove the "static" keyword

@@ -7,25 +7,25 @@ description: The Agent Browser plugin gives AI coding agents a single command to
 
 **Source code**: [github.com/pestphp/pest-plugin-agent-browser](https://github.com/pestphp/pest-plugin-agent-browser)
 
-AI coding agents are great at writing code, but they are terrible at knowing whether that code actually works. After editing a Blade template, a Livewire component, a controller, or a bit of CSS, an agent has no way to *see* the result — so it guesses, and moves on.
+AI coding agents are capable at writing code, yet they often have no way to know whether that code actually works. After editing a Blade template, a Livewire component, a controller, or a bit of CSS, an agent cannot *see* the result — so it guesses, then moves on.
 
-The Agent Browser plugin closes that loop. It gives your agent a single command to run a one-off verification against your application:
+Thankfully, the Agent Browser plugin closes that loop. It gives your agent a single command to run a one-off verification against your application:
 
 ```bash
 vendor/bin/pest --agent-browser="visit('/')->assertSee('Welcome');"
 ```
 
-The agent gets a definitive pass or fail instead of a hopeful guess — with the full power of Pest at its disposal. Everything your test suite can do is available: factories, the database, mail and notification fakes, authentication, expectations, *and* real browser testing — all in the same probe.
+Your agent receives a definitive pass or fail instead of a hopeful guess, with the full power of Pest at its disposal. Everything your test suite can do is available: factories, the database, mail and notification fakes, authentication, expectations, *and* real browser testing — all in the same probe.
 
 ## Getting Started
 
-To start using the Agent Browser plugin, require it via Composer.
+To get started with the Agent Browser plugin, require it via Composer:
 
 ```bash
 composer require pestphp/pest-plugin-agent-browser --dev
 ```
 
-The plugin adds the `--agent-browser` option to Pest. For browser-based verification (visiting pages, screenshots, clicks, responsive checks), you'll also want the [Browser Testing](/docs/browser-testing) plugin installed:
+The plugin adds the `--agent-browser` option to Pest. For browser-based verification — visiting pages, screenshots, clicks, responsive checks — you may also want the [Browser Testing](/docs/browser-testing) plugin installed:
 
 ```bash
 composer require pestphp/pest-plugin-browser --dev
@@ -42,13 +42,13 @@ php artisan boost:install
 
 When prompted for third-party AI guidelines and skills, select `pestphp/pest-plugin-agent-browser`. This installs the guidelines and the `pest-plugin-agent-browser` skill, so your agent knows exactly when and how to reach for the `--agent-browser` command.
 
-That's it. Your agent can now verify backend behavior, frontend behavior, or both, from a single command.
+That's it. Your agent may now verify backend behavior, frontend behavior, or both, from a single command.
 
 ## Why Agent Browser?
 
 A new category of tooling has emerged to give agents "eyes" on the browser — Vercel's [agent-browser](https://github.com/vercel-labs/agent-browser) being a prominent example. These tools drive a headless Chromium instance and let an agent click, type, and screenshot its way through your app.
 
-They are genuinely useful, but they share a fundamental limitation: **they only see the browser.** An agent driving a raw browser-automation CLI can confirm that a page rendered, but it cannot confirm that the email was queued, the order was written to the database, the notification fired, or the job was dispatched. It is testing your application from the outside, blind to everything that happens behind the response.
+They are helpful, however they share a fundamental limitation: **they only see the browser.** An agent driving a raw browser-automation CLI can confirm that a page rendered, but it cannot confirm that the email was queued, the order was written to the database, the notification fired, or the job was dispatched. It is testing your application from the outside, blind to everything that happens behind the response.
 
 The Agent Browser plugin is different because it is **backed by Pest's real browser testing engine and runs inside your actual test suite.** This gives it two advantages no browser-only tool can match:
 
@@ -59,13 +59,13 @@ In short: browser-only agent tools verify what the *page* looks like. The Agent 
 
 ## Verifying Backend Behavior
 
-The snippet runs inside a full Pest test, so your agent can seed state with factories and assert against it directly. State should always be created inline — never rely on pre-existing data.
+The snippet runs inside a full Pest test, so your agent may seed state with factories and assert against it directly. Typically, you should create state inline, and never rely on pre-existing data.
 
 ```bash
 vendor/bin/pest --agent-browser="\$post = \App\Models\Post::factory()->create(); expect(\$post->author)->not->toBeNull();"
 ```
 
-Acting as an authenticated user and asserting a response works exactly as it would in a real feature test:
+As you would expect, acting as an authenticated user and asserting a response works exactly as it would in a real feature test:
 
 ```bash
 vendor/bin/pest --agent-browser="\$user = \App\Models\User::factory()->create(); \$this->actingAs(\$user)->get('/dashboard')->assertOk();"
@@ -79,7 +79,7 @@ vendor/bin/pest --agent-browser="\Illuminate\Support\Facades\Notification::fake(
 
 ## Verifying Frontend Behavior
 
-With the Browser Testing plugin installed, your agent can visit pages, take screenshots, assert content, and interact with the UI — all driven by a real browser.
+With the Browser Testing plugin installed, your agent may visit pages, take screenshots, assert content, and interact with the UI — all driven by a real browser.
 
 ```bash
 # Take a screenshot to visually confirm a change
@@ -92,14 +92,14 @@ vendor/bin/pest --agent-browser="visit('/')->assertSee('Welcome');"
 vendor/bin/pest --agent-browser="visit('/')->click('Login')->assertPathIs('/login');"
 ```
 
-It can check responsive layouts by emulating devices or setting an explicit viewport:
+Your agent may also check responsive layouts by emulating devices or setting an explicit viewport:
 
 ```bash
 vendor/bin/pest --agent-browser="visit('/')->on()->mobile()->screenshot(filename: 'home-mobile');"
 vendor/bin/pest --agent-browser="visit('/')->on()->iPhone14Pro()->screenshot(filename: 'home-iphone');"
 ```
 
-And it can run health checks for JavaScript errors, accessibility issues, and visual drift:
+In addition, it may run health checks for JavaScript errors, accessibility issues, and visual drift:
 
 ```bash
 vendor/bin/pest --agent-browser="visit('/')->assertNoJavaScriptErrors();"
@@ -110,7 +110,7 @@ For the complete browser API, see the [Browser Testing](/docs/browser-testing) d
 
 ## Combining Frontend and Backend
 
-This is where the Agent Browser plugin truly shines. Because the browser and your application live in the same probe, your agent can drive the UI and then assert the side effect it produced — the exact end-to-end confidence a browser-only tool can never provide.
+This is where the Agent Browser plugin truly shines. Because the browser and your application live in the same probe, your agent may drive the UI and then assert the side effect it produced — the exact end-to-end confidence a browser-only tool can never provide.
 
 ```bash
 vendor/bin/pest --agent-browser="\Illuminate\Support\Facades\Mail::fake(); visit('/contact')->type('email', 'test@example.com')->type('message', 'Hello')->press('Send')->assertSee('Message sent'); \Illuminate\Support\Facades\Mail::assertSent(\App\Mail\ContactForm::class);"
@@ -120,7 +120,7 @@ vendor/bin/pest --agent-browser="\Illuminate\Support\Facades\Mail::fake(); visit
 vendor/bin/pest --agent-browser="visit('/checkout')->type('card', '4242424242424242')->press('Pay')->assertSee('Transaction processed'); expect(\App\Models\Order::count())->toBe(1);"
 ```
 
-Always assert a frontend signal first (like `assertSee` or `assertPathIs`) so you know the action was processed before checking what it touched on the backend.
+Typically, you should assert a frontend signal first — such as `assertSee` or `assertPathIs` — so that you know the action was processed before checking what it touched on the backend.
 
 ## When to Use It
 

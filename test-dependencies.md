@@ -1,13 +1,13 @@
 ---
 title: Test Dependencies
-description: Sometimes, tests require certain preconditions or events to occur prior to their execution or else they will not succeed. For example, you may only be able to verify that users are able to modify their accounts if you have first verified that an account can be established.
+description: Sometimes a test requires certain preconditions or events to occur before it runs, or else it will not succeed — Pest lets one test declare that it depends on another.
 ---
 
 # Test Dependency
 
-Sometimes, tests require certain preconditions or events to occur prior to their execution or else they will not succeed. For example, you may only be able to verify that users are able to modify their accounts if you have first verified that an account can be established.
+Sometimes, tests require certain preconditions or events to occur prior to their execution, or else they will not succeed. For example, you may only be able to verify that users are able to modify their accounts once you have first verified that an account can be established.
 
-To address this issue, Pest offers the `depends()` method, which allows a "Child" test to specify that it depends on one or more "Parent" tests.
+To address this, Pest offers the `depends()` method, which allows a "Child" test to specify that it depends on one or more "Parent" tests:
 
 ```php
 test('parent', function () {
@@ -19,13 +19,13 @@ test('child', function () {
 })->depends('parent');
 ```
 
-In this example, the `child` test will be triggered once the `parent` test has successfully completed.
+In this example, the `child` test will be triggered once the `parent` test has successfully completed:
 
 <div class="code-snippet">
     <img src="/assets/img/depends.webp?1" style="--lines: 6" />
 </div>
 
-If the `parent` test fails, the `child` test will be bypassed and an informative message will be displayed in your test results.
+If the `parent` test fails, the `child` test will be bypassed, and an informative message will be displayed in your test results:
 
 ```php
 test('parent', function () {
@@ -37,13 +37,13 @@ test('child', function () {
 })->depends('parent');
 ```
 
-The example above results in the following output:
+The example above will result in the following output:
 
 <div class="code-snippet">
     <img src="/assets/img/depends-fail.webp?1" style="--lines: 3" />
 </div>
 
-It is important to remember that the `it()` function prefixes the test with "it" by default. Thus, when referencing the test name via the `depends()` method, you should include the "it " prefix.
+It is important to remember that the `it()` function prefixes the test with "it" by default. Thus, when referencing the test name via the `depends()` method, you should include the "it " prefix:
 
 ```php
 it('is the parent', function () {
@@ -55,13 +55,13 @@ test('child', function () {
 })->depends('it is the parent');
 ```
 
-Results is:
+This results in the following output:
 
 <div class="code-snippet">
     <img src="/assets/img/depends-pass.webp?1" style="--lines: 6" />
 </div>
 
-Parent tests can even provide return values that can be accessed as arguments in the `child` test.
+Parent tests may even provide return values that can be accessed as arguments in the `child` test:
 
 ```php
 test('parent', function () {
@@ -77,7 +77,7 @@ test('child', function ($parentValue) {
 })->depends('parent');
 ```
 
-It is also possible to add multiple dependencies to a test. However, all parent tests must pass, and the values returned by each test will be available as function parameters in the same order as the specified dependencies.
+You may also add multiple dependencies to a test. However, all parent tests must pass, and the values returned by each test will be available as function parameters in the same order as the specified dependencies:
 
 ```php
 test('a', function () {
@@ -107,4 +107,4 @@ test('d', function ($testA, $testC, $testB) {
 
 ---
 
-While test dependencies are uncommon, they can be useful for optimizing your tests and minimizing the need to recreate resources repeatedly. In the next chapter, we will explore how you can create plugins: [Creating Plugins](/docs/creating-plugins)
+While test dependencies are uncommon, they can be helpful for optimizing your tests and minimizing the need to recreate resources repeatedly. In the next chapter, we will explore how you may create plugins: [Creating Plugins](/docs/creating-plugins)

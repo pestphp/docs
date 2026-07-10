@@ -120,7 +120,7 @@ Deterministic checks can only take you so far. To evaluate qualities like releva
 
 ### `toBeRelevant()`
 
-Asserts that the response is relevant to the prompt.
+Asserts that the response is relevant to the prompt:
 
 ```php
 expect(RefundPolicyAgent::class)
@@ -141,7 +141,7 @@ expect(RefundPolicyAgent::class)
 
 ### `toBeFactual()`
 
-Asserts that the response is factually consistent with a reference answer.
+Asserts that the response is factually consistent with a reference answer:
 
 ```php
 expect(CapitalCityAgent::class)

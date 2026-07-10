@@ -1,23 +1,23 @@
 ---
 title: Migrating from PHPUnit
-description: Migrating from PHPUnit to Pest is a simple process that can be completed in just a few steps.
+description: Migrating from PHPUnit to Pest is a simple process you may complete in a few steps.
 ---
 
 # Migrating from PHPUnit
 
-Pest is built on top of PHPUnit, so migrating from PHPUnit to Pest is a simple process that can be completed in just a few steps. Once you have Pest installed, you should require the `pestphp/pest-plugin-drift` package as a "dev" dependency in your project.
+Pest is built on top of PHPUnit, so migrating from PHPUnit to Pest is a simple process you may complete in a few steps. Once you have Pest installed, you should require the `pestphp/pest-plugin-drift` package as a "dev" dependency in your project:
 
 ```bash
 composer require pestphp/pest-plugin-drift --dev
 ```
 
-Drift is a simple yet powerful plugin that will automatically convert your PHPUnit tests to Pest, simply by running the `--drift` option.
+Drift is a simple, yet powerful plugin that will automatically convert your PHPUnit tests to Pest when you run the `--drift` option:
 
 ```bash
 ./vendor/bin/pest --drift
 ```
 
-So, typically, a PHPUnit test looks like this:
+Typically, a PHPUnit test looks like this:
 
 ```php
 <?php
@@ -35,7 +35,7 @@ class ExampleTest extends TestCase
 }
 ```
 
-Should look like this after running `--drift`:
+After running `--drift`, it will look like this:
 
 ```php
 test('true is true', function () {
@@ -46,9 +46,9 @@ test('true is true', function () {
 ---
 ## Convert Phpunit tests only for certain folder
 
-If you want to convert Phpunit tests only for certain folder, you can pass _path_ as first argument when calling `--drift`:
+Sometimes you may wish to convert the PHPUnit tests within a certain folder only. To accomplish this, you may pass a _path_ as the first argument when calling `--drift`.
 
-Example call, if you want to run the conversion for folder `/tests/Helpers`: 
+For example, if you want to run the conversion for the `/tests/Helpers` folder: 
 ```console 
 /vendor/bin/pest --drift tests/Helpers
 ```
@@ -66,8 +66,8 @@ INFO  The [tests/Helpers] directory has been migrated to PEST with XY files chan
 
 The output will contain a summary of the conversion process, as well as a list of the files that were converted.
 
-While most of your tests should be converted automatically, and you should be able to run them without any issues, there are some cases where you may need to manually convert some of your tests.
+While most of your tests will be converted automatically, and you should be able to run them without any issues, there are some cases where you may need to convert a few of your tests manually.
 
 ---
 
-Of course, this particular chapter is only for those who are migrating from PHPUnit. Next, let's learn how you can contribute to the growth of Pest: [Community Guide](/docs/community-guide)
+Of course, this particular chapter is only for those who are migrating from PHPUnit. Next, let's learn how you may contribute to the growth of Pest: [Community Guide](/docs/community-guide)

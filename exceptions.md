@@ -1,11 +1,11 @@
 ---
 title: Exceptions
-description: When testing behavior in PHP, you might need to check if an exception or error has been thrown. To create a test that expects an exception to be thrown, you can use the `throws()` method.
+description: When you need to check that your code throws an exception or error, Pest's throws() method makes it painless.
 ---
 
 # Exceptions
 
-When testing behavior in PHP, you might need to check if an exception or error has been thrown. To create a test that expects an exception to be thrown, you can use the `throws()` method.
+When testing behavior in PHP, you may need to check whether an exception or error has been thrown. To write a test that expects an exception, you may use the `throws()` method:
 
 ```php
 it('throws exception', function () {
@@ -13,7 +13,7 @@ it('throws exception', function () {
 })->throws(Exception::class);
 ```
 
-If you also want to make an assertion against the exception message, you may provide a second argument to the `throws()` method.
+If you would also like to assert against the exception message, you may provide a second argument to the `throws()` method:
 
 ```php
 it('throws exception', function () {
@@ -21,7 +21,7 @@ it('throws exception', function () {
 })->throws(Exception::class, 'Something happened.');
 ```
 
-If the exception type is not relevant, and you're only concerned with the message, you can simply pass the message without specifying the exception's type.
+If the exception type is not relevant and you are only concerned with the message, you may pass the message on its own, without specifying the exception's type:
 
 ```php
 it('throws exception', function () {
@@ -29,7 +29,7 @@ it('throws exception', function () {
 })->throws('Something happened.');
 ```
 
-You can use the `throwsIf()` method to conditionally verify an exception if a given boolean expression evaluates to true.
+You may use the `throwsIf()` method to verify an exception conditionally, when a given boolean expression evaluates to true:
 
 ```php
 it('throws exception', function () {
@@ -37,7 +37,7 @@ it('throws exception', function () {
 })->throwsIf(fn() => DB::getDriverName() === 'mysql', Exception::class, 'MySQL is not supported.');
 ```
 
-Just like `throwsIf()` method, you can use the `throwsUnless()` method to conditionally verify an exception if a given boolean expression evaluates to false.
+Just like the `throwsIf()` method, you may use the `throwsUnless()` method to verify an exception conditionally, when a given boolean expression evaluates to false:
 
 ```php
 it('throws exception', function () {
@@ -45,7 +45,7 @@ it('throws exception', function () {
 })->throwsUnless(fn() => DB::getDriverName() === 'mysql', Exception::class, 'Only MySQL is supported.');
 ```
 
-You can also verify that a given closure throws one or more exceptions using the [toThrow()](/docs/expectations#expect-toThrow) method of the expectation API.
+You may also verify that a given closure throws one or more exceptions using the [toThrow()](/docs/expectations#expect-toThrow) method of the expectation API:
 
 ```php
 it('throws exception', function () {
@@ -53,7 +53,7 @@ it('throws exception', function () {
 });
 ```
 
-If you expect no exceptions to be thrown, you can use the `throwsNoExceptions()` method.
+If you expect no exceptions to be thrown, you may use the `throwsNoExceptions()` method:
 
 ```php
 it('throws no exceptions', function () {
@@ -61,7 +61,7 @@ it('throws no exceptions', function () {
 })->throwsNoExceptions();
 ```
 
-Sometimes, you may want to simply mark a test as failed. You can use the `fail()` method to do so.
+Sometimes you may wish to mark a test as failed. You may use the `fail()` method to do so:
 
 ```php
 it('fails', function () {
@@ -69,7 +69,7 @@ it('fails', function () {
 });
 ```
 
-You may also provide a message to the `fail()` method.
+You may also provide a message to the `fail()` method:
 
 ```php
 it('fails', function () {
@@ -77,7 +77,7 @@ it('fails', function () {
 });
 ```
 
-In addition, you can also use the `fails()` method to verify if a test fails.
+In addition, you may use the `fails()` method to verify that a test fails:
 
 ```php
 it('fails', function () {
@@ -85,7 +85,7 @@ it('fails', function () {
 })->fails();
 ```
 
-You can also assert the failure reason by providing a message to the `fails()` method.
+You may also assert the failure reason by providing a message to the `fails()` method:
 
 ```php
 it('fails as expected', function () {
@@ -99,4 +99,4 @@ it('fails in an unexpected way', function () {
 
 ---
 
-After learning how to write tests that assert exceptions, the next step is to explore "Test Filtering". This feature allows you to efficiently run specific tests based on criteria like test name, dirty files, and more: [Filtering Tests →](/docs/filtering-tests)
+Now that you know how to write tests that assert exceptions, the next step is to explore test filtering, which allows you to run specific tests based on criteria such as the test name, dirty files, and more: [Filtering Tests →](/docs/filtering-tests)

@@ -7,15 +7,15 @@ description: Community plugins are essential for offering additional features to
 
 Community plugins are essential for offering additional features to the Pest community, while the Pest team prioritizes keeping the framework's core small and fast. In this chapter, we'll discuss how to create your own plugins and share them with the community.
 
-The simplest way to develop your own plugin is to begin with the [pest-plugin-template](https://github.com/pestphp/pest-plugin-template). To generate a new repository from the template repository, click on GitHub's "Use this template" button and name your new repository "pest-plugin-<yourpluginname>".
+The simplest way to develop your own plugin is to begin with the [pest-plugin-template](https://github.com/pestphp/pest-plugin-template). To generate a new repository from the template, click GitHub's "Use this template" button and name your new repository "pest-plugin-<yourpluginname>".
 
-After cloning the repository, make sure to modify the "name" and "description" fields in the `composer.json` file to suit your plugin.
+Once you have cloned the repository, be sure to modify the "name" and "description" fields in the `composer.json` file to suit your plugin.
 
-Pest plugins are capable of exposing custom test methods via the `$this` variable, adding namespaced functions, defining custom expectations, and offering custom CLI options.
+Pest plugins may expose custom test methods via the `$this` variable, add namespaced functions, define custom expectations, and offer custom CLI options.
 
 ## Adding Methods
 
-Let's start building our plugin by making new test methods available via the `$this` variable. To accomplish this, define a PHP trait in your plugin.
+Let's start building our plugin by making new test methods available via the `$this` variable. To accomplish this, define a PHP trait in your plugin:
 
 ```php
 namespace YourGitHubUsername\PestPluginName;
@@ -29,7 +29,7 @@ trait MyPluginTrait
 }
 ```
 
-In order to make this trait method invokable via Pest, we must inform Pest that it should make it available. This can be accomplished creating an `Autoload.php` file within your plugin with the following content.
+In order to make this trait method invokable via Pest, we must inform Pest that it should make it available. This may be accomplished by creating an `Autoload.php` file within your plugin with the following content:
 
 ```php
 use YourGitHubUsername\PestPluginName\MyPluginTrait;
@@ -37,7 +37,7 @@ use YourGitHubUsername\PestPluginName\MyPluginTrait;
 Pest\Plugin::uses(MyPluginTrait::class);
 ```
 
-Lastly, we need to update our plugin's `composer.json` file to load our `Autoload.php` file as well as our plugin source code.
+Finally, we need to update our plugin's `composer.json` file to load our `Autoload.php` file as well as our plugin's source code:
 
 ```json
 "autoload": {
@@ -48,7 +48,7 @@ Lastly, we need to update our plugin's `composer.json` file to load our `Autoloa
 },
 ```
 
-After you publish your plugin to [Packagist](https://packagist.org), users will be able to install your plugin via Composer. Once installed, they will be able to access your plugin's functions within their test closures.
+Once you publish your plugin to [Packagist](https://packagist.org), users will be able to install it via Composer. After installation, they will be able to access your plugin's functions within their test closures:
 
 ```php
 test('plugin example', function () {
@@ -60,7 +60,7 @@ test('plugin example', function () {
 
 ## Adding Functions
 
-A plugin can also define additional namespaced functions, which are typically declared within the plugin's `Autoload.php` file.
+A plugin may also define additional namespaced functions, which are typically declared within the plugin's `Autoload.php` file:
 
 ```php
 namespace YourGitHubUsername\PestPluginName;
@@ -71,7 +71,7 @@ function myPluginFunction(): void
 }
 ```
 
-Within your plugins functions, you can access the current `$this` variable that would typically be available to test closures by invoking the `test()` function with no arguments.
+Within your plugin's functions, you may access the current `$this` variable that would typically be available to test closures by invoking the `test()` function with no arguments:
 
 ```php
 namespace YourGitHubUsername\PestPluginName;
@@ -84,7 +84,7 @@ function myPluginFunction(): TestCase
 }
 ```
 
-Once you modify your plugin's `composer.json` file to autoload the `Autoload.php` file, users can easily access your function within their tests.
+Once you modify your plugin's `composer.json` file to autoload the `Autoload.php` file, users may access your function within their tests:
 
 ```php
 use function YourGitHubUsername\PestPluginName\{myPluginFunction};
@@ -98,11 +98,11 @@ test('plugin example', function () {
 
 ## Adding Custom Expectations
 
-Custom expectations can be incorporated into your plugin's `Autoload.php` file. For information on how to build custom expectations, please refer to the comprehensive documentation on [Custom Expectations](/docs/custom-expectations).
+Custom expectations may be incorporated into your plugin's `Autoload.php` file. For information on how to build custom expectations, please refer to the documentation on [Custom Expectations](/docs/custom-expectations).
 
 ## Adding Arch Presets
 
-If your plugin provides a custom Arch preset, you can define it within the `Autoload.php` file.
+If your plugin provides a custom Arch preset, you may define it within the `Autoload.php` file:
 
 ```php
 pest()->preset('ddd', function () {
@@ -113,7 +113,7 @@ pest()->preset('ddd', function () {
 });
 ```
 
-Optionally, may have access to the application PSR-4 namespaces on the first argument of your closure's callback.
+Optionally, you may access the application's PSR-4 namespaces via the first argument of your closure's callback:
 
 ```php
 pest()->preset('silex', function (array $userNamespaces) {
@@ -123,4 +123,4 @@ pest()->preset('silex', function (array $userNamespaces) {
 
 ---
 
-As you can see, crafting plugins on Pest can serve as a fantastic starting point for your open-source endeavors! In the next chapter, we will explore the concept of "Higher Order Testing": [Higher Order Testing](/docs/higher-order-testing)
+As you can see, crafting plugins for Pest can serve as a helpful starting point for your open-source endeavors. In the next chapter, we will explore the concept of "Higher Order Testing": [Higher Order Testing](/docs/higher-order-testing)

@@ -1,13 +1,13 @@
 ---
 title: Global Hooks
-description: As previously discussed, hooks allow you to simplify your testing process and automate repetitive tasks that you may perform before or after a test. However, if the hooks are the same across multiple test files, you may wish to define "global" hooks to avoid code duplication. Global hooks are defined in your `Pest.php` configuration file.
+description: Define hooks once in your Pest.php configuration file and share them across your entire test suite, keeping repetitive setup and teardown free of duplication.
 ---
 
 # Global Hooks
 
-As previously discussed, hooks allow you to simplify your testing process and automate repetitive tasks that you may perform before or after a test. However, if the hooks are the same across multiple test files, you may wish to define "global" hooks to avoid code duplication. Global hooks are defined in your `Pest.php` configuration file.
+As you may recall, hooks simplify your testing process and automate repetitive tasks that you perform before or after a test. However, when the same hooks are repeated across multiple test files, you may wish to define "global" hooks to avoid duplication. You may define global hooks within your `Pest.php` configuration file.
 
-For instance, if you need to perform some database operations before each test within the `Feature` folder, you may use the `beforeEach()` hook within your `Pest.php` configuration file.
+For instance, if you need to perform some database operations before each test within the `Feature` folder, you may use the `beforeEach()` hook within your `Pest.php` configuration file:
 
 ```php
 pest()->extend(TestCase::class)->beforeEach(function () {
@@ -15,7 +15,7 @@ pest()->extend(TestCase::class)->beforeEach(function () {
 })->group('integration')->in('Feature');
 ```
 
-In addition, you can define global hooks that will run before or after your entire test suite, regardless of the folder or group.
+In addition, you may define global hooks that will run before or after your entire test suite, regardless of the folder or group:
 
 ```php
 pest()->beforeEach(function () {
@@ -23,7 +23,7 @@ pest()->beforeEach(function () {
 });
 ```
 
-In fact, any of the hooks mentioned in the [hooks](/docs/hooks) documentation can also be used in your `Pest.php` configuration file.
+In fact, any of the hooks mentioned in the [hooks](/docs/hooks) documentation may also be used within your `Pest.php` configuration file:
 
 ```php
 pest()->extend(TestCase::class)->beforeAll(function () {
@@ -37,7 +37,7 @@ pest()->extend(TestCase::class)->beforeAll(function () {
 })->group('integration')->in('Feature');
 ```
 
-Any `before*` hooks defined in the `Pest.php` configuration file will be executed prior to hooks defined in individual test files. Similarly, any `after*` hooks specified in the `Pest.php` configuration file will be executed after any hooks defined in individual test files.
+Any `before*` hooks defined in the `Pest.php` configuration file will run prior to the hooks defined in individual test files. Similarly, any `after*` hooks defined in the `Pest.php` configuration file will run after the hooks defined in individual test files.
 
 ---
 

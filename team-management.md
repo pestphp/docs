@@ -1,25 +1,25 @@
 ---
 title: Team Management
-description: In this section, we will discuss the process of managing a small team of developers who directly in your Pest test suite.
+description: Manage tasks and todos with your team directly from the console — create, assign, and track them without leaving your Pest test suite.
 ---
 
 # Team Management
 
-With Pest, you can manage tasks and todos with your team directly from the console. You can create, assign, and track tasks, as well as view the status of each task.
+With Pest, you may manage tasks and todos with your team directly from the console. You may create, assign, and track tasks, as well as view the status of each task.
 
 ## Setting Up Project
 
-To get started with team management in Pest, you need to specify the project's URL in your `Pest.php` configuration file. This URL will be used to link todos to the corresponding project management system.
+To get started with team management in Pest, you should specify the project's URL in your `Pest.php` configuration file. This URL will be used to link todos to the corresponding project management system:
 
 ```php
 pest()->project()->github('my-organization/my-repository');
 ```
 
-If you are using a different version control system, you can use the `gitlab`, `bitbucket`, `jira`, or `custom` methods instead.
+If you are using a different version control system, you may use the `gitlab`, `bitbucket`, `jira`, or `custom` methods instead.
 
 ## Creating Todos
 
-Typically, todos are linked to one or more tests that need to be passing. As such, tests can be used to track the progress of your todos / tasks. Pest provides a simple way to create todos by using the `todo()` method.
+Typically, todos are linked to one or more tests that need to be passing. As such, tests may be used to track the progress of your todos and tasks. Pest provides a simple way to create todos by using the `todo()` method:
 
 ```php
 it('has a contact page', function () {
@@ -27,13 +27,13 @@ it('has a contact page', function () {
 })->todo();
 ```
 
-When running your tests, Pest will inform you about any tests that are todos so you don't forget and see them in the test results.
+When running your tests, Pest will inform you about any tests that are todos, so you don't forget them and can see them in the test results:
 
 <div class="code-snippet">
     <img src="/assets/img/todo.webp?1" style="--lines: 5" />
 </div>
 
-If you have one or more todos, you may want to view them separately from the rest of your test suite. You can do this by including the `--todos` option when running Pest.
+If you have one or more todos, you may wish to view them separately from the rest of your test suite. To accomplish this, you may include the `--todos` option when running Pest:
 
 ```bash
 ./vendor/bin/pest --todos
@@ -41,7 +41,7 @@ If you have one or more todos, you may want to view them separately from the res
 
 ## Assigning Todos
 
-In some cases, you may want to assign a todo to a specific team member. Pest allows you to assign a todo to a specific team member by providing their name to the `assignee` argument of the `todo()` method.
+Sometimes you may wish to assign a todo to a specific team member. Pest allows you to do this by providing their name to the `assignee` argument of the `todo()` method:
 
 ```php
 it('has a contact page', function () {
@@ -49,7 +49,7 @@ it('has a contact page', function () {
 })->todo(assignee: 'nunomaduro');
 ```
 
-You may assign multiple assignees by providing an array of names to the `assignee` argument. Also, you may filter todos by assignee by providing their name to the `--assignee` option when running Pest.
+You may assign multiple assignees by providing an array of names to the `assignee` argument. In addition, you may filter todos by assignee by providing their name to the `--assignee` option when running Pest:
 
 ```bash
 ./vendor/bin/pest --todos --assignee=nunomaduro
@@ -57,7 +57,7 @@ You may assign multiple assignees by providing an array of names to the `assigne
 
 ## Set Corresponding Issues
 
-Sometimes, todos are linked to issues in your project management system. Pest allows you to set the corresponding issue to a todo by providing the issue number to the `issue` argument of the `todo()` method.
+Sometimes, todos are linked to issues in your project management system. Pest allows you to set the corresponding issue on a todo by providing the issue number to the `issue` argument of the `todo()` method:
 
 ```php
 it('has a contact page', function () {
@@ -65,7 +65,7 @@ it('has a contact page', function () {
 })->todo(issue: 123);
 ```
 
-Just like with assignees, you may set multiple issues by providing an array of issue numbers to the `issue` argument. Also, you may filter todos by issue by providing the issue number to the `--issue` option when running Pest.
+Just as with assignees, you may set multiple issues by providing an array of issue numbers to the `issue` argument. In addition, you may filter todos by issue by providing the issue number to the `--issue` option when running Pest:
 
 ```bash
 ./vendor/bin/pest --todos --issue=123
@@ -73,7 +73,7 @@ Just like with assignees, you may set multiple issues by providing an array of i
 
 ## Set Corresponding PRs
 
-Sometimes, todos are linked to pull requests in your version control system. Pest allows you to set the corresponding pull request to a todo by providing the pull request number to the `pr` argument of the `todo()` method.
+Sometimes, todos are linked to pull requests in your version control system. Pest allows you to set the corresponding pull request on a todo by providing the pull request number to the `pr` argument of the `todo()` method:
 
 ```php
 it('has a contact page', function () {
@@ -81,7 +81,7 @@ it('has a contact page', function () {
 })->todo(pr: 123);
 ```
 
-Just like with assignees, you may set multiple pull requests by providing an array of pull request numbers to the `pr` argument. Also, you may filter todos by pull request by providing the pull request number to the `--pr` option when running Pest.
+Just as with assignees, you may set multiple pull requests by providing an array of pull request numbers to the `pr` argument. In addition, you may filter todos by pull request by providing the pull request number to the `--pr` option when running Pest:
 
 ```bash
 ./vendor/bin/pest --todos --pr=123
@@ -89,7 +89,7 @@ Just like with assignees, you may set multiple pull requests by providing an arr
 
 ## Writing Notes for Todos
 
-It is often helpful to provide additional context for a todo. Pest allows you to write notes for a todo by providing a string to the `note` argument of the `todo()` method.
+It is often helpful to provide additional context for a todo. Pest allows you to write notes for a todo by providing a string to the `note` argument of the `todo()` method:
 
 ```php
 it('has a contact page', function () {
@@ -105,7 +105,7 @@ The notes will be displayed below the todo in the test results.
 
 ## Marking Todos as Work in Progress
 
-When a todo is being worked on, you can mark it as work in progress by using the `wip()` method. This method will remove the todo status from the test and mark it as a regular test while keeping all the context like assignees, issues, etc.
+When a todo is being worked on, you may mark it as work in progress by using the `wip()` method. This method will remove the todo status from the test and mark it as a regular test, while keeping all the context such as assignees, issues, and so on:
 
 ```php
 it('has a contact page', function () {
@@ -115,7 +115,7 @@ it('has a contact page', function () {
 
 ## Marking Todos as Done
 
-Once a todo is completed, you can mark it as done by using the `done()` method. This method will remove the todo status from the test and mark it as a regular test while keeping all the context like assignees, issues, etc.
+Once a todo is completed, you may mark it as done by using the `done()` method. This method will remove the todo status from the test and mark it as a regular test, while keeping all the context such as assignees, issues, and so on:
 
 ```php
 it('has a contact page', function () {
@@ -125,7 +125,7 @@ it('has a contact page', function () {
 
 ## Combining Todos with Assignees, Issues, and PRs
 
-You can combine todos with assignees, issues, and PRs to provide additional context and track the progress of your todos. This can be done using the `describe` group, and the `todo`, `assignee`, `issue`, and `pr` methods.
+You may combine todos with assignees, issues, and PRs to provide additional context and track the progress of your todos. This may be done using the `describe` group, along with the `todo`, `assignee`, `issue`, and `pr` methods:
 
 ```php
 describe('contacts', function () {

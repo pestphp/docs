@@ -15,7 +15,7 @@ description: Today, we're thrilled to announce Pest v4 — our biggest release y
 
 # Pest v4 Is Here — Now with Browser Testing
 
-Today, we're thrilled to announce the release of **Pest v4**, bringing the biggest testing upgrade yet: powerful **[Browser Testing](/docs/browser-testing)**. Pest's new browser testing features let you run elegant, maintainable browser tests — with first-class support for Laravel's testing API and the ability to run tests in parallel. For the first time, this is browser testing that feels as good as writing unit tests.
+Today, we are thrilled to announce the release of **Pest v4**, bringing our biggest testing upgrade yet: powerful **[Browser Testing](/docs/browser-testing)**. Pest's new browser testing features let you write elegant, maintainable browser tests — with first-class support for Laravel's testing API and the ability to run tests in parallel. For the first time, this is browser testing that feels as good as writing unit tests.
 
 Here is the creator of Pest, [Nuno Maduro](https://twitter.com/enunomaduro), demoing the new browser testing features in Pest v4 at Laracon US:
 
@@ -46,7 +46,7 @@ it('may reset the password', function () {
 });
 ```
 
-With Pest v4's browser testing, you can:
+With Pest v4's browser testing, you may:
 - Seamlessly use **Laravel features** like `Event::fake()`, `assertAuthenticated()`, and model factories
 - Use `RefreshDatabase`, even with SQLite in-memory databases, to ensure a clean state for each test
 - Test on **multiple browsers** (Chrome, Firefox, Safari)
@@ -58,7 +58,7 @@ With Pest v4's browser testing, you can:
 - …all with the elegance of Pest syntax
 - **Playwright-based** — modern, fast, and reliable
 
-To get started with browser testing in Pest, you need to install the Pest Browser Plugin:
+To get started with browser testing in Pest, you will need to install the Pest Browser Plugin:
 
 ```bash
 composer require pestphp/pest-plugin-browser --dev
@@ -67,11 +67,11 @@ npm install playwright@latest
 npx playwright install
 ```
 
-After, you may use the `visit()` function anywhere. Finally, running this test is as simple as executing `./vendor/bin/pest` in your terminal. Pest will handle the rest, launching a browser, navigating to the page, and performing the actions you specified.
+Once installed, you may use the `visit()` function anywhere. Finally, to run this test, you execute `./vendor/bin/pest` in your terminal. Pest will handle the rest, launching a browser, navigating to the page, and performing the actions you specified.
 
 ## Smoke Testing
 
-Smoke testing your application in real browsers has never been easier. With Pest v4, you can literally visit all your application pages, and ensure they don't throw any JavaScript errors, and they don't log any console errors.
+Smoke testing your application in real browsers has never been easier. With Pest v4, you may visit all of your application's pages and ensure they do not throw any JavaScript errors or log any console errors:
 
 ```php
 $routes = ['/', '/about', '/contact'];
@@ -85,7 +85,7 @@ visit($routes)->assertNoSmoke();
 
 ## Visual Regression Testing
 
-Want to ensure your pages look exactly as expected over time? Pest v4 introduces visual regression testing with the `assertScreenshotMatches()` assertion. This allows you to take screenshots of your pages and compare them against baseline images, ensuring that your UI remains consistent across changes.
+Sometimes you may wish to ensure your pages look exactly as expected over time. Pest v4 introduces visual regression testing with the `assertScreenshotMatches()` assertion. This allows you to take screenshots of your pages and compare them against baseline images, ensuring that your UI remains consistent across changes:
 
 ```php
 $pages = visit(['/', '/about', '/contact']);
@@ -93,15 +93,15 @@ $pages = visit(['/', '/about', '/contact']);
 $pages->assertScreenshotMatches();
 ```
 
-This is just a glimpse of what Browser Testing in Pest v4 can do. Find out more about the new features below, and check out the [Browser Testing documentation](/docs/browser-testing) for a complete guide on how to get started.
+This is just a glimpse of what Browser Testing in Pest v4 can do. You may find out more about the new features below, and check out the [Browser Testing documentation](/docs/browser-testing) for a complete guide on how to get started.
 
 ## Test Sharding
 
-Pest v4 introduces **Test Sharding**, allowing you to split your test suite into smaller, manageable chunks. This is particularly useful for large applications (or when running browser tests) where running all tests at once can be time-consuming.
+Pest v4 introduces **Test Sharding**, allowing you to split your test suite into smaller, manageable chunks. This is particularly helpful for large applications, or when running browser tests, where running all tests at once can be time-consuming.
 
-This feature is particularly useful on CI platforms, where on things like GitHub actions you can no longer scale vertical, but rather horizontally. This means you can run your tests in parallel across multiple machines, significantly speeding up your test suite execution.
+This feature is especially useful on CI platforms, where on services like GitHub Actions you can no longer scale vertically, but rather horizontally. This means you may run your tests in parallel across multiple machines, significantly speeding up your test suite execution.
 
-To get started with Test Sharding, you can use the `--shard` option when running Pest:
+To get started with Test Sharding, you may use the `--shard` option when running Pest:
 
 ```bash
 # GitHub Workflow One
@@ -117,13 +117,13 @@ To get started with Test Sharding, you can use the `--shard` option when running
 ./vendor/bin/pest --shard=4/4
 ```
 
-You may combine this with the `--parallel` option to run your tests in parallel, and this way trully maximize your test suite execution speed:
+You may combine this with the `--parallel` option to run your tests in parallel, and in this way truly maximize your test suite execution speed:
 
 ```bash
 ./vendor/bin/pest --shard=1/4 --parallel
 ```
 
-Finally, to easily set up sharding your CI configuration, you just have to ensure each job in your CI configuration runs a different shard of your test suite. For example, in GitHub Actions, you can use the `matrix` strategy to define multiple jobs that run different shards:
+Finally, to set up sharding in your CI configuration, you need only ensure each job runs a different shard of your test suite. For example, in GitHub Actions, you may use the `matrix` strategy to define multiple jobs that run different shards:
 
 ```yaml
 strategy:
@@ -139,29 +139,29 @@ steps:
 
 ## Type Coverage Is Much Faster
 
-Remember the days when you had to wait for your type coverage to run? Not anymore! Pest v4 introduces a new type coverage engine that is significantly faster than previous versions.
+Remember the days when you had to wait for your type coverage to run? Not anymore. Pest v4 introduces a new type coverage engine that is significantly faster than previous versions.
 
-Type coverage is 2x faster on the first run and instant on subsequent runs. This means you can quickly check your type coverage without waiting for long periods, making your development workflow much more efficient.
+Type coverage is now 2x faster on the first run and instant on subsequent runs. This means you may quickly check your type coverage without waiting for long periods, making your development workflow much more efficient.
 
-In addition, Type Coverage now supports **Sharding**. This means you can run type coverage with the `--shard` option, just like you do with your tests.
+In addition, Type Coverage now supports **Sharding**. This means you may run type coverage with the `--shard` option, just as you do with your tests.
 
 ## Profanity Checking
 
-Pest v4 introduces a new feature that allows you to check for profanity in your test code. This is particularly useful for maintaining a clean and professional codebase, especially in collaborative environments.
+Pest v4 introduces a new feature that allows you to check for profanity in your test code. This is particularly helpful for maintaining a clean and professional codebase, especially in collaborative environments.
 
-You can enable profanity checking by adding the `--profanity` option when running Pest:
+You may enable profanity checking by adding the `--profanity` option when running Pest:
 
 ```bash
 ./vendor/bin/pest --profanity
 ```
 
-To start using Pest's Profanity plugin, you need to require the plugin via Composer.
+To start using Pest's Profanity plugin, you will need to require the plugin via Composer:
 
 ```bash
 composer require pestphp/pest-plugin-profanity --dev
 ```
 
-After requiring the plugin, you may utilize the `--profanity` option to generate a report of your profanity.
+Once the plugin is required, you may use the `--profanity` option to generate a report of your profanity:
 
 ```bash
 ./vendor/bin/pest --profanity
@@ -172,13 +172,13 @@ After requiring the plugin, you may utilize the `--profanity` option to generate
 If any of your files contain profanity, they will be highlighted in red and displayed using their respective line
 numbers and the profane word(s) that have been found.
 
-As an example, `pr31(f*ck)` means that the word "fuck" was found on line 31.
+For example, `pr31(f*ck)` means that the word "fuck" was found on line 31.
 
 To learn more about the Profanity plugin and how to configure it, check out the [Profanity documentation](/docs/profanity).
 
 ### Skip Locally or On CI
 
-Pest v4 introduces the ability to conditionally skip tests based on the environment. You can use `skipLocally()` to skip tests when running locally, or `skipOnCi` to skip tests when running on a CI server.
+Pest v4 introduces the ability to conditionally skip tests based on the environment. You may use `skipLocally()` to skip tests when running locally, or `skipOnCi` to skip tests when running on a CI server:
 
 ```php
 it('does not run locally', function () {
@@ -202,7 +202,7 @@ Pest v4 is built on top of PHPUnit 12, which means you get all the latest featur
 
 ### Thanks To You, Pest v4 Is Here!
 
-There's never been a better time to dive into testing and start using Pest. If you're ready to get started with Pest v4 right away, check out our [installation guide](/docs/installation) for step-by-step instructions. And if you're currently using an earlier version of Pest, we've got you covered with detailed upgrade instructions in our [upgrade guide](/docs/upgrade-guide).
+There has never been a better time to dive into testing and start using Pest. If you are ready to get started with Pest v4 right away, check out our [installation guide](/docs/installation) for step-by-step instructions. And if you are currently using an earlier version of Pest, we have you covered with detailed upgrade instructions in our [upgrade guide](/docs/upgrade-guide).
 
 Thank you for your continued support and feedback. We can't wait to see what you build with Pest v4!
 

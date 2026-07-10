@@ -5,9 +5,9 @@ description: If you're transitioning to a functional approach for writing tests,
 
 # Custom Helpers
 
-If you're transitioning to a functional approach for writing tests, you may wonder where to put your helpers that used to be protected or private methods in your test classes. When using Pest, these helper methods should be converted to simple functions.
+If you are transitioning to a functional approach for writing tests, you may wonder where to place the helpers that used to be protected or private methods in your test classes. When using Pest, these helper methods should be converted to simple functions.
 
-For example, if your helper is specific to a certain test file, you may create the helper in the test file directly. Within your helper, you may invoke the `test()` function to access the test class instance that would normally be available via `$this`.
+For example, if your helper is specific to a certain test file, you may create the helper in that test file directly. Within your helper, you may invoke the `test()` function to access the test class instance that would normally be available via `$this`:
 
 ```php
 use App\Models\User;
@@ -29,7 +29,7 @@ it('can manage users', function () {
 
 > **Note:** If your helper creates a custom expectation, you should write a dedicated [custom expectation](/docs/custom-expectations) instead.
 
-If your test helpers are utilized throughout your test suite, you may define them within the `tests/Pest.php` or `tests/Helpers.php` files. Alternatively, you can create a `tests/Helpers` directory to house your own helper files. All of these options will be automatically loaded by Pest.
+If your test helpers are used throughout your test suite, you may define them within the `tests/Pest.php` or `tests/Helpers.php` files. Alternatively, you may create a `tests/Helpers` directory to house your own helper files. All of these options will be automatically loaded by Pest:
 
 ```php
 use App\Clients\PaymentClient;
@@ -53,7 +53,7 @@ it('may buy a book', function () {
 })
 ```
 
-As an alternative to defining helper methods as functions, you may define protected methods in your base test class and subsequently access them in your test cases using the `$this` variable.
+As an alternative to defining helper methods as functions, you may define protected methods in your base test class and then access them in your test cases using the `$this` variable:
 
 ```php
 use App\Clients\PaymentClient;

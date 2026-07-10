@@ -5,11 +5,11 @@ description: Up until now, we have only discussed running tests from the command
 
 # Continuous Integration
 
-Up until now, we have only discussed running tests from the command line on your local machine. But, you can also run your tests from a CI platform of your choice. As `pestphp/pest` is included in your Composer development dependencies, you can easily execute the `vendor/bin/pest --ci` command within your CI platform's deployment pipeline.
+Up until now, we have only discussed running tests from the command line on your local machine. However, you may also run your tests from a CI platform of your choice. Since `pestphp/pest` is included in your Composer development dependencies, you may execute the `vendor/bin/pest --ci` command within your CI platform's deployment pipeline.
 
 ## Example With GitHub Actions
 
-If your application uses [GitHub Actions](https://github.com/features/actions) as its CI platform, the following guidelines will assist you in configuring Pest so that your application is automatically tested when someone pushes a commit to your GitHub repository.
+If your application uses [GitHub Actions](https://github.com/features/actions) as its CI platform, the following guidelines will help you configure Pest so that your application is automatically tested whenever someone pushes a commit to your GitHub repository.
 
 To get started, create a `tests.yml` file within the `your-project/.github/workflows` directory. The file should have the following contents:
 
@@ -40,13 +40,13 @@ jobs:
         run: ./vendor/bin/pest --ci
 ```
 
-Naturally, you may customize the script above according to your requirements. For example, you may need to set up a database if your tests require one.
+Of course, you may customize the script above according to your requirements. For example, you may need to set up a database if your tests require one.
 
 Once you have created your `tests.yml` file, commit and push the `tests.yml` file so GitHub Actions can run your tests. Keep in mind that once you make this commit, your test suite will execute on all new pull requests and commits.
 
 ### Using Browser Testing with GitHub Actions
 
-If you want to use [Browser Testing](/docs/browser-testing) with GitHub Actions, be sure to add a step that installs [Playwright](https://playwright.dev/docs/ci#github-actions) before running your tests. Here is an example of how to do this:
+Sometimes you may wish to use [Browser Testing](/docs/browser-testing) with GitHub Actions. To do so, be sure to add a step that installs [Playwright](https://playwright.dev/docs/ci#github-actions) before running your tests. Here is an example:
 
 ```yaml
     - uses: actions/setup-node@v4
@@ -63,11 +63,11 @@ If you want to use [Browser Testing](/docs/browser-testing) with GitHub Actions,
       run: ./vendor/bin/pest --ci --parallel
 ```
 
-> Note: Be sure to run your browser tests in parallel to speed up the execution time. You can do this by adding the `--parallel` flag to the Pest command.
+> Note: Be sure to run your browser tests in parallel to speed up execution time. You may do this by adding the `--parallel` flag to the Pest command.
 
 ## Example With GitLab CI/CD Pipelines
 
-If your application uses [GitLab CI/CD Pipelines](https://docs.gitlab.com/ee/ci/pipelines/) as its CI platform, the following guidelines will assist you in configuring Pest so that your application is automatically tested when someone pushes a commit to your GitLab repository.
+If your application uses [GitLab CI/CD Pipelines](https://docs.gitlab.com/ee/ci/pipelines/) as its CI platform, the following guidelines will help you configure Pest so that your application is automatically tested whenever someone pushes a commit to your GitLab repository.
 
 To get started, add the following configuration to your `.gitlab-ci.yml` file. The file should have the following contents:
 
@@ -107,13 +107,13 @@ tests:
     - ./vendor/bin/pest --ci
 ```
 
-Naturally, you may customize the script above according to your requirements. For example, you may need to set up a database if your tests require one.
+Of course, you may customize the script above according to your requirements. For example, you may need to set up a database if your tests require one.
 
 Once you have created your `.gitlab-ci.yml` file, commit and push the `.gitlab-ci.yml` file so Gitlab CI/CD Pipelines can run your tests. Keep in mind that once you make this commit, your test suite will execute on all new merge requests and commits.
 
 ## Example with Bitbucket Pipelines
 
-If your application uses [Bitbucket CI/CD Pipelines](https://bitbucket.org/product/features/pipelines) as its CI platform, the following guidelines will assist you in configuring Pest so that your application is automatically tested when someone pushes a commit to your Bitbucket repository.
+If your application uses [Bitbucket CI/CD Pipelines](https://bitbucket.org/product/features/pipelines) as its CI platform, the following guidelines will help you configure Pest so that your application is automatically tested whenever someone pushes a commit to your Bitbucket repository.
 
 To get started, add the following configuration to your `bitbucket-pipelines.yml` file. The file should have the following contents:
 
@@ -132,13 +132,13 @@ pipelines:
             - composer
 ```
 
-Naturally, you may customize the script above according to your requirements. For example, you may need to set up a database if your tests require one.
+Of course, you may customize the script above according to your requirements. For example, you may need to set up a database if your tests require one.
 
 Once you have created your `bitbucket-pipelines.yml` file, commit and push the `bitbucket-pipelines.yml` file so Bitbucket Pipelines can run your tests. Keep in mind that once you make this commit, your test suite will execute on all new pull requests and commits.
 
 ## Example with Chipper CI
 
-If your application uses [Chipper CI](https://chipperci.com) as its CI platform, the following guidelines will assist you in configuring Pest so that your application is automatically tested when someone pushes a commit to your git repository.
+If your application uses [Chipper CI](https://chipperci.com) as its CI platform, the following guidelines will help you configure Pest so that your application is automatically tested whenever someone pushes a commit to your git repository.
 
 To get started, add the following configuration to your `.chipperci.yml` file. The file should have the following contents:
 
@@ -175,17 +175,17 @@ pipeline:
     cmd: pest
 ```
 
-In addition to handling Composer and NPM caches, Chipper CI automatically adds `vendor/bin` to your PATH, so simply running the `pest --ci` command will work when running tests.
+In addition to handling Composer and NPM caches, Chipper CI automatically adds `vendor/bin` to your PATH, so running the `pest --ci` command will work when running tests.
 
-Naturally, you may customize the scripts above according to your requirements. For example, you may need to define a [database service](https://chipperci.com/docs/builds/databases/) if your tests require one.
+Of course, you may customize the scripts above according to your requirements. For example, you may need to define a [database service](https://chipperci.com/docs/builds/databases/) if your tests require one.
 
 Once you have created your `.chipperci.yml` file, commit and push the `.chipperci.yml` file so Chipper CI can run your tests. Keep in mind that once you make this commit, your test suite will execute on all new commits.
 
 ## Sharding Your Tests
 
-If you have a large test suite, you may want to consider sharding your tests across multiple CI jobs to speed up the execution time. Pest supports test sharding out of the box, allowing you to split your tests into smaller groups that can be run in parallel.
+If you have a large test suite, you may wish to shard your tests across multiple CI jobs to speed up execution time. Pest supports test sharding out of the box, allowing you to split your tests into smaller groups that may be run in parallel.
 
-To shard your tests, you can use the `--shard` option when running Pest. For example, if you want to run the first shard of your tests, you can use the following command:
+To shard your tests, you may use the `--shard` option when running Pest. For example, to run the first shard of your tests, you may use the following command:
 
 ```bash
 ./vendor/bin/pest --shard=1/5
@@ -195,7 +195,7 @@ By default, Pest splits tests evenly by **count** — each shard gets roughly th
 
 ### Time-Balanced Sharding
 
-For better shard balance, Pest can distribute tests based on their **actual execution time** using the `--update-shards` option. This ensures each shard takes roughly the same wall-clock time, minimizing how long your slowest CI job runs.
+For better shard balance, Pest may distribute tests based on their **actual execution time** using the `--update-shards` option. This ensures each shard takes roughly the same wall-clock time, minimizing how long your slowest CI job runs.
 
 **Step 1:** Generate the timing data by running your full test suite with `--update-shards`:
 
@@ -203,7 +203,7 @@ For better shard balance, Pest can distribute tests based on their **actual exec
 ./vendor/bin/pest --update-shards
 ```
 
-This runs all tests and records each test class's duration into `tests/.pest/shards.json`. You can also combine it with `--parallel` to speed things up:
+This runs all tests and records each test class's duration into `tests/.pest/shards.json`. You may also combine it with `--parallel` to speed things up:
 
 ```bash
 ./vendor/bin/pest --parallel --update-shards
@@ -223,7 +223,7 @@ This runs all tests and records each test class's duration into `tests/.pest/sha
 }
 ```
 
-**Step 3:** When you run `--shard` and `tests/.pest/shards.json` exists, Pest automatically uses time-balanced distribution:
+**Step 3:** When you run `--shard` and `tests/.pest/shards.json` exists, Pest will automatically use time-balanced distribution:
 
 ```bash
 ./vendor/bin/pest --shard=1/5
@@ -243,7 +243,7 @@ When you add or rename test files, Pest will detect that `tests/.pest/shards.jso
 WARN  The [tests/.pest/shards.json] file is out of date. Run [--update-shards] to update it.
 ```
 
-Simply re-run `--update-shards` and commit the updated file to restore optimal balancing.
+Re-run `--update-shards` and commit the updated file to restore optimal balancing.
 
 Here is how Pest handles common changes to your test suite:
 
@@ -269,7 +269,7 @@ steps:
     run: ./vendor/bin/pest --shard=${{ matrix.shard }}/5
 ```
 
-To refresh timing data, you can add a scheduled or manual workflow:
+To refresh timing data, you may add a scheduled or manual workflow:
 
 ```yml
 name: Update Shards
@@ -297,4 +297,4 @@ jobs:
 
 ---
 
-Great job setting up Continuous Integration for your project to ensure codebase stability! Now, let's take a deeper dive into Pest's concepts by exploring it's test configuration capabilities: [Configuring Pest →](/docs/configuring-tests)
+With Continuous Integration in place, your project is set up to keep its codebase stable on every commit. Next, let's take a deeper dive into Pest's concepts by exploring its test configuration capabilities: [Configuring Pest →](/docs/configuring-tests)

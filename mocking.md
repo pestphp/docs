@@ -1,27 +1,27 @@
 ---
 title: Mocking
-description: When testing your applications, you may want to "mock" specific classes to prevent them from actually being invoked during a particular test. For instance, if your application interacts with an API that initiates a payment, you likely want to "mock" the API client locally to prevent the actual payment from being made.
+description: When testing your applications, you may wish to "mock" specific classes to prevent them from being invoked during a particular test — for instance, mocking a payment API client locally so that no actual payment is made.
 ---
 
 # Mocking
 
 > **Requirements:** [Mockery 1.0+](https://github.com/mockery/mockery/)
 
-When testing your applications, you may want to "mock" specific classes to prevent them from actually being invoked during a particular test. For instance, if your application interacts with an API that initiates a payment, you likely want to "mock" the API client locally to prevent the actual payment from being made.
+When testing your applications, you may wish to "mock" specific classes to prevent them from actually being invoked during a particular test. For instance, if your application interacts with an API that initiates a payment, you likely want to "mock" the API client locally so that the actual payment is never made.
 
 Before getting started, you will need to install a mocking library. We recommend [Mockery](https://github.com/mockery/mockery/), but you are free to choose any other library that suits your needs.
 
-To begin using Mockery, require it using the Composer package manager.
+To begin using Mockery, you may require it using the Composer package manager:
 
 ```bash
 composer require mockery/mockery --dev
 ```
 
-While comprehensive documentation for Mockery can be found on the [Mockery website](https://docs.mockery.io), this section will discuss the most common use cases for mocking.
+Comprehensive documentation for Mockery can be found on the [Mockery website](https://docs.mockery.io); this section will focus on the most common use cases for mocking.
 
 ## Method Expectations
 
-Mock objects are essential for isolating the code being tested and simulating specific behaviors or conditions from other pieces of the application. After creating a mock using the `Mockery::mock()` method, we can indicate that we expect a certain method to be invoked by calling the `shouldReceive()` method.
+Mock objects are essential for isolating the code under test and simulating specific behaviors or conditions from other parts of your application. Once you have created a mock using the `Mockery::mock()` method, you may indicate that you expect a certain method to be invoked by calling the `shouldReceive()` method:
 
 ```php
 use App\Repositories\BookRepository;
@@ -37,7 +37,7 @@ it('may buy a book', function () {
 
 ```
 
-It is possible to mock multiple method calls using the same syntax shown above.
+You may mock multiple method calls using the same syntax shown above:
 
 ```php
 $client->shouldReceive('post');
@@ -46,21 +46,21 @@ $client->shouldReceive('delete');
 
 ## Argument Expectations
 
-In order to make our expectations for a method more specific, we can use constraints to limit the expected argument list for a method call. This can be done by utilizing the `with()` method, as demonstrated in the following example.
+To make your expectations for a method more specific, you may use constraints to limit the expected argument list for a method call. This is accomplished with the `with()` method, as demonstrated in the following example:
 
 ```php
 $client->shouldReceive('post')
     ->with($firstArgument, $secondArgument);
 ```
 
-In order to increase the flexibility of argument matching, Mockery provides built-in matcher classes that can be used in place of specific values. For example, instead of using specific values, we can use `Mockery::any()` to match any argument.
+To increase the flexibility of argument matching, Mockery provides built-in matcher classes that may be used in place of specific values. For example, instead of passing specific values, you may use `Mockery::any()` to match any argument:
 
 ```php
 $client->shouldReceive('post')
     ->with($firstArgument, Mockery::any());
 ```
 
-It is important to note that expectations defined using `shouldReceive()` and `with()` only apply when the method is invoked with the exact arguments that you expected. Otherwise, Mockery will throw an exception.
+It is important to note that expectations defined using `shouldReceive()` and `with()` only apply when the method is invoked with the exact arguments you expected. Otherwise, Mockery will throw an exception:
 
 ```php
 $client->shouldReceive('post')->with(1);
@@ -68,7 +68,7 @@ $client->shouldReceive('post')->with(1);
 $client->post(2); // fails, throws a `NoMatchingExpectationException`
 ```
 
-In certain cases, it may be more appropriate to use a closure to match all passed arguments simultaneously, rather than relying on built-in matchers for each individual argument. The `withArgs()` method accepts a closure that receives all of the arguments passed to the expected method call. As a result, this expectation will only be applied to method calls in which the passed arguments cause the closure to evaluate to true.
+Sometimes you may wish to match all passed arguments at once using a closure, rather than relying on built-in matchers for each individual argument. The `withArgs()` method accepts a closure that receives all of the arguments passed to the expected method call. As a result, this expectation will only apply to method calls in which the passed arguments cause the closure to evaluate to true:
 
 ```php
 $client->shouldReceive('post')->withArgs(function ($arg) {
@@ -81,13 +81,13 @@ $client->post(2); // fails, throws a `NoMatchingExpectationException`
 
 ## Return Values
 
-When working with mock objects, we can use the `andReturn()` method to tell Mockery what to return from the mocked methods.
+When working with mock objects, you may use the `andReturn()` method to tell Mockery what to return from the mocked methods:
 
 ```php
 $client->shouldReceive('post')->andReturn('post response');
 ```
 
-We can define a sequence of return values by passing multiple return values to the `andReturn()` method.
+You may define a sequence of return values by passing multiple values to the `andReturn()` method:
 
 ```php
 $client->shouldReceive('post')->andReturn(1, 2);
@@ -96,7 +96,7 @@ $client->post(); // int(1)
 $client->post(); // int(2)
 ```
 
-Sometimes, we may need to calculate the return results of method calls based on the arguments passed to the method. This can be accomplished using the `andReturnUsing()` method, which accepts one or more closures.
+Sometimes you may need to calculate the return value of a method call based on the arguments passed to it. This is accomplished with the `andReturnUsing()` method, which accepts one or more closures:
 
 ```php
 $mock->shouldReceive('post')
@@ -106,7 +106,7 @@ $mock->shouldReceive('post')
     );
 ```
 
-In addition, we can instruct mocked methods to throw exceptions.
+In addition, you may instruct mocked methods to throw exceptions:
 
 ```php
 $client->shouldReceive('post')->andThrow(new Exception);
@@ -114,7 +114,7 @@ $client->shouldReceive('post')->andThrow(new Exception);
 
 ## Method Call "Count" Expectations
 
-Along with specifying expected arguments and return values for method calls, we can also set expectations for how many times a particular method should be invoked.
+Along with specifying expected arguments and return values for method calls, you may also set expectations for how many times a particular method should be invoked:
 
 ```php
 $mock->shouldReceive('post')->once();
@@ -123,13 +123,13 @@ $mock->shouldReceive('delete')->times(3);
 // ...
 ```
 
-To specify a minimum number of times a method should be called, we may use the `atLeast()` method.
+To specify a minimum number of times a method should be called, you may use the `atLeast()` method:
 
 ```php
 $mock->shouldReceive('delete')->atLeast()->times(3);
 ```
 
-Mockery's `atMost()` method allows us to specify the maximum number of times a method can be called.
+Alternatively, Mockery's `atMost()` method allows you to specify the maximum number of times a method may be called:
 
 ```php
 $mock->shouldReceive('delete')->atMost()->times(3);
@@ -137,4 +137,4 @@ $mock->shouldReceive('delete')->atMost()->times(3);
 
 ---
 
-The primary objective of this section is to provide you with an introduction to Mockery, the mocking library we prefer. However, for a more comprehensive understanding of Mockery, we suggest checking out its [official documentation](https://docs.mockery.io). Next, let's explore how snapshot testing lets you assert against large or complex output without writing it all out by hand: [Snapshot Testing](/docs/snapshot-testing)
+The goal of this section is to give you an introduction to Mockery, the mocking library we prefer. For a more comprehensive understanding, however, we suggest checking out its [official documentation](https://docs.mockery.io). Next, let's explore how snapshot testing lets you assert against large or complex output without writing it all out by hand: [Snapshot Testing](/docs/snapshot-testing)

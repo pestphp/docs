@@ -5,7 +5,7 @@ description: In the preceding chapters of the Pest documentation, we have covere
 
 # CLI API Reference
 
-In the preceding chapters of the Pest documentation, we have covered numerous CLI options that are available in Pest. Nevertheless, Pest provides many other options that could prove beneficial. The complete CLI API Reference is provided below for your convenience.
+In the preceding chapters of the Pest documentation, we have covered numerous CLI options that are available in Pest. However, Pest provides many other options that you may find beneficial. For your convenience, the complete CLI API Reference is provided below.
 
 ## Configuration
 

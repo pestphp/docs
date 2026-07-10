@@ -1,6 +1,6 @@
 ---
 title: Video Resources
-description: Ever since the introduction of Pest to the world, the community has been inundating social media with online video courses on the subject. This has left us feeling deeply appreciative, as some individuals simply prefer to learn about Pest and testing through video rather than documentation.
+description: A curated collection of conference talks, courses, and community videos to help you learn Pest and testing through video.
 ---
 
 # Video Resources
@@ -9,7 +9,7 @@ In this section, you will find a list of some of the video resources available o
 
 ### Conference Talks
 
-We have gathered here some inspiring and exciting conference talks about Pest PHP.
+Here, we have gathered some helpful conference talks about Pest PHP.
 
 - [Laracon US 2025: Pest 4](https://www.youtube.com/watch?v=f5gAgwwwwOI) by Nuno Maduro
 - [Laracon US 2024: Pest 3](https://www.youtube.com/watch?v=BNhbgcNJyAk) by Nuno Maduro
@@ -40,9 +40,9 @@ Here you will find all past episodes of our Pest Meetups YouTube live streams.
 
 ### Pest Community Videos
 
-Ever since the introduction of Pest to the world, the community has been inundating social media with online video courses on the subject. This has left us feeling deeply appreciative, as some individuals enjoy continuing learning about Pest and testing through video material.
+Ever since Pest was introduced to the world, the community has shared a wealth of online video courses on the subject. This has left us feeling deeply appreciative, as some of you enjoy learning about Pest and testing through video material.
 
-Below you find videos created by the Pest community. All the content listed in this subsection is publicly available and free of charge to access.
+Below, you will find videos created by the Pest community. All the content listed in this subsection is publicly available and free of charge to access.
 
 #### English
 
@@ -73,11 +73,11 @@ Below you find videos created by the Pest community. All the content listed in t
 
 ## Independent Creators (non-free)
 
-Here you can find links to Pest courses created by individual producers and made accessible on various paid platforms.
+Here, you will find links to Pest courses created by individual producers and made available on various paid platforms.
 
 - [Laravel Testing 101](https://www.linkedin.com/learning/laravel-testing-101) by Ana Lisboa
 - [Pest Driven Laravel](https://laracasts.com/series/pest-driven-laravel) by Christoph Rumpel on Laracasts
 
 ---
 
-Understanding the significance of video resources in the learning process, we trust that you have found this chapter enjoyable. In the upcoming chapter, you will find comprehensive details regarding Pest's support policy: [Support Policy](/docs/support-policy)
+Understanding the value of video resources in the learning process, we trust that you have found this chapter helpful. In the next chapter, you will find comprehensive details regarding Pest's support policy: [Support Policy](/docs/support-policy)

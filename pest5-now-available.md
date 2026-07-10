@@ -5,11 +5,11 @@ description: Today, we're thrilled to announce the release of Pest 5. Built on P
 
 # Pest 5 Now Available
 
-After shipping Pest 4, with the best browser testing in the world, we honestly thought a release as big as Pest 4 simply wouldn't be possible again.
+After shipping Pest 4, with the best browser testing in the world, we thought a release as big as Pest 4 wouldn't be possible again.
 
-And yet... today I'm proud to introduce you to the biggest release of Pest yet: **Pest 5**.
+And yet, today I'm proud to introduce you to the biggest release of Pest yet: **Pest 5**.
 
-Below, we'll cover all the juicy details about this release. And as usual, you can find the [upgrade guide](/docs/upgrade-guide) on our website.
+Below, we'll cover all the details of this release. As usual, you may find the [upgrade guide](/docs/upgrade-guide) on our website.
 
 - **[Tia Engine](#test-impact-analysis)**: The engine that re-runs only the tests affected by your latest changes, powered by the smartest dependency tree ever seen — editing a `button.tsx`, for example, re-runs only the browser tests and the tests rendering the Inertia pages that use it. A 15-second suite replays in under a second.
 - **[The Agent Browser](#the-agent-browser)**: Give your AI coding agents a single command to verify that a change actually works. Unlike Vercel's agent browser, a single bash/tool call creates users, logs them in, runs the full navigation and clicks, and makes assertions — including backend assertions that check things like whether emails actually got sent.
@@ -26,7 +26,7 @@ Built on top of **PHP 8.4** and **PHPUnit 13**, this release brings together a s
 
 This is the one we've been most excited to share. The **Tia Engine** — short for Test Impact Analysis — drastically reduces the time it takes to run your test suite by re-running only the tests affected by your latest changes.
 
-The first time you run with `--tia`, the engine records a graph of which tests depend on which files. Every run after that, the engine looks at what you changed, runs only the tests that touched those files, and replays cached results for everything else.
+The first time you run with `--tia`, the engine records a graph of which tests depend on which files. Every run after that, the engine looks at what you changed, runs only the tests that touched those files, and replays cached results for everything else:
 
 ```bash
 ./vendor/bin/pest --parallel --tia
@@ -39,9 +39,9 @@ Tests:    774 passed (2658 assertions, 7 affected, 2 uncached, 765 replayed)
 Duration: 0.74s
 ```
 
-What makes this possible is the smartest dependency tree we've ever built. The engine doesn't just map files to tests — it understands your whole stack. A column rename in a migration re-runs only the tests that queried that table. A change to an Inertia page re-runs only the tests that server-side-rendered it, and editing a shared JS component walks Vite's module graph to find every page that imports it. Blade templates re-run the tests that rendered them, browser assets re-run only browser tests, and arch tests re-run whenever your source's shape changes. Edit a single Blade template and a handful of feature tests run; touch `config/app.php` and Pest honestly re-runs everything, because it can't statically prove otherwise.
+What makes this possible is the smartest dependency tree we've ever built. The engine doesn't just map files to tests — it understands your whole stack. A column rename in a migration re-runs only the tests that queried that table. A change to an Inertia page re-runs only the tests that server-side-rendered it, and editing a shared JS component walks Vite's module graph to find every page that imports it. Blade templates re-run the tests that rendered them, browser assets re-run only browser tests, and arch tests re-run whenever your source's shape changes. Edit a single Blade template and a handful of feature tests run; touch `config/app.php` and Pest re-runs everything, because it can't statically prove otherwise.
 
-Comment-only edits, formatter passes, and README touches re-run nothing at all — the engine normalises file content before comparing (stripping whitespace, comments, and docblocks), so a Pint pass or a Prettier reformat produces an identical hash and never enters the changed set.
+Comment-only edits, formatter passes, and README touches re-run nothing at all — the engine normalizes file content before comparing (stripping whitespace, comments, and docblocks), so a Pint pass or a Prettier reformat produces an identical hash and never enters the changed set.
 
 The engine ships with sensible defaults for the most common PHP stacks (Laravel, Symfony, Livewire, Inertia, and browser assets), detecting each framework via Composer automatically. And for teams, CI can record the baseline once per merge to `main` so every developer downloads the result and starts replaying immediately — paying no record cost.
 
@@ -61,6 +61,8 @@ vendor/bin/pest --agent-browser="visit('/')->assertSee('Welcome');"
 The agent gets a definitive pass or fail instead of a hopeful guess — with the full power of Pest at its disposal. This is where the Agent Browser pulls ahead of browser-only agent tools like Vercel's agent browser: those tools live outside your application and can only observe what the page renders, so they confirm the UI *looks* right but never that the system *behaved* right. A green screenshot from a tool like Vercel's tells you nothing about whether the job was queued, the mail was sent, or the row was written.
 
 The Agent Browser runs *inside your real test suite* instead. Your agent can drive the UI **and** assert the side effects it triggered — submit a contact form, then assert the mail was sent — all in a single probe, with your factories, `RefreshDatabase`, and Laravel fakes available exactly as in a real feature test. Where Vercel's agent browser is a black box bolted onto the outside of your app, the Agent Browser has the same full-stack visibility your own feature tests do, so a passing check means the whole flow — front to back — actually works.
+
+To get started, install the plugin via Composer:
 
 ```bash
 composer require pestphp/pest-plugin-agent-browser --dev
@@ -119,6 +121,8 @@ On top of type inference, the plugin adds Pest-aware rules: static test closures
 ## Automated Refactoring With Rector
 
 Pest's **Rector** plugin provides automated refactoring rules powered by [Rector](https://getrector.org/). It helps simplify and modernize your test code — and upgrade between major Pest versions — automatically.
+
+To get started, install the plugin via Composer along with Rector:
 
 ```bash
 composer require pestphp/pest-plugin-rector --dev

@@ -20,11 +20,11 @@ composer require rector/rector --dev
 
 ## Rule Sets
 
-You can configure which rules to apply by using predefined rule sets in your `rector.php` file.
+You may configure which rules to apply by using predefined rule sets in your `rector.php` file.
 
 ### Pest Code Quality
 
-Converts raw PHP assertions to Pest's built-in matchers, chains multiple `expect()` calls on the same value, and simplifies redundant patterns.
+Converts raw PHP assertions to Pest's built-in matchers, chains multiple `expect()` calls on the same value, and simplifies redundant patterns:
 
 ```php
 use Pest\Rector\Set\PestSetList;
@@ -42,7 +42,7 @@ The `PEST_CHAIN` set merges consecutive `expect()` calls into a single chained e
 
 ### PHPUnit To Pest Migration
 
-Converts PHPUnit assertion methods and `expectException()` patterns to Pest's `expect()` API. These are structural transformations, so you should review the result after applying them.
+Converts PHPUnit assertion methods and `expectException()` patterns to Pest's `expect()` API. These are structural transformations, so you should review the result after applying them:
 
 ```php
 use Pest\Rector\Set\PestSetList;
@@ -57,7 +57,7 @@ return RectorConfig::configure()
 
 ### Laravel
 
-Converts `Illuminate\Support\Str` equality checks to Pest's string case matchers, such as `toBeSnakeCase()` and `toBeKebabCase()`. This set requires the `illuminate/support` package.
+Converts `Illuminate\Support\Str` equality checks to Pest's string case matchers, such as `toBeSnakeCase()` and `toBeKebabCase()`. This set requires the `illuminate/support` package:
 
 ```php
 use Pest\Rector\Set\PestSetList;
@@ -72,7 +72,7 @@ return RectorConfig::configure()
 
 ### Browser
 
-Converts generic `expect($page->getter())->matcher()` patterns into the dedicated assertions provided by the [Browser Testing](/docs/browser-testing) plugin, resulting in more readable tests and clearer failure messages. This set requires the `pestphp/pest-plugin-browser` package.
+Converts generic `expect($page->getter())->matcher()` patterns into the dedicated assertions provided by the [Browser Testing](/docs/browser-testing) plugin, resulting in more readable tests and clearer failure messages. This set requires the `pestphp/pest-plugin-browser` package:
 
 ```php
 use Pest\Rector\Set\PestSetList;
@@ -87,7 +87,7 @@ return RectorConfig::configure()
 
 ### Pest Version Upgrades
 
-Upgrade your test suite between major Pest versions.
+Upgrade your test suite between major Pest versions:
 
 ```php
 use Pest\Rector\Set\PestLevelSetList;

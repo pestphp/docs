@@ -1,35 +1,35 @@
 ---
 title: Stress Testing
-description: Stress Testing is a type of testing that inspects the stability and reliability of your application under realistic or extreme conditions — depending on the scenario you setup. For example, you can use stress testing to verify that your application can handle a large number of requests or that it can handle a large amount of data.
+description: Stress testing inspects the stability and reliability of your application under realistic or extreme conditions, so you can verify it handles a large number of requests or a large amount of data.
 ---
 
 # Stress Testing
 
-Stress Testing is a type of testing that inspects the stability and reliability of your application under realistic or extreme conditions — depending on the scenario you setup. For example, you can use stress testing to verify that your application can handle a large number of requests or that it can handle a large amount of data.
+Stress testing is a type of testing that inspects the stability and reliability of your application under realistic or extreme conditions — depending on the scenario you set up. For example, you may use stress testing to verify that your application can handle a large number of requests, or a large amount of data.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/SaMoPZwdOCY?si=KBskkVWLUUSyK0u0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-In Pest, you can combine the power of Stress Testing with the Expectation API ensuring no stability and reliability regressions over time. This can be useful to verify that your application is stable and reliable after a new release, or after a new deployment.
+In Pest, you may combine the power of stress testing with the Expectation API, ensuring no stability and reliability regressions over time. This is helpful when you want to verify that your application remains stable and reliable after a new release, or after a new deployment.
 
-Behind the scenes, this project utilizes [k6](https://k6.io/), a powerful open-source load testing tool for evaluating the performance of APIs, microservices, and websites. k6 is licensed under the **[AGPL-3.0 License](https://www.gnu.org/licenses/agpl-3.0.en.html)**, and the k6 binary is downloaded when the plugin is used for the first time.
+Behind the scenes, this plugin utilizes [k6](https://k6.io/), a powerful open-source load testing tool for evaluating the performance of APIs, microservices, and websites. k6 is licensed under the **[AGPL-3.0 License](https://www.gnu.org/licenses/agpl-3.0.en.html)**, and the k6 binary is downloaded automatically when the plugin is used for the first time.
 
-To start using Pest's Stress Testing plugin (mostly known as Stressless), you need to require the stressless plugin via Composer.
+To get started with Pest's Stress Testing plugin (mostly known as Stressless), you should require the stressless plugin via Composer:
 
 ```bash
 composer require pestphp/pest-plugin-stressless --dev
 ```
 
-After requiring the plugin, you may start using it in two different ways:
+Once the plugin is installed, you may start using it in two different ways:
 
-- Using [the `stress` command](#the-stress-command): It's useful when you want to quickly stress test a URL, without setting expectations on the result.
-- Using [the `stress()` function](#the-stress-function): It's useful when you want to stress test a URL and set expectations on the result.
+- Using [the `stress` command](#the-stress-command): helpful when you want to quickly stress test a URL, without setting expectations on the result.
+- Using [the `stress()` function](#the-stress-function): helpful when you want to stress test a URL and set expectations on the result.
 
-**Testing external domain or local IP Address?** When load testing a domain from an external network, you get a realistic picture of how your application performs under typical user loads. This includes factors like network latency and real-world internet traffic. However, when testing a local IP address within your network, the focus is on understanding the performance of your internal infrastructure in a controlled environment, without external variables like internet or DNS resolution times. It's particularly useful for identifying potential bottlenecks within your own network or server and for performance tuning of internal applications or servers. This includes tasks such as configuring PHP FPM more effectively, etc.
+**Testing an external domain or a local IP address?** When load testing a domain from an external network, you get a realistic picture of how your application performs under typical user loads. This includes factors like network latency and real-world internet traffic. However, when testing a local IP address within your network, the focus shifts to the performance of your internal infrastructure in a controlled environment, without external variables like internet or DNS resolution times. This is particularly helpful for identifying potential bottlenecks within your own network or server, and for performance tuning of internal applications or servers — tasks such as configuring PHP FPM more effectively, for example.
 
 <a name="the-stress-command"></a>
 ## The Stress Command
 
-The `stress` command is useful when you want to quickly stress test a URL, analyze the result, and all without setting expectations on the result. It's the quickest way to launch a stress test, and it happens directly on the terminal.
+The `stress` command is helpful when you want to quickly stress test a URL and analyze the result, all without setting expectations on the result. It's the quickest way to launch a stress test, and it happens directly in the terminal.
 
 To get started, you may use the `stress` command and provide the URL you wish to stress test:
 
@@ -43,7 +43,7 @@ By default, the stress test duration will be `5` seconds. However, you may custo
 ./vendor/bin/pest stress example.com --duration=5
 ```
 
-In addition, the number of concurrent requests will be `1`. However, you may also customize this value using the `--concurrency` option:
+In addition, the number of concurrent requests will be `1` by default. However, you may also customize this value using the `--concurrency` option:
 
 ```bash
 ./vendor/bin/pest stress example.com --concurrency=5
@@ -51,9 +51,9 @@ In addition, the number of concurrent requests will be `1`. However, you may als
 
 The concurrency value represents the number of concurrent requests that will be made to the given URL. For example, if you set the concurrency to `5`, Pest will **constantly make 5 concurrent requests** to the given URL until the stress test duration is reached.
 
-You may want to be mindful of the number of concurrent requests you configure. If you configure too many concurrent requests, you may overwhelm your application, server or hit rate limits / firewalls.
+You may wish to be mindful of the number of concurrent requests you configure. If you configure too many concurrent requests, you may overwhelm your application or server, or hit rate limits and firewalls.
 
-If you want to specify the http method used for the stress test, you can use one of the provided `delete`, `get`, `head`, `options`, `patch`, `put` or `post` options. Using `options`, `patch` and `put` options, you can specify an optional payload argument to be used in the requests. Using `post` option, you are required to provide the payload argument.
+Sometimes you may wish to specify the HTTP method used for the stress test. To accomplish this, you may use one of the provided `delete`, `get`, `head`, `options`, `patch`, `put`, or `post` options. With the `options`, `patch`, and `put` options, you may specify an optional payload argument to be used in the requests. With the `post` option, you are required to provide the payload argument:
 
 ```bash
 ./vendor/bin/pest stress example.com/articles
@@ -85,9 +85,9 @@ Once the stress test is completed, Pest will display a summary of the stress tes
 <a name="the-stress-function"></a>
 ## The Stress function
 
-Once you start understanding how stress testing works, you may want to start setting expectations on the stress test result. For example, you may want to verify that the average response time is *always* less than 100ms, and this is where the `stress()` function comes in.
+Once you understand how stress testing works, you may wish to start setting expectations on the stress test result. For example, you may want to verify that the average response time is *always* less than 100ms, and this is where the `stress()` function comes in.
 
-To get started, simply create a regular test and use the `stress()` function to stress test a given URL:
+To get started, create a regular test and use the `stress()` function to stress test a given URL:
 
 ```php
 <?php
@@ -107,13 +107,13 @@ By default, the stress test duration will be 10 seconds. However, you may custom
 $result = stress('example.com')->for(5)->seconds();
 ```
 
-In addition, the number of concurrent requests will be 1. However, you may also customize this value using the `concurrently` method:
+In addition, the number of concurrent requests will be 1 by default. However, you may also customize this value using the `concurrently` method:
 
 ```php
 $result = stress('example.com')->concurrently(requests: 2)->for(5)->seconds();
 ```
 
-At any time, you may `dd` the stress test result to see its details like if you were using the `stress` command):
+At any time, you may `dd` the stress test result to see its details, just as you would when using the `stress` command:
 
 ```php
 $result = stress('example.com')->dd();
@@ -121,9 +121,9 @@ $result = stress('example.com')->dd();
                              //->verbosely();
 ```
 
-If you want to specify the http method used for the stress test, you can use one of the provided `delete`, `get`, `head`, `options`, `patch`, `put` or `post` methods.
-Using `options`, `patch` and `put` methods, you can specify an optional payload argument to be used in the requests.
-Using `post` method, you are required to provide the payload argument.
+Sometimes you may wish to specify the HTTP method used for the stress test. To accomplish this, you may use one of the provided `delete`, `get`, `head`, `options`, `patch`, `put`, or `post` methods.
+With the `options`, `patch`, and `put` methods, you may specify an optional payload argument to be used in the requests.
+With the `post` method, you are required to provide the payload argument:
 
 ```php
 $result = stress('example.com/articles/1')->delete();
@@ -147,7 +147,7 @@ $result = stress('example.com/articles')->put(["name" => "Nuno"]);
 $result = stress('example.com/articles')->post(["name" => "Nuno"]);
 ```
 
-If you want to specify request headers, you can use the provided `headers` method.
+If you wish to specify request headers, you may use the provided `headers` method:
 
 ```php
 $result = stress('example.com/articles')->headers([
@@ -155,7 +155,7 @@ $result = stress('example.com/articles')->headers([
 ])->get();
 ```
 
-The `stress()` function return the stress test result, which you can use to set expectations. Here is the list of available methods:
+The `stress()` function returns the stress test result, which you may use to set expectations. Here is the list of available methods:
 
 <a name="the-stress-function-request-duration"></a>
 ### Request Duration
@@ -335,4 +335,4 @@ $result->testRun()->duration();
 
 ---
 
-Here, we've seen how to use Pest's Stress Testing plugin (aka stressless) to stress test a given URL and set expectations on the result. Moving on, let's explore how to evaluate the quality of LLM agents and AI-generated output directly from your test suite: [Evals](/docs/evals)
+In this chapter, we've seen how to use Pest's Stress Testing plugin (aka Stressless) to stress test a given URL and set expectations on the result. Next, let's explore how to evaluate the quality of LLM agents and AI-generated output directly from your test suite: [Evals](/docs/evals)

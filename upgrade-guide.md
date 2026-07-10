@@ -63,7 +63,7 @@ All other Pest maintained plugins should be updated to version `^4.0` in your ap
 
 > Likelihood Of Impact: High
 
-If you were using the `toMatchSnapshot`, Pest 4 changes the way snapshots names are generated. As such, you will need to update your snapshot names using the `--update-snapshots` option:
+If you were using `toMatchSnapshot`, Pest 4 changes the way snapshot names are generated. As such, you will need to update your snapshot names using the `--update-snapshots` option:
 
 ```bash
 ./vendor/bin/pest --update-snapshots
@@ -124,7 +124,7 @@ Pest 3 is built on top of PHPUnit 11. This means that any notable changes made t
 
 > Likelihood Of Impact: Low
 
-The `toHaveMethod` and `toHaveMethods` expectations were replaced by the `toHaveMethod` and `toHaveMethods` architectural expectations. If you were using these expectations, you can no longer provide a object as architectural expectations expect an namespace or a class name.
+The `toHaveMethod` and `toHaveMethods` expectations were replaced by the `toHaveMethod` and `toHaveMethods` architectural expectations. If you were using these expectations, you may no longer provide an object, as architectural expectations expect a namespace or a class name.
 
 ```diff
 -expect($object)->toHaveMethod('method');
@@ -169,7 +169,7 @@ Pest 2 requires PHP 8.1.0 or greater. To start migrating from Pest 1 to Pest 2, 
 +    "pestphp/pest": "^2.0",
 ```
 
-Next, you can remove PHPUnit from your list of dependencies if it is included.
+Next, you may remove PHPUnit from your list of dependencies if it is included.
 
 ```diff
 -    "phpunit/phpunit": "^9.5.10",
@@ -235,7 +235,7 @@ If you were previously using PHPUnit instead of Pest, it's possible that your `p
   WARN  Your XML configuration validates against a deprecated schema. Migrate your XML configuration using "--migrate-configuration"!
 ```
 
-To address this issue, simply re-run Pest with the `--migrate-configuration` option.
+To address this, you may re-run Pest with the `--migrate-configuration` option.
 
 ```bash
 ./vendor/bin/pest --migrate-configuration
@@ -283,4 +283,4 @@ Although we previously documented in Pest 1 that datasets should only be declare
 
 ---
 
-This concludes the Pest 2 upgrade guide. On the next chapter, we'll cover how can you easily migrate your tests from PHPUnit to Pest: [Migrating From PHPUnit](/docs/migrating-from-phpunit-guide)
+This concludes the Pest 2 upgrade guide. In the next chapter, we'll cover how you may migrate your tests from PHPUnit to Pest: [Migrating From PHPUnit](/docs/migrating-from-phpunit-guide)

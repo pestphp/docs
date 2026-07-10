@@ -5,7 +5,7 @@ description: Today, we're thrilled to announce the release of Pest 3. As we anno
 
 # Pest v3 Now Available
 
-Today, we're thrilled to announce the release of **Pest 3**. As we announced at Laracon US, Pest 3 introduces Mutation Testing, Arch Presets, Team Management, New Configuration API, multiple improvements to Architectural Testing & more.
+Today, we are thrilled to announce the release of **Pest 3**. As we announced at Laracon US, Pest 3 introduces Mutation Testing, Arch Presets, Team Management, a new Configuration API, multiple improvements to Architectural Testing, and more.
 
 Check out Pest's creator, Nuno Maduro, live demonstrating what's new in Pest 3:
 
@@ -13,7 +13,7 @@ Check out Pest's creator, Nuno Maduro, live demonstrating what's new in Pest 3:
     <iframe width="100%" height="315" src="https://www.youtube.com/embed/BNhbgcNJyAk" title="Introducing Pest 3.0 | Nuno Maduro at Laracon US 2024 in Dallas, TX" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div>
 
-Below, we'll cover all the juicy details about this release. And as usual, you can find the [upgrade guide](/docs/upgrade-guide) in our website.
+Below, we'll cover all the details about this release. And as usual, you may find the [upgrade guide](/docs/upgrade-guide) on our website.
 
 - **[Mutation Testing](#mutation-testing)**: An innovative new technique that introduces small changes to your code to see if your tests catch them.
 - **[Arch Presets](#arch-presets)**: A set of predefined rules that you can use to test your application's architecture.
@@ -26,11 +26,11 @@ Below, we'll cover all the juicy details about this release. And as usual, you c
 <a name="mutation-testing"></a>
 ## Mutation Testing
 
-Mutation Testing is an innovative new technique that introduces small changes (mutations) to your code to see if your tests catch them. This ensures you’re testing your application thoroughly, beyond just achieving code coverage and more about the actual quality of the tests. It’s a great way to identify weaknesses in your test suite and improve quality.
+Mutation Testing is a powerful technique that introduces small changes (mutations) to your code to see whether your tests catch them. This ensures you are testing your application thoroughly, moving beyond code coverage alone and toward the actual quality of your tests. It is a helpful way to identify weaknesses in your test suite and improve its quality.
 
 <img src="/assets/mutation-testing-1.jpg" alt="Mutation Testing" style="width: 100%;" />
 
-To get started with mutation testing, head over to your test file, and be specific about which part of your code your test covers using the `covers()` function.
+To get started with mutation testing, head over to your test file and be specific about which part of your code your test covers using the `covers()` function:
 
 ```php
 covers(TodoController::class);
@@ -40,7 +40,7 @@ it('list todos', function () {
 });
 ```
 
-Then, run Pest PHP with the `--mutate` option to start mutation testing.
+Then, run Pest PHP with the `--mutate` option to start mutation testing:
 
 ```bash
 ./vendor/bin/pest --mutate
@@ -48,7 +48,7 @@ Then, run Pest PHP with the `--mutate` option to start mutation testing.
 ./vendor/bin/pest --mutate --parallel
 ```
 
-Pest will then re-run your tests against "mutated" code and see if the tests are still passing. If a test is still passing against a mutation, it means that the test is not covering that specific part of the code. As, as result, Pest will output the mutation and the diff of the code.
+Pest will then re-run your tests against the "mutated" code and check whether the tests are still passing. If a test still passes against a mutation, it means the test is not covering that specific part of the code. As a result, Pest will output the mutation along with the diff of the code:
 
 ```diff
 UNTESTED  app/Http/TodoController.php  > Line 44: ReturnValue - ID: 76d17ad63bb7c307
@@ -67,7 +67,7 @@ class TodoController {
   Score:     33.44%
 ```
 
-Once you have identified the untested code, you can write additional tests to cover it.
+Once you have identified the untested code, you may write additional tests to cover it:
 
 ```diff
 covers(TodoController::class);
@@ -80,16 +80,16 @@ it('list todos', function () {
 });
 ```
 
-Then, you can re-run Pest with the `--mutate` option to see if the mutation is now "tested" and covered.
+Then, you may re-run Pest with the `--mutate` option to see whether the mutation is now "tested" and covered:
 
 ```bash
   Mutations: 1 tested
   Score:     100.00%
 ```
 
-The higher the mutation score, the better your test suite is. A mutation score of 100% means that all mutations were "tested", which is the goal of mutation testing.
+The higher the mutation score, the better your test suite. A mutation score of 100% means that all mutations were "tested", which is the goal of mutation testing.
 
-Now, if you see "untested" or "uncovered" mutations, or are a mutation score below 100%, typically means that you have **missing tests** or that **your tests are not covering all the edge cases**.
+A mutation score below 100%, along with "untested" or "uncovered" mutations, typically means that you have **missing tests** or that **your tests are not covering all the edge cases**.
 
 Our plugin is deeply integrated into Pest PHP. So, each time a mutation is introduced, Pest PHP will:
 
@@ -97,18 +97,18 @@ Our plugin is deeply integrated into Pest PHP. So, each time a mutation is intro
 - **Cache as much as possible** to speed up the process on subsequent runs.
 - If enabled, use **parallel execution to run multiple tests** in parallel to speed up the process.
 
-There is so much more to explore with Mutation Testing, like `@pest-mutate-ignore` or `--mutate --everything`. You can learn more about it in our [Mutation Testing](/docs/mutation-testing) section.
+There is so much more to explore with Mutation Testing, like `@pest-mutate-ignore` or `--mutate --everything`. You may learn more about it in our [Mutation Testing](/docs/mutation-testing) section.
 
 <a name="arch-presets"></a>
 ## Arch Presets
 
 As you may know, [Architecture testing](/docs/arch-testing) enables you to specify expectations that test whether your application adheres to a set of architectural rules, helping you maintain a clean and sustainable codebase.
 
-It's one of the most popular features of Pest, and with Pest 3, we're introducing **Arch Presets**. Arch Presets are a set of predefined architectural rules that you can use to test your application's architecture. These presets are designed to help you get started with architecture testing quickly and easily.
+It is one of the most popular features of Pest, and with Pest 3, we are introducing **Arch Presets**. Arch Presets are a set of predefined architectural rules that you may use to test your application's architecture. These presets are designed to help you get started with architecture testing quickly.
 
 <img src="/assets/presets-3.jpg" alt="Arch Presets" style="width: 100%;" />
 
-Here are the available Arch Presets in Pest 3:
+The following Arch Presets are available in Pest 3:
 
 <div class="collection-method-list" markdown="1">
 
@@ -123,7 +123,7 @@ Here are the available Arch Presets in Pest 3:
 <a name="preset-php"></a>
 ### `php`
 
-The `php` preset is a predefined set of expectations that can be used on any php project. It's not coupled with any framework or library.
+The `php` preset is a predefined set of expectations that may be used on any PHP project. It is not coupled with any framework or library.
 
 It avoids the usage of `die`, `var_dump`, and similar functions, and ensures you are not using deprecated PHP functions. [source code](https://github.com/pestphp/pest/blob/3.x/src/ArchPresets/Php.php)
 
@@ -134,7 +134,7 @@ arch()->preset()->php();
 <a name="preset-security"></a>
 ### `security`
 
-The `security` preset is a predefined set of expectations that can be used on any php project. It's not coupled with any framework or library.
+The `security` preset is a predefined set of expectations that may be used on any PHP project. It is not coupled with any framework or library.
 
 It ensures you are not using code that could lead to security vulnerabilities, such as `eval`, `md5`, and similar functions. [source code](https://github.com/pestphp/pest/blob/3.x/src/ArchPresets/Security.php)
 
@@ -145,9 +145,9 @@ arch()->preset()->security();
 <a name="preset-laravel"></a>
 ### `laravel`
 
-The `laravel` preset is a predefined set of expectations that can be used on [Laravel](https://laravel.com) projects.
+The `laravel` preset is a predefined set of expectations that may be used on [Laravel](https://laravel.com) projects.
 
-It ensures you project's structure is following the well-known Laravel conventions, such as controllers only have `index`, `show`, `create`, `store`, `edit`, `update`, `destroy` as public methods and are always suffixed with `Controller` and so on. [source code](https://github.com/pestphp/pest/blob/3.x/src/ArchPresets/Laravel.php)
+It ensures your project's structure follows the well-known Laravel conventions, such as controllers only having `index`, `show`, `create`, `store`, `edit`, `update`, and `destroy` as public methods and always being suffixed with `Controller`, and so on. [source code](https://github.com/pestphp/pest/blob/3.x/src/ArchPresets/Laravel.php)
 
 ```php
 arch()->preset()->laravel();
@@ -156,7 +156,7 @@ arch()->preset()->laravel();
 <a name="preset-strict"></a>
 ### `strict`
 
-The `strict` preset is a predefined set of expectations that can be used on any php project. It's not coupled with any framework or library.
+The `strict` preset is a predefined set of expectations that may be used on any PHP project. It is not coupled with any framework or library.
 
 It ensures you are using strict types in all your files, that all your classes are final, and more. [source code](https://github.com/pestphp/pest/blob/3.x/src/ArchPresets/Strict.php)
 
@@ -167,15 +167,15 @@ arch()->preset()->strict();
 <a name="preset-relaxed"></a>
 ### `relaxed`
 
-The `relaxed` preset is a predefined set of expectations that can be used on any php project. It's not coupled with any framework or library.
+The `relaxed` preset is a predefined set of expectations that may be used on any PHP project. It is not coupled with any framework or library.
 
-It is the opposite of the `strict` preset, ensuring you are not using strict types in all your files, that all your classes are not final, and more. [source code](https://github.com/pestphp/pest/blob/3.x/src/ArchPresets/Relaxed.php)
+It is the opposite of the `strict` preset, ensuring you are not using strict types in all your files, that none of your classes are final, and more. [source code](https://github.com/pestphp/pest/blob/3.x/src/ArchPresets/Relaxed.php)
 
 ```php
 arch()->preset()->relaxed();
 ```
 
-Just like regular architecture tests, you may ignore specific expectation targets using the `ignoring()` method.
+Just like regular architecture tests, you may ignore specific expectation targets using the `ignoring()` method:
 
 ```php
 arch()->preset()->security()->ignoring('md5');
@@ -188,19 +188,19 @@ To get started with Arch Presets, please refer to our [Architecture Testing](/do
 <a name="team-management"></a>
 ## Team Management
 
-Pest 3 also introduces **Team Management**, a new feature that allows you to manage tasks and todos with your team directly from the console. With Team Management, you can create, assign, and track tasks, as well as view the status of each task.
+Pest 3 also introduces **Team Management**, a new feature that allows you to manage tasks and todos with your team directly from the console. With Team Management, you may create, assign, and track tasks, as well as view the status of each one.
 
 <img src="/assets/teams-2.jpg" alt="Team Management" style="width: 100%;" />
 
-To get started with team management in Pest, you need to specify the project's URL in your `Pest.php` configuration file. This URL will be used to link todos to the corresponding project management system.
+To get started with team management in Pest, you will need to specify the project's URL in your `Pest.php` configuration file. This URL will be used to link todos to the corresponding project management system:
 
 ```php
 pest()->project()->github('my-organization/my-repository');
 ```
 
-If you are using a different version control system, you can use the `gitlab`, `bitbucket`, `jira`, or `custom` methods instead.
+If you are using a different version control system, you may use the `gitlab`, `bitbucket`, `jira`, or `custom` methods instead.
 
-Finally, you can create todos by using the `todo()` method. Also, you may use the `assignee`, `issue`, arguments to assign todos to specific team members or link them to issues in your project management system.
+Finally, you may create todos using the `todo()` method. In addition, you may use the `assignee` and `issue` arguments to assign todos to specific team members or link them to issues in your project management system:
 
 ```php
 it('has a contact page', function () {
@@ -208,7 +208,7 @@ it('has a contact page', function () {
 })->todo(assignee: 'taylor@laravel.com', issue: 123);
 ```
 
-Also, it is often helpful to provide additional context for a todo. Pest allows you to write notes for a todo by providing a string to the `note` argument of the `todo()` method.
+It is often helpful to provide additional context for a todo. Pest allows you to write notes for a todo by passing a string to the `note` argument of the `todo()` method:
 
 ```php
 it('has a contact page', function () {
@@ -220,7 +220,7 @@ it('has a contact page', function () {
 NOTE);
 ```
 
-Once a todo is completed, you can mark it as work in progress by using the `wip()` method or mark it as done by using the `done()` method.
+Once a todo is completed, you may mark it as work in progress using the `wip()` method, or mark it as done using the `done()` method:
 
 ```php
 it('has a contact page', function () {
@@ -228,18 +228,18 @@ it('has a contact page', function () {
 })->wip(assignee: 'taylor@laravel.com', issue: 123); // or ->done()
 ```
 
-Finally, you can view todos separately from the rest of your test suite by including the `--todos` option when running Pest. You can also filter todos by assignee by providing their name to the `--assignee` option, or filter todos by issue by providing the issue number to the `--issue` option.
+Finally, you may view todos separately from the rest of your test suite by including the `--todos` option when running Pest. You may also filter todos by assignee by passing their name to the `--assignee` option, or filter todos by issue by passing the issue number to the `--issue` option:
 
 ```bash
 ./vendor/bin/pest --todos --assignee=taylor # or --issue=123
 ```
 
-There is so much more to explore with Team Management, you can learn more about it in our [Team Management](/docs/team-management) section.
+There is so much more to explore with Team Management; you may learn more about it in our [Team Management](/docs/team-management) section.
 
 <a name="nested-describes"></a>
 ## Nested Describes
 
-In Pest 3, you can now nest describe blocks within other describe blocks. This allows you to group tests more effectively and keep your test suite organized.
+In Pest 3, you may now nest describe blocks within other describe blocks. This allows you to group tests more effectively and keep your test suite organized:
 
 ```php
 describe('home', function () {
@@ -262,11 +262,11 @@ describe('home', function () {
 <a name="new-configuration-api"></a>
 ## New Configuration API
 
-Pest 1 / Pest 2's configuration API was a little bit confusing, the `uses()` function that was originally made only for having the `$this` variable within closure bound to the test case instance, ended up being used for pretty much everything.
+Pest 1 and Pest 2's configuration API was a little confusing. The `uses()` function, originally made only for binding the `$this` variable within a closure to the test case instance, ended up being used for nearly everything.
 
-In Pest 3, we've introduced a new configuration API that is more intuitive and easier to use. The new configuration API is based on the `pest()` function, which allows you to configure Pest using a fluent and expressive API.
+In Pest 3, we have introduced a new configuration API that is more intuitive and easier to use. The new configuration API is based on the `pest()` function, which allows you to configure Pest using a fluent, expressive API.
 
-> Note: the `uses()` function is still available in Pest 3, and we don't have plans to remove it. However, we recommend using the new configuration API for new projects.
+> Note: the `uses()` function is still available in Pest 3, and we do not have plans to remove it. However, we recommend using the new configuration API for new projects.
 
 ```diff
 -uses(TestCase::class)->in(__DIR__);
@@ -279,14 +279,14 @@ In Pest 3, we've introduced a new configuration API that is more intuitive and e
 +pest()->printer()->compact();
 ```
 
-And of course, any method that was available on the `uses()` API, like `->beforeEach()` or `->group()` is still available on the new `pest()` configuration API; we've just made it more intuitive and easier to use.
+And of course, any method that was available on the `uses()` API, like `->beforeEach()` or `->group()`, is still available on the new `pest()` configuration API; we have only made it more intuitive and easier to use.
 
 <a name="more-architectural-testing-improvements"></a>
 ## More Architectural Testing Improvements
 
 ### New Expectations
 
-Again, Pest comes with a bunch of new architectural expectations and improvements. Some of them are already being used in the new Arch Presets, but you can use them individually as well.
+Again, Pest comes with a number of new architectural expectations and improvements. Some of them are already being used in the new Arch Presets, but you may use them individually as well.
 
 - [`toUseStrictEquality()`](/docs/arch-testing#expect-toUseStrictEquality) - Asserts that a target uses strict equality. `===` instead of `==`.
 - [`toHaveMethodsDocumented()`](/docs/arch-testing#expect-toHaveMethodsDocumented) - Asserts that a class has all its methods documented.
@@ -303,11 +303,11 @@ Again, Pest comes with a bunch of new architectural expectations and improvement
 - [`toUseTrait()`](/docs/arch-testing#expect-toUseTrait) - Asserts that a class uses the given trait.
 - [`toUseTraits()`](/docs/arch-testing#expect-toUseTraits) - Asserts that a class uses the given traits.
 
-You may check all existing architectural expectations in our [Architecture Testing](/docs/arch-testing) section.
+You may review all existing architectural expectations in our [Architecture Testing](/docs/arch-testing) section.
 
 ### Tear Down Improvements
 
-As you may know, Pest allows you to run a specific "teardown" callback after each test using the `afterEach()` method. This is useful for cleaning up resources or resetting state between tests.
+As you may know, Pest allows you to run a specific "teardown" callback after each test using the `afterEach()` method. This is helpful for cleaning up resources or resetting state between tests:
 
 ```php
 afterEach(function () {
@@ -315,7 +315,7 @@ afterEach(function () {
 });
 ````
 
-In Pest 3, we've introduced a new `after()` method that allows you to run a specific "teardown" callback after a specific test or group of tests using describe.
+In Pest 3, we have introduced a new `after()` method that allows you to run a specific "teardown" callback after a particular test or group of tests using describe:
 
 ```php
 it('may list todos', function () {
@@ -330,7 +330,7 @@ To read more about hooks, please refer to our [Hooks](/docs/hooks) section.
 <a name="miscellaneous-improvements"></a>
 ## Miscellaneous Improvements
 
-Because Pest 3 is based on PHPUnit 11, you can now use any PHPUnit 11 feature within Pest. Also, Pest 3 also comes with a bunch minor bug-fixes and improvements, below are some of the them:
+Because Pest 3 is based on PHPUnit 11, you may now use any PHPUnit 11 feature within Pest. In addition, Pest 3 comes with a number of minor bug fixes and improvements; below are some of them:
 
 - FEAT: Type Coverage now checks for missing types on constants.
 - FEAT: Better error messages when static closures are used on tests + wrong arguments on datasets.
@@ -345,10 +345,10 @@ Because Pest 3 is based on PHPUnit 11, you can now use any PHPUnit 11 feature wi
 
 ---
 
-There's never been a better time to dive in into testing and start using Pest. If you're ready to get started with Pest 3 right away, check out our [installation guide](/docs/installation) for step-by-step instructions. And if you're currently using Pest 2, we've got you covered with detailed upgrade instructions in our [upgrade guide](/docs/upgrade-guide).
+There has never been a better time to dive into testing and start using Pest. If you are ready to get started with Pest 3 right away, check out our [installation guide](/docs/installation) for step-by-step instructions. And if you are currently using Pest 2, we have you covered with detailed upgrade instructions in our [upgrade guide](/docs/upgrade-guide).
 
 Thank you for your continued support and feedback. We can't wait to see what you build with Pest 3!
 
 ---
 
-Thank you for reading about Pest 3.0's new features! If you're considering a testing framework for your next project, here's why you should give Pest a try: [Why Pest →](/docs/why-pest)
+Thank you for reading about Pest 3.0's new features! If you are considering a testing framework for your next project, here is why you should give Pest a try: [Why Pest →](/docs/why-pest)

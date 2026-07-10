@@ -1,8 +1,8 @@
 ---
 title: Editor Setup
-description: An editor plugin can significantly enhance the developer experience when working with Pest PHP. Although most editors have built-in support for Pest PHP, plugins can offer additional functionalities that can streamline and simplify the development process.
+description: An editor plugin can enhance your experience when working with Pest, adding helpful functionality on top of your editor's built-in support.
 ---
 
 ---
 
-Once the installation process is complete, and your editor is ready, you can learn more about how to write tests visiting the next section of the documentation: [Writing Tests →](/docs/writing-tests)
+Once the installation process is complete and your editor is ready, you may learn more about how to write tests by visiting the next section of the documentation: [Writing Tests →](/docs/writing-tests)
