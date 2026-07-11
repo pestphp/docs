@@ -11,12 +11,12 @@ And yet, today I'm proud to introduce you to the biggest release of Pest yet: **
 
 Below, we'll cover all the details of this release. As usual, you may find the [upgrade guide](/docs/upgrade-guide) on our website.
 
-- **[Tia Engine](#test-impact-analysis)**: The engine that re-runs only the tests affected by your latest changes, powered by the smartest dependency tree ever seen — editing a `button.tsx`, for example, re-runs only the browser tests and the tests rendering the Inertia pages that use it. A 15-second suite replays in under a second.
+- **[Tia Engine](#test-impact-analysis)**: The engine that re-runs only the tests affected by your latest changes, powered by the smartest dependency tree ever seen — editing a `button.tsx`, for example, re-runs only the tests rendering the Inertia pages that use it. A test suite that used to take 10 minutes now replays in around 4 seconds, and because each replay restores the exact paths its test covered, code coverage reports the same numbers as a full run.
 - **[The Agent Browser](#the-agent-browser)**: Give your AI coding agents a single command to verify that a change actually works. Unlike Vercel's agent browser, a single bash/tool call creates users, logs them in, runs the full navigation and clicks, and makes assertions — including backend assertions that check things like whether emails actually got sent.
 - **[Evals](#evals)**: Evaluate the quality of LLM agents and AI-generated output directly from your test suite, combining deterministic checks with AI-powered scorers — LLM-as-judge, semantic similarity, safety, and tool-trajectory analysis — all through the same `expect()` API.
 - **[First-Party PHPStan Plugin](#first-party-phpstan-plugin)**: Teach PHPStan about Pest's functional API — `it()`, `expect()`, `$this` — so your tests are as fully typed as your app, catching impossible expectations and dozens of Pest-specific mistakes before you even run the suite.
 - **[Automated Refactoring With Rector](#automated-refactoring-with-rector)**: Over 70 rules that modernize your test code, convert raw PHP and PHPUnit assertions into Pest's expressive matchers, and upgrade you between major Pest versions — automatically.
-- **[Time-Balanced Sharding](#time-balanced-sharding)**: Split your suite across CI jobs by real execution time, not naive test count, so every shard finishes at the same moment instead of waiting on the slow one.
+- **[Time-Balanced Sharding](#time-balanced-sharding)**: Sharding splits your suite across several CI machines that run in parallel, so a large suite finishes in a fraction of the time. Until now those shards were divided by test count, which left one machine grinding through the slow tests while the others finished early and sat idle. Pest 5 divides them by real execution time instead, so every shard carries an equal share of the work and they all finish at the same moment.
 
 Built on top of **PHP 8.4** and **PHPUnit 13**, this release brings together a set of features and first-party plugins that have been maturing quietly across the Pest 4 cycle — now stable, polished, and ready for prime time.
 
@@ -31,12 +31,14 @@ The first time you run with `--tia`, the engine records a graph of which tests d
 ./vendor/bin/pest --parallel --tia
 ```
 
-A typical Laravel suite that takes 15 seconds replays in under a second:
+A typical Laravel suite that used to take 10 minutes now replays in around 4 seconds:
 
 ```
 Tests:    774 passed (2658 assertions, 7 affected, 2 uncached, 765 replayed)
-Duration: 0.74s
+Duration: 3.92s
 ```
+
+A replay isn't a shortcut that skips work — it's a faithful reconstruction of the real run. When the engine caches a test, it stores not just the pass or fail result but everything that test produced, including the exact lines and branches it covered. So a replayed run reports the same code coverage as a full run, and everything that depends on it keeps working — coverage thresholds, the `--coverage` report, and `--min` all behave exactly as if every test had executed from scratch. You get the speed of replaying with none of the fidelity lost.
 
 What makes this possible is the smartest dependency tree we've ever built. The engine doesn't just map files to tests — it understands your whole stack. A column rename in a migration re-runs only the tests that queried that table. A change to an Inertia page re-runs only the tests that server-side-rendered it, and editing a shared JS component walks Vite's module graph to find every page that imports it. Blade templates re-run the tests that rendered them, browser assets re-run only browser tests, and arch tests re-run whenever your source's shape changes. Edit a single Blade template and a handful of feature tests run; touch `config/app.php` and Pest re-runs everything, because it can't statically prove otherwise.
 
