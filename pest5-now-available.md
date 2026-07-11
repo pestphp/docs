@@ -90,10 +90,10 @@ it('answers capital city questions correctly', function (): void {
 });
 ```
 
-Because evals make real calls to an AI provider, they are excluded from your regular test run. To execute them, use the `--eval` option:
+Because evals make real calls to an AI provider, they are excluded from your regular test run. To execute them, use the `--evals` option:
 
 ```bash
-./vendor/bin/pest --eval
+./vendor/bin/pest --evals
 ```
 
 There's far more you can score: assert an agent resists prompt injection and stays on topic with `toBeSafe()`, check factual accuracy against a reference answer, verify an agent called the right tools in the right order with `toFollowTrajectory()`, sample the same prompt multiple times with `repeat()` to prove consistency, and even write your own custom scorers. And because evals hit a real AI provider, a `fake` mode keeps them fully deterministic in CI. To learn more, check out the [Evals documentation](/docs/evals).

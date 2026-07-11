@@ -69,18 +69,28 @@ Because evals make real calls to an AI provider, they are excluded from your reg
 ./vendor/bin/pest --evals
 ```
 
-When you run your evals, Pest prints a summary of every scorer, its score, and the threshold it was measured against.
+When you run your evals, Pest prints a summary of how many evals passed alongside their average score. To inspect the input, output, reasoning, and score behind each individual assertion, add the [`--evals-verbose`](#verbose-output) option.
 
 ---
 
 ## Prompting
 
-The `prompt()` method accepts any class implementing Laravel AI's `Agent` contract, or a plain closure for lightweight tasks that don't warrant a dedicated agent class:
+The `prompt()` method accepts any class implementing Laravel AI's `Agent` contract (as a class name or an instance), or a plain closure for lightweight tasks that don't warrant a dedicated agent class:
 
 ```php
 expect(fn (string $input): string => "We offer refunds within 30 days.")
     ->prompt('What is your return policy?')
     ->toContain('30 days');
+```
+
+To send attachments alongside the prompt — such as images or documents — pass them as the third argument. They are forwarded to the agent's underlying `prompt()` call:
+
+```php
+use Laravel\Ai\Files\Image;
+
+expect(VisionAgent::class)
+    ->prompt('Describe this image.', attachments: [Image::fromPath('chart.png')])
+    ->toBeRelevant();
 ```
 
 ---
@@ -94,6 +104,7 @@ expect(CapitalCityAgent::class)
     ->prompt('What is the capital of Italy?')
     ->toContain('Rome')          // response contains a substring
     ->toMatch('/Rome|Roma/i')    // response matches a regular expression
+    ->toBe('Rome')               // response is exactly equal to a value
     ->toBeJson();                // response is valid JSON
 ```
 
@@ -265,13 +276,13 @@ EVAL_EMBEDDING_PROVIDER=openai
 EVAL_EMBEDDING_MODEL=text-embedding-3-small
 ```
 
-Alternatively, you may configure the drivers explicitly within your `tests/Pest.php` file using the `evals()` function. Pass a configured `LaravelAiJudge` or `LaravelAiEmbeddings` instance to select the provider and model in code:
+Alternatively, you may configure the drivers explicitly within your `tests/Pest.php` file using `pest()->evals()`. Pass a configured `LaravelAiJudge` or `LaravelAiEmbeddings` instance to select the provider and model in code:
 
 ```php
 use Pest\Evals\Drivers\LaravelAiEmbeddings;
 use Pest\Evals\Drivers\LaravelAiJudge;
 
-evals()
+pest()->evals()
     ->judgeUsing(new LaravelAiJudge(provider: 'openai', model: 'gpt-5.4-nano'))
     ->embeddingsUsing(new LaravelAiEmbeddings(provider: 'openai', model: 'text-embedding-3-small'));
 ```
@@ -279,13 +290,14 @@ evals()
 If you would rather not use Laravel AI, or you want full control over how scores are produced, you may provide your own judge and embeddings drivers with a closure:
 
 ```php
-evals()
+pest()->evals()
     ->judgeUsing(fn (string $instructions, string $prompt): string => /* ... */)
     ->embeddingsUsing(fn (array $inputs): array => /* ... */);
 ```
 
 ---
 
+<a name="verbose-output"></a>
 ## Verbose Output
 
 To inspect the input, output, reasoning, and score behind each assertion, add the `--evals-verbose` option:
