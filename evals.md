@@ -63,10 +63,10 @@ it('answers capital city questions correctly', function (): void {
 });
 ```
 
-Because evals make real calls to an AI provider, they are excluded from your regular test run. To execute them, use the `--eval` option:
+Because evals make real calls to an AI provider, they are excluded from your regular test run. To execute them, use the `--evals` option:
 
 ```bash
-./vendor/bin/pest --eval
+./vendor/bin/pest --evals
 ```
 
 When you run your evals, Pest prints a summary of every scorer, its score, and the threshold it was measured against.
@@ -291,7 +291,7 @@ evals()
 To inspect the input, output, reasoning, and score behind each assertion, add the `--evals-verbose` option:
 
 ```bash
-./vendor/bin/pest --eval --evals-verbose
+./vendor/bin/pest --evals --evals-verbose
 ```
 
 ---
