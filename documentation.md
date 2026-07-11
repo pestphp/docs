@@ -1,11 +1,5 @@
-- ## Press
+- ## What's New
   - [Pest 5 Now Available](/docs/pest5-now-available)
-  - [Pest v4 is Here! Now with Browser Testing](/docs/pest-v4-is-here-now-with-browser-testing)
-  - [Pest v3 Now Available](/docs/pest3-now-available)
-  - [Announcing Stressless](/docs/announcing-stressless)
-  - [Pest's Spicy Summer Release](/docs/pest-spicy-summer-release)
-  - [Announcing Pest 2.0](/docs/announcing-pest2)
-  - [Why Pest](/docs/why-pest)
 
 - ## Getting Started
   - [Installation](/docs/installation)
@@ -55,3 +49,11 @@
   - [Upgrade Guide](/docs/upgrade-guide)
   - [Migration From PHPUnit Guide](/docs/migrating-from-phpunit-guide)
   - [Community Guide](/docs/community-guide)
+
+- ## Press
+  - [Pest v4 is Here! Now with Browser Testing](/docs/pest-v4-is-here-now-with-browser-testing)
+  - [Pest v3 Now Available](/docs/pest3-now-available)
+  - [Announcing Stressless](/docs/announcing-stressless)
+  - [Pest's Spicy Summer Release](/docs/pest-spicy-summer-release)
+  - [Announcing Pest 2.0](/docs/announcing-pest2)
+  - [Why Pest](/docs/why-pest)

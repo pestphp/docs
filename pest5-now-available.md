@@ -17,7 +17,6 @@ Below, we'll cover all the details of this release. As usual, you may find the [
 - **[First-Party PHPStan Plugin](#first-party-phpstan-plugin)**: Teach PHPStan about Pest's functional API — `it()`, `expect()`, `$this` — so your tests are as fully typed as your app, catching impossible expectations and dozens of Pest-specific mistakes before you even run the suite.
 - **[Automated Refactoring With Rector](#automated-refactoring-with-rector)**: Over 70 rules that modernize your test code, convert raw PHP and PHPUnit assertions into Pest's expressive matchers, and upgrade you between major Pest versions — automatically.
 - **[Time-Balanced Sharding](#time-balanced-sharding)**: Split your suite across CI jobs by real execution time, not naive test count, so every shard finishes at the same moment instead of waiting on the slow one.
-- **[On Top of PHP 8.4 & PHPUnit 13](#on-top-of-php-84--phpunit-13)**: The latest platform, under the hood.
 
 Built on top of **PHP 8.4** and **PHPUnit 13**, this release brings together a set of features and first-party plugins that have been maturing quietly across the Pest 4 cycle — now stable, polished, and ready for prime time.
 
@@ -158,6 +157,20 @@ Then commit `tests/.pest/shards.json` to your repository. When `--shard` is used
 ```
 
 If you add new test files before updating the timings, your tests still run — new files are distributed evenly while known files remain time-balanced, and Pest reminds you to refresh the data. To learn more, check out [Optimizing Tests](/docs/optimizing-tests#test-sharding) and [Continuous Integration](/docs/continuous-integration#sharding-your-tests).
+
+<a name="new-expectations"></a>
+## New Expectations
+
+Pest 5 also brings a couple of new additions to the expectation API. Sometimes you may wish to assert that a value is a well-formed email address or a valid ULID — two checks common enough that writing them by hand quickly becomes tedious.
+
+Thankfully, Pest now provides `toBeEmail()` and `toBeUlid()` for exactly these cases:
+
+```php
+expect('nuno@pestphp.com')->toBeEmail();
+expect('01ARZ3NDEKTSV4RRFFQ69G5FAV')->toBeUlid();
+```
+
+Of course, both expectations may be negated with `not`, and you may pass a custom failure message as the first argument. To explore the full set of available matchers, check out the [Expectations documentation](/docs/expectations).
 
 <a name="on-top-of-php-84--phpunit-13"></a>
 ## On Top of PHP 8.4 & PHPUnit 13
