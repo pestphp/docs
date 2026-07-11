@@ -1275,4 +1275,4 @@ However, if you are using GitHub Actions, you need to add the following steps to
 
 ---
 
-Now, let's look at how the Agent Browser gives your AI coding agents a single command to verify a change actually works — driving a real browser and your full test suite behind the scenes: [Agent Browser](/docs/agent-browser)
+Now, let's look at how the Agent plugin gives your AI coding agents a single command to verify a change actually works — running inside your full test suite, and, with the plugin you just installed, driving a real browser too: [Agent](/docs/agent)

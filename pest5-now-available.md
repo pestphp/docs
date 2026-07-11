@@ -1,6 +1,6 @@
 ---
 title: Pest 5 Now Available
-description: Today, we're thrilled to announce the release of Pest 5. Built on PHP 8.4 and PHPUnit 13, Pest 5 introduces the Tia Engine, the Agent Browser, AI Evals, a first-party PHPStan plugin, automated refactoring with Rector, time-balanced sharding, and much more.
+description: Today, we're thrilled to announce the release of Pest 5. Built on PHP 8.4 and PHPUnit 13, Pest 5 introduces the Tia Engine, the Agent plugin, AI Evals, a first-party PHPStan plugin, automated refactoring with Rector, time-balanced sharding, and much more.
 ---
 
 # Pest 5 Now Available
@@ -12,7 +12,7 @@ And yet, today I'm proud to introduce you to the biggest release of Pest yet: **
 Below, we'll cover all the details of this release. As usual, you may find the [upgrade guide](/docs/upgrade-guide) on our website.
 
 - **[Tia Engine](#test-impact-analysis)**: The engine that re-runs only the tests affected by your latest changes, powered by the smartest dependency tree ever seen — editing a `button.tsx`, for example, re-runs only the tests rendering the Inertia pages that use it. A test suite that used to take 10 minutes now replays in around 4 seconds, and because each replay restores the exact paths its test covered, code coverage reports the same numbers as a full run.
-- **[The Agent Browser](#the-agent-browser)**: Give your AI coding agents a single command to verify that a change actually works. Unlike Vercel's agent browser, a single bash/tool call creates users, logs them in, runs the full navigation and clicks, and makes assertions — including backend assertions that check things like whether emails actually got sent.
+- **[The Agent Plugin](#the-agent)**: Give your AI coding agents a single command to verify that a change actually works — running inside your real test suite, and, with the Browser plugin installed, driving a real browser too. Unlike Vercel's agent browser, a single bash/tool call creates users, logs them in, runs the full navigation and clicks, and makes assertions — including backend assertions that check things like whether emails actually got sent.
 - **[Evals](#evals)**: Evaluate the quality of LLM agents and AI-generated output directly from your test suite, combining deterministic checks with AI-powered scorers — LLM-as-judge, semantic similarity, safety, and tool-trajectory analysis — all through the same `expect()` API.
 - **[First-Party PHPStan Plugin](#first-party-phpstan-plugin)**: Teach PHPStan about Pest's functional API — `it()`, `expect()`, `$this` — so your tests are as fully typed as your app, catching impossible expectations and dozens of Pest-specific mistakes before you even run the suite.
 - **[Automated Refactoring With Rector](#automated-refactoring-with-rector)**: Over 70 rules that modernize your test code, convert raw PHP and PHPUnit assertions into Pest's expressive matchers, and upgrade you between major Pest versions — automatically.
@@ -48,28 +48,28 @@ The engine ships with sensible defaults for the most common PHP stacks (Laravel,
 
 To learn more, check out the [Tia Engine documentation](/docs/tia).
 
-<a name="the-agent-browser"></a>
-## The Agent Browser
+<a name="the-agent"></a>
+## The Agent Plugin
 
 AI coding agents are great at writing code, but they are terrible at knowing whether that code actually *works*. After editing a Blade template, a Livewire component, a controller, or a bit of CSS, an agent has no way to see the result — so it guesses, and moves on.
 
-The **Agent Browser** plugin closes that loop. It gives your agent a single command to run a one-off verification against your application:
+The **Agent** plugin closes that loop. It gives your agent a single command to run a one-off verification against your application:
 
 ```bash
-vendor/bin/pest --agent-browser="visit('/')->assertSee('Welcome');"
+vendor/bin/pest --agent="visit('/')->assertSee('Welcome');"
 ```
 
-The agent gets a definitive pass or fail instead of a hopeful guess — with the full power of Pest at its disposal. This is where the Agent Browser pulls ahead of browser-only agent tools like Vercel's agent browser: those tools live outside your application and can only observe what the page renders, so they confirm the UI *looks* right but never that the system *behaved* right. A green screenshot from a tool like Vercel's tells you nothing about whether the job was queued, the mail was sent, or the row was written.
+The agent gets a definitive pass or fail instead of a hopeful guess — with the full power of Pest at its disposal. This is where the Agent plugin pulls ahead of browser-only agent tools like Vercel's agent browser: those tools live outside your application and can only observe what the page renders, so they confirm the UI *looks* right but never that the system *behaved* right. A green screenshot from a tool like Vercel's tells you nothing about whether the job was queued, the mail was sent, or the row was written.
 
-The Agent Browser runs *inside your real test suite* instead. Your agent can drive the UI **and** assert the side effects it triggered — submit a contact form, then assert the mail was sent — all in a single probe, with your factories, `RefreshDatabase`, and Laravel fakes available exactly as in a real feature test. Where Vercel's agent browser is a black box bolted onto the outside of your app, the Agent Browser has the same full-stack visibility your own feature tests do, so a passing check means the whole flow — front to back — actually works.
+The Agent plugin runs *inside your real test suite* instead. It is not specific to the browser — it verifies any code your suite can reach — yet it truly shines with the [Browser Testing](/docs/browser-testing) plugin installed, letting your agent drive the UI **and** assert the side effects it triggered — submit a contact form, then assert the mail was sent — all in a single probe, with your factories, `RefreshDatabase`, and Laravel fakes available exactly as in a real feature test. Where Vercel's agent browser is a black box bolted onto the outside of your app, the Agent plugin has the same full-stack visibility your own feature tests do, so a passing check means the whole flow — front to back — actually works.
 
 To get started, install the plugin via Composer:
 
 ```bash
-composer require pestphp/pest-plugin-agent-browser --dev
+composer require pestphp/pest-plugin-agent --dev
 ```
 
-To learn more, check out the [Agent Browser documentation](/docs/agent-browser).
+To learn more, check out the [Agent documentation](/docs/agent).
 
 <a name="evals"></a>
 ## Evals

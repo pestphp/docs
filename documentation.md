@@ -23,7 +23,7 @@
   - [Mocking](/docs/mocking)
   - [Snapshot Testing](/docs/snapshot-testing)
   - [Browser Testing](/docs/browser-testing)
-  - [Agent Browser](/docs/agent-browser)
+  - [Agent](/docs/agent)
   - [Architecture Testing](/docs/arch-testing)
   - [Stress Testing](/docs/stress-testing)
   - [Evals](/docs/evals)
