@@ -90,13 +90,14 @@ it('answers capital city questions correctly', function (): void {
 });
 ```
 
-Because evals make real calls to an AI provider, they are excluded from your regular test run. To execute them, use the `--evals` option:
+Because each eval calls a real model, evals are skipped on a regular test run — your suite stays fast and free, with no API calls by default. Add the `--evals` option to call the real model and run every assertion, scorers included, for real:
 
 ```bash
-./vendor/bin/pest --evals
+./vendor/bin/pest            # evals skipped, no API calls
+./vendor/bin/pest --evals    # real model, all scorers active
 ```
 
-There's far more you can score: assert an agent resists prompt injection and stays on topic with `toBeSafe()`, check factual accuracy against a reference answer, verify an agent called the right tools in the right order with `toFollowTrajectory()`, sample the same prompt multiple times with `repeat()` to prove consistency, and even write your own custom scorers. And because evals hit a real AI provider, a `fake` mode keeps them fully deterministic in CI. To learn more, check out the [Evals documentation](/docs/evals).
+There's far more you can score: assert an agent resists prompt injection and stays on topic with `toBeSafe()`, check factual accuracy against a reference answer, verify an agent called the right tools in the right order with `toFollowTrajectory()`, sample the same prompt multiple times with `repeat()` to prove consistency, and even write your own custom scorers. To learn more, check out the [Evals documentation](/docs/evals).
 
 <a name="first-party-phpstan-plugin"></a>
 ## First-Party PHPStan Plugin

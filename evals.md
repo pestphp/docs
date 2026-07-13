@@ -32,7 +32,7 @@ OPENAI_API_KEY=your-key-here
 
 ## Writing Your First Eval
 
-Evals live in the `tests/Evals` directory. Start by defining the agent you want to evaluate. Any class implementing Laravel AI's `Agent` contract will do:
+Evals are ordinary Pest tests — by convention they live in a `tests/Evals` directory, but they can live anywhere. Start by defining the agent you want to evaluate. Any class implementing Laravel AI's `Agent` contract will do:
 
 ```php
 namespace App\Agents;
@@ -63,13 +63,17 @@ it('answers capital city questions correctly', function (): void {
 });
 ```
 
-Because evals make real calls to an AI provider, they are excluded from your regular test run. To execute them, use the `--evals` option:
+An eval calls a real model — that costs money and returns a different answer every time — so it does not run as part of your everyday suite. Instead, evals run only when you ask for them:
+
+- **Regular test run** (`./vendor/bin/pest`) — every eval is **skipped**. No model is called, so your suite stays fast and free.
+- **Eval run** (`./vendor/bin/pest --evals`) — the real model is called and every assertion, including the AI-powered scorers, runs for real.
 
 ```bash
-./vendor/bin/pest --evals
+./vendor/bin/pest            # evals skipped, no API calls
+./vendor/bin/pest --evals    # the real thing: real model, all scorers active
 ```
 
-When you run your evals, Pest prints a summary of how many evals passed alongside their average score. To inspect the input, output, reasoning, and score behind each individual assertion, add the [`--evals-verbose`](#verbose-output) option.
+When you run with `--evals`, Pest prints a summary of how many evals passed alongside their average score. To inspect the input, output, reasoning, and score behind each individual assertion, run in [verbose mode](#verbose-output) with `-v`.
 
 ---
 
@@ -78,12 +82,12 @@ When you run your evals, Pest prints a summary of how many evals passed alongsid
 The `prompt()` method accepts any class implementing Laravel AI's `Agent` contract (as a class name or an instance), or a plain closure for lightweight tasks that don't warrant a dedicated agent class:
 
 ```php
-expect(fn (string $input): string => "We offer refunds within 30 days.")
+expect(fn (string $input): string => generate_answer($input))
     ->prompt('What is your return policy?')
     ->toContain('30 days');
 ```
 
-To send attachments alongside the prompt — such as images or documents — pass them as the third argument. They are forwarded to the agent's underlying `prompt()` call:
+To send attachments alongside the prompt — such as images or documents — pass them as the second argument. They are forwarded to the agent's underlying `prompt()` call:
 
 ```php
 use Laravel\Ai\Files\Image;
@@ -97,7 +101,7 @@ expect(VisionAgent::class)
 
 ## Deterministic Expectations
 
-When part of the response is predictable, you may assert against it directly. These checks make no AI calls, so they are fast and free:
+When part of the response is predictable, you may assert against it directly. These checks make no additional AI calls beyond the agent's response:
 
 ```php
 expect(CapitalCityAgent::class)
@@ -110,6 +114,7 @@ expect(CapitalCityAgent::class)
 
 ---
 
+<a name="sampling"></a>
 ## Sampling
 
 Because LLM output is non-deterministic, a single passing response does not prove your agent is reliable. Use `repeat()` to generate multiple samples for the same prompt — every following expectation is then asserted against *all* of them, so the eval only passes when the agent is consistent:
@@ -249,31 +254,36 @@ expect(GreetingAgent::class)
 
 ---
 
-## Fake Mode
+<a name="running-evals"></a>
+## Running Evals
 
-To exercise your eval logic without making real API calls — for example, in continuous integration — provide a `fake` response to `prompt()`. The faked response bypasses the agent entirely, making the eval fully deterministic:
+Because every eval calls a real model, evals are **skipped by default**. This keeps your everyday `pest` run fast, free, and deterministic — your evals live alongside your other tests without ever calling an API or slowing the suite down.
 
-```php
-it('bypasses the real agent and uses the faked response', function (): void {
-    expect(CapitalCityAgent::class)
-        ->prompt('What is the capital of France?', fake: ['Paris'])
-        ->toBe('Paris');
-});
+When you want to actually evaluate your agents, opt in with `--evals`:
+
+```bash
+./vendor/bin/pest            # evals are skipped
+./vendor/bin/pest --evals    # evals run against the real model
 ```
 
-When combined with `repeat()`, the plugin cycles through the faked responses, reusing the last one once they run out.
+This applies to every target, including closures — an eval only runs under `--evals`. You may also force eval mode with the `PEST_EVALS` environment variable, which is convenient in CI:
+
+```bash
+PEST_EVALS=1 ./vendor/bin/pest
+```
 
 ---
 
+<a name="configuration"></a>
 ## Configuration
 
-By default, the scorers judge and embed output using OpenAI. The simplest way to change the provider or model is through environment variables, which is convenient for switching providers between environments:
+By default, the scorers judge and embed output using OpenAI via Laravel AI. The simplest way to change the provider or model is through environment variables, which is convenient for switching providers between environments:
 
 ```ini
-EVAL_SCORING_PROVIDER=openai
-EVAL_SCORING_MODEL=gpt-5.4-nano
-EVAL_EMBEDDING_PROVIDER=openai
-EVAL_EMBEDDING_MODEL=text-embedding-3-small
+PEST_EVALS_LARAVEL_SCORING_PROVIDER=openai
+PEST_EVALS_LARAVEL_SCORING_MODEL=gpt-5.4-nano
+PEST_EVALS_LARAVEL_EMBEDDING_PROVIDER=openai
+PEST_EVALS_LARAVEL_EMBEDDING_MODEL=text-embedding-3-small
 ```
 
 Alternatively, you may configure the drivers explicitly within your `tests/Pest.php` file using `pest()->evals()`. Pass a configured `LaravelAiJudge` or `LaravelAiEmbeddings` instance to select the provider and model in code:
@@ -300,10 +310,10 @@ pest()->evals()
 <a name="verbose-output"></a>
 ## Verbose Output
 
-To inspect the input, output, reasoning, and score behind each assertion, add the `--evals-verbose` option:
+To inspect the input, output, reasoning, and score behind each assertion, run in verbose mode by adding the standard `-v` option:
 
 ```bash
-./vendor/bin/pest --evals --evals-verbose
+./vendor/bin/pest --evals -v
 ```
 
 ---
