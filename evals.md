@@ -17,7 +17,9 @@ To get started, require the plugin via Composer:
 composer require pestphp/pest-plugin-evals --dev
 ```
 
-The built-in scorers evaluate output using [Laravel AI](https://github.com/laravel/ai). To use them, install the package and make sure an API key is available for your provider (OpenAI by default):
+That is all you need for deterministic checks such as `toContain()`, `toHaveToolCalls()`, and `toFollowTrajectory()`.
+
+The AI-powered scorers — relevance, safety, factuality, LLM-as-judge, and semantic similarity — need two capabilities: a way to send a prompt to a *judge* model, and a way to turn text into *embeddings*. The plugin calls these capabilities [drivers](#drivers). Out of the box it ships drivers backed by [Laravel AI](https://github.com/laravel/ai), so the quickest way to get running is to install it:
 
 ```bash
 composer require laravel/ai --dev
@@ -27,6 +29,8 @@ composer require laravel/ai --dev
 # .env
 OPENAI_API_KEY=your-key-here
 ```
+
+You are **not** tied to Laravel AI, however. The drivers are pluggable — you can point them at Anthropic, a self-hosted model, another SDK, or even a deterministic stub without ever installing `laravel/ai`. See [Drivers](#drivers) for the details.
 
 ---
 
@@ -79,7 +83,7 @@ When you run with `--evals`, Pest prints a summary of how many evals passed alon
 
 ## Prompting
 
-The `prompt()` method accepts any class implementing Laravel AI's `Agent` contract (as a class name or an instance), or a plain closure for lightweight tasks that don't warrant a dedicated agent class:
+The `prompt()` method accepts any class implementing Laravel AI's `Agent` contract (as a class name or an instance), or a plain closure. The closure form means the thing *under test* is not tied to any particular SDK — anything that turns a string prompt into a string response can be evaluated, including your own HTTP client or a different AI library:
 
 ```php
 expect(fn (string $input): string => generate_answer($input))
@@ -101,7 +105,7 @@ expect(VisionAgent::class)
 
 ## Deterministic Expectations
 
-When part of the response is predictable, you may assert against it directly. These checks make no additional AI calls beyond the agent's response:
+When part of the response is predictable, you may assert against it directly. These checks make no additional AI calls beyond the agent's response, and they need no [driver](#drivers):
 
 ```php
 expect(CapitalCityAgent::class)
@@ -133,6 +137,8 @@ it('is consistent across multiple samples', function (): void {
 ## AI-Powered Scorers
 
 Deterministic checks can only take you so far. To evaluate qualities like relevance, safety, or factual accuracy, the plugin ships a set of scorers that grade the output on a scale from `0.0` to `1.0`. Each scorer accepts a `threshold` (defaulting to `0.7`) and fails the eval if the score falls below it.
+
+These scorers do their grading through the plugin's [drivers](#drivers): the LLM-as-judge scorers use the judge driver, while `toBeSimilar()` uses the embeddings driver. Both default to Laravel AI but can be swapped for any backend.
 
 ### `toBeRelevant()`
 
@@ -187,7 +193,7 @@ expect(GreetingAgent::class)
 
 ### `toHaveToolCalls()`
 
-Asserts that the agent invoked the expected tools. Provide an array keyed by tool name, with either the expected arguments or a closure to validate them:
+Asserts that the agent invoked the expected tools. Provide an array keyed by tool name, with either the expected arguments or a closure to validate them. This check is deterministic — it parses the tool calls from the output and needs no driver:
 
 ```php
 expect(WeatherAgent::class)
@@ -252,6 +258,126 @@ expect(GreetingAgent::class)
     ->toPassScorer(new WordCountScorer(maxWords: 30));
 ```
 
+A scorer decides *what* to measure. If your scorer needs to reach an LLM or produce embeddings to do its measuring, it should go through the [drivers](#drivers) rather than calling a provider directly — that way it inherits whatever backend the project has configured.
+
+---
+
+<a name="drivers"></a>
+## Drivers
+
+The AI-powered scorers do not talk to a model directly. Instead, they delegate to two small, single-method **drivers** — one for judging, one for embeddings. This indirection is what makes the scorers provider-agnostic: swap the driver and every scorer follows, without touching a single eval.
+
+There are two driver contracts:
+
+| Contract | Method | Powers |
+| --- | --- | --- |
+| `Pest\Evals\Contracts\JudgeDriver` | `generate(string $instructions, string $prompt): string` | `toBeRelevant()`, `toBeSafe()`, `toBeFactual()`, `toPassJudge()`, and any judge-based custom scorer |
+| `Pest\Evals\Contracts\EmbeddingsDriver` | `embed(array $inputs): array` | `toBeSimilar()` and any embeddings-based custom scorer |
+
+The deterministic checks (`toContain()`, `toBe()`, `toHaveToolCalls()`, `toFollowTrajectory()`, …) use no driver at all — they inspect the output directly.
+
+### The Default: Laravel AI
+
+Unless you say otherwise, the plugin uses `LaravelAiJudge` and `LaravelAiEmbeddings`, which call OpenAI through Laravel AI. The simplest way to change the provider or model is through environment variables, which is convenient for switching providers between environments:
+
+```ini
+PEST_EVALS_LARAVEL_SCORING_PROVIDER=openai
+PEST_EVALS_LARAVEL_SCORING_MODEL=gpt-5.4-nano
+PEST_EVALS_LARAVEL_EMBEDDING_PROVIDER=openai
+PEST_EVALS_LARAVEL_EMBEDDING_MODEL=text-embedding-3-small
+```
+
+Alternatively, configure the drivers explicitly in your `tests/Pest.php` file using `pest()->evals()`. Pass a configured `LaravelAiJudge` or `LaravelAiEmbeddings` instance to select the provider and model in code:
+
+```php
+use Pest\Evals\Drivers\LaravelAiEmbeddings;
+use Pest\Evals\Drivers\LaravelAiJudge;
+
+pest()->evals()
+    ->judgeUsing(new LaravelAiJudge(provider: 'openai', model: 'gpt-5.4-nano'))
+    ->embeddingsUsing(new LaravelAiEmbeddings(provider: 'openai', model: 'text-embedding-3-small'));
+```
+
+### Bringing Your Own Driver: A Closure
+
+The fastest way to leave Laravel AI behind is to hand `pest()->evals()` a closure. When you do this, `laravel/ai` is never touched, so it does not even need to be installed:
+
+```php
+pest()->evals()
+    ->judgeUsing(function (string $instructions, string $prompt): string {
+        // Call any model you like — an SDK, a raw HTTP client, anything —
+        // and return its raw text response. The plugin parses the score out of it.
+        return MyLlmClient::complete(system: $instructions, message: $prompt);
+    })
+    ->embeddingsUsing(function (array $inputs): array {
+        // Return one vector per input, in the same order they were given.
+        return array_map(fn (string $text): array => MyLlmClient::embed($text), $inputs);
+    });
+```
+
+A judge driver is a plain text-in, text-out function. It does **not** need to know about scoring: the scorers build a prompt that already asks the model to reply with `{"score": <float>, "reasoning": "..."}`, and the plugin decodes that JSON for you. Your driver's only job is to forward the instructions and prompt to a model and return whatever text comes back.
+
+An embeddings driver receives an array of strings and must return one numeric vector per string, in the same order.
+
+### Bringing Your Own Driver: A Class
+
+For anything you want to reuse or test, implement the contract as a dedicated class. Here a judge is backed by Anthropic:
+
+```php
+use Pest\Evals\Contracts\JudgeDriver;
+
+final class AnthropicJudge implements JudgeDriver
+{
+    public function generate(string $instructions, string $prompt): string
+    {
+        // `$instructions` is the system prompt; `$prompt` asks for a JSON score.
+        // Return the model's raw text — the plugin handles the parsing.
+        return Anthropic::messages()->create(
+            model: 'claude-sonnet-4-5',
+            system: $instructions,
+            messages: [['role' => 'user', 'content' => $prompt]],
+        )->text();
+    }
+}
+
+pest()->evals()->judgeUsing(new AnthropicJudge());
+```
+
+And an embeddings driver backed by a local model:
+
+```php
+use Pest\Evals\Contracts\EmbeddingsDriver;
+
+final class LocalEmbeddings implements EmbeddingsDriver
+{
+    /**
+     * @param  array<int, string>  $inputs
+     * @return array<int, array<int, float>>
+     */
+    public function embed(array $inputs): array
+    {
+        return array_map(
+            fn (string $text): array => $this->model->encode($text),
+            $inputs,
+        );
+    }
+}
+
+pest()->evals()->embeddingsUsing(new LocalEmbeddings());
+```
+
+### Returning a Fixed Result
+
+A closure body is arbitrary code — usually it calls your client, but nothing stops it from returning a fixed value instead. Because a judge is just text-in / text-out and an embeddings driver is just array-in / array-out, you can hand back a canned result to exercise the full scoring path — and your custom scorers — without spending money or hitting the network. This is convenient in local development or CI smoke tests:
+
+```php
+pest()->evals()
+    ->judgeUsing(fn (string $instructions, string $prompt): string =>
+        '{"score": 1.0, "reasoning": "stubbed"}')
+    ->embeddingsUsing(fn (array $inputs): array =>
+        array_map(fn (): array => [1.0, 0.0, 0.0], $inputs));
+```
+
 ---
 
 <a name="running-evals"></a>
@@ -270,39 +396,6 @@ This applies to every target, including closures — an eval only runs under `--
 
 ```bash
 PEST_EVALS=1 ./vendor/bin/pest
-```
-
----
-
-<a name="configuration"></a>
-## Configuration
-
-By default, the scorers judge and embed output using OpenAI via Laravel AI. The simplest way to change the provider or model is through environment variables, which is convenient for switching providers between environments:
-
-```ini
-PEST_EVALS_LARAVEL_SCORING_PROVIDER=openai
-PEST_EVALS_LARAVEL_SCORING_MODEL=gpt-5.4-nano
-PEST_EVALS_LARAVEL_EMBEDDING_PROVIDER=openai
-PEST_EVALS_LARAVEL_EMBEDDING_MODEL=text-embedding-3-small
-```
-
-Alternatively, you may configure the drivers explicitly within your `tests/Pest.php` file using `pest()->evals()`. Pass a configured `LaravelAiJudge` or `LaravelAiEmbeddings` instance to select the provider and model in code:
-
-```php
-use Pest\Evals\Drivers\LaravelAiEmbeddings;
-use Pest\Evals\Drivers\LaravelAiJudge;
-
-pest()->evals()
-    ->judgeUsing(new LaravelAiJudge(provider: 'openai', model: 'gpt-5.4-nano'))
-    ->embeddingsUsing(new LaravelAiEmbeddings(provider: 'openai', model: 'text-embedding-3-small'));
-```
-
-If you would rather not use Laravel AI, or you want full control over how scores are produced, you may provide your own judge and embeddings drivers with a closure:
-
-```php
-pest()->evals()
-    ->judgeUsing(fn (string $instructions, string $prompt): string => /* ... */)
-    ->embeddingsUsing(fn (array $inputs): array => /* ... */);
 ```
 
 ---
