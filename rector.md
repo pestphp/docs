@@ -20,11 +20,13 @@ composer require rector/rector --dev
 
 ## Rule Sets
 
-You may configure which rules to apply by using predefined rule sets in your `rector.php` file.
+The plugin groups its rules into predefined sets, so that you may enable exactly the transformations you need. You may register these sets in your project's `rector.php` file, and combine as many of them as you wish.
 
 ### Pest Code Quality
 
-Converts raw PHP assertions to Pest's built-in matchers, chains multiple `expect()` calls on the same value, and simplifies redundant patterns:
+The `PEST_CODE_QUALITY` set rewrites raw PHP assertions into Pest's expressive, built-in matchers, and simplifies redundant expectation patterns. For example, it converts `expect(count($array))->toBe(3)` into `expect($array)->toHaveCount(3)`.
+
+Typically, you should pair it with the `PEST_CHAIN` set, which merges consecutive expectations on the same value into a single, fluent chain:
 
 ```php
 use Pest\Rector\Set\PestSetList;
@@ -38,11 +40,11 @@ return RectorConfig::configure()
     ]);
 ```
 
-The `PEST_CHAIN` set merges consecutive `expect()` calls into a single chained expectation and orders type checks first. It is best applied alongside `PEST_CODE_QUALITY` so that newly introduced matchers can be chained together.
+In addition to merging consecutive `expect()` calls, the `PEST_CHAIN` set orders type checks first within each chain, so that your assertions read from the most general to the most specific. It is best applied alongside `PEST_CODE_QUALITY`, so that the matchers introduced by that set may be chained together as well.
 
 ### PHPUnit To Pest Migration
 
-Converts PHPUnit assertion methods and `expectException()` patterns to Pest's `expect()` API. These are structural transformations, so you should review the result after applying them:
+The `PEST_MIGRATION` set converts PHPUnit assertion methods and `expectException()` patterns into Pest's `expect()` API. These are structural transformations, so you should review the result once they have been applied:
 
 ```php
 use Pest\Rector\Set\PestSetList;
@@ -57,7 +59,7 @@ return RectorConfig::configure()
 
 ### Laravel
 
-Converts `Illuminate\Support\Str` equality checks to Pest's string case matchers, such as `toBeSnakeCase()` and `toBeKebabCase()`. This set requires the `illuminate/support` package:
+The `PEST_LARAVEL` set converts `Illuminate\Support\Str` equality checks into Pest's string case matchers, such as `toBeSnakeCase()` and `toBeKebabCase()`. This set requires the `illuminate/support` package:
 
 ```php
 use Pest\Rector\Set\PestSetList;
@@ -72,7 +74,7 @@ return RectorConfig::configure()
 
 ### Browser
 
-Converts generic `expect($page->getter())->matcher()` patterns into the dedicated assertions provided by the [Browser Testing](/docs/browser-testing) plugin, resulting in more readable tests and clearer failure messages. This set requires the `pestphp/pest-plugin-browser` package:
+The `PEST_BROWSER` set converts generic `expect($page->getter())->matcher()` patterns into the dedicated assertions provided by the [Browser Testing](/docs/browser-testing) plugin, resulting in more readable tests and clearer failure messages. This set requires the `pestphp/pest-plugin-browser` package:
 
 ```php
 use Pest\Rector\Set\PestSetList;
@@ -87,21 +89,30 @@ return RectorConfig::configure()
 
 ### Pest Version Upgrades
 
-Upgrade your test suite between major Pest versions:
+To upgrade your test suite between major Pest versions, you may reach for the level sets provided by `PestLevelSetList`. Unlike the sets above, a level set is cumulative: it applies every migration up to and including the version you target, so that a suite on an older version arrives fully up to date in a single pass.
 
 ```php
 use Pest\Rector\Set\PestLevelSetList;
+use Rector\Config\RectorConfig;
 
 // Upgrade from Pest v2 to v3
 return RectorConfig::configure()
     ->withPaths([__DIR__ . '/tests'])
-    ->withLevelSet(PestLevelSetList::UP_TO_PEST_30);
+    ->withSets([PestLevelSetList::UP_TO_PEST_30]);
+```
 
-// Upgrade from Pest v2 or v3 to v4
+To upgrade to Pest v4, target `UP_TO_PEST_40` instead. As it is cumulative, it includes every transformation from `UP_TO_PEST_30` as well, so you may upgrade from either Pest v2 or v3 in one step:
+
+```php
+use Pest\Rector\Set\PestLevelSetList;
+use Rector\Config\RectorConfig;
+
 return RectorConfig::configure()
     ->withPaths([__DIR__ . '/tests'])
-    ->withLevelSet(PestLevelSetList::UP_TO_PEST_40);
+    ->withSets([PestLevelSetList::UP_TO_PEST_40]);
 ```
+
+Of course, if you would rather apply the migration rules for a single version in isolation, the individual `PestSetList::PEST_30` and `PestSetList::PEST_40` sets remain available as well.
 
 ---
 
@@ -569,12 +580,12 @@ Converts `is_file()` checks to `toBeFile()` matcher
 
 ### UseToBeInRector
 
-Converts `in_array()` with value first to `toBeIn()` matcher
+Converts strict `in_array()` checks to the `toBeIn()` matcher
 
 - class: `Pest\Rector\Rules\UseToBeInRector`
 
 ```diff
--expect(in_array($value, ['pending', 'active']))->toBeTrue();
+-expect(in_array($value, ['pending', 'active'], true))->toBeTrue();
 +expect($value)->toBeIn(['pending', 'active']);
 ```
 
@@ -642,17 +653,6 @@ Converts `is_nan()` checks to `toBeNan()` matcher
 ```diff
 -expect(is_nan($value))->toBeTrue();
 +expect($value)->toBeNan();
-```
-
-### UseToBeReadableWritableRector
-
-Converts `is_readable()/is_writable()` checks to `toBeReadable()/toBeWritable()` matchers
-
-- class: `Pest\Rector\Rules\UseToBeReadableWritableRector`
-
-```diff
--expect(is_readable($path))->toBeTrue();
-+expect($path)->toBeReadable();
 ```
 
 ### UseToBeSlugRector
