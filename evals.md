@@ -77,7 +77,7 @@ An eval calls a real model — that costs money and returns a different answer e
 ./vendor/bin/pest --evals    # the real thing: real model, all scorers active
 ```
 
-When you run with `--evals`, Pest prints a summary of how many evals passed alongside their average score. To inspect the input, output, reasoning, and score behind each individual assertion, run in [verbose mode](#verbose-output) with `-v`.
+When you run with `--evals`, each eval passes or fails like any other test. To inspect the input, output, reasoning, and score behind each individual assertion, run in [verbose mode](#verbose-output) with `-v`.
 
 ---
 
@@ -100,6 +100,18 @@ expect(VisionAgent::class)
     ->prompt('Describe this image.', attachments: [Image::fromPath('chart.png')])
     ->toBeRelevant();
 ```
+
+You may also chain `prompt()` more than once. Each call runs the agent again with the new prompt, and every following expectation asserts against the newest response:
+
+```php
+expect(SupportAgent::class)
+    ->prompt('Do you ship to Portugal?')
+    ->toContain('Yes')
+    ->prompt('How long does delivery take?')
+    ->toMatch('/\d+ business days/');
+```
+
+Each prompt is an independent run — the plugin does not carry conversation state between calls.
 
 ---
 
@@ -132,11 +144,28 @@ it('is consistent across multiple samples', function (): void {
 });
 ```
 
+This also applies to negated expectations. When samples are present, `not` asserts that *no* sample matches — so the following eval only passes when none of the three responses mention Sydney:
+
+```php
+expect(CapitalCityAgent::class)
+    ->prompt('What is the capital of Australia?')
+    ->repeat(3)
+    ->not->toContain('Sydney');
+```
+
+`repeat()` requires `prompt()` to have been called first, and may be called once per prompt.
+
 ---
 
 ## AI-Powered Scorers
 
-Deterministic checks can only take you so far. To evaluate qualities like relevance, safety, or factual accuracy, the plugin ships a set of scorers that grade the output on a scale from `0.0` to `1.0`. Each scorer accepts a `threshold` (defaulting to `0.7`) and fails the eval if the score falls below it.
+Deterministic checks can only take you so far. To evaluate qualities like relevance, safety, or factual accuracy, the plugin ships a set of scorers that grade the output on a scale from `0.0` to `1.0`. Each scorer accepts a `threshold` — a float between `0.0` and `1.0`, defaulting to `0.7` — and fails the eval if the score falls below it:
+
+```php
+expect(GreetingAgent::class)
+    ->prompt('Hello, I am Bob.')
+    ->toBeSafe(0.9); // requires a score of at least 0.9
+```
 
 These scorers do their grading through the plugin's [drivers](#drivers): the LLM-as-judge scorers use the judge driver, while `toBeSimilar()` uses the embeddings driver. Both default to Laravel AI but can be swapped for any backend.
 
@@ -171,6 +200,18 @@ expect(CapitalCityAgent::class)
     ->toBeFactual(expected: 'Tokyo');
 ```
 
+Rather than trusting the judge with arithmetic, this scorer asks it to *classify* the relationship between the response and the reference. Each category then maps to a fixed score, so the same classification always produces the same result:
+
+| Category | Meaning | Score |
+| --- | --- | --- |
+| `equal` | Same facts as the reference | `1.0` |
+| `approximately_equal` | Minor wording differences | `0.9` |
+| `superset` | All reference facts, plus additional correct ones | `0.8` |
+| `subset` | Some, but not all, reference facts | `0.6` |
+| `disagreement` | Contradicts the reference | `0.0` |
+
+With the default threshold of `0.7`, a response containing extra correct information still passes, while an incomplete one fails. If partial answers are acceptable, you may lower the threshold: `->toBeFactual(expected: 'Tokyo', threshold: 0.6)`.
+
 ### `toBeSimilar()`
 
 Asserts that the response is semantically similar to an expected answer, using embeddings. Unlike `toContain()`, this passes even when the wording differs, as long as the meaning matches:
@@ -193,7 +234,7 @@ expect(GreetingAgent::class)
 
 ### `toHaveToolCalls()`
 
-Asserts that the agent invoked the expected tools. Provide an array keyed by tool name, with either the expected arguments or a closure to validate them. This check is deterministic — it parses the tool calls from the output and needs no driver:
+Asserts that the agent invoked the expected tools. Provide an array keyed by tool name, with the arguments you expect for each call. This check is deterministic — it parses the tool calls from the output and needs no driver:
 
 ```php
 expect(WeatherAgent::class)
@@ -203,9 +244,19 @@ expect(WeatherAgent::class)
     ]);
 ```
 
+The expected arguments may be a subset of the actual arguments — extra arguments in the call are ignored. For full control, pass a closure that receives the actual arguments and returns a boolean:
+
+```php
+->toHaveToolCalls([
+    'get_weather' => fn (array $arguments): bool => $arguments['city'] === 'Lisbon',
+]);
+```
+
+The score is the fraction of expected tools that matched — with two expected tools and one match, the score is `0.5`. Tool calls are parsed from the agent's output, which may be a JSON array of `{"name": "...", "arguments": {...}}` objects, a single such object, or an object containing a `tool_calls` array.
+
 ### `toFollowTrajectory()`
 
-Asserts that the agent invoked a sequence of tools in the expected order. Pass `strictOrder: false` to allow the steps to occur in any order:
+Asserts that the agent invoked a sequence of tools in the expected order:
 
 ```php
 expect(SupportAgent::class)
@@ -217,9 +268,11 @@ expect(SupportAgent::class)
     ]);
 ```
 
+Other tool calls may occur between the expected steps — the scorer only requires that the expected steps appear, in order. Pass `strictOrder: false` to allow the steps to occur in any order. Like `toHaveToolCalls()`, this check is deterministic; it accepts the same output formats, as well as a plain JSON array of tool names.
+
 ### `toPassScorer()`
 
-Runs a [custom scorer](#custom-scorers) of your own against the response.
+Runs a [custom scorer](#custom-scorers) of your own against the response. It accepts the same `threshold` argument as the built-in scorers, plus an optional `expected` value that is forwarded to your scorer.
 
 ---
 
@@ -259,6 +312,18 @@ expect(GreetingAgent::class)
 ```
 
 A scorer decides *what* to measure. If your scorer needs to reach an LLM or produce embeddings to do its measuring, it should go through the [drivers](#drivers) rather than calling a provider directly — that way it inherits whatever backend the project has configured.
+
+When it does, mark the scorer with the matching contract — `RequiresJudge`, `RequiresEmbeddings`, or both. Scorers without these markers are considered deterministic and always run, while marked scorers only run under `--evals` or when a custom driver has been configured — so a regular test run never triggers a real model call:
+
+```php
+use Pest\Evals\Contracts\RequiresJudge;
+use Pest\Evals\Scorers\Scorer;
+
+final class BrandVoiceScorer implements RequiresJudge, Scorer
+{
+    // ...
+}
+```
 
 ---
 
@@ -377,6 +442,8 @@ pest()->evals()
     ->embeddingsUsing(fn (array $inputs): array =>
         array_map(fn (): array => [1.0, 0.0, 0.0], $inputs));
 ```
+
+Keep in mind that evals themselves still only run under `--evals` — the stub replaces the scoring calls, not the eval run.
 
 ---
 

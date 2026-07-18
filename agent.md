@@ -12,10 +12,12 @@ AI coding agents are capable at writing code, yet they often have no way to know
 Thankfully, the Agent plugin closes that loop. It gives your agent a single command to run a one-off verification against your application:
 
 ```bash
-vendor/bin/pest --agent="\$user = \App\Models\User::factory()->create(); \$this->actingAs(\$user)->get('/dashboard')->assertOk();"
+vendor/bin/pest --agent='$user = \App\Models\User::factory()->create(); $this->actingAs($user)->get("/dashboard")->assertOk();'
 ```
 
 Your agent receives a definitive pass or fail instead of a hopeful guess, with the full power of Pest at its disposal. Everything your test suite can do is available: factories, the database, mail and notification fakes, authentication, and expectations — all in the same probe.
+
+Note that the snippet is wrapped in **single** quotes. Single quotes tell the shell to pass everything through to PHP untouched, so `$variables` and `\App` class names need no escaping — with double outer quotes, your shell would interpolate `$user` to an empty string before PHP ever sees it. Within the snippet, you may use double quotes for PHP string literals.
 
 The plugin is not specific to the browser. It verifies *any* code your test suite can reach — backend behavior, queued jobs, mail, notifications, and more — with nothing beyond a standard Pest install. That said, it truly shines once the [Browser Testing](/docs/browser-testing) plugin is installed, because your agent may then drive a real browser *and* assert the side effects it triggers, all in a single command.
 
@@ -46,6 +48,26 @@ When prompted for third-party AI guidelines and skills, select `pestphp/pest-plu
 
 That's it. Your agent may now verify backend behavior, frontend behavior, or both, from a single command.
 
+## How It Works
+
+When you run `vendor/bin/pest --agent='<code>'`, Pest writes your snippet into a temporary test file shaped like this:
+
+```php
+<?php
+
+it('verify', function () {
+    // your snippet goes here...
+});
+```
+
+The file runs with your project's real Pest configuration: the classes and traits you registered in `tests/Pest.php` via `uses()` — including `RefreshDatabase` — are applied to the generated test automatically, so the snippet behaves exactly like a test living in your test suite. Once the run finishes, the temporary file is removed.
+
+There are a few details worth keeping in mind:
+
+- **Every class must be fully qualified.** The generated file contains no `use` imports, so your snippet should reference `\App\Models\User` rather than `User`.
+- **Snippets may not be empty.** Passing `--agent` without a value, or with an empty one, will abort the run with an error instead of silently passing.
+- **Directory-scoped hooks do not apply.** Classes and traits from `uses(...)->in('Feature')` carry over to the generated test; however, `beforeEach()` hooks attached to a directory are bound to that path and will not run for the snippet. If required setup lives in such a hook, your agent should inline it at the top of the snippet.
+
 ## Why Agent?
 
 A new category of tooling has emerged to give agents "eyes" on the browser — Vercel's [agent-browser](https://github.com/vercel-labs/agent-browser) being a prominent example. These tools drive a headless Chromium instance and let an agent click, type, and screenshot its way through your app.
@@ -64,19 +86,19 @@ In short: browser-only agent tools verify what the *page* looks like. The Agent 
 The snippet runs inside a full Pest test, so your agent may seed state with factories and assert against it directly. Typically, you should create state inline, and never rely on pre-existing data.
 
 ```bash
-vendor/bin/pest --agent="\$post = \App\Models\Post::factory()->create(); expect(\$post->author)->not->toBeNull();"
+vendor/bin/pest --agent='$post = \App\Models\Post::factory()->create(); expect($post->author)->not->toBeNull();'
 ```
 
 As you would expect, acting as an authenticated user and asserting a response works exactly as it would in a real feature test:
 
 ```bash
-vendor/bin/pest --agent="\$user = \App\Models\User::factory()->create(); \$this->actingAs(\$user)->get('/dashboard')->assertOk();"
+vendor/bin/pest --agent='$user = \App\Models\User::factory()->create(); $this->actingAs($user)->get("/dashboard")->assertOk();'
 ```
 
 Mail, notifications, and queued jobs are all verifiable through Laravel's standard fakes:
 
 ```bash
-vendor/bin/pest --agent="\Illuminate\Support\Facades\Notification::fake(); \App\Models\User::factory()->create()->notify(new \App\Notifications\Welcome()); \Illuminate\Support\Facades\Notification::assertSentTo(\App\Models\User::first(), \App\Notifications\Welcome::class);"
+vendor/bin/pest --agent='\Illuminate\Support\Facades\Notification::fake(); \App\Models\User::factory()->create()->notify(new \App\Notifications\Welcome()); \Illuminate\Support\Facades\Notification::assertSentTo(\App\Models\User::first(), \App\Notifications\Welcome::class);'
 ```
 
 None of this requires the browser — a standard Pest install is all you need to verify behavior end to end on the backend.
@@ -87,27 +109,27 @@ With the Browser Testing plugin installed, your agent may visit pages, take scre
 
 ```bash
 # Take a screenshot to visually confirm a change
-vendor/bin/pest --agent="visit('/')->screenshot(filename: 'homepage');"
+vendor/bin/pest --agent='visit("/")->screenshot(filename: "homepage");'
 
 # Assert visible content
-vendor/bin/pest --agent="visit('/')->assertSee('Welcome');"
+vendor/bin/pest --agent='visit("/")->assertSee("Welcome");'
 
 # Drive an interaction flow
-vendor/bin/pest --agent="visit('/')->click('Login')->assertPathIs('/login');"
+vendor/bin/pest --agent='visit("/")->click("Login")->assertPathIs("/login");'
 ```
 
 Your agent may also check responsive layouts by emulating devices or setting an explicit viewport:
 
 ```bash
-vendor/bin/pest --agent="visit('/')->on()->mobile()->screenshot(filename: 'home-mobile');"
-vendor/bin/pest --agent="visit('/')->on()->iPhone14Pro()->screenshot(filename: 'home-iphone');"
+vendor/bin/pest --agent='visit("/")->on()->mobile()->screenshot(filename: "home-mobile");'
+vendor/bin/pest --agent='visit("/")->on()->iPhone14Pro()->screenshot(filename: "home-iphone");'
 ```
 
 In addition, it may run health checks for JavaScript errors, accessibility issues, and visual drift:
 
 ```bash
-vendor/bin/pest --agent="visit('/')->assertNoJavaScriptErrors();"
-vendor/bin/pest --agent="visit('/')->assertNoAccessibilityIssues();"
+vendor/bin/pest --agent='visit("/")->assertNoJavaScriptErrors();'
+vendor/bin/pest --agent='visit("/")->assertNoAccessibilityIssues();'
 ```
 
 For the complete browser API, see the [Browser Testing](/docs/browser-testing) documentation.
@@ -117,14 +139,24 @@ For the complete browser API, see the [Browser Testing](/docs/browser-testing) d
 This is where the Agent plugin truly shines, and the reason the [Browser Testing](/docs/browser-testing) plugin is so highly recommended. Because the browser and your application live in the same probe, your agent may drive the UI and then assert the side effect it produced — the exact end-to-end confidence a browser-only tool can never provide.
 
 ```bash
-vendor/bin/pest --agent="\Illuminate\Support\Facades\Mail::fake(); visit('/contact')->type('email', 'test@example.com')->type('message', 'Hello')->press('Send')->assertSee('Message sent'); \Illuminate\Support\Facades\Mail::assertSent(\App\Mail\ContactForm::class);"
+vendor/bin/pest --agent='\Illuminate\Support\Facades\Mail::fake(); visit("/contact")->type("email", "test@example.com")->type("message", "Hello")->press("Send")->assertSee("Message sent"); \Illuminate\Support\Facades\Mail::assertSent(\App\Mail\ContactForm::class);'
 ```
 
 ```bash
-vendor/bin/pest --agent="visit('/checkout')->type('card', '4242424242424242')->press('Pay')->assertSee('Transaction processed'); expect(\App\Models\Order::count())->toBe(1);"
+vendor/bin/pest --agent='visit("/checkout")->type("card", "4242424242424242")->press("Pay")->assertSee("Transaction processed"); expect(\App\Models\Order::count())->toBe(1);'
 ```
 
 Typically, you should assert a frontend signal first — such as `assertSee` or `assertPathIs` — so that you know the action was processed before checking what it touched on the backend.
+
+## Running Multiple Verifications
+
+Sometimes you may wish to verify more than one behavior in a single run. To accomplish this, you may pass the `--agent` option multiple times — each snippet becomes its own isolated test:
+
+```bash
+vendor/bin/pest --agent='expect(\App\Models\Order::count())->toBe(1);' --agent='visit("/")->assertSee("Welcome");'
+```
+
+Every snippet reports its result under the test name `verify`, so you should keep each snippet focused on a single behavior — batching unrelated checks into one snippet makes it harder to tell which one broke.
 
 ## When to Use It
 
