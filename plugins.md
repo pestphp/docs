@@ -15,8 +15,6 @@ The following plugins are maintained by the Pest team:
 - [Laravel](#laravel)
 - [Livewire](#livewire)
 
----
-
 <a name="faker"></a>
 ## Faker
 
@@ -53,8 +51,6 @@ it('generates a portuguese name', function () {
 ```
 
 To learn more about Faker, including comprehensive details about the API it provides, please consult [its official documentation](https://fakerphp.github.io/).
-
----
 
 <a name="laravel"></a>
 ## Laravel
@@ -125,8 +121,6 @@ use function Pest\Laravel\{actingAs, get, post, delete, ...};
 ```
 
 You may find the full testing documentation on the Laravel website: [laravel.com/docs/12.x/testing](https://laravel.com/docs/12.x/testing).
-
----
 
 <a name="livewire"></a>
 ## Livewire

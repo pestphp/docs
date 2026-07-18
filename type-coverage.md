@@ -1,6 +1,6 @@
 ---
 title: Type Coverage
-description: Type Coverage is a metric used to measure the percentage of code that is covered by type declarations
+description: Type Coverage is a metric used to measure the percentage of code that is covered by type declarations, helping you identify parts of your code that may not be fully typed.
 ---
 
 # Type Coverage
@@ -46,11 +46,11 @@ Often, when checking type coverage, you only want to see the files that do not c
 
 ```bash
 ./vendor/bin/pest --type-coverage --compact
-``` 
+```
 
 ## Minimum Threshold Enforcement
 
-Just like code coverage, type coverage may also be enforced. To ensure any code that is added to your application is fully typed, you may use the `--type-coverage` and `--min` options to define the minimum threshold values for type coverage results. If the specified thresholds are not met, Pest will report a failure.
+As with code coverage, type coverage may also be enforced. To ensure any code that is added to your application is fully typed, you may use the `--type-coverage` and `--min` options to define the minimum threshold values for type coverage results. If the specified thresholds are not met, Pest will report a failure:
 
 ```bash
 ./vendor/bin/pest --type-coverage --min=100

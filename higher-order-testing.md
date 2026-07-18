@@ -38,7 +38,7 @@ it('has a name', function () {
 });
 ```
 
-If your test contains only one expectation, we may simplify it using higher order testing:
+If your test contains only one expectation, you may simplify it using higher order testing:
 
 ```php
 it('has a name')
@@ -56,7 +56,7 @@ it('creates admins')
     ->assertDatabaseHas('users', ['id' => 1]);
 ```
 
-In the example above, the `assertDatabaseHas()` assertion method will be called on the result of the closure passed to the `defer()` method.
+In this example, the `assertDatabaseHas()` assertion method will be called on the result of the closure passed to the `defer()` method.
 
 The principles of higher order testing may also be applied to hooks. In other words, if the body of your hook consists of a sequence of methods chained to the `$this` variable, you may chain those methods directly onto the hook method and omit the closure entirely:
 
@@ -80,7 +80,7 @@ it('validates emails')
 
 ## Higher Order Expectations
 
-With Higher Order Expectations, you may perform expectations directly on the `properties` or `methods` of the expectation `$value`.
+With Higher Order Expectations, you may perform expectations directly on the properties or methods of the expectation `$value`.
 
 For example, imagine you are testing that a user was created successfully and that a variety of attributes have been stored in the database. Your test might look something like this:
 
@@ -133,7 +133,7 @@ With Scoped Higher Order Expectations, you may use the `scoped()` method and a c
 This is helpful for Laravel Eloquent models, where you want to check the properties of a child relation:
 
 ```php
-    expect($user)
+expect($user)
     ->name->toBe('Nuno')
     ->email->toBe('enunomaduro@gmail.com')
     ->address()->scoped(fn ($address) => $address

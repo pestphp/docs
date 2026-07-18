@@ -43,28 +43,23 @@ test('true is true', function () {
 });
 ```
 
----
-## Convert Phpunit tests only for certain folder
+## Converting Tests Within a Specific Folder
 
-Sometimes you may wish to convert the PHPUnit tests within a certain folder only. To accomplish this, you may pass a _path_ as the first argument when calling `--drift`.
+Sometimes you may wish to convert the PHPUnit tests within a certain folder only. To accomplish this, you may pass a path as the first argument when calling `--drift`. For example, you may run the conversion for the `tests/Helpers` folder:
 
-For example, if you want to run the conversion for the `/tests/Helpers` folder: 
-```console 
-/vendor/bin/pest --drift tests/Helpers
+```bash
+./vendor/bin/pest --drift tests/Helpers
 ```
 
-Output:
-```console
-/vendor/bin/pest --drift tests/Helpers
+The output will contain a summary of the conversion process, as well as a list of the files that were converted:
+
+```plain
+./vendor/bin/pest --drift tests/Helpers
 
 ✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔
 
 INFO  The [tests/Helpers] directory has been migrated to PEST with XY files changed.
 ```
-
----
-
-The output will contain a summary of the conversion process, as well as a list of the files that were converted.
 
 While most of your tests will be converted automatically, and you should be able to run them without any issues, there are some cases where you may need to convert a few of your tests manually.
 

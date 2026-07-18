@@ -17,7 +17,7 @@ test('sum', function () {
 });
 ```
 
-As you can see, the `expect()` function allows you to chain multiple expectations together for a given `$value`. This means you may perform as many checks as you need in a single test by continuing to chain additional expectations:
+In addition, the `expect()` function allows you to chain multiple expectations together for a given `$value`. This means you may perform as many checks as you need in a single test by continuing to chain additional expectations:
 
 ```php
 expect($value)
@@ -131,8 +131,6 @@ In addition to the individual expectations, the expectation API also provides se
 
 </div>
 
----
-
 <a name="expect-toBe"></a>
 ### `toBe()`
 
@@ -232,7 +230,7 @@ expect($count)->toBeGreaterThanOrEqual(21);
 <a name="expect-toBeLessThan"></a>
 ### `toBeLessThan($expected)`
 
-This expectation ensures that `$value` is lesser than `$expected`:
+This expectation ensures that `$value` is less than `$expected`:
 
 ```php
 expect($count)->toBeLessThan(3);
@@ -241,7 +239,7 @@ expect($count)->toBeLessThan(3);
 <a name="expect-toBeLessThanOrEqual"></a>
 ### `toBeLessThanOrEqual($expected)`
 
-This expectation ensures that `$value` is lesser than or equal to `$expected`:
+This expectation ensures that `$value` is less than or equal to `$expected`:
 
 ```php
 expect($count)->toBeLessThanOrEqual(2);
@@ -257,7 +255,6 @@ expect('Hello World')->toContain('Hello');
 expect('Pest: an elegant PHP Testing Framework')->toContain('Pest', 'PHP', 'Framework');
 expect([1, 2, 3, 4])->toContain(2, 4);
 ```
-
 
 <a name="expect-toContainEqual"></a>
 ### `toContainEqual($needles)`
@@ -310,6 +307,7 @@ This expectation ensures that `$value` has property names matching all the names
 ```php
 expect($user)->toHaveProperties(['name', 'email']);
 ```
+
 In addition, you may verify the name and value of multiple properties using an associative array:
 
 ```php
@@ -843,7 +841,7 @@ expect('https://pestphp.com/')->toBeUrl();
 <a name="expect-toBeUuid"></a>
 ### `toBeUuid()`
 
-This expectation ensures that `$value` is an UUID:
+This expectation ensures that `$value` is a UUID:
 
 ```php
 expect('ca0a8228-cdf6-41db-b34b-c2f31485796c')->toBeUuid();
@@ -857,8 +855,6 @@ This expectation ensures that `$value` is a ULID:
 ```php
 expect('01ARZ3NDEKTSV4RRFFQ69G5FAV')->toBeUlid();
 ```
-
----
 
 <a name="expect-and"></a>
 ### `and($value)`
@@ -970,7 +966,7 @@ expect(true)->not->toBeFalse();
 <a name="expect-ray"></a>
 ### `ray()`
 
-The `ray()` modifier allows you to debug the current `$value` with **[myray.app](https://myray.app/)**:
+The `ray()` modifier allows you to debug the current `$value` with [myray.app](https://myray.app/):
 
 ```php
 expect(14)->ray(); // 14

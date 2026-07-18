@@ -7,7 +7,7 @@ description: Architecture testing enables you to specify expectations that test 
 
 Architecture testing enables you to specify expectations that test whether your application adheres to a set of architectural rules, helping you maintain a clean and sustainable codebase. The expectations are determined by either relative namespaces, fully qualified namespaces, or function names.
 
-Here is an example of how you can define an architectural rule:
+Here is an example of how you may define an architectural rule:
 
 ```php
 arch()
@@ -36,9 +36,9 @@ arch()->preset()->security()->ignoring('md5');
 
 Now, let's dive into the various methods and modifiers available for architectural testing. In this section, you will learn:
 
-- [Expectations](#expectations): Allows to specify granular architectural rules.
-- [Presets](#presets): Allows to use predefined sets of granular architectural rules.
-- [Modifiers](#modifiers): To exclude or ignore certain types of files, classes, functions or lines of code.
+- [Expectations](#expectations): Allow you to specify granular architectural rules.
+- [Presets](#presets): Allow you to use predefined sets of granular architectural rules.
+- [Modifiers](#modifiers): Allow you to exclude or ignore certain types of files, classes, functions, or lines of code.
 
 <a name="expectations"></a>
 ## Expectations
@@ -97,7 +97,7 @@ Granular expectations allow you to define specific architectural rules for your 
 <a name="expect-toBeAbstract"></a>
 ### `toBeAbstract()`
 
-The `toBeAbstract()` method may be used to ensure that all classes within a given namespace are abstract.
+The `toBeAbstract()` method may be used to ensure that all classes within a given namespace are abstract:
 
 ```php
 arch('app')
@@ -108,7 +108,7 @@ arch('app')
 <a name="expect-toBeCasedCorrectly"></a>
 ### `toBeCasedCorrectly()`
 
-The `toBeCasedCorrectly()` method may be used to ensure that all class names match their file and directory path casing, verifying PSR-4 autoloading compliance.
+The `toBeCasedCorrectly()` method may be used to ensure that all class names match their file and directory path casing, verifying PSR-4 autoloading compliance:
 
 ```php
 arch('app')
@@ -121,7 +121,7 @@ For example, if a class is named `App\Models\UserProfile`, this expectation veri
 <a name="expect-toBeClasses"></a>
 ### `toBeClasses()`
 
-The `toBeClasses()` method may be used to ensure that all files within a given namespace are classes.
+The `toBeClasses()` method may be used to ensure that all files within a given namespace are classes:
 
 ```php
 arch('app')
@@ -132,7 +132,7 @@ arch('app')
 <a name="expect-toBeEnums"></a>
 ### `toBeEnums()`
 
-The `toBeEnums()` method may be used to ensure that all files within a given namespace are enums.
+The `toBeEnums()` method may be used to ensure that all files within a given namespace are enums:
 
 ```php
 arch('app')
@@ -143,7 +143,7 @@ arch('app')
 <a name="expect-toBeIntBackedEnums"></a>
 ### `toBeIntBackedEnums()`
 
-The `toBeIntBackedEnums()` method may be used to ensure that all enums within a specified namespace are int-backed.
+The `toBeIntBackedEnums()` method may be used to ensure that all enums within a specified namespace are int-backed:
 
 ```php
 arch('app')
@@ -154,7 +154,7 @@ arch('app')
 <a name="expect-toBeInterfaces"></a>
 ### `toBeInterfaces()`
 
-The `toBeInterfaces()` method may be used to ensure that all files within a given namespace are interfaces.
+The `toBeInterfaces()` method may be used to ensure that all files within a given namespace are interfaces:
 
 ```php
 arch('app')
@@ -165,7 +165,7 @@ arch('app')
 <a name="expect-toBeInvokable"></a>
 ### `toBeInvokable()`
 
-The `toBeInvokable()` method may be used to ensure that all files within a given namespace are invokable.
+The `toBeInvokable()` method may be used to ensure that all files within a given namespace are invokable:
 
 ```php
 arch('app')
@@ -176,7 +176,7 @@ arch('app')
 <a name="expect-toBeTraits"></a>
 ### `toBeTraits()`
 
-The `toBeTraits()` method may be used to ensure that all files within a given namespace are traits.
+The `toBeTraits()` method may be used to ensure that all files within a given namespace are traits:
 
 ```php
 arch('app')
@@ -187,7 +187,7 @@ arch('app')
 <a name="expect-toBeFinal"></a>
 ### `toBeFinal()`
 
-The `toBeFinal()` method may be used to ensure that all classes within a given namespace are final.
+The `toBeFinal()` method may be used to ensure that all classes within a given namespace are final:
 
 ```php
 arch('app')
@@ -195,7 +195,7 @@ arch('app')
     ->toBeFinal();
 ```
 
-Typically, you should use this expectation in combination with the `classes()` modifier to ensure that all classes within a given namespace are final.
+Typically, you should use this expectation in combination with the `classes()` modifier to ensure that all classes within a given namespace are final:
 
 ```php
 arch('app')
@@ -207,7 +207,7 @@ arch('app')
 <a name="expect-toBeReadonly"></a>
 ### `toBeReadonly()`
 
-The `toBeReadonly()` method may be used to ensure that certain classes are immutable and cannot be modified at runtime.
+The `toBeReadonly()` method may be used to ensure that certain classes are immutable and cannot be modified at runtime:
 
 ```php
 arch('app')
@@ -215,7 +215,7 @@ arch('app')
     ->toBeReadonly();
 ```
 
-Typically, you should use this expectation in combination with the `classes()` modifier to ensure that all classes within a given namespace are readonly.
+Typically, you should use this expectation in combination with the `classes()` modifier to ensure that all classes within a given namespace are readonly:
 
 ```php
 arch('app')
@@ -227,7 +227,7 @@ arch('app')
 <a name="expect-toBeStringBackedEnums"></a>
 ### `toBeStringBackedEnums()`
 
-The `toBeStringBackedEnums()` method may be used to ensure that all enums within a specified namespace are string-backed.
+The `toBeStringBackedEnums()` method may be used to ensure that all enums within a specified namespace are string-backed:
 
 ```php
 arch('app')
@@ -238,7 +238,7 @@ arch('app')
 <a name="expect-toBeUsed"></a>
 ### `toBeUsed()`
 
-The `not` modifier, when combined with the `toBeUsed()` method, enables you to verify that certain classes or functions are not being utilized by your application.
+The `not` modifier, when combined with the `toBeUsed()` method, enables you to verify that certain classes or functions are not being utilized by your application:
 
 ```php
 arch('globals')
@@ -253,7 +253,7 @@ arch('facades')
 <a name="expect-toBeUsedIn"></a>
 ### `toBeUsedIn()`
 
-By combining the `not` modifier with the `toBeUsedIn()` method, you can restrict specific classes and functions from being used within a given namespace.
+By combining the `not` modifier with the `toBeUsedIn()` method, you can restrict specific classes and functions from being used within a given namespace:
 
 ```php
 arch('globals')
@@ -268,7 +268,7 @@ arch('globals')
 <a name="expect-toExtend"></a>
 ### `toExtend()`
 
-The `toExtend()` method may be used to ensure that all classes within a given namespace extend a specific class.
+The `toExtend()` method may be used to ensure that all classes within a given namespace extend a specific class:
 
 ```php
 arch('app')
@@ -279,7 +279,7 @@ arch('app')
 <a name="expect-toExtendNothing"></a>
 ### `toExtendNothing()`
 
-The `toExtendNothing()` method may be used to ensure that all classes within a given namespace do not extend any class.
+The `toExtendNothing()` method may be used to ensure that all classes within a given namespace do not extend any class:
 
 ```php
 arch('app')
@@ -290,7 +290,7 @@ arch('app')
 <a name="expect-toImplement"></a>
 ### `toImplement()`
 
-The `toImplement()` method may be used to ensure that all classes within a given namespace implement a specific interface.
+The `toImplement()` method may be used to ensure that all classes within a given namespace implement a specific interface:
 
 ```php
 arch('app')
@@ -301,7 +301,7 @@ arch('app')
 <a name="expect-toImplementNothing"></a>
 ### `toImplementNothing()`
 
-The `toImplementNothing()` method may be used to ensure that all classes within a given namespace do not implement any interface.
+The `toImplementNothing()` method may be used to ensure that all classes within a given namespace do not implement any interface:
 
 ```php
 arch('app')
@@ -312,7 +312,7 @@ arch('app')
 <a name="expect-toHaveMethodsDocumented"></a>
 ### `toHaveMethodsDocumented()`
 
-The `toHaveMethodsDocumented()` method may be used to ensure that all methods within a given namespace are documented.
+The `toHaveMethodsDocumented()` method may be used to ensure that all methods within a given namespace are documented:
 
 ```php
 arch('app')
@@ -323,7 +323,7 @@ arch('app')
 <a name="expect-toHavePropertiesDocumented"></a>
 ### `toHavePropertiesDocumented()`
 
-The `toHavePropertiesDocumented()` method may be used to ensure that all properties within a given namespace are documented.
+The `toHavePropertiesDocumented()` method may be used to ensure that all properties within a given namespace are documented:
 
 ```php
 arch('app')
@@ -334,7 +334,7 @@ arch('app')
 <a name="expect-toHaveAttribute"></a>
 ### `toHaveAttribute()`
 
-The `toHaveAttribute()` method may be used to ensure that a certain class has a specific attribute.
+The `toHaveAttribute()` method may be used to ensure that a certain class has a specific attribute:
 
 ```php
 arch('app')
@@ -345,7 +345,7 @@ arch('app')
 <a name="expect-toHaveFileSystemPermissions"></a>
 ### `toHaveFileSystemPermissions()`
 
-The `toHaveFileSystemPermissions()` method may be used to ensure that all files within a given namespace have specific file system permissions.
+The `toHaveFileSystemPermissions()` method may be used to ensure that all files within a given namespace have specific file system permissions:
 
 ```php
 arch('app')
@@ -356,7 +356,7 @@ arch('app')
 <a name="expect-toHaveLineCountLessThan"></a>
 ### `toHaveLineCountLessThan()`
 
-The `toHaveLineCountLessThan()` method may be used to ensure that all files within a given namespace have a line count less than a specified value.
+The `toHaveLineCountLessThan()` method may be used to ensure that all files within a given namespace have a line count less than a specified value:
 
 ```php
 arch('app')
@@ -367,7 +367,7 @@ arch('app')
 <a name="expect-toHaveMethod"></a>
 ### `toHaveMethod()`
 
-The `toHaveMethod()` method may be used to ensure that a certain class has a specific method.
+The `toHaveMethod()` method may be used to ensure that a certain class has a specific method:
 
 ```php
 arch('app')
@@ -378,7 +378,8 @@ arch('app')
 <a name="expect-toHaveMethods"></a>
 ### `toHaveMethods()`
 
-The `toHaveMethods()` method may be used to ensure that a certain class has specific methods.
+The `toHaveMethods()` method may be used to ensure that a certain class has specific methods:
+
 ```php
 arch('app')
     ->expect('App\Http\Controllers\HomeController')
@@ -388,7 +389,7 @@ arch('app')
 <a name="expect-toHavePrivateMethodsBesides"></a>
 ### `toHavePrivateMethodsBesides()`
 
-The `toHavePrivateMethodsBesides()` method may be used to ensure that a certain class does not have any private methods besides the specified ones.
+The `toHavePrivateMethodsBesides()` method may be used to ensure that a certain class does not have any private methods besides the specified ones:
 
 ```php
 arch('app')
@@ -399,7 +400,7 @@ arch('app')
 <a name="expect-toHavePrivateMethodsBesides"></a>
 ### `toHavePrivateMethods()`
 
-The `toHavePrivateMethods()` method may be used to ensure that a certain class does not have any private methods.
+The `toHavePrivateMethods()` method may be used to ensure that a certain class does not have any private methods:
 
 ```php
 arch('app')
@@ -410,7 +411,7 @@ arch('app')
 <a name="expect-toHaveProtectedMethodsBesides"></a>
 ### `toHaveProtectedMethodsBesides()`
 
-The `toHaveProtectedMethodsBesides()` method may be used to ensure that a certain class does not have any protected methods besides the specified ones.
+The `toHaveProtectedMethodsBesides()` method may be used to ensure that a certain class does not have any protected methods besides the specified ones:
 
 ```php
 arch('app')
@@ -421,7 +422,7 @@ arch('app')
 <a name="expect-toHaveProtectedMethods"></a>
 ### `toHaveProtectedMethods()`
 
-The `toHaveProtectedMethods()` method may be used to ensure that a certain class does not have any protected methods.
+The `toHaveProtectedMethods()` method may be used to ensure that a certain class does not have any protected methods:
 
 ```php
 arch('app')
@@ -432,7 +433,7 @@ arch('app')
 <a name="expect-toHavePublicMethodsBesides"></a>
 ### `toHavePublicMethodsBesides()`
 
-The `toHavePublicMethodsBesides()` method may be used to ensure that a certain class does not have any public methods besides the specified ones.
+The `toHavePublicMethodsBesides()` method may be used to ensure that a certain class does not have any public methods besides the specified ones:
 
 ```php
 arch('app')
@@ -443,7 +444,7 @@ arch('app')
 <a name="expect-toHavePublicMethods"></a>
 ### `toHavePublicMethods()`
 
-The `toHavePublicMethods()` method may be used to ensure that a certain class does not have any public methods.
+The `toHavePublicMethods()` method may be used to ensure that a certain class does not have any public methods:
 
 ```php
 arch('app')
@@ -454,7 +455,7 @@ arch('app')
 <a name="expect-toHavePrefix"></a>
 ### `toHavePrefix()`
 
-The `toHavePrefix()` method may be used to ensure that all files within a given namespace have a specific prefix.
+The `toHavePrefix()` method may be used to ensure that all files within a given namespace have a specific prefix:
 
 ```php
 arch('app')
@@ -465,7 +466,7 @@ arch('app')
 <a name="expect-toHaveSuffix"></a>
 ### `toHaveSuffix()`
 
-The `toHaveSuffix()` method may be used to ensure that all files within a given namespace have a specific suffix.
+The `toHaveSuffix()` method may be used to ensure that all files within a given namespace have a specific suffix:
 
 ```php
 arch('app')
@@ -476,7 +477,7 @@ arch('app')
 <a name="expect-toHaveSuspiciousCharacters"></a>
 ### `toHaveSuspiciousCharacters()`
 
-The `toHaveSuspiciousCharacters()` method may be used to help you identify potential suspicious characters in your code.
+The `toHaveSuspiciousCharacters()` method may be used to help you identify potential suspicious characters in your code:
 
 ```php
 arch('app')
@@ -484,12 +485,12 @@ arch('app')
     ->not->toHaveSuspiciousCharacters();
 ```
 
-This expectation requires the `intl` PHP extension.
+> **Note:** This expectation requires the `intl` PHP extension.
 
 <a name="expect-toHaveConstructor"></a>
 ### `toHaveConstructor()`
 
-This `toHaveConstructor()` method may be used to ensure that all files within a given namespace have a `__construct` method.
+This `toHaveConstructor()` method may be used to ensure that all files within a given namespace have a `__construct` method:
 
 ```php
 arch('app')
@@ -500,7 +501,7 @@ arch('app')
 <a name="expect-toHaveDestructor"></a>
 ### `toHaveDestructor()`
 
-This `toHaveDestructor()` method may be used to ensure that all files within a given namespace have a `__destruct` method.
+This `toHaveDestructor()` method may be used to ensure that all files within a given namespace have a `__destruct` method:
 
 ```php
 arch('app')
@@ -511,7 +512,7 @@ arch('app')
 <a name="expect-toOnlyImplement"></a>
 ### `toOnlyImplement()`
 
-The `toOnlyImplement()` method may be used to ensure that certain classes are restricted to implementing specific interfaces.
+The `toOnlyImplement()` method may be used to ensure that certain classes are restricted to implementing specific interfaces:
 
 ```php
 arch('app')
@@ -522,7 +523,7 @@ arch('app')
 <a name="expect-toOnlyUse"></a>
 ### `toOnlyUse()`
 
-The `toOnlyUse()` method may be used to guarantee that certain classes are restricted to utilizing specific functions or classes. For example, you may ensure your models are streamlined and solely dependent on the `Illuminate\Database` namespace, and not, for instance, dispatching queued jobs or events.
+The `toOnlyUse()` method may be used to guarantee that certain classes are restricted to utilizing specific functions or classes. For example, you may ensure your models are streamlined and solely dependent on the `Illuminate\Database` namespace, and not, for instance, dispatching queued jobs or events:
 
 ```php
 arch('models')
@@ -533,7 +534,7 @@ arch('models')
 <a name="expect-toOnlyBeUsedIn"></a>
 ### `toOnlyBeUsedIn()`
 
-The `toOnlyBeUsedIn()` method enables you to limit the usage of a specific class or set of classes to only particular parts of your application. For instance, you can use this method to confirm that your models are only used by your repositories and not by controllers or service providers.
+The `toOnlyBeUsedIn()` method enables you to limit the usage of a specific class or set of classes to only particular parts of your application. For instance, you can use this method to confirm that your models are only used by your repositories and not by controllers or service providers:
 
 ```php
 arch('models')
@@ -544,7 +545,7 @@ arch('models')
 <a name="expect-toUse"></a>
 ### `toUse()`
 
-By combining the `not` modifier with the `toUse()` method, you can indicate that files within a given namespace should not use specific functions or classes.
+By combining the `not` modifier with the `toUse()` method, you can indicate that files within a given namespace should not use specific functions or classes:
 
 ```php
 arch('globals')
@@ -559,7 +560,7 @@ arch('globals')
 <a name="expect-toUseStrictEquality"></a>
 ### `toUseStrictEquality()`
 
-The `toUseStrictEquality()` method may be used to ensure that all files within a given namespace use strict equality. In other words, the `===` operator is used instead of the `==` operator.
+The `toUseStrictEquality()` method may be used to ensure that all files within a given namespace use strict equality. In other words, the `===` operator is used instead of the `==` operator:
 
 ```php
 arch('models')
@@ -567,7 +568,7 @@ arch('models')
     ->toUseStrictEquality();
 ```
 
-Or, if you would rather ensure that all files within a given namespace do not use strict equality, you may use the `not` modifier.
+Or, if you would rather ensure that all files within a given namespace do not use strict equality, you may use the `not` modifier:
 
 ```php
 arch('models')
@@ -578,7 +579,7 @@ arch('models')
 <a name="expect-toUseTrait"></a>
 ### `toUseTrait()`
 
-The `toUseTrait()` method may be used to ensure that all files within a given namespace use a specific trait.
+The `toUseTrait()` method may be used to ensure that all files within a given namespace use a specific trait:
 
 ```php
 arch('models')
@@ -589,7 +590,7 @@ arch('models')
 <a name="expect-toUseTraits"></a>
 ### `toUseTraits()`
 
-The `toUseTraits()` method may be used to ensure that all files within a given namespace use specific traits.
+The `toUseTraits()` method may be used to ensure that all files within a given namespace use specific traits:
 
 ```php
 arch('models')
@@ -600,7 +601,7 @@ arch('models')
 <a name="expect-toUseNothing"></a>
 ### `toUseNothing()`
 
-If you want to indicate that particular namespaces or classes should not have any dependencies, you can utilize the `toUseNothing()` method.
+If you want to indicate that particular namespaces or classes should not have any dependencies, you can utilize the `toUseNothing()` method:
 
 ```php
 arch('value objects')
@@ -611,7 +612,7 @@ arch('value objects')
 <a name="expect-toUseStrictTypes"></a>
 ### `toUseStrictTypes()`
 
-The `toUseStrictTypes()` method may be used to ensure that all files within a given namespace utilize strict types.
+The `toUseStrictTypes()` method may be used to ensure that all files within a given namespace utilize strict types:
 
 ```php
 arch('app')
@@ -639,76 +640,77 @@ Thankfully, presets are predefined sets of granular expectations that you may us
 <a name="preset-php"></a>
 ### `php`
 
-The `php` preset is a predefined set of expectations that can be used on any php project. It's not coupled with any framework or library.
+The `php` preset is a predefined set of expectations that can be used on any PHP project. It's not coupled with any framework or library.
 
-It avoids the usage of `die`, `var_dump`, and similar functions, and ensures you are not using deprecated PHP functions.
+It avoids the usage of `die`, `var_dump`, and similar functions, and ensures you are not using deprecated PHP functions:
 
 ```php
 arch()->preset()->php();
 ```
 
-You may find all the expectations included in the `php` preset below in our [source code](https://github.com/pestphp/pest/blob/4.x/src/ArchPresets/Php.php).
+You may find all the expectations included in the `php` preset in our [source code](https://github.com/pestphp/pest/blob/4.x/src/ArchPresets/Php.php).
 
-This preset requires the `intl` PHP extension.
+> **Note:** This preset requires the `intl` PHP extension.
 
 <a name="preset-security"></a>
 ### `security`
 
-The `security` preset is a predefined set of expectations that can be used on any php project. It's not coupled with any framework or library.
+The `security` preset is a predefined set of expectations that can be used on any PHP project. It's not coupled with any framework or library.
 
-It ensures you are not using code that could lead to security vulnerabilities, such as `eval`, `md5`, and similar functions.
+It ensures you are not using code that could lead to security vulnerabilities, such as `eval`, `md5`, and similar functions:
 
 ```php
 arch()->preset()->security();
 ```
 
-You may find all the expectations included in the `security` preset below in our [source code](https://github.com/pestphp/pest/blob/3.x/src/ArchPresets/Security.php).
+You may find all the expectations included in the `security` preset in our [source code](https://github.com/pestphp/pest/blob/3.x/src/ArchPresets/Security.php).
 
 <a name="preset-laravel"></a>
 ### `laravel`
 
 The `laravel` preset is a predefined set of expectations that can be used on [Laravel](https://laravel.com) projects.
 
-It ensures your project's structure is following the well-known Laravel conventions, such as controllers only having `index`, `show`, `create`, `store`, `edit`, `update`, `destroy` as public methods and are always suffixed with `Controller` and so on.
+It ensures your project's structure is following the well-known Laravel conventions, such as controllers only having `index`, `show`, `create`, `store`, `edit`, `update`, `destroy` as public methods and are always suffixed with `Controller` and so on:
 
 ```php
 arch()->preset()->laravel();
 ```
 
-You may find all the expectations included in the `laravel` preset below in our [source code](https://github.com/pestphp/pest/blob/3.x/src/ArchPresets/Laravel.php).
+You may find all the expectations included in the `laravel` preset in our [source code](https://github.com/pestphp/pest/blob/3.x/src/ArchPresets/Laravel.php).
 
 <a name="preset-strict"></a>
 ### `strict`
 
-The `strict` preset is a predefined set of expectations that can be used on any php project. It's not coupled with any framework or library.
+The `strict` preset is a predefined set of expectations that can be used on any PHP project. It's not coupled with any framework or library.
 
-It ensures you are using strict types in all your files, that all your classes are final, and more.
+It ensures you are using strict types in all your files, that all your classes are final, and more:
 
 ```php
 arch()->preset()->strict();
 ```
 
-You may find all the expectations included in the `strict` preset below in our [source code](https://github.com/pestphp/pest/blob/3.x/src/ArchPresets/Strict.php).
+You may find all the expectations included in the `strict` preset in our [source code](https://github.com/pestphp/pest/blob/3.x/src/ArchPresets/Strict.php).
 
 <a name="preset-relaxed"></a>
 ### `relaxed`
 
-The `relaxed` preset is a predefined set of expectations that can be used on any php project. It's not coupled with any framework or library.
+The `relaxed` preset is a predefined set of expectations that can be used on any PHP project. It's not coupled with any framework or library.
 
-It is the opposite of the `strict` preset, ensuring you are not using strict types in all your files, that all your classes are not final, and more.
+It is the opposite of the `strict` preset, ensuring you are not using strict types in all your files, that all your classes are not final, and more:
 
 ```php
 arch()->preset()->relaxed();
 ```
 
-You may find all the expectations included in the `relaxed` preset below in our [source code](https://github.com/pestphp/pest/blob/3.x/src/ArchPresets/Relaxed.php).
+You may find all the expectations included in the `relaxed` preset in our [source code](https://github.com/pestphp/pest/blob/3.x/src/ArchPresets/Relaxed.php).
 
 <a name="preset-custom"></a>
 ### `custom`
 
 Typically, you don't need to create a `custom` preset, as you may use the `arch()` method to write your granular expectations. However, if you wish to create your own preset, you may use the `custom` method to define it.
 
-This may be helpful if you have a set of expectations that you use frequently across multiple projects, or if you are a plugin author and want to provide a set of expectations for your users.
+This may be helpful if you have a set of expectations that you use frequently across multiple projects, or if you are a plugin author and want to provide a set of expectations for your users:
+
 ```php
 pest()->presets()->custom('ddd', function () {
     return [
@@ -718,7 +720,7 @@ pest()->presets()->custom('ddd', function () {
 });
 ```
 
-Within the `custom` method, you may have access to the application PSR-4 namespaces on the first argument of your closure's callback.
+Within the `custom` method, you may access the application's PSR-4 namespaces via the first argument of your closure:
 
 ```php
 pest()->presets()->custom('silex', function (array $userNamespaces) {
@@ -729,7 +731,7 @@ pest()->presets()->custom('silex', function (array $userNamespaces) {
 });
 ```
 
-You may then use the `custom` preset by chaining the `preset()` method with the name of the custom preset.
+You may then use the `custom` preset by chaining the `preset()` method with the name of the custom preset:
 
 ```php
 arch()->preset()->silex();
@@ -772,7 +774,7 @@ Sometimes, you may want to apply the given expectation but excluding certain typ
 <a name="modifier-ignoring"></a>
 ### `ignoring()`
 
-When defining your architecture rules, you can use the `ignoring()` method to exclude certain namespaces or classes that would otherwise be included in the rule definition.
+When defining your architecture rules, you can use the `ignoring()` method to exclude certain namespaces or classes that would otherwise be included in the rule definition:
 
 ```php
 arch()
@@ -788,7 +790,7 @@ arch()
 
 In some cases, certain components may not be regarded as "dependencies" as they are part of the native PHP library. To customize the definition of "native" code and exclude it during testing, Pest allows you to specify what to ignore.
 
-For example, if you do not want to consider Laravel a "dependency", you can use the `arch()` method inside the `beforeEach()` function to disregard any code within the "Illuminate" namespace. This approach allows you to focus only on the actual dependencies of your application.
+For example, if you do not want to consider Laravel a "dependency", you can use the `arch()` method inside the `beforeEach()` function to disregard any code within the "Illuminate" namespace. This approach allows you to focus only on the actual dependencies of your application:
 
 ```php
 // tests/Pest.php
@@ -802,7 +804,7 @@ pest()->beforeEach(function () {
 <a name="modifier-classes"></a>
 ### `classes()`
 
-The `classes()` modifier allows you to restrict the expectation to only classes.
+The `classes()` modifier allows you to restrict the expectation to only classes:
 
 ```php
 arch('app')
@@ -814,7 +816,7 @@ arch('app')
 <a name="modifier-enums"></a>
 ### `enums()`
 
-The `enums()` modifier allows you to restrict the expectation to only enums.
+The `enums()` modifier allows you to restrict the expectation to only enums:
 
 ```php
 arch('app')
@@ -826,7 +828,7 @@ arch('app')
 <a name="modifier-interfaces"></a>
 ### `interfaces()`
 
-The `interfaces()` modifier allows you to restrict the expectation to only interfaces.
+The `interfaces()` modifier allows you to restrict the expectation to only interfaces:
 
 ```php
 arch('app')
@@ -838,7 +840,7 @@ arch('app')
 <a name="modifier-traits"></a>
 ### `traits()`
 
-The `traits()` modifier allows you to restrict the expectation to only traits.
+The `traits()` modifier allows you to restrict the expectation to only traits:
 
 ```php
 arch('app')
@@ -850,7 +852,7 @@ arch('app')
 <a name="modifier-extending"></a>
 ### `extending()`
 
-The `extending()` modifier allows you to restrict the expectation to only classes or interfaces that extend the given class.
+The `extending()` modifier allows you to restrict the expectation to only classes or interfaces that extend the given class:
 
 ```php
 arch('app')
@@ -862,7 +864,7 @@ arch('app')
 <a name="modifier-implementing"></a>
 ### `implementing()`
 
-The `implementing()` modifier allows you to restrict the expectation to only classes that implement the given interface.
+The `implementing()` modifier allows you to restrict the expectation to only classes that implement the given interface:
 
 ```php
 arch('app')
@@ -874,7 +876,7 @@ arch('app')
 <a name="modifier-using"></a>
 ### `using()`
 
-The `using()` modifier allows you to restrict the expectation to only classes that use the given trait.
+The `using()` modifier allows you to restrict the expectation to only classes that use the given trait:
 
 ```php
 arch('app')
@@ -886,7 +888,7 @@ arch('app')
 <a name="modifier-abstracts"></a>
 ### `abstracts()`
 
-The `abstracts()` modifier allows you to restrict the expectation to only abstract classes.
+The `abstracts()` modifier allows you to restrict the expectation to only abstract classes:
 
 ```php
 arch('app')
@@ -894,6 +896,7 @@ arch('app')
     ->abstracts()
     ->toImplement(JsonSerializable::class);
 ```
+
 ---
 
 In this section, you have learned how to perform architectural testing, ensuring that your application or library's architecture meets a specified set of architectural requirements. Next, have you ever wondered how to test the performance of your code? Let's explore [Stress Testing](/docs/stress-testing).

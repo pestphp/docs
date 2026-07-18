@@ -37,7 +37,7 @@ it('throws exception', function () {
 })->throwsIf(fn() => DB::getDriverName() === 'mysql', Exception::class, 'MySQL is not supported.');
 ```
 
-Just like the `throwsIf()` method, you may use the `throwsUnless()` method to verify an exception conditionally, when a given boolean expression evaluates to false:
+Similarly, you may use the `throwsUnless()` method to verify an exception conditionally, when a given boolean expression evaluates to false:
 
 ```php
 it('throws exception', function () {
@@ -45,7 +45,7 @@ it('throws exception', function () {
 })->throwsUnless(fn() => DB::getDriverName() === 'mysql', Exception::class, 'Only MySQL is supported.');
 ```
 
-You may also verify that a given closure throws one or more exceptions using the [toThrow()](/docs/expectations#expect-toThrow) method of the expectation API:
+You may also verify that a given closure throws one or more exceptions using the [`toThrow()`](/docs/expectations#expect-toThrow) method of the expectation API:
 
 ```php
 it('throws exception', function () {
@@ -61,7 +61,7 @@ it('throws no exceptions', function () {
 })->throwsNoExceptions();
 ```
 
-Sometimes you may wish to mark a test as failed. You may use the `fail()` method to do so:
+Sometimes you may wish to mark a test as failed. To accomplish this, you may use the `fail()` method:
 
 ```php
 it('fails', function () {

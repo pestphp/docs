@@ -17,7 +17,7 @@ it('may welcome the user', function () {
 
 This is a basic example of a browser test that checks whether the homepage contains the text "Welcome". However, Pest's browser testing capabilities go well beyond this simple example. You may use various methods to interact with the page, such as clicking buttons, filling out forms, and navigating between pages.
 
-Here is an example of a more complex browser test, on Laravel, that checks if a user can sign in:
+Here is an example of a more complex browser test, written in a Laravel application, that checks whether a user can sign in:
 
 ```php
 it('may sign in the user', function () {
@@ -44,11 +44,11 @@ it('may sign in the user', function () {
 });
 ```
 
-Note that you are leveraging the full power of Laravel's testing capabilities — refresh database, event faking, and authentication assertions — while also performing real browser testing.
+As you can see, you may leverage the full power of Laravel's testing capabilities — database refreshing, event faking, and authentication assertions — while also performing real browser testing.
 
 ## Getting Started
 
-To get started with browser testing in Pest, you first need to install the Pest Browser plugin, which you may do by running the following command:
+To get started with browser testing in Pest, require the Pest Browser plugin via Composer and install Playwright:
 
 ```bash
 composer require pestphp/pest-plugin-browser --dev
@@ -57,7 +57,7 @@ npm install playwright@latest
 npx playwright install
 ```
 
-Finally, add `tests/Browser/Screenshots` to your `.gitignore` file to avoid committing screenshots taken during browser tests.
+Finally, you should add `tests/Browser/Screenshots` to your `.gitignore` file to avoid committing screenshots taken during browser tests.
 
 ### Running Browser Tests
 
@@ -79,7 +79,7 @@ For debugging purposes, you may run the tests in a headed mode and pause the exe
 ./vendor/bin/pest --debug
 ```
 
-### Navigation
+### Visiting Pages
 
 The `visit()` method is used to navigate to a specific URL in your browser test. It provides various methods to interact with the page:
 
@@ -109,13 +109,13 @@ pest()->browser()->inSafari();
 
 ### Using Other Devices
 
-By default, the `visit()` method uses a desktop viewport. However, you may specify a mobile viewport using the `onMobile()` method. For example:
+By default, the `visit()` method uses a desktop viewport. However, you may specify a mobile viewport by chaining the `mobile()` method onto the `on()` method:
 
 ```php
 $page = visit('/')->on()->mobile();
 ```
 
-If you wish to use a specific device, you may use the `on()` method and chain it with `macbook14`, `iPhone14Pro`, etc:
+If you wish to use a specific device, you may use the `on()` method and chain it with a device method such as `macbook14()` or `iPhone14Pro()`:
 
 ```php
 $page = visit('/')->on()->iPhone14Pro();
@@ -186,21 +186,19 @@ Sometimes elements may take time to appear on the page. By default, Pest waits `
 pest()->browser()->timeout(10000);
 ```
 
-### Configuring User Agent
+### Configuring the Default User Agent
 
-By default, the User Agent will default to the Browser you're running for tests such as: `Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/133.0.6943.16 Safari/537.36` 
+By default, the user agent matches the browser you are running your tests in, such as `Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/133.0.6943.16 Safari/537.36`.
 
-Sometimes you may wish to override the User Agent of the browser for all of your tests. You may configure this in the `Pest.php` configuration file:
+Sometimes you may wish to override the browser's user agent for all of your tests. To accomplish this, you may configure it in your `Pest.php` configuration file:
 
 ```php
 pest()->browser()->userAgent('CustomUserAgent');
 ```
 
-### Configuring Host
+### Configuring the Default Host
 
-By default, the server will bind to `127.0.0.1` for all browser tests.
-
-You may wish to override the host for subdomain applications. You may configure this in the `Pest.php` configuration file:
+By default, the server binds to `127.0.0.1` for all browser tests. However, you may wish to override the host when testing subdomain applications. To accomplish this, you may configure it in your `Pest.php` configuration file:
 
 ```php
 pest()->browser()->withHost('some-subdomain.localhost');
@@ -208,7 +206,7 @@ pest()->browser()->withHost('some-subdomain.localhost');
 
 ### Geolocation
 
-Sometimes you may need to define where the browser believes it is physically located on the earth. This method takes a latitude and longitude, sets the `geolocation` permission in the browser, and then makes the coordinates available via JavaScript's getCurrentPosition API:
+Sometimes you may need to define where the browser believes it is physically located on the earth. To accomplish this, you may use the `geolocation()` method, which takes a latitude and longitude, sets the `geolocation` permission in the browser, and then makes the coordinates available via JavaScript's `getCurrentPosition` API:
 
 ```php
 $page = visit('/')
@@ -217,7 +215,7 @@ $page = visit('/')
 $page->assertSee('Portugal');
 ```
 
-You may also define one of several specific preset cities which will configure the browser's geolocation, timezone and locale:
+You may also define one of several specific preset cities, which will configure the browser's geolocation, timezone, and locale:
 
 ```php
 $page = visit('/')
@@ -237,6 +235,7 @@ $page = visit('/')->withLocale('fr-FR');
 
 $page->assertSee('Bienvenue');
 ```
+
 ### Configuring Timezone
 
 You may set the timezone for your test requests using the `withTimezone` method. This is helpful for testing date and time displays across different time zones:
@@ -247,7 +246,7 @@ $page = visit('/')->withTimezone('America/New_York');
 $page->assertSee('EST');
 ```
 
-### Configuring UserAgent
+### Configuring User Agent
 
 You may set the User-Agent header for your test requests using the `withUserAgent` method. This is helpful for testing how your application responds to different types of clients, such as mobile browsers or bots:
 
@@ -369,7 +368,7 @@ $page->assertSee('Welcome to Some Subdomain');
 
 </div>
 
-### Debugging tests
+### Debugging Tests
 
 <div class="collection-method-list" markdown="1">
 
@@ -458,7 +457,7 @@ $page->assertSeeNothingIn('.empty-container');
 <a name="assert-count"></a>
 ### assertCount
 
-The `assertCount` method asserts that a given element is present a given amount of times:
+The `assertCount` method asserts that a given element is present a given number of times:
 
 ```php
 $page->assertCount('.item', 5);
@@ -913,7 +912,7 @@ The `assertNoAccessibilityIssues` method asserts there are no "serious" accessib
 $page->assertNoAccessibilityIssues();
 ```
 
-By default, the level is 1 (serious). You can change to one of the following levels:
+By default, the level is 1 (serious). However, you may change it to one of the following levels:
 
 ```
 0. Critical
@@ -989,8 +988,7 @@ $page->withKeyDown('Shift', function () use ($page): void {
 }); // writes "ABC"
 ```
 
-> Note: To respect held keys like Shift, use key codes such as KeyA, KeyB, KeyC.
-> 'a' always types a lowercase “a” and 'A' always types an uppercase “A”, regardless of modifiers.
+> **Note:** To respect held keys such as `Shift`, use key codes like `KeyA`, `KeyB`, and `KeyC` — `'a'` always types a lowercase "a" and `'A'` always types an uppercase "A", regardless of modifiers.
 
 <a name="type"></a>
 ### type
@@ -1150,7 +1148,7 @@ $page->withinFrame('.iframe-container', function (AwaitableWebpage $page) {
 
 ### resize
 
-You may use the resize method to adjust the size of the browser window:
+The `resize` method adjusts the size of the browser window:
 
 ```php
 $page->resize(1280, 720);
@@ -1201,7 +1199,7 @@ The `waitForKey` method opens the current page URL in the default web browser an
 $page->waitForKey(); // Useful for debugging
 ```
 
-## Debugging tests
+## Debugging Tests
 
 <a name="debug"></a>
 Sometimes you may wish to debug your browser tests. Pest provides a convenient way to do this through the `--debug` option, which opens the browser window and pauses the execution of the test when it fails. You may then inspect the page and see what went wrong:
@@ -1216,17 +1214,16 @@ Alternatively, you may use the `debug()` method in your test. It will limit exec
 $page->debug();
 ```
 
-
 <a name="screenshot"></a>
 You may also take a screenshot of the current page using the `screenshot()` method, which is convenient for visual debugging:
-
-NOTE: If you don't pass the filename, it will use the test name as the filename.
 
 ```php
 $page->screenshot();
 $page->screenshot(fullPage: true);
 $page->screenshot(filename: 'custom-name');
 ```
+
+> **Note:** If you do not pass a filename, the test name will be used as the filename.
 
 <a name="screenshotElement"></a>
 You may also take a screenshot of a specific element using the `screenshotElement()` method:
@@ -1259,7 +1256,7 @@ pest()->browser()->headed();
 
 You may refer to Pest's [Continuous Integration](https://pestphp.com/docs/continuous-integration) documentation for more information on how to run your browser tests in a CI environment.
 
-However, if you are using GitHub Actions, you need to add the following steps to your workflow file:
+However, if you are using GitHub Actions, you should add the following steps to your workflow file:
 
 ```yaml
     - uses: actions/setup-node@v4
@@ -1275,4 +1272,4 @@ However, if you are using GitHub Actions, you need to add the following steps to
 
 ---
 
-Now, let's look at how the Agent plugin gives your AI coding agents a single command to verify a change actually works — running inside your full test suite, and, with the plugin you just installed, driving a real browser too: [Agent](/docs/agent)
+Now, let's look at how the Agent plugin gives your AI coding agents a single command to verify a change actually works — running inside your full test suite, and, with this plugin installed, driving a real browser too: [Agent →](/docs/agent)

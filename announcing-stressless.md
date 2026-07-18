@@ -19,7 +19,7 @@ There are two main ways to use Stressless. You may use it to quickly stress test
 
 ```bash
 ./vendor/bin/pest stress example.com --concurrency=5 --duration=10
-````
+```
 
 Or, you may use it to write stress tests in your Pest PHP test files:
 

@@ -25,18 +25,18 @@ The AI-powered scorers — relevance, safety, factuality, LLM-as-judge, and sema
 composer require laravel/ai --dev
 ```
 
+Then, add your OpenAI API key to your application's `.env` file:
+
 ```ini
 # .env
 OPENAI_API_KEY=your-key-here
 ```
 
-You are **not** tied to Laravel AI, however. The drivers are pluggable — you can point them at Anthropic, a self-hosted model, another SDK, or even a deterministic stub without ever installing `laravel/ai`. See [Drivers](#drivers) for the details.
-
----
+However, you are not tied to Laravel AI. The drivers are pluggable — you may point them at Anthropic, a self-hosted model, another SDK, or even a deterministic stub without ever installing `laravel/ai`. See [Drivers](#drivers) for the details.
 
 ## Writing Your First Eval
 
-Evals are ordinary Pest tests — by convention they live in a `tests/Evals` directory, but they can live anywhere. Start by defining the agent you want to evaluate. Any class implementing Laravel AI's `Agent` contract will do:
+Evals are ordinary Pest tests — by convention they live in a `tests/Evals` directory, but they may live anywhere. First, define the agent you wish to evaluate — any class implementing Laravel AI's `Agent` contract will do:
 
 ```php
 namespace App\Agents;
@@ -69,7 +69,7 @@ it('answers capital city questions correctly', function (): void {
 
 An eval calls a real model — that costs money and returns a different answer every time — so it does not run as part of your everyday suite. Instead, evals run only when you ask for them:
 
-- **Regular test run** (`./vendor/bin/pest`) — every eval is **skipped**. No model is called, so your suite stays fast and free.
+- **Regular test run** (`./vendor/bin/pest`) — every eval is skipped. No model is called, so your suite stays fast and free.
 - **Eval run** (`./vendor/bin/pest --evals`) — the real model is called and every assertion, including the AI-powered scorers, runs for real.
 
 ```bash
@@ -78,8 +78,6 @@ An eval calls a real model — that costs money and returns a different answer e
 ```
 
 When you run with `--evals`, each eval passes or fails like any other test. To inspect the input, output, reasoning, and score behind each individual assertion, run in [verbose mode](#verbose-output) with `-v`.
-
----
 
 ## Prompting
 
@@ -91,7 +89,7 @@ expect(fn (string $input): string => generate_answer($input))
     ->toContain('30 days');
 ```
 
-To send attachments alongside the prompt — such as images or documents — pass them as the second argument. They are forwarded to the agent's underlying `prompt()` call:
+Sometimes you may wish to send attachments alongside the prompt, such as images or documents. To accomplish this, you may pass them as the second argument, and they will be forwarded to the agent's underlying `prompt()` call:
 
 ```php
 use Laravel\Ai\Files\Image;
@@ -113,8 +111,6 @@ expect(SupportAgent::class)
 
 Each prompt is an independent run — the plugin does not carry conversation state between calls.
 
----
-
 ## Deterministic Expectations
 
 When part of the response is predictable, you may assert against it directly. These checks make no additional AI calls beyond the agent's response, and they need no [driver](#drivers):
@@ -128,12 +124,10 @@ expect(CapitalCityAgent::class)
     ->toBeJson();                // response is valid JSON
 ```
 
----
-
 <a name="sampling"></a>
 ## Sampling
 
-Because LLM output is non-deterministic, a single passing response does not prove your agent is reliable. Use `repeat()` to generate multiple samples for the same prompt — every following expectation is then asserted against *all* of them, so the eval only passes when the agent is consistent:
+Because LLM output is non-deterministic, a single passing response does not prove your agent is reliable. Thankfully, you may use `repeat()` to generate multiple samples for the same prompt — every following expectation is then asserted against *all* of them, so the eval only passes when the agent is consistent:
 
 ```php
 it('is consistent across multiple samples', function (): void {
@@ -154,8 +148,6 @@ expect(CapitalCityAgent::class)
 ```
 
 `repeat()` requires `prompt()` to have been called first, and may be called once per prompt.
-
----
 
 ## AI-Powered Scorers
 
@@ -274,8 +266,6 @@ Other tool calls may occur between the expected steps — the scorer only requir
 
 Runs a [custom scorer](#custom-scorers) of your own against the response. It accepts the same `threshold` argument as the built-in scorers, plus an optional `expected` value that is forwarded to your scorer.
 
----
-
 <a name="custom-scorers"></a>
 ## Custom Scorers
 
@@ -325,12 +315,10 @@ final class BrandVoiceScorer implements RequiresJudge, Scorer
 }
 ```
 
----
-
 <a name="drivers"></a>
 ## Drivers
 
-The AI-powered scorers do not talk to a model directly. Instead, they delegate to two small, single-method **drivers** — one for judging, one for embeddings. This indirection is what makes the scorers provider-agnostic: swap the driver and every scorer follows, without touching a single eval.
+The AI-powered scorers do not talk to a model directly. Instead, they delegate to two small, single-method drivers — one for judging, one for embeddings. This indirection is what makes the scorers provider-agnostic: swap the driver and every scorer follows, without touching a single eval.
 
 There are two driver contracts:
 
@@ -343,7 +331,7 @@ The deterministic checks (`toContain()`, `toBe()`, `toHaveToolCalls()`, `toFollo
 
 ### The Default: Laravel AI
 
-Unless you say otherwise, the plugin uses `LaravelAiJudge` and `LaravelAiEmbeddings`, which call OpenAI through Laravel AI. The simplest way to change the provider or model is through environment variables, which is convenient for switching providers between environments:
+By default, the plugin uses `LaravelAiJudge` and `LaravelAiEmbeddings`, which call OpenAI through Laravel AI. The simplest way to change the provider or model is through environment variables, which is convenient for switching providers between environments:
 
 ```ini
 PEST_EVALS_LARAVEL_SCORING_PROVIDER=openai
@@ -380,13 +368,13 @@ pest()->evals()
     });
 ```
 
-A judge driver is a plain text-in, text-out function. It does **not** need to know about scoring: the scorers build a prompt that already asks the model to reply with `{"score": <float>, "reasoning": "..."}`, and the plugin decodes that JSON for you. Your driver's only job is to forward the instructions and prompt to a model and return whatever text comes back.
+A judge driver is a plain text-in, text-out function. It does not need to know about scoring: the scorers build a prompt that already asks the model to reply with `{"score": <float>, "reasoning": "..."}`, and the plugin decodes that JSON for you. Your driver's only job is to forward the instructions and prompt to a model and return whatever text comes back.
 
 An embeddings driver receives an array of strings and must return one numeric vector per string, in the same order.
 
 ### Bringing Your Own Driver: A Class
 
-For anything you want to reuse or test, implement the contract as a dedicated class. Here a judge is backed by Anthropic:
+For anything you wish to reuse or test, implement the contract as a dedicated class. For example, here is a judge backed by Anthropic:
 
 ```php
 use Pest\Evals\Contracts\JudgeDriver;
@@ -408,7 +396,7 @@ final class AnthropicJudge implements JudgeDriver
 pest()->evals()->judgeUsing(new AnthropicJudge());
 ```
 
-And an embeddings driver backed by a local model:
+Similarly, you may back an embeddings driver with a local model:
 
 ```php
 use Pest\Evals\Contracts\EmbeddingsDriver;
@@ -433,7 +421,7 @@ pest()->evals()->embeddingsUsing(new LocalEmbeddings());
 
 ### Returning a Fixed Result
 
-A closure body is arbitrary code — usually it calls your client, but nothing stops it from returning a fixed value instead. Because a judge is just text-in / text-out and an embeddings driver is just array-in / array-out, you can hand back a canned result to exercise the full scoring path — and your custom scorers — without spending money or hitting the network. This is convenient in local development or CI smoke tests:
+A closure body is arbitrary code — usually it calls your client, but nothing stops it from returning a fixed value instead. Because a judge is plain text-in / text-out and an embeddings driver is array-in / array-out, you may hand back a canned result to exercise the full scoring path — and your custom scorers — without spending money or hitting the network. This is convenient in local development or CI smoke tests:
 
 ```php
 pest()->evals()
@@ -445,12 +433,10 @@ pest()->evals()
 
 Keep in mind that evals themselves still only run under `--evals` — the stub replaces the scoring calls, not the eval run.
 
----
-
 <a name="running-evals"></a>
 ## Running Evals
 
-Because every eval calls a real model, evals are **skipped by default**. This keeps your everyday `pest` run fast, free, and deterministic — your evals live alongside your other tests without ever calling an API or slowing the suite down.
+Because every eval calls a real model, evals are skipped by default. This keeps your everyday `./vendor/bin/pest` run fast, free, and deterministic — your evals live alongside your other tests without ever calling an API or slowing the suite down.
 
 When you want to actually evaluate your agents, opt in with `--evals`:
 
@@ -464,8 +450,6 @@ This applies to every target, including closures — an eval only runs under `--
 ```bash
 PEST_EVALS=1 ./vendor/bin/pest
 ```
-
----
 
 <a name="verbose-output"></a>
 ## Verbose Output

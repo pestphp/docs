@@ -1,13 +1,13 @@
 ---
 title: Configuring Tests
-description: The `Pest.php` file is a configuration file that is used to define your test suite setup. This file is located in the `tests` directory of your project and is automatically loaded by Pest when you run your tests. Although you can define Global Hooks or Custom Expectations within this file, its primary purpose is to specify the base test class utilized in your test suite.
+description: The `Pest.php` configuration file lives in your project's `tests` directory and defines your test suite setup, including the base test class used across your suite.
 ---
 
 # Configuring Tests
 
 The `Pest.php` file is a configuration file used to define your test suite setup. This file is located in the `tests` directory of your project and is automatically loaded by Pest when you run your tests. Although you may define [Global Hooks](/docs/global-hooks) or [Custom Expectations](/docs/custom-expectations) within this file, its primary purpose is to specify the base test class used across your test suite.
 
-When using Pest, the `$this` variable available within the closures you provide to test functions is bound to a specific test case class, which is typically `PHPUnit\Framework\TestCase`. This ensures that test cases written in Pest's functional style may access the underlying assertion API of PHPUnit, simplifying collaboration with other developers who are more familiar with the PHPUnit testing framework.
+When using Pest, the `$this` variable available within the closures you provide to test functions is bound to a specific test case class, which is typically `PHPUnit\Framework\TestCase`. This ensures that test cases written in Pest's functional style may access the underlying assertion API of PHPUnit, simplifying collaboration with other developers who are more familiar with the PHPUnit testing framework:
 
 ```php
 it('has home', function () {
@@ -29,7 +29,7 @@ it('has home', function () {
 });
 ```
 
-In addition, Pest supports [glob patterns](https://www.php.net/manual/en/function.glob.php) in the `in()` method, allowing you to specify multiple directories or files with a single pattern. Glob patterns are string representations that match various file paths, much like wildcards. If you are unfamiliar with glob patterns, refer to the PHP manual [here](https://www.php.net/manual/en/function.glob.php):
+In addition, Pest supports [glob patterns](https://www.php.net/manual/en/function.glob.php) in the `in()` method, allowing you to specify multiple directories or files with a single pattern. Glob patterns are string representations that match various file paths, much like wildcards. If you are unfamiliar with glob patterns, you may refer to the [PHP manual](https://www.php.net/manual/en/function.glob.php):
 
 ```php
 // tests/Pest.php
@@ -84,7 +84,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 pest()->extend(TestCase::class)->use(RefreshDatabase::class)->in('Feature');
 ```
 
-To associate a particular test with a specific test case class or trait, you may use the `pest()->extend()` and `pest()->use()` methods **within that specific test file**, omitting the `in()` method:
+To associate a particular test with a specific test case class or trait, you may use the `pest()->extend()` and `pest()->use()` methods within that specific test file, omitting the `in()` method:
 
 ```php
 pest()->extend(Tests\MySpecificTestCase::class);

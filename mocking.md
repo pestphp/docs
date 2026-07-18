@@ -11,7 +11,7 @@ When testing your applications, you may wish to "mock" specific classes to preve
 
 Before getting started, you will need to install a mocking library. We recommend [Mockery](https://github.com/mockery/mockery/), but you are free to choose any other library that suits your needs.
 
-To begin using Mockery, you may require it using the Composer package manager:
+To get started, you may install Mockery using the Composer package manager:
 
 ```bash
 composer require mockery/mockery --dev
@@ -34,7 +34,6 @@ it('may buy a book', function () {
     $books = new BookRepository($client);
     $books->buy(); // The API is not actually invoked since `$client->post()` has been mocked...
 });
-
 ```
 
 You may mock multiple method calls using the same syntax shown above:

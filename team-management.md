@@ -131,7 +131,7 @@ You may combine todos with assignees, issues, and PRs to provide additional cont
 describe('contacts', function () {
     it('has a contact page', function () {
         //
-    }))->issue(123); // or ->pr(123) etc
+    })->issue(123); // or ->pr(123) etc
     
     it('has a contact form', function () {
         //

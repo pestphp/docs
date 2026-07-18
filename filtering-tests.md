@@ -1,9 +1,9 @@
 ---
 title: Filtering Tests
-description: By default `./vendor/bin/pest` runs your whole suite, yet you may filter down to exactly the tests you want to run.
+description: By default, Pest runs your entire test suite, yet you may filter down to exactly the tests you wish to run.
 ---
 
-# Test Filtering
+# Filtering Tests
 
 When you run `./vendor/bin/pest`, Pest executes your complete test suite by default. As you would expect, you may run an individual test by passing its name as the first argument:
 
@@ -11,7 +11,7 @@ When you run `./vendor/bin/pest`, Pest executes your complete test suite by defa
 ./vendor/bin/pest tests/Unit/TestExample.php
 ```
 
-This chapter covers the many other ways you may filter which tests Pest runs. For the complete reference, please refer to our [CLI API Reference](/docs/cli-api-reference).
+This section covers the many other ways you may filter which tests Pest runs. For the complete reference, please refer to our [CLI API Reference](/docs/cli-api-reference).
 
 <div class="collection-method-list" markdown="1">
 
@@ -44,7 +44,7 @@ The `--dirty` option instructs Pest to run only the tests that have uncommitted 
 ./vendor/bin/pest --dirty
 ```
 
-> Note that, due to a limitation in Pest, test cases written using the PHPUnit syntax will always be considered dirty.
+> **Note:** Due to a limitation in Pest, test cases written using the PHPUnit syntax will always be considered dirty.
 
 <a name="flaky"></a>
 ### `--flaky`
@@ -59,7 +59,7 @@ it('may have external dependencies', function () {
 })->flaky();
 ```
 
-By default, `flaky()` retries the test up to **3 times**. However, you may customize the number of retries by passing the `tries` parameter:
+By default, `flaky()` retries the test up to 3 times. However, you may customize the number of retries by passing the `tries` parameter:
 
 ```php
 it('may have external dependencies', function () {
@@ -71,7 +71,7 @@ it('may have external dependencies', function () {
 
 Between retries, Pest re-runs your `setUp` and `tearDown` lifecycle hooks, clears mock objects, and resets dynamic properties, ensuring that each attempt starts from a clean state.
 
-Note that `flaky()` will not retry tests that are skipped, incomplete, or that throw an expected exception (via `->throws()`). It only retries on unexpected failures.
+> **Note:** The `flaky()` method will not retry tests that are skipped, incomplete, or that throw an expected exception (via `->throws()`). It only retries on unexpected failures.
 
 The `flaky()` method may be combined with other test methods such as `with()`, `repeat()`, and `describe()` blocks:
 
@@ -136,13 +136,13 @@ When you need to exclude multiple test groups, you may use the `--exclude-group`
 
 If a test previously failed, you typically want to run the failed tests first by reordering your suite accordingly. In such cases, you may use the `--retry` option.
 
-The `--retry` flag reorders your test suites by prioritizing the tests that failed previously. If there were no past failures, the suite runs as usual. However, if there were previous failures, those tests run first:
-
-> Note: Keep in mind that if your `phpunit.xml` file has two test suites (usually Unit and Feature), this option will sort each suite by running the failed tests first. This means that sometimes, you may see the entire Unit test suite run before Pest runs the Feature test suite, where previously failed tests take priority.
+The `--retry` option reorders your test suites by prioritizing the tests that failed previously. If there were no past failures, the suite runs as usual. However, if there were previous failures, those tests run first:
 
 ```bash
 ./vendor/bin/pest --retry
 ```
+
+> **Note:** If your `phpunit.xml` file has two test suites (usually Unit and Feature), this option will sort each suite by running the failed tests first. This means that sometimes, you may see the entire Unit test suite run before Pest runs the Feature test suite, where previously failed tests take priority.
 
 <a name="only"></a>
 ### `only()`

@@ -1,6 +1,6 @@
 ---
 title: Tia Engine
-description: The Tia Engine (Test Impact Analysis) is a great way to drastically reduce the time it takes to run your test suite by re-running only the tests affected by your latest changes.
+description: The Tia Engine (Test Impact Analysis) dramatically reduces the time it takes to run your test suite by re-running only the tests affected by your latest changes.
 ---
 
 # Tia Engine
@@ -15,7 +15,7 @@ To get started, you may add the `--tia` flag to any Pest invocation:
 ./vendor/bin/pest --parallel --tia
 ```
 
-> **Important:** The Tia Engine requires a code coverage driver — either [PCOV](https://github.com/krakjoe/pcov) or [Xdebug](https://xdebug.org/) — to be installed and enabled. The engine uses it to record which files each test touches while building the baseline. Without a coverage driver available, Pest cannot record the dependency graph, and TIA will not run.
+> **Warning:** The Tia Engine requires a code coverage driver — either [PCOV](https://github.com/krakjoe/pcov) or [Xdebug](https://xdebug.org/) — to be installed and enabled. The engine uses it to record which files each test touches while building the baseline. Without a coverage driver available, Pest cannot record the dependency graph, and TIA will not run.
 
 The first run is the **baseline** — the engine enables a coverage driver (PCOV or Xdebug) and records the dependency graph as your tests execute. You may expect a small overhead on this run only.
 
@@ -23,12 +23,12 @@ The first run is the **baseline** — the engine enables a coverage driver (PCOV
 
 Every subsequent run is a **replay**. The engine compares your working tree against the baseline and re-runs only the tests affected by your changes:
 
-```
+```plain
 Tests:    774 passed (2658 assertions, 7 affected, 2 uncached, 765 replayed)
 Duration: 3.92s
 ```
 
-Here, `affected` is the set of tests Pest re-ran because their dependencies changed. `uncached` means Pest had to execute a test because no cached result existed yet. Finally, `replayed` is the set whose results were served from cache.
+In this example, `affected` is the set of tests Pest re-ran because their dependencies changed. `uncached` means Pest had to execute a test because no cached result existed yet. Finally, `replayed` is the set whose results were served from cache.
 
 A replay isn't a shortcut that skips work — it's a faithful reconstruction of the real run. When the engine caches a test, it stores not just the pass or fail result but everything that test produced, including the exact lines and branches it covered. So a replayed run reports the same code coverage as a full run, and everything that depends on it keeps working — coverage thresholds, the `--coverage` report, and `--min` all behave exactly as if every test had executed from scratch. You get the speed of replaying with none of the fidelity lost.
 
@@ -98,7 +98,7 @@ Each enabling flag has an environment variable equivalent, useful for CI matrice
 
 Recording the baseline locally may take minutes on large suites. Instead, you may have CI record it once per merge to `main`, and every developer downloads the result.
 
-Baseline fetching is **opt-in**. You may enable it with `--tia --baselined` on the command line, the `PEST_TIA_BASELINED=1` environment variable, or — preferred for teams — by calling `pest()->tia()->baselined()` in `tests/Pest.php`. Once enabled, when Pest detects no local graph (or the local graph is out of date) it uses GitHub's CLI to download the latest successful run of a `tia-baseline.yml` workflow's `pest-tia-baseline` artifact. Pest then validates the fetched graph against your project state — if it matches, it is adopted. Otherwise, it is discarded and a local rebuild proceeds.
+Baseline fetching is opt-in. You may enable it with `--tia --baselined` on the command line, the `PEST_TIA_BASELINED=1` environment variable, or — preferred for teams — by calling `pest()->tia()->baselined()` in `tests/Pest.php`. Once enabled, when Pest detects no local graph (or the local graph is out of date) it uses GitHub's CLI to download the latest successful run of a `tia-baseline.yml` workflow's `pest-tia-baseline` artifact. Pest then validates the fetched graph against your project state — if it matches, it is adopted. Otherwise, it is discarded and a local rebuild proceeds.
 
 > **Note:** Baseline fetching relies on the [GitHub CLI](https://cli.github.com/) (`gh`), so it is only available for repositories hosted on GitHub, and `gh` must be installed and authenticated (`gh auth login`) on the machine doing the fetch. When a fetch cannot proceed — missing CLI, no authentication, a network or rate-limit error, or no baseline artifact yet — Pest reports the reason and falls back to recording a local baseline.
 
@@ -125,7 +125,7 @@ jobs:
 
       - name: Resolve TIA baseline path
         id: baseline
-        run: echo "path=$(vendor/bin/pest --baseline)" >> "$GITHUB_OUTPUT"
+        run: echo "path=$(./vendor/bin/pest --baseline)" >> "$GITHUB_OUTPUT"
 
       - name: Upload TIA baseline
         uses: actions/upload-artifact@v4
@@ -136,9 +136,9 @@ jobs:
           retention-days: 30
 ```
 
-The `vendor/bin/pest --baseline` command prints the absolute path to this project's TIA storage directory (typically `~/.pest/tia/<project-key>/`), which is exactly what `actions/upload-artifact` needs to bundle the recorded graph and coverage cache. Note that `include-hidden-files: true` is required because the baseline lives under a dot-prefixed directory.
+The `./vendor/bin/pest --baseline` command prints the absolute path to this project's TIA storage directory (typically `~/.pest/tia/<project-key>/`), which is exactly what `actions/upload-artifact` needs to bundle the recorded graph and coverage cache. Note that `include-hidden-files: true` is required because the baseline lives under a dot-prefixed directory.
 
-After CI runs, every developer with `baselined()` enabled who runs `pest --tia` for the first time on the repo will download this baseline and start replaying immediately, paying no record cost.
+After CI runs, every developer with `baselined()` enabled who runs `./vendor/bin/pest --tia` for the first time on the repo will download this baseline and start replaying immediately, paying no record cost.
 
 ## Storage
 

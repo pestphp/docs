@@ -1,11 +1,11 @@
 ---
 title: Continuous Integration
-description: Up until now, we have only discussed running tests from the command line on your local machine. But, you can also run your tests from a CI platform of your choice. As `pestphp/pest` is included in your Composer development dependencies, you can easily execute the `vendor/bin/pest --ci` command within your CI platform's deployment pipeline.
+description: Since `pestphp/pest` is included in your Composer development dependencies, you may run your test suite within the deployment pipeline of the CI platform of your choice.
 ---
 
 # Continuous Integration
 
-Up until now, we have only discussed running tests from the command line on your local machine. However, you may also run your tests from a CI platform of your choice. Since `pestphp/pest` is included in your Composer development dependencies, you may execute the `vendor/bin/pest --ci` command within your CI platform's deployment pipeline.
+Up until now, we have only discussed running tests from the command line on your local machine. However, you may also run your tests from a CI platform of your choice. Since `pestphp/pest` is included in your Composer development dependencies, you may execute the `./vendor/bin/pest --ci` command within your CI platform's deployment pipeline.
 
 ## Example With GitHub Actions
 
@@ -63,7 +63,7 @@ Sometimes you may wish to use [Browser Testing](/docs/browser-testing) with GitH
       run: ./vendor/bin/pest --ci --parallel
 ```
 
-> Note: Be sure to run your browser tests in parallel to speed up execution time. You may do this by adding the `--parallel` flag to the Pest command.
+> **Note:** Be sure to run your browser tests in parallel to speed up execution time. You may do this by adding the `--parallel` flag to the Pest command.
 
 ## Example With GitLab CI/CD Pipelines
 
@@ -109,7 +109,7 @@ tests:
 
 Of course, you may customize the script above according to your requirements. For example, you may need to set up a database if your tests require one.
 
-Once you have created your `.gitlab-ci.yml` file, commit and push the `.gitlab-ci.yml` file so Gitlab CI/CD Pipelines can run your tests. Keep in mind that once you make this commit, your test suite will execute on all new merge requests and commits.
+Once you have created your `.gitlab-ci.yml` file, commit and push the `.gitlab-ci.yml` file so GitLab CI/CD Pipelines can run your tests. Keep in mind that once you make this commit, your test suite will execute on all new merge requests and commits.
 
 ## Example with Bitbucket Pipelines
 
@@ -191,13 +191,13 @@ To shard your tests, you may use the `--shard` option when running Pest. For exa
 ./vendor/bin/pest --shard=1/5
 ```
 
-By default, Pest splits tests evenly by **count** — each shard gets roughly the same number of test files. This works well when all tests take similar time, but can create imbalanced shards when some tests (like payment processing or report generation) are significantly slower than others.
+By default, Pest splits tests evenly by count — each shard gets roughly the same number of test files. This works well when all tests take similar time, but can create imbalanced shards when some tests (like payment processing or report generation) are significantly slower than others.
 
 ### Time-Balanced Sharding
 
-For better shard balance, Pest may distribute tests based on their **actual execution time** using the `--update-shards` option. This ensures each shard takes roughly the same wall-clock time, minimizing how long your slowest CI job runs.
+For better shard balance, Pest may distribute tests based on their actual execution time using the `--update-shards` option. This ensures each shard takes roughly the same wall-clock time, minimizing how long your slowest CI job runs.
 
-**Step 1:** Generate the timing data by running your full test suite with `--update-shards`:
+First, generate the timing data by running your full test suite with the `--update-shards` option:
 
 ```bash
 ./vendor/bin/pest --update-shards
@@ -209,7 +209,7 @@ This runs all tests and records each test class's duration into `tests/.pest/sha
 ./vendor/bin/pest --parallel --update-shards
 ```
 
-**Step 2:** Commit `tests/.pest/shards.json` to your repository. This file is human-readable and looks like this:
+Next, commit `tests/.pest/shards.json` to your repository. This file is human-readable and looks like this:
 
 ```json
 {
@@ -223,7 +223,7 @@ This runs all tests and records each test class's duration into `tests/.pest/sha
 }
 ```
 
-**Step 3:** When you run `--shard` and `tests/.pest/shards.json` exists, Pest will automatically use time-balanced distribution:
+Finally, when you run `--shard` and `tests/.pest/shards.json` exists, Pest will automatically use time-balanced distribution:
 
 ```bash
 ./vendor/bin/pest --shard=1/5
@@ -231,15 +231,15 @@ This runs all tests and records each test class's duration into `tests/.pest/sha
 
 The output will indicate that time-balanced sharding is active:
 
-```
+```plain
 Shard:    1 of 5 — 12 files ran, out of 50 (time-balanced).
 ```
 
 ### Keeping Shards Up to Date
 
-When you add or rename test files, Pest will detect that `tests/.pest/shards.json` is out of date. Your tests **will still run** — new test files are distributed evenly across shards, while known tests remain time-balanced. However, Pest will display a warning after the run:
+When you add or rename test files, Pest will detect that `tests/.pest/shards.json` is out of date. Don't worry — your tests will still run. New test files are distributed evenly across shards, while known tests remain time-balanced. However, Pest will display a warning after the run:
 
-```
+```plain
 WARN  The [tests/.pest/shards.json] file is out of date. Run [--update-shards] to update it.
 ```
 

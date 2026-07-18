@@ -3,7 +3,7 @@ title: Pest v4 Is Here — Now with Browser Testing
 description: Today, we're thrilled to announce Pest v4 — our biggest release yet, featuring powerful new browser testing with parallel support and full Laravel integration.
 ---
 
-> To get started with Pest v4's new features including browser testing, please refer to the upgrade guide: [Upgrade Guide →](/docs/upgrade-guide).
+> **Note:** To get started with Pest v4's new features, including browser testing, please refer to the upgrade guide: [Upgrade Guide →](/docs/upgrade-guide).
 
 - [Browser Testing](#content-pest-v4-is-here-now-with-browser-testing)
 - [Smoke Testing](#content-smoke-testing)
@@ -93,7 +93,7 @@ $pages = visit(['/', '/about', '/contact']);
 $pages->assertScreenshotMatches();
 ```
 
-This is just a glimpse of what Browser Testing in Pest v4 can do. You may find out more about the new features below, and check out the [Browser Testing documentation](/docs/browser-testing) for a complete guide on how to get started.
+This is only a glimpse of what Browser Testing in Pest v4 can do. You may find out more about the new features below, and check out the [Browser Testing documentation](/docs/browser-testing) for a complete guide on how to get started.
 
 ## Test Sharding
 
@@ -134,7 +134,7 @@ name: Tests (Shard ${{ matrix.shard }}/4)
 
 steps:
   - name: Run tests
-    run: pest --parallel --shard ${{ matrix.shard }}/4
+    run: ./vendor/bin/pest --parallel --shard ${{ matrix.shard }}/4
 ```
 
 ## Type Coverage Is Much Faster
@@ -143,7 +143,7 @@ Remember the days when you had to wait for your type coverage to run? Not anymor
 
 Type coverage is now 2x faster on the first run and instant on subsequent runs. This means you may quickly check your type coverage without waiting for long periods, making your development workflow much more efficient.
 
-In addition, Type Coverage now supports **Sharding**. This means you may run type coverage with the `--shard` option, just as you do with your tests.
+In addition, Type Coverage now supports **Sharding**. This means you may run type coverage with the `--shard` option, as you do with your tests.
 
 ## Profanity Checking
 
@@ -169,16 +169,15 @@ Once the plugin is required, you may use the `--profanity` option to generate a 
 
 <img src="/assets/img/profanity.png" style="width: 100%;" />
 
-If any of your files contain profanity, they will be highlighted in red and displayed using their respective line
-numbers and the profane word(s) that have been found.
+If any of your files contain profanity, they will be highlighted in red and displayed using their respective line numbers and the profane word(s) that have been found.
 
 For example, `pr31(f*ck)` means that the word "fuck" was found on line 31.
 
 To learn more about the Profanity plugin and how to configure it, check out the [Profanity documentation](/docs/profanity).
 
-### Skip Locally or On CI
+## Skip Locally or On CI
 
-Pest v4 introduces the ability to conditionally skip tests based on the environment. You may use `skipLocally()` to skip tests when running locally, or `skipOnCi` to skip tests when running on a CI server:
+Pest v4 introduces the ability to conditionally skip tests based on the environment. You may use `skipLocally()` to skip tests when running locally, or `skipOnCi()` to skip tests when running on a CI server:
 
 ```php
 it('does not run locally', function () {
@@ -190,17 +189,17 @@ it('does not run on CI', function () {
 })->skipOnCi();
 ```
 
-### Miscellaneous Improvements
+## Miscellaneous Improvements
 
-- You may now use `skipLocally()` or `skipOnCi` to conditionally skip tests based on the environment.
+- You may now use `skipLocally()` or `skipOnCi()` to conditionally skip tests based on the environment.
 - The `not->toHaveSuspiciousCharacters()` arch expectation has been added to help you identify potential suspicious characters in your code. This arch expectation is now enabled by default on the `php` arch preset. This expectation requires the `intl` PHP extension.
 - The expectation `toBeSlug` has been added to help you validate that a string is a valid slug.
 
-### On Top of PHPUnit 12
+## On Top of PHPUnit 12
 
 Pest v4 is built on top of PHPUnit 12, which means you get all the latest features and improvements from PHPUnit. As such, be sure to check out the [PHPUnit 12 release announcement](https://phpunit.de/announcements/phpunit-12.html).
 
-### Thanks To You, Pest v4 Is Here!
+## Thanks To You, Pest v4 Is Here!
 
 There has never been a better time to dive into testing and start using Pest. If you are ready to get started with Pest v4 right away, check out our [installation guide](/docs/installation) for step-by-step instructions. And if you are currently using an earlier version of Pest, we have you covered with detailed upgrade instructions in our [upgrade guide](/docs/upgrade-guide).
 

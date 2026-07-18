@@ -5,7 +5,7 @@ description: Test coverage measures the percentage of your code that is executed
 
 # Test Coverage
 
-**Requires [XDebug 3.0+](https://xdebug.org/docs/install/)** or [PCOV](https://github.com/krakjoe/pcov).
+> **Note:** Generating code coverage requires [XDebug 3.0+](https://xdebug.org/docs/install/) or [PCOV](https://github.com/krakjoe/pcov).
 
 Test coverage (or code coverage) is a metric used to measure the percentage of code that is executed during testing. This helps you identify the parts of your code that may not be tested, or that have low coverage, indicating a potential risk for bugs and other issues.
 
@@ -30,7 +30,6 @@ Once you have configured your code coverage settings and installed a coverage dr
 ```
 
 When you use the `--coverage` option, the test suite runs normally, but with the added benefit of displaying a list of your project files and their corresponding coverage results:
-
 
 <div class="code-snippet">
     <img src="/assets/img/coverage.webp?1" style="--lines: 12" />

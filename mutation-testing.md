@@ -6,18 +6,18 @@ description: Mutation Testing evaluates the quality of your test suite by introd
 # Mutation Testing
 
 - **[Get Started](#get-started)**
-- **[Tested Vs Untested Mutations](#tested-vs-untested-mutations)**
+- **[Tested vs. Untested Mutations](#tested-vs-untested-mutations)**
 - **[Minimum Threshold Enforcement](#minimum-threshold-enforcement)**
 - **[Options & Modifiers](#options-and-modifiers)**
 
 <a name="get-started"></a>
 ## Get Started
 
-**Requires [XDebug 3.0+](https://xdebug.org/docs/install/)** or [PCOV](https://github.com/krakjoe/pcov).
+> **Note:** Mutation testing requires [XDebug 3.0+](https://xdebug.org/docs/install/) or [PCOV](https://github.com/krakjoe/pcov).
 
 Mutation Testing is a powerful technique that introduces small changes (mutations) to your code to see whether your tests catch them. This ensures you are testing your application thoroughly, moving beyond code coverage alone and toward the actual quality of your tests. It is a helpful way to identify weaknesses in your test suite and improve its quality.
 
-To get started with mutation testing, head over to your test file and be specific about which part of your code your test covers using the `covers()` function or the `mutates` function:
+To get started with mutation testing, head over to your test file and be specific about which part of your code your test covers using the `covers()` function or the `mutates()` function:
 
 ```php
 covers(TodoController::class); // or mutates(TodoController::class);
@@ -27,9 +27,9 @@ it('list todos', function () {
 });
 ```
 
-Both the `covers` and `mutates` functions behave identically when it comes to mutation testing. However, `covers` also affects the code coverage report; when provided, it filters the report to include only the executed code from the referenced code parts.
+Both the `covers()` and `mutates()` functions behave identically when it comes to mutation testing. However, `covers()` also affects the code coverage report; when provided, it filters the report to include only the executed code from the referenced code parts.
 
-Then, run Pest PHP with the `--mutate` option to start mutation testing. Ideally, you should also add the `--parallel` option to speed up the process:
+Then, run Pest with the `--mutate` option to start mutation testing. Ideally, you should also add the `--parallel` option to speed up the process:
 
 ```bash
 ./vendor/bin/pest --mutate
@@ -78,18 +78,18 @@ Then, you may re-run Pest with the `--mutate` option to see whether the mutation
 
 The higher the mutation score, the better your test suite. A mutation score of 100% means that all mutations were "tested", which is the goal of mutation testing.
 
-A mutation score below 100%, along with "untested" or "uncovered" mutations, typically means that you have **missing tests** or that **your tests are not covering all the edge cases**.
+A mutation score below 100%, along with "untested" or "uncovered" mutations, typically means that you have missing tests or that your tests are not covering all of the edge cases.
 
-Our plugin is deeply integrated into Pest PHP. So, each time a mutation is introduced, Pest PHP will:
+Mutation testing is deeply integrated into Pest, so each time a mutation is introduced, Pest will:
 
 - **Only run the tests covering the mutated code** to speed up the process.
 - **Cache as much as possible** to speed up the process on subsequent runs.
 - If enabled, use **parallel execution to run multiple tests** in parallel to speed up the process.
 
 <a name="tested-vs-untested-mutations"></a>
-## Tested Vs Untested Mutations
+## Tested vs. Untested Mutations
 
-When running mutation testing, you will mainly see two types of mutations: **tested** and **untested** mutations.
+When running mutation testing, you will mainly see two types of mutations: tested and untested mutations.
 
 - **Tested Mutations**: These are mutations that were detected by your test suite. They are considered "tested" because your tests were able to catch the changes introduced by the mutation.
 
@@ -142,7 +142,7 @@ Changing the return value is only one of many possible mutations. Typically, a m
 <a name="minimum-threshold-enforcement"></a>
 ## Minimum Threshold Enforcement
 
-To ensure comprehensive testing and maintain testing quality, you should set minimum threshold values for your mutation testing results. In Pest, you may use the `--mutation` and `--min` options to define the minimum threshold for your mutation score. If the specified thresholds are not met, Pest will report a failure:
+To ensure comprehensive testing and maintain testing quality, you should set minimum threshold values for your mutation testing results. In Pest, you may use the `--mutate` and `--min` options to define the minimum threshold for your mutation score. If the specified thresholds are not met, Pest will report a failure:
 
 ```bash
 ./vendor/bin/pest --mutate --min=40
@@ -189,10 +189,9 @@ public function rules(): array
 }
 ```
 
-> [!NOTE]
-> Lines that aren't considered executable will always be marked as UNCOVERED.
+> **Note:** Lines that are not considered executable will always be marked as UNCOVERED.
 
-For such cases, like with model properties, you may apply `@pest-mutate-ignore` in the following way: 
+For such cases, like with model properties, you may apply `@pest-mutate-ignore` in the following way:
 
 ```php
 /**
@@ -258,7 +257,6 @@ Stop mutation testing execution upon the first untested or uncovered mutation:
 Generate mutations for the given class(es). For example, `--class=App\Models`:
 
 ```bash
-
 ./vendor/bin/pest --mutate --class=App\Models
 ```
 
@@ -319,7 +317,7 @@ Run untested or uncovered mutations first and stop execution upon the first erro
 <a name="stop-on-uncovered"></a>
 ### `--stop-on-uncovered`
 
-Stop mutation testing execution upon the first untested mutation:
+Stop mutation testing execution upon the first uncovered mutation:
 
 ```bash
 ./vendor/bin/pest --mutate --stop-on-uncovered
@@ -336,4 +334,4 @@ Stop mutation testing execution upon the first untested mutation:
 
 ---
 
-As you can see, Pest PHP's mutation testing feature is a powerful tool for improving the quality of your test suite. Next, let's explore how the Tia Engine speeds up your suite by re-running only the tests affected by your latest changes: [Tia Engine](/docs/tia)
+As you can see, Pest's mutation testing feature is a powerful tool for improving the quality of your test suite. Next, let's explore how the Tia Engine speeds up your suite by re-running only the tests affected by your latest changes: [Tia Engine](/docs/tia)

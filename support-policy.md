@@ -2,6 +2,7 @@
 title: Support Policy
 description: As an open-source project, we strive to resolve every reported bug or issue to the best of our abilities, while being clear about what we can and cannot guarantee.
 ---
+
 # Support Policy
 
 As an open-source project, we strive to resolve every reported bug or issue to the best of our abilities. Nevertheless, we cannot ensure a fixed resolution time or guarantee the availability of a fix for every problem.
@@ -17,12 +18,13 @@ Bug fixes will be available for outdated versions for a duration of 12 months fo
 | Pest 1        | >= PHP 7.3        | January 7, 2021   | March 20, 2024
 
 Pest adheres to semantic versioning principles, where the version number `x.y.z` conveys the following information:
+
 - When issuing bug fixes, the `z` number is incremented (e.g., 4.10.2 to 4.10.3).
 - When adding new non-breaking features or improvements, the `y` number is incremented (e.g., 4.10.2 to 4.12.0).
 - When introducing breaking changes, the `x` number is incremented (e.g., 4.10.2 to 5.0.0).
 
-As maintainers of testing frameworks, we take breaking changes very seriously. Our goal is to deliver robust features without disrupting the community's test suites. This commitment is why upgrading from Pest 2 to Pest 3 was as convenient as updating your `composer.json` file. Similarly, the transition to Pest 4 has been designed to be just as seamless, ensuring a painless upgrade experience for our users.
+As maintainers of testing frameworks, we take breaking changes very seriously. Our goal is to deliver robust features without disrupting the community's test suites. This commitment is why upgrading from Pest 2 to Pest 3 was as convenient as updating your `composer.json` file. Similarly, the transition to Pest 4 has been designed to be equally seamless, ensuring a painless upgrade experience for our users.
 
-----
+---
 
-In the next chapter, we will explore the process of upgrading between major versions via our upgrade guide: [Upgrade Guide](/docs/upgrade-guide)
+In the next chapter, we will explore the process of upgrading between major versions via our upgrade guide: [Upgrade Guide →](/docs/upgrade-guide)

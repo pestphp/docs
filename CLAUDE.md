@@ -4,6 +4,8 @@ This directory holds the official Pest documentation. When writing or editing an
 
 The sections below describe that voice in detail. They are derived from how the docs already read; treat them as house style, not suggestions.
 
+The house style deliberately mirrors the [Laravel documentation](https://github.com/laravel/docs) — the same permission-granting modality ("you may"), the same colon-into-code rhythm, the same warm-expert register, and the same structural conventions. When in doubt about a construction, ask: would a `laravel/docs` page phrase it this way?
+
 ## The Voice in One Sentence
 
 Write as a **warm, confident expert personally guiding a capable peer** — conversational but precise, encouraging without being cutesy, and relentlessly consistent in sentence scaffolding. The reader is always the protagonist; Pest is the helpful tool doing work on their behalf.
@@ -81,6 +83,12 @@ Editorialize positively, but from a **small, controlled vocabulary**, and almost
   ```
 - The first heading (`#`) matches the `title`. Use `##` for major sections and `###` for subsections.
 - **Wrap code identifiers in backticks:** functions and methods like `it()`, `expect()`, `test()`, `describe()`, `beforeEach()`; files like `Pest.php`, `phpunit.xml`; and commands like `./vendor/bin/pest`.
+- **Write the Pest binary as `./vendor/bin/pest`** — with the `./` prefix — everywhere, in prose and in `bash` blocks alike. Never `vendor/bin/pest`.
+- **Callouts are plain Markdown blockquotes with a bold label:** `> **Note:** …` for helpful asides and `> **Warning:** …` for pitfalls. The site's renderer does not support GitHub's `> [!NOTE]` alert syntax, so never use it. Keep each callout to a single short paragraph, and reach for one only when the aside would otherwise interrupt the flow of the section.
+- **Deep-linkable reference sections get explicit anchors:** place `<a name="slug"></a>` on its own line immediately before the heading. Long reference pages open with a linked list of the methods or options covered — mirror `expectations.md` and `filtering-tests.md`.
+- **Progressive complexity within a section:** show the simplest working usage first, then layer in options, overrides, and edge cases. A sentence of rationale comes before the implementation, not after.
+- **Reserve `---` horizontal rules for the end-of-page footer** that links onward ("Continue to our next section: [Expectations →](/docs/expectations)"). Never use them to separate sections mid-page — headings carry the structure.
+- **Use bold sparingly in prose.** A bold lead on a list item ("- **Full-stack verification.** …") is fine; mid-sentence bolding for emphasis should be rare — let sentence structure carry the stress.
 - **Use fenced code blocks with a language hint** (```php, ```bash, ```plain). Keep example code realistic, minimal, and focused on the one concept being taught.
 - **Terminal output is shown via the existing `<div class="code-snippet">` image convention,** not pasted as text — follow the surrounding pages.
 - **Link generously to related pages** with the `/docs/{page}` convention so readers can explore adjacent topics.

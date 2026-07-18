@@ -1,6 +1,6 @@
 ---
 title: Pest 5 Now Available
-description: Today, we're thrilled to announce the release of Pest 5. Built on PHP 8.4 and PHPUnit 13, Pest 5 introduces the Tia Engine, the Agent plugin, AI Evals, a first-party PHPStan plugin, automated refactoring with Rector, time-balanced sharding, and much more.
+description: Today, we're thrilled to announce the release of Pest 5 — built on PHP 8.4 and PHPUnit 13, introducing the Tia Engine, the Agent plugin, AI Evals, a first-party PHPStan plugin, automated refactoring with Rector, time-balanced sharding, and much more.
 ---
 
 # Pest 5 Now Available
@@ -56,12 +56,12 @@ AI coding agents are great at writing code, but they are terrible at knowing whe
 The **Agent** plugin closes that loop. It gives your agent a single command to run a one-off verification against your application:
 
 ```bash
-vendor/bin/pest --agent="visit('/')->assertSee('Welcome');"
+./vendor/bin/pest --agent="visit('/')->assertSee('Welcome');"
 ```
 
 The agent gets a definitive pass or fail instead of a hopeful guess — with the full power of Pest at its disposal. This is where the Agent plugin pulls ahead of browser-only agent tools like Vercel's agent browser: those tools live outside your application and can only observe what the page renders, so they confirm the UI *looks* right but never that the system *behaved* right. A green screenshot from a tool like Vercel's tells you nothing about whether the job was queued, the mail was sent, or the row was written.
 
-The Agent plugin runs *inside your real test suite* instead. It is not specific to the browser — it verifies any code your suite can reach — yet it truly shines with the [Browser Testing](/docs/browser-testing) plugin installed, letting your agent drive the UI **and** assert the side effects it triggered — submit a contact form, then assert the mail was sent — all in a single probe, with your factories, `RefreshDatabase`, and Laravel fakes available exactly as in a real feature test. Where Vercel's agent browser is a black box bolted onto the outside of your app, the Agent plugin has the same full-stack visibility your own feature tests do, so a passing check means the whole flow — front to back — actually works.
+The Agent plugin runs *inside your real test suite* instead. It is not specific to the browser — it verifies any code your suite can reach — yet it truly shines with the [Browser Testing](/docs/browser-testing) plugin installed, letting your agent drive the UI and assert the side effects it triggered — submit a contact form, then assert the mail was sent — all in a single probe, with your factories, `RefreshDatabase`, and Laravel fakes available exactly as in a real feature test. Where Vercel's agent browser is a black box bolted onto the outside of your app, the Agent plugin has the same full-stack visibility your own feature tests do, so a passing check means the whole flow — front to back — actually works.
 
 To get started, install the plugin via Composer:
 

@@ -23,7 +23,7 @@ pest()->beforeEach(function () {
 });
 ```
 
-In fact, any of the hooks mentioned in the [hooks](/docs/hooks) documentation may also be used within your `Pest.php` configuration file:
+In fact, any of the hooks mentioned in the [Hooks](/docs/hooks) documentation may also be used within your `Pest.php` configuration file:
 
 ```php
 pest()->extend(TestCase::class)->beforeAll(function () {

@@ -9,7 +9,7 @@ Pest hooks are similar to the steps you might take when preparing a meal: first,
 
 By using hooks in Pest, you may streamline your testing process and automate repetitive tasks. Whether you are writing unit tests for a small project or building a complex test suite for a large application, hooks help you save time and improve the quality of your tests.
 
-In addition, if you wish to run a hook only for a specific group of tests, you may place the hook within a `describe()` function:
+Sometimes you may wish to run a hook only for a specific group of tests. To accomplish this, you may place the hook within a `describe()` function:
 
 ```php
 beforeEach(function () {
@@ -59,7 +59,7 @@ beforeEach(function () {
 });
 ```
 
-When using the `beforeEach()` hook, you may initialize properties that will be shared across all tests within the current file. For example, you may use `beforeEach()` to initialize the `$repository` property before each test runs, ensuring that it is available for the subsequent tests in the file:
+When using the `beforeEach()` hook, you may initialize properties that will be shared across all tests within the current file. For example, you may use `beforeEach()` to initialize the `$userRepository` property before each test runs, ensuring that it is available for the subsequent tests in the file:
 
 ```php
 beforeEach(function () {
@@ -84,7 +84,7 @@ afterEach(function () {
 });
 ```
 
-So, using the example above, if the `beforeEach()` hook is used to initialize the `$userRepository` property, the `afterEach()` hook may be used to "clean" it after each test when necessary. This ensures that any resources the object may be using are released or reset between tests, preventing any interference or unwanted behavior:
+Continuing the example above, if the `beforeEach()` hook is used to initialize the `$userRepository` property, the `afterEach()` hook may be used to "clean" it after each test when necessary. This ensures that any resources the object may be using are released or reset between tests, preventing any interference or unwanted behavior:
 
 ```php
 afterEach(function () {
@@ -128,7 +128,7 @@ afterAll(function () {
 });
 ```
 
-Just like the `beforeAll()` method, the `$this` variable is not available in the `afterAll()` hook. This is because the `afterAll()` hook runs after all tests in the file have completed, so there is no longer a test instance or object to which the variable could refer.
+As with the `beforeAll()` hook, the `$this` variable is not available in the `afterAll()` hook. This is because the `afterAll()` hook runs after all tests in the file have completed, so there is no longer a test instance or object to which the variable could refer.
 
 ---
 

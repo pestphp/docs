@@ -5,7 +5,7 @@ description: Define an array of test data and Pest will run the same test for ea
 
 # Datasets
 
-Datasets allow you to define an array of test data, and Pest will run the same test once for each set automatically. This saves you time and effort, freeing you from repeating the same test by hand with different data.
+Datasets allow you to define an array of test data, and Pest will run the same test once for each set automatically. This saves you time and effort, freeing you from repeating the same test by hand with different data. For example, consider the following test:
 
 ```php
 it('has emails', function (string $email) {
@@ -13,7 +13,7 @@ it('has emails', function (string $email) {
 })->with(['enunomaduro@gmail.com', 'other@example.com']);
 ```
 
-When you run your tests, Pest will automatically add informative descriptions to any test that uses a dataset, outlining the parameters used in each case. This helps you understand the data at a glance and pinpoint the source if a test fails.
+When you run your tests, Pest will automatically add informative descriptions to any test that uses a dataset, outlining the parameters used in each case. This helps you understand the data at a glance and pinpoint the source if a test fails:
 
 <div class="code-snippet">
     <img src="/assets/img/datasets-emails.webp?1" style="--lines: 3" />
@@ -41,7 +41,7 @@ it('has emails', function (string $email) {
 ]);
 ```
 
-When a key is present, Pest will use it when generating the test's description.
+When a key is present, Pest will use it when generating the test's description:
 
 <div class="code-snippet">
     <img src="/assets/img/datasets-named.webp?1" style="--lines: 2" />
@@ -69,7 +69,6 @@ it('can sum', function (int $a, int $b, int $result) {
 For larger or more complex scenarios, you may use closures:
 
 ```php
-
 // Returning an array
 test('The array contains only integers', function ($i) {
     expect($i)->toBeInt();
@@ -181,7 +180,7 @@ dataset('products', [
 
 ## Combining Datasets
 
-You may obtain complex datasets by combining both **inline** and **shared** datasets. When you do, the datasets will be combined using a [cartesian product](https://en.wikipedia.org/wiki/Cartesian_product) approach.
+You may obtain complex datasets by combining both inline and shared datasets. When you do, the datasets will be combined using a [cartesian product](https://en.wikipedia.org/wiki/Cartesian_product) approach.
 
 In the following example, we verify that each of the specified businesses is closed on every one of the provided weekdays:
 
@@ -200,7 +199,7 @@ test('business is closed on day', function(string $business, string $day) {
 ])->with('days_of_the_week');
 ```
 
-When you run the example above, Pest's output will contain a description of each validated combination.
+When you run the example above, Pest's output will contain a description of each validated combination:
 
 <div class="code-snippet">
     <img src="/assets/img/datasets-businesshours.webp?1" style="--lines: 10" />

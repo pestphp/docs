@@ -3,7 +3,7 @@ title: Test Dependencies
 description: Sometimes a test requires certain preconditions or events to occur before it runs, or else it will not succeed — Pest lets one test declare that it depends on another.
 ---
 
-# Test Dependency
+# Test Dependencies
 
 Sometimes, tests require certain preconditions or events to occur prior to their execution, or else they will not succeed. For example, you may only be able to verify that users are able to modify their accounts once you have first verified that an account can be established.
 

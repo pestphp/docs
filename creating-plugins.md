@@ -1,6 +1,6 @@
 ---
 title: Creating Plugins
-description: Community plugins are essential for offering additional features to the Pest community, while the Pest team prioritizes keeping the framework's core small and fast. In this chapter, we'll discuss how to create your own plugins and share them with the community.
+description: In this chapter, we'll discuss how to create your own Pest plugins and share them with the community.
 ---
 
 # Creating Plugins
@@ -29,7 +29,7 @@ trait MyPluginTrait
 }
 ```
 
-In order to make this trait method invokable via Pest, we must inform Pest that it should make it available. This may be accomplished by creating an `Autoload.php` file within your plugin with the following content:
+To make this trait method invokable within tests, we must inform Pest that it should be made available. This may be accomplished by creating an `Autoload.php` file within your plugin with the following content:
 
 ```php
 use YourGitHubUsername\PestPluginName\MyPluginTrait;

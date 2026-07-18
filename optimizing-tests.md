@@ -51,7 +51,7 @@ As you can see, the `UserTest > create user` and `OrderTest > create order` test
 
 ## Test Sharding
 
-When running tests in CI, you may split your test suite across multiple jobs using the `--shard` option. Pest supports **time-balanced sharding** — instead of splitting tests evenly by count, which may leave one shard running much longer than the others, Pest can distribute tests based on actual execution time.
+When running tests in CI, you may split your test suite across multiple jobs using the `--shard` option. Pest supports time-balanced sharding — instead of splitting tests evenly by count, which may leave one shard running much longer than the others, Pest can distribute tests based on actual execution time.
 
 To enable time-balanced sharding, generate a `tests/.pest/shards.json` file with timing data:
 
@@ -77,7 +77,7 @@ If you are working with a large number of tests, it can be helpful to concentrat
     <img src="/assets/img/compact.webp?1" style="--lines: 11" />
 </div>
 
-Furthermore, since the `--compact` printer produces simpler output, test speed may improve by a few milliseconds, as there is less input / output required for each test.
+Furthermore, since the `--compact` printer produces simpler output, test speed may improve by a few milliseconds, as there is less input/output required for each test.
 
 You may even configure Pest to always use the compact printer, so that you do not have to specify the `--compact` option every time you run your test suite:
 

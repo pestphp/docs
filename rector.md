@@ -7,7 +7,7 @@ description: Pest's Rector plugin provides automated refactoring rules powered b
 
 **Source code**: [github.com/pestphp/pest-plugin-rector](https://github.com/pestphp/pest-plugin-rector)
 
-Pest's Rector plugin provides automated refactoring rules powered by [Rector](https://getrector.org/). It helps simplify and modernize your test code, and upgrade between major Pest versions.
+Pest's Rector plugin provides automated refactoring rules powered by [Rector](https://getrector.org/). It helps you simplify and modernize your test code, as well as upgrade between major Pest versions.
 
 To get started, require the plugin via Composer and install Rector:
 
@@ -15,8 +15,6 @@ To get started, require the plugin via Composer and install Rector:
 composer require pestphp/pest-plugin-rector --dev
 composer require rector/rector --dev
 ```
-
----
 
 ## Rule Sets
 
@@ -89,7 +87,7 @@ return RectorConfig::configure()
 
 ### Pest Version Upgrades
 
-To upgrade your test suite between major Pest versions, you may reach for the level sets provided by `PestLevelSetList`. Unlike the sets above, a level set is cumulative: it applies every migration up to and including the version you target, so that a suite on an older version arrives fully up to date in a single pass.
+To upgrade your test suite between major Pest versions, you may reach for the level sets provided by `PestLevelSetList`. Unlike the sets above, a level set is cumulative: it applies every migration up to and including the version you target, so that a suite on an older version arrives fully up to date in a single pass:
 
 ```php
 use Pest\Rector\Set\PestLevelSetList;
@@ -114,31 +112,29 @@ return RectorConfig::configure()
 
 Of course, if you would rather apply the migration rules for a single version in isolation, the individual `PestSetList::PEST_30` and `PestSetList::PEST_40` sets remain available as well.
 
----
-
 ## Preview & Apply Changes
 
-Run Rector with the `--dry-run` flag to preview changes before applying them:
+To preview changes before applying them, you may run Rector with the `--dry-run` flag:
 
 ```bash
 vendor/bin/rector process --dry-run
 ```
 
-Once you are satisfied with the proposed changes, run Rector without the flag to apply them:
+Once you are satisfied with the proposed changes, you may run Rector without the flag to apply them:
 
 ```bash
 vendor/bin/rector process
 ```
 
----
-
 ## All Rules
+
+For reference, below is every rule provided by the plugin, along with an example of the transformation it applies.
 
 ### ChainExpectCallsRector
 
-Chains multiple `expect()` calls on the same value into a single chained expectation
-
 - class: `Pest\Rector\Rules\ChainExpectCallsRector`
+
+This rule chains multiple `expect()` calls on the same value into a single chained expectation:
 
 ```diff
 -expect($a)->toBe(10);
@@ -156,9 +152,9 @@ Chains multiple `expect()` calls on the same value into a single chained expecta
 
 ### ConvertAssertToExpectRector
 
-Converts PHPUnit assertion method calls to Pest `expect()` chains
-
 - class: `Pest\Rector\Rules\ConvertAssertToExpectRector`
+
+This rule converts PHPUnit assertion method calls to Pest `expect()` chains:
 
 ```diff
 -$this->assertEquals('expected', $result);
@@ -171,9 +167,9 @@ Converts PHPUnit assertion method calls to Pest `expect()` chains
 
 ### ConvertBeforeAllInDescribeRector
 
-Replaces invalid `beforeAll()` and `afterAll()` hooks inside `describe()` with `beforeEach()` and `afterEach()`
-
 - class: `Pest\Rector\Rules\ConvertBeforeAllInDescribeRector`
+
+This rule replaces invalid `beforeAll()` and `afterAll()` hooks inside `describe()` with `beforeEach()` and `afterEach()`:
 
 ```diff
  describe('users', function (): void {
@@ -186,9 +182,9 @@ Replaces invalid `beforeAll()` and `afterAll()` hooks inside `describe()` with `
 
 ### ConvertExpectExceptionToThrowRector
 
-Converts `expectException()` and `expectExceptionMessage()` patterns to `expect()->toThrow()`
-
 - class: `Pest\Rector\Rules\ConvertExpectExceptionToThrowRector`
+
+This rule converts `expectException()` and `expectExceptionMessage()` patterns to `expect()->toThrow()`:
 
 ```diff
 -$this->expectException(RuntimeException::class);
@@ -199,9 +195,9 @@ Converts `expectException()` and `expectExceptionMessage()` patterns to `expect(
 
 ### EnsureTypeChecksFirstRector
 
-Ensure type-check matchers (e.g. toBeInt, toBeInstanceOf) appear before value assertions in `expect()` chains and consecutive expects
-
 - class: `Pest\Rector\Rules\EnsureTypeChecksFirstRector`
+
+This rule ensures that type-check matchers, such as `toBeInt()` and `toBeInstanceOf()`, appear before value assertions in `expect()` chains and consecutive expectations:
 
 ```diff
 -expect($a)->toBe(10)->toBeInt();
@@ -210,9 +206,9 @@ Ensure type-check matchers (e.g. toBeInt, toBeInstanceOf) appear before value as
 
 ### FixInvalidRepeatValueRector
 
-Normalizes invalid literal `repeat()` counts to 1
-
 - class: `Pest\Rector\Rules\FixInvalidRepeatValueRector`
+
+This rule normalizes invalid literal `repeat()` counts to `1`:
 
 ```diff
  it('retries once', function (): void {
@@ -223,9 +219,9 @@ Normalizes invalid literal `repeat()` counts to 1
 
 ### RemoveDebugExpectationsRector
 
-Removes debug method calls (dump, dd, ray) from expect chains
-
 - class: `Pest\Rector\Rules\RemoveDebugExpectationsRector`
+
+This rule removes debug method calls, such as `dump()`, `dd()`, and `ray()`, from `expect()` chains:
 
 ```diff
 -expect($user)->dump()->toBeInstanceOf(User::class);
@@ -234,9 +230,9 @@ Removes debug method calls (dump, dd, ray) from expect chains
 
 ### RemoveOnlyRector
 
-Removes `only()` from all tests
-
 - class: `Pest\Rector\Rules\RemoveOnlyRector`
+
+This rule removes `only()` from all tests:
 
 ```diff
 -test()->only();
@@ -245,9 +241,9 @@ Removes `only()` from all tests
 
 ### RemoveRedundantLiteralTypeExpectationRector
 
-Removes redundant literal type expectations when a later matcher keeps the chain meaningful
-
 - class: `Pest\Rector\Rules\RemoveRedundantLiteralTypeExpectationRector`
+
+This rule removes redundant literal type expectations when a later matcher keeps the chain meaningful:
 
 ```diff
  expect('pest')
@@ -257,9 +253,9 @@ Removes redundant literal type expectations when a later matcher keeps the chain
 
 ### RemoveRedundantPestUsesRector
 
-Removes redundant local Pest `uses` already configured globally in `tests/Pest.php`
-
 - class: `Pest\Rector\Rules\RemoveRedundantPestUsesRector`
+
+This rule removes redundant local Pest `uses()` calls that are already configured globally in `tests/Pest.php`:
 
 ```diff
  // tests/Pest.php contains:
@@ -272,9 +268,9 @@ Removes redundant local Pest `uses` already configured globally in `tests/Pest.p
 
 ### RemoveStaticTestClosureRector
 
-Removes static from Pest test and hook callbacks that use the test case instance
-
 - class: `Pest\Rector\Rules\RemoveStaticTestClosureRector`
+
+This rule removes the `static` keyword from Pest test and hook callbacks that use the test case instance:
 
 ```diff
 -it('uses the test case instance', static function (): void {
@@ -285,9 +281,9 @@ Removes static from Pest test and hook callbacks that use the test case instance
 
 ### SimplifyComparisonExpectationsRector
 
-Converts `expect($x > 10)->toBeTrue()` to `expect($x)->toBeGreaterThan(10)`
-
 - class: `Pest\Rector\Rules\SimplifyComparisonExpectationsRector`
+
+This rule converts `expect($x > 10)->toBeTrue()` to `expect($x)->toBeGreaterThan(10)`:
 
 ```diff
 -expect($value > 10)->toBeTrue();
@@ -298,9 +294,9 @@ Converts `expect($x > 10)->toBeTrue()` to `expect($x)->toBeGreaterThan(10)`
 
 ### SimplifyExpectNotRector
 
-Simplifies negated expectations by flipping the matcher
-
 - class: `Pest\Rector\Rules\SimplifyExpectNotRector`
+
+This rule simplifies negated expectations by flipping the matcher:
 
 ```diff
 -expect(!$condition)->toBeTrue();
@@ -309,9 +305,9 @@ Simplifies negated expectations by flipping the matcher
 
 ### SimplifyFilesystemMatchersRector
 
-Simplifies combined filesystem checks to single Pest matchers
-
 - class: `Pest\Rector\Rules\SimplifyFilesystemMatchersRector`
+
+This rule simplifies combined filesystem checks to single Pest matchers:
 
 ```diff
 -expect(is_file($path) && is_readable($path))->toBeTrue();
@@ -320,9 +316,9 @@ Simplifies combined filesystem checks to single Pest matchers
 
 ### SimplifyToBeTruthyFalsyRector
 
-Converts bool cast assertions to `toBeTruthy()/toBeFalsy()` matchers
-
 - class: `Pest\Rector\Rules\SimplifyToBeTruthyFalsyRector`
+
+This rule converts boolean cast assertions to the `toBeTruthy()/toBeFalsy()` matchers:
 
 ```diff
 -expect((bool) $value)->toBeTrue();
@@ -331,9 +327,9 @@ Converts bool cast assertions to `toBeTruthy()/toBeFalsy()` matchers
 
 ### SimplifyToLiteralBooleanRector
 
-Simplifies `expect($x)->toBe(true)` to `expect($x)->toBeTrue()`
-
 - class: `Pest\Rector\Rules\SimplifyToLiteralBooleanRector`
+
+This rule simplifies `expect($x)->toBe(true)` to `expect($x)->toBeTrue()`:
 
 ```diff
 -expect($value)->toBe(true);
@@ -344,9 +340,9 @@ Simplifies `expect($x)->toBe(true)` to `expect($x)->toBeTrue()`
 
 ### TapToDeferRector
 
-Replaces deprecated `->tap()` method with `->defer()` for Pest v3 migration
-
 - class: `Pest\Rector\Rules\Pest2ToPest3\TapToDeferRector`
+
+This rule replaces the deprecated `->tap()` method with `->defer()` for the Pest v3 migration:
 
 ```diff
 -expect($value)->tap(fn ($value) => dump($value))->toBe(10);
@@ -355,9 +351,9 @@ Replaces deprecated `->tap()` method with `->defer()` for Pest v3 migration
 
 ### ToBeTrueNotFalseRector
 
-Simplifies double-negative expectations like `->not->toBeFalse()` to `->toBeTrue()`
-
 - class: `Pest\Rector\Rules\ToBeTrueNotFalseRector`
+
+This rule simplifies double-negative expectations like `->not->toBeFalse()` to `->toBeTrue()`:
 
 ```diff
 -expect($value)->not->toBeFalse();
@@ -366,9 +362,9 @@ Simplifies double-negative expectations like `->not->toBeFalse()` to `->toBeTrue
 
 ### ToHaveMethodOnClassRector
 
-Changes `expect($object)->toHaveMethod()` to `expect($object::class)->toHaveMethod()` for Pest v3
-
 - class: `Pest\Rector\Rules\Pest2ToPest3\ToHaveMethodOnClassRector`
+
+This rule changes `expect($object)->toHaveMethod()` to `expect($object::class)->toHaveMethod()` for Pest v3:
 
 ```diff
 -expect($user)->toHaveMethod('getName');
@@ -377,9 +373,9 @@ Changes `expect($object)->toHaveMethod()` to `expect($object::class)->toHaveMeth
 
 ### UseBrowserAriaAndDataAttributeAssertionsRector
 
-Converts `expect($page->attribute($selector, 'aria-*'))->toBe($value)` to `$page->assertAriaAttribute()`, and the `data-*` equivalent (requires the Browser Testing plugin)
-
 - class: `Pest\Rector\Rules\Browser\UseBrowserAriaAndDataAttributeAssertionsRector`
+
+This rule converts `expect($page->attribute($selector, 'aria-*'))->toBe($value)` to `$page->assertAriaAttribute()`, and the `data-*` equivalent (requires the Browser Testing plugin):
 
 ```diff
 -expect($page->attribute('button', 'aria-label'))->toBe('Close');
@@ -390,9 +386,9 @@ Converts `expect($page->attribute($selector, 'aria-*'))->toBe($value)` to `$page
 
 ### UseBrowserAttributeAssertionsRector
 
-Converts `expect($page->attribute($selector, $attr))->toBe($value)` to `$page->assertAttribute()` (requires the Browser Testing plugin)
-
 - class: `Pest\Rector\Rules\Browser\UseBrowserAttributeAssertionsRector`
+
+This rule converts `expect($page->attribute($selector, $attr))->toBe($value)` to `$page->assertAttribute()` (requires the Browser Testing plugin):
 
 ```diff
 -expect($page->attribute('img', 'alt'))->toBe('Profile Picture');
@@ -401,9 +397,9 @@ Converts `expect($page->attribute($selector, $attr))->toBe($value)` to `$page->a
 
 ### UseBrowserScriptAssertionsRector
 
-Converts `expect($page->script($expression))->toBe($value)` to `$page->assertScript()` (requires the Browser Testing plugin)
-
 - class: `Pest\Rector\Rules\Browser\UseBrowserScriptAssertionsRector`
+
+This rule converts `expect($page->script($expression))->toBe($value)` to `$page->assertScript()` (requires the Browser Testing plugin):
 
 ```diff
 -expect($page->script('document.title'))->toBe('Home Page');
@@ -412,9 +408,9 @@ Converts `expect($page->script($expression))->toBe($value)` to `$page->assertScr
 
 ### UseBrowserSourceAssertionsRector
 
-Converts `expect($page->content())->toContain($html)` to `$page->assertSourceHas()` (requires the Browser Testing plugin)
-
 - class: `Pest\Rector\Rules\Browser\UseBrowserSourceAssertionsRector`
+
+This rule converts `expect($page->content())->toContain($html)` to `$page->assertSourceHas()` (requires the Browser Testing plugin):
 
 ```diff
 -expect($page->content())->toContain('<h1>Welcome</h1>');
@@ -423,9 +419,9 @@ Converts `expect($page->content())->toContain($html)` to `$page->assertSourceHas
 
 ### UseBrowserUrlAssertionsRector
 
-Converts `expect($page->url())->toBe($url)` to `$page->assertUrlIs()` (requires the Browser Testing plugin)
-
 - class: `Pest\Rector\Rules\Browser\UseBrowserUrlAssertionsRector`
+
+This rule converts `expect($page->url())->toBe($url)` to `$page->assertUrlIs()` (requires the Browser Testing plugin):
 
 ```diff
 -expect($page->url())->toBe('https://example.com/home');
@@ -434,9 +430,9 @@ Converts `expect($page->url())->toBe($url)` to `$page->assertUrlIs()` (requires 
 
 ### UseBrowserValueAssertionsRector
 
-Converts `expect($page->value($selector))->toBe($value)` to `$page->assertValue()` (requires the Browser Testing plugin)
-
 - class: `Pest\Rector\Rules\Browser\UseBrowserValueAssertionsRector`
+
+This rule converts `expect($page->value($selector))->toBe($value)` to `$page->assertValue()` (requires the Browser Testing plugin):
 
 ```diff
 -expect($page->value('input[name=email]'))->toBe('test@example.com');
@@ -445,9 +441,9 @@ Converts `expect($page->value($selector))->toBe($value)` to `$page->assertValue(
 
 ### UseEachModifierRector
 
-Converts foreach loops with `expect()` calls to use the `->each` modifier
-
 - class: `Pest\Rector\Rules\UseEachModifierRector`
+
+This rule converts `foreach` loops with `expect()` calls to use the `->each` modifier:
 
 ```diff
 -foreach ($items as $item) {
@@ -458,9 +454,9 @@ Converts foreach loops with `expect()` calls to use the `->each` modifier
 
 ### UseInstanceOfMatcherRector
 
-Converts `expect($obj instanceof User)->toBeTrue()` to `expect($obj)->toBeInstanceOf(User::class)`
-
 - class: `Pest\Rector\Rules\UseInstanceOfMatcherRector`
+
+This rule converts `expect($obj instanceof User)->toBeTrue()` to `expect($obj)->toBeInstanceOf(User::class)`:
 
 ```diff
 -expect($user instanceof User)->toBeTrue();
@@ -469,9 +465,9 @@ Converts `expect($obj instanceof User)->toBeTrue()` to `expect($obj)->toBeInstan
 
 ### UseSequenceMatcherRector
 
-Converts consecutive indexed `expect()` calls to `sequence()`
-
 - class: `Pest\Rector\Rules\UseSequenceMatcherRector`
+
+This rule converts consecutive indexed `expect()` calls to `sequence()`:
 
 ```diff
 -expect($items[0])->toBe('a');
@@ -481,9 +477,9 @@ Converts consecutive indexed `expect()` calls to `sequence()`
 
 ### UseStrictEqualityMatchersRector
 
-Converts strict equality expressions to `toBe()` matcher
-
 - class: `Pest\Rector\Rules\UseStrictEqualityMatchersRector`
+
+This rule converts strict equality expressions to the `toBe()` matcher:
 
 ```diff
 -expect($a === $b)->toBeTrue();
@@ -492,9 +488,9 @@ Converts strict equality expressions to `toBe()` matcher
 
 ### UseToBeAlphaNumericRector
 
-Converts `ctype_alnum()` checks to `toBeAlphaNumeric()` matcher
-
 - class: `Pest\Rector\Rules\UseToBeAlphaNumericRector`
+
+This rule converts `ctype_alnum()` checks to the `toBeAlphaNumeric()` matcher:
 
 ```diff
 -expect(ctype_alnum($value))->toBeTrue();
@@ -503,9 +499,9 @@ Converts `ctype_alnum()` checks to `toBeAlphaNumeric()` matcher
 
 ### UseToBeAlphaRector
 
-Converts `ctype_alpha()` checks to `toBeAlpha()` matcher
-
 - class: `Pest\Rector\Rules\UseToBeAlphaRector`
+
+This rule converts `ctype_alpha()` checks to the `toBeAlpha()` matcher:
 
 ```diff
 -expect(ctype_alpha($value))->toBeTrue();
@@ -514,9 +510,9 @@ Converts `ctype_alpha()` checks to `toBeAlpha()` matcher
 
 ### UseToBeBetweenRector
 
-Converts `expect($value >= $min && $value <= $max)->toBeTrue()` to `expect($value)->toBeBetween($min, $max)`
-
 - class: `Pest\Rector\Rules\UseToBeBetweenRector`
+
+This rule converts `expect($value >= $min && $value <= $max)->toBeTrue()` to `expect($value)->toBeBetween($min, $max)`:
 
 ```diff
 -expect($value >= 1 && $value <= 10)->toBeTrue();
@@ -525,9 +521,9 @@ Converts `expect($value >= $min && $value <= $max)->toBeTrue()` to `expect($valu
 
 ### UseToBeCamelCaseRector
 
-Converts `Str::camel()` equality checks to `toBeCamelCase()` matcher (requires `illuminate/support`)
-
 - class: `Pest\Rector\Rules\UseToBeCamelCaseRector`
+
+This rule converts `Str::camel()` equality checks to `toBeCamelCase()` matcher (requires `illuminate/support`):
 
 ```diff
 -expect(Str::camel($value) === $value)->toBeTrue();
@@ -536,9 +532,9 @@ Converts `Str::camel()` equality checks to `toBeCamelCase()` matcher (requires `
 
 ### UseToBeDigitsRector
 
-Converts `ctype_digit()` checks to `toBeDigits()` matcher
-
 - class: `Pest\Rector\Rules\UseToBeDigitsRector`
+
+This rule converts `ctype_digit()` checks to the `toBeDigits()` matcher:
 
 ```diff
 -expect(ctype_digit($value))->toBeTrue();
@@ -547,9 +543,9 @@ Converts `ctype_digit()` checks to `toBeDigits()` matcher
 
 ### UseToBeDirectoryRector
 
-Converts `is_dir()` checks to `toBeDirectory()` matcher
-
 - class: `Pest\Rector\Rules\UseToBeDirectoryRector`
+
+This rule converts `is_dir()` checks to the `toBeDirectory()` matcher:
 
 ```diff
 -expect(is_dir($path))->toBeTrue();
@@ -558,9 +554,9 @@ Converts `is_dir()` checks to `toBeDirectory()` matcher
 
 ### UseToBeEmptyRector
 
-Converts empty checks and count-zero comparisons to `toBeEmpty()` matcher
-
 - class: `Pest\Rector\Rules\UseToBeEmptyRector`
+
+This rule converts empty checks and count-zero comparisons to the `toBeEmpty()` matcher:
 
 ```diff
 -expect(empty($value))->toBeTrue();
@@ -569,9 +565,9 @@ Converts empty checks and count-zero comparisons to `toBeEmpty()` matcher
 
 ### UseToBeFileRector
 
-Converts `is_file()` checks to `toBeFile()` matcher
-
 - class: `Pest\Rector\Rules\UseToBeFileRector`
+
+This rule converts `is_file()` checks to the `toBeFile()` matcher:
 
 ```diff
 -expect(is_file($path))->toBeTrue();
@@ -580,9 +576,9 @@ Converts `is_file()` checks to `toBeFile()` matcher
 
 ### UseToBeInRector
 
-Converts strict `in_array()` checks to the `toBeIn()` matcher
-
 - class: `Pest\Rector\Rules\UseToBeInRector`
+
+This rule converts strict `in_array()` checks to the `toBeIn()` matcher:
 
 ```diff
 -expect(in_array($value, ['pending', 'active'], true))->toBeTrue();
@@ -591,9 +587,9 @@ Converts strict `in_array()` checks to the `toBeIn()` matcher
 
 ### UseToBeInfiniteRector
 
-Converts `is_infinite()` checks to `toBeInfinite()` matcher
-
 - class: `Pest\Rector\Rules\UseToBeInfiniteRector`
+
+This rule converts `is_infinite()` checks to the `toBeInfinite()` matcher:
 
 ```diff
 -expect(is_infinite($value))->toBeTrue();
@@ -602,9 +598,9 @@ Converts `is_infinite()` checks to `toBeInfinite()` matcher
 
 ### UseToBeJsonRector
 
-Converts `json_decode()` null checks to `toBeJson()` matcher
-
 - class: `Pest\Rector\Rules\UseToBeJsonRector`
+
+This rule converts `json_decode()` null checks to the `toBeJson()` matcher:
 
 ```diff
 -expect(json_decode($string) !== null)->toBeTrue();
@@ -613,9 +609,9 @@ Converts `json_decode()` null checks to `toBeJson()` matcher
 
 ### UseToBeKebabCaseRector
 
-Converts `Str::kebab()` equality checks to `toBeKebabCase()` matcher (requires `illuminate/support`)
-
 - class: `Pest\Rector\Rules\UseToBeKebabCaseRector`
+
+This rule converts `Str::kebab()` equality checks to `toBeKebabCase()` matcher (requires `illuminate/support`):
 
 ```diff
 -expect(Str::kebab($value) === $value)->toBeTrue();
@@ -624,9 +620,9 @@ Converts `Str::kebab()` equality checks to `toBeKebabCase()` matcher (requires `
 
 ### UseToBeListRector
 
-Converts `array_is_list()` checks to `toBeList()` matcher
-
 - class: `Pest\Rector\Rules\UseToBeListRector`
+
+This rule converts `array_is_list()` checks to the `toBeList()` matcher:
 
 ```diff
 -expect(array_is_list($array))->toBeTrue();
@@ -635,9 +631,9 @@ Converts `array_is_list()` checks to `toBeList()` matcher
 
 ### UseToBeLowercaseRector
 
-Converts `strtolower()` equality checks to `toBeLowercase()` matcher
-
 - class: `Pest\Rector\Rules\UseToBeLowercaseRector`
+
+This rule converts `strtolower()` equality checks to the `toBeLowercase()` matcher:
 
 ```diff
 -expect(strtolower($value) === $value)->toBeTrue();
@@ -646,9 +642,9 @@ Converts `strtolower()` equality checks to `toBeLowercase()` matcher
 
 ### UseToBeNanRector
 
-Converts `is_nan()` checks to `toBeNan()` matcher
-
 - class: `Pest\Rector\Rules\UseToBeNanRector`
+
+This rule converts `is_nan()` checks to the `toBeNan()` matcher:
 
 ```diff
 -expect(is_nan($value))->toBeTrue();
@@ -657,9 +653,9 @@ Converts `is_nan()` checks to `toBeNan()` matcher
 
 ### UseToBeSlugRector
 
-Converts `Str::slug()` equality checks to `toBeSlug()` matcher (requires `illuminate/support`)
-
 - class: `Pest\Rector\Rules\UseToBeSlugRector`
+
+This rule converts `Str::slug()` equality checks to `toBeSlug()` matcher (requires `illuminate/support`):
 
 ```diff
 -expect(Str::slug($value) === $value)->toBeTrue();
@@ -668,9 +664,9 @@ Converts `Str::slug()` equality checks to `toBeSlug()` matcher (requires `illumi
 
 ### UseToBeSnakeCaseRector
 
-Converts `Str::snake()` equality checks to `toBeSnakeCase()` matcher (requires `illuminate/support`)
-
 - class: `Pest\Rector\Rules\UseToBeSnakeCaseRector`
+
+This rule converts `Str::snake()` equality checks to `toBeSnakeCase()` matcher (requires `illuminate/support`):
 
 ```diff
 -expect(Str::snake($value) === $value)->toBeTrue();
@@ -679,9 +675,9 @@ Converts `Str::snake()` equality checks to `toBeSnakeCase()` matcher (requires `
 
 ### UseToBeStudlyCaseRector
 
-Converts `Str::studly()` equality checks to `toBeStudlyCase()` matcher (requires `illuminate/support`)
-
 - class: `Pest\Rector\Rules\UseToBeStudlyCaseRector`
+
+This rule converts `Str::studly()` equality checks to `toBeStudlyCase()` matcher (requires `illuminate/support`):
 
 ```diff
 -expect(Str::studly($value) === $value)->toBeTrue();
@@ -690,9 +686,9 @@ Converts `Str::studly()` equality checks to `toBeStudlyCase()` matcher (requires
 
 ### UseToBeUppercaseRector
 
-Converts `strtoupper()` equality checks to `toBeUppercase()` matcher
-
 - class: `Pest\Rector\Rules\UseToBeUppercaseRector`
+
+This rule converts `strtoupper()` equality checks to the `toBeUppercase()` matcher:
 
 ```diff
 -expect(strtoupper($value) === $value)->toBeTrue();
@@ -701,9 +697,9 @@ Converts `strtoupper()` equality checks to `toBeUppercase()` matcher
 
 ### UseToBeUrlRector
 
-Converts `filter_var($url, FILTER_VALIDATE_URL)` checks to `toBeUrl()` matcher
-
 - class: `Pest\Rector\Rules\UseToBeUrlRector`
+
+This rule converts `filter_var($url, FILTER_VALIDATE_URL)` checks to the `toBeUrl()` matcher:
 
 ```diff
 -expect(filter_var($url, FILTER_VALIDATE_URL))->not->toBeFalse();
@@ -712,9 +708,9 @@ Converts `filter_var($url, FILTER_VALIDATE_URL)` checks to `toBeUrl()` matcher
 
 ### UseToBeUuidRector
 
-Converts UUID regex validation to `toBeUuid()` matcher
-
 - class: `Pest\Rector\Rules\UseToBeUuidRector`
+
+This rule converts UUID regex validation to the `toBeUuid()` matcher:
 
 ```diff
 -expect(preg_match('/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i', $value))->toBe(1);
@@ -723,9 +719,9 @@ Converts UUID regex validation to `toBeUuid()` matcher
 
 ### UseToContainEqualRector
 
-Converts `in_array(..., false)` checks to `toContainEqual()` matcher
-
 - class: `Pest\Rector\Rules\UseToContainEqualRector`
+
+This rule converts `in_array(..., false)` checks to the `toContainEqual()` matcher:
 
 ```diff
 -expect(in_array($item, $array, false))->toBeTrue();
@@ -734,9 +730,9 @@ Converts `in_array(..., false)` checks to `toContainEqual()` matcher
 
 ### UseToContainOnlyInstancesOfRector
 
-Converts `->each->toBeInstanceOf()` pattern to `toContainOnlyInstancesOf()` matcher
-
 - class: `Pest\Rector\Rules\UseToContainOnlyInstancesOfRector`
+
+This rule converts the `->each->toBeInstanceOf()` pattern to the `toContainOnlyInstancesOf()` matcher:
 
 ```diff
 -expect($items)->each->toBeInstanceOf(User::class);
@@ -745,9 +741,9 @@ Converts `->each->toBeInstanceOf()` pattern to `toContainOnlyInstancesOf()` matc
 
 ### UseToContainRector
 
-Converts `in_array()` checks to `toContain()` matcher
-
 - class: `Pest\Rector\Rules\UseToContainRector`
+
+This rule converts `in_array()` checks to the `toContain()` matcher:
 
 ```diff
 -expect(in_array($item, $array))->toBeTrue();
@@ -756,9 +752,9 @@ Converts `in_array()` checks to `toContain()` matcher
 
 ### UseToEndWithRector
 
-Converts `str_ends_with()` checks to `toEndWith()` matcher
-
 - class: `Pest\Rector\Rules\UseToEndWithRector`
+
+This rule converts `str_ends_with()` checks to the `toEndWith()` matcher:
 
 ```diff
 -expect(str_ends_with($string, 'World'))->toBeTrue();
@@ -767,9 +763,9 @@ Converts `str_ends_with()` checks to `toEndWith()` matcher
 
 ### UseToEqualCanonicalizingRector
 
-Converts sort-then-compare to `toEqualCanonicalizing()` matcher
-
 - class: `Pest\Rector\Rules\UseToEqualCanonicalizingRector`
+
+This rule converts sort-then-compare patterns to the `toEqualCanonicalizing()` matcher:
 
 ```diff
 -expect(sort($a))->toEqual(sort($b));
@@ -778,9 +774,9 @@ Converts sort-then-compare to `toEqualCanonicalizing()` matcher
 
 ### UseToEqualWithDeltaRector
 
-Converts `expect(abs($a - $b) < $delta)->toBeTrue()` to `expect($a)->toEqualWithDelta($b, $delta)`
-
 - class: `Pest\Rector\Rules\UseToEqualWithDeltaRector`
+
+This rule converts `expect(abs($a - $b) < $delta)->toBeTrue()` to `expect($a)->toEqualWithDelta($b, $delta)`:
 
 ```diff
 -expect(abs($a - $b) < 0.001)->toBeTrue();
@@ -789,9 +785,9 @@ Converts `expect(abs($a - $b) < $delta)->toBeTrue()` to `expect($a)->toEqualWith
 
 ### UseToHaveCountRector
 
-Converts `expect(count($arr))->toBe(5)` to `expect($arr)->toHaveCount(5)`
-
 - class: `Pest\Rector\Rules\UseToHaveCountRector`
+
+This rule converts `expect(count($arr))->toBe(5)` to `expect($arr)->toHaveCount(5)`:
 
 ```diff
 -expect(count($array))->toBe(5);
@@ -800,9 +796,9 @@ Converts `expect(count($arr))->toBe(5)` to `expect($arr)->toHaveCount(5)`
 
 ### UseToHaveKeyRector
 
-Converts `array_key_exists()` checks to `toHaveKey()` matcher
-
 - class: `Pest\Rector\Rules\UseToHaveKeyRector`
+
+This rule converts `array_key_exists()` checks to the `toHaveKey()` matcher:
 
 ```diff
 -expect(array_key_exists('id', $array))->toBeTrue();
@@ -811,9 +807,9 @@ Converts `array_key_exists()` checks to `toHaveKey()` matcher
 
 ### UseToHaveKeysRector
 
-Converts chained `toHaveKey()` calls to `toHaveKeys()` with array of keys
-
 - class: `Pest\Rector\Rules\UseToHaveKeysRector`
+
+This rule converts chained `toHaveKey()` calls to `toHaveKeys()` with an array of keys:
 
 ```diff
 -expect($array)->toHaveKey('id')->toHaveKey('name');
@@ -822,9 +818,9 @@ Converts chained `toHaveKey()` calls to `toHaveKeys()` with array of keys
 
 ### UseToHaveLengthRector
 
-Converts `strlen()/mb_strlen()` comparisons to `toHaveLength()` matcher
-
 - class: `Pest\Rector\Rules\UseToHaveLengthRector`
+
+This rule converts `strlen()/mb_strlen()` comparisons to the `toHaveLength()` matcher:
 
 ```diff
 -expect(strlen($string))->toBe(10);
@@ -833,9 +829,9 @@ Converts `strlen()/mb_strlen()` comparisons to `toHaveLength()` matcher
 
 ### UseToHavePropertiesRector
 
-Converts chained `toHaveProperty()` calls to `toHaveProperties()` with array of properties
-
 - class: `Pest\Rector\Rules\UseToHavePropertiesRector`
+
+This rule converts chained `toHaveProperty()` calls to `toHaveProperties()` with an array of properties:
 
 ```diff
 -expect($user)->toHaveProperty('name')->toHaveProperty('email');
@@ -844,9 +840,9 @@ Converts chained `toHaveProperty()` calls to `toHaveProperties()` with array of 
 
 ### UseToHavePropertyRector
 
-Converts `property_exists()` checks to `toHaveProperty()` matcher
-
 - class: `Pest\Rector\Rules\UseToHavePropertyRector`
+
+This rule converts `property_exists()` checks to the `toHaveProperty()` matcher:
 
 ```diff
 -expect(property_exists($object, 'name'))->toBeTrue();
@@ -855,9 +851,9 @@ Converts `property_exists()` checks to `toHaveProperty()` matcher
 
 ### UseToHaveSameSizeRector
 
-Converts `expect(count($a))->toBe(count($b))` to `expect($a)->toHaveSameSize($b)`
-
 - class: `Pest\Rector\Rules\UseToHaveSameSizeRector`
+
+This rule converts `expect(count($a))->toBe(count($b))` to `expect($a)->toHaveSameSize($b)`:
 
 ```diff
 -expect(count($array1))->toBe(count($array2));
@@ -866,9 +862,9 @@ Converts `expect(count($a))->toBe(count($b))` to `expect($a)->toHaveSameSize($b)
 
 ### UseToMatchArrayRector
 
-Converts multiple array element assertions to `toMatchArray()` matcher
-
 - class: `Pest\Rector\Rules\UseToMatchArrayRector`
+
+This rule converts multiple array element assertions to the `toMatchArray()` matcher:
 
 ```diff
 -expect($array['name'])->toBe('Nuno');
@@ -878,9 +874,9 @@ Converts multiple array element assertions to `toMatchArray()` matcher
 
 ### UseToMatchObjectRector
 
-Converts consecutive `toHaveProperty()` with values to `toMatchObject()` matcher
-
 - class: `Pest\Rector\Rules\UseToMatchObjectRector`
+
+This rule converts consecutive `toHaveProperty()` calls with values to the `toMatchObject()` matcher:
 
 ```diff
 -expect($user)->toHaveProperty('name', 'Nuno');
@@ -890,9 +886,9 @@ Converts consecutive `toHaveProperty()` with values to `toMatchObject()` matcher
 
 ### UseToMatchRector
 
-Converts `expect(preg_match("/pattern/", $str))->toBe(1)` to `expect($str)->toMatch("/pattern/")`
-
 - class: `Pest\Rector\Rules\UseToMatchRector`
+
+This rule converts `expect(preg_match("/pattern/", $str))->toBe(1)` to `expect($str)->toMatch("/pattern/")`:
 
 ```diff
 -expect(preg_match('/pattern/', $string))->toBe(1);
@@ -901,9 +897,9 @@ Converts `expect(preg_match("/pattern/", $str))->toBe(1)` to `expect($str)->toMa
 
 ### UseToStartWithRector
 
-Converts `str_starts_with()` checks to `toStartWith()` matcher
-
 - class: `Pest\Rector\Rules\UseToStartWithRector`
+
+This rule converts `str_starts_with()` checks to the `toStartWith()` matcher:
 
 ```diff
 -expect(str_starts_with($string, 'Hello'))->toBeTrue();
@@ -912,9 +908,9 @@ Converts `str_starts_with()` checks to `toStartWith()` matcher
 
 ### UseToThrowRector
 
-Converts `try`/`catch` patterns in Pest tests to `expect()->toThrow()`
-
 - class: `Pest\Rector\Rules\UseToThrowRector`
+
+This rule converts `try`/`catch` patterns in Pest tests to `expect()->toThrow()`:
 
 ```diff
  test('it throws an error', function () {
@@ -929,9 +925,9 @@ Converts `try`/`catch` patterns in Pest tests to `expect()->toThrow()`
 
 ### UseTypeMatchersRector
 
-Converts `expect(is_array($x))->toBeTrue()` to `expect($x)->toBeArray()`
-
 - class: `Pest\Rector\Rules\UseTypeMatchersRector`
+
+This rule converts `expect(is_array($x))->toBeTrue()` to `expect($x)->toBeArray()`:
 
 ```diff
 -expect(is_array($value))->toBeTrue();
@@ -940,13 +936,15 @@ Converts `expect(is_array($x))->toBeTrue()` to `expect($x)->toBeArray()`
 
 ### UsesToExtendRector
 
-Converts `uses()` and `pest()->uses()` to `pest()->extend()` for classes and `pest()->use()` for traits
-
 - class: `Pest\Rector\Rules\Pest2ToPest3\UsesToExtendRector`
+
+This rule converts `uses()` and `pest()->uses()` to `pest()->extend()` for classes and `pest()->use()` for traits:
 
 ```diff
 -uses(Tests\TestCase::class)->in('Feature');
 +pest()->extend(Tests\TestCase::class)->in('Feature');
 ```
 
-Now that you know how to automate refactoring your test suite, let's look at how Pest's PHPStan plugin brings accurate static analysis to your tests: [PHPStan](/docs/phpstan)
+---
+
+Now that you know how to automate refactoring your test suite, let's look at how Pest's PHPStan plugin brings accurate static analysis to your tests: [PHPStan →](/docs/phpstan)

@@ -1,6 +1,6 @@
 ---
 title: Pest v3 Now Available
-description: Today, we're thrilled to announce the release of Pest 3. As we announced at Laracon US, Pest 3 introduces Mutation Testing, arch presets, Team Management, New Configuration API, multiple improvements to Architectural Testing & more.
+description: Today, we're thrilled to announce the release of Pest 3 — introducing Mutation Testing, Arch Presets, Team Management, a new Configuration API, multiple improvements to Architectural Testing, and more.
 ---
 
 # Pest v3 Now Available
@@ -175,7 +175,7 @@ It is the opposite of the `strict` preset, ensuring you are not using strict typ
 arch()->preset()->relaxed();
 ```
 
-Just like regular architecture tests, you may ignore specific expectation targets using the `ignoring()` method:
+As with regular architecture tests, you may ignore specific expectation targets using the `ignoring()` method:
 
 ```php
 arch()->preset()->security()->ignoring('md5');
@@ -266,7 +266,7 @@ Pest 1 and Pest 2's configuration API was a little confusing. The `uses()` funct
 
 In Pest 3, we have introduced a new configuration API that is more intuitive and easier to use. The new configuration API is based on the `pest()` function, which allows you to configure Pest using a fluent, expressive API.
 
-> Note: the `uses()` function is still available in Pest 3, and we do not have plans to remove it. However, we recommend using the new configuration API for new projects.
+> **Note:** The `uses()` function is still available in Pest 3, and we do not have plans to remove it. However, we recommend using the new configuration API for new projects.
 
 ```diff
 -uses(TestCase::class)->in(__DIR__);
@@ -313,7 +313,7 @@ As you may know, Pest allows you to run a specific "teardown" callback after eac
 afterEach(function () {
     // This will run after each test...
 });
-````
+```
 
 In Pest 3, we have introduced a new `after()` method that allows you to run a specific "teardown" callback after a particular test or group of tests using describe:
 

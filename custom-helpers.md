@@ -1,6 +1,6 @@
 ---
 title: Custom Helpers
-description: If you're transitioning to a functional approach for writing tests, you may wonder where to put your helpers that used to be protected or private methods in your test classes. When using Pest, these helper methods should be converted to simple functions.
+description: When transitioning to a functional approach for writing tests, you may convert the helpers that used to be protected or private methods in your test classes into simple functions.
 ---
 
 # Custom Helpers

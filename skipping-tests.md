@@ -5,7 +5,7 @@ description: Sometimes you may need to temporarily disable a test. Rather than c
 
 # Skipping Tests
 
-During development, there may be times when you need to temporarily disable a test. Rather than commenting out the code, you should reach for the `skip()` method:
+During development, there may be times when you need to temporarily disable a test. Rather than commenting out the code, you may use the `skip()` method:
 
 ```php
 it('has home', function () {
@@ -83,9 +83,9 @@ Finally, you may even invoke the `skip()` method within your `beforeEach()` hook
 beforeEach()->skip(); // or skipOnCi(), etc...
 ```
 
-## Creating todos
+## Creating Todos
 
-Sometimes you may wish to add a few empty tests so that you don't forget to write them later. The `todo()` method is helpful in this situation:
+Sometimes you may wish to add a few empty tests so that you do not forget to write them later. The `todo()` method is helpful in this situation:
 
 ```php
 it('has home', function () {

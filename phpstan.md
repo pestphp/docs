@@ -9,7 +9,7 @@ description: Pest's PHPStan plugin teaches PHPStan about Pest, providing accurat
 
 [PHPStan](https://phpstan.org/) is a static analysis tool that finds bugs in your code without running it. By default, however, PHPStan does not understand Pest's functional API — functions like `it()`, `test()`, `expect()`, and the `$this` available inside your test closures.
 
-Pest's PHPStan plugin teaches PHPStan about Pest. It provides accurate type inference for your tests and expectations, and adds a set of Pest-specific rules that catch common mistakes before you run your suite.
+Thankfully, Pest's PHPStan plugin teaches PHPStan about Pest. It provides accurate type inference for your tests and expectations, and adds a set of Pest-specific rules that catch common mistakes before you run your suite.
 
 To get started, require the plugin via Composer:
 
@@ -17,22 +17,20 @@ To get started, require the plugin via Composer:
 composer require pestphp/pest-plugin-phpstan --dev
 ```
 
-As the plugin depends on PHPStan itself, this command will also install PHPStan in your project. If you use [`phpstan/extension-installer`](https://github.com/phpstan/extension-installer), the plugin is registered automatically. Otherwise, include the extension in your `phpstan.neon` configuration file:
+As the plugin depends on PHPStan itself, this command will also install PHPStan in your project. If you use [`phpstan/extension-installer`](https://github.com/phpstan/extension-installer), the plugin is registered automatically. Otherwise, you should include the extension in your `phpstan.neon` configuration file:
 
 ```neon
 includes:
     - vendor/pestphp/pest-plugin-phpstan/extension.neon
 ```
 
-Then, analyze your `tests` directory as usual:
+Then, you may analyze your `tests` directory as usual:
 
 ```bash
 vendor/bin/phpstan analyse tests
 ```
 
 There is no configuration to maintain. The plugin reads your `Pest.php` files directly — both the `uses(TestCase::class)->in(...)` and `pest()->extend(...)->use(...)->in(...)` styles — and resolves the right test case for each file automatically. The targets given to `in()` behave exactly as they do in Pest: relative or absolute paths, glob patterns, and single files are all supported.
-
----
 
 ## Type Inference
 
@@ -97,8 +95,6 @@ expect($user)
 ```
 
 Similarly, public methods chained directly onto `it()` or `test()` — higher order tests — resolve against your bound test case, so a call like `it('has users')->actingAsAdmin()` is understood.
-
----
 
 ## Rules
 

@@ -11,9 +11,9 @@ Stress testing is a type of testing that inspects the stability and reliability 
 
 In Pest, you may combine the power of stress testing with the Expectation API, ensuring no stability and reliability regressions over time. This is helpful when you want to verify that your application remains stable and reliable after a new release, or after a new deployment.
 
-Behind the scenes, this plugin utilizes [k6](https://k6.io/), a powerful open-source load testing tool for evaluating the performance of APIs, microservices, and websites. k6 is licensed under the **[AGPL-3.0 License](https://www.gnu.org/licenses/agpl-3.0.en.html)**, and the k6 binary is downloaded automatically when the plugin is used for the first time.
+Behind the scenes, this plugin utilizes [k6](https://k6.io/), a powerful open-source load testing tool for evaluating the performance of APIs, microservices, and websites. k6 is licensed under the [AGPL-3.0 License](https://www.gnu.org/licenses/agpl-3.0.en.html), and the k6 binary is downloaded automatically when the plugin is used for the first time.
 
-To get started with Pest's Stress Testing plugin (mostly known as Stressless), you should require the stressless plugin via Composer:
+To get started with Pest's Stress Testing plugin (also known as Stressless), you may require the plugin via Composer:
 
 ```bash
 composer require pestphp/pest-plugin-stressless --dev
@@ -49,7 +49,7 @@ In addition, the number of concurrent requests will be `1` by default. However, 
 ./vendor/bin/pest stress example.com --concurrency=5
 ```
 
-The concurrency value represents the number of concurrent requests that will be made to the given URL. For example, if you set the concurrency to `5`, Pest will **constantly make 5 concurrent requests** to the given URL until the stress test duration is reached.
+The concurrency value represents the number of concurrent requests that will be made to the given URL. For example, if you set the concurrency to `5`, Pest will constantly make 5 concurrent requests to the given URL until the stress test duration is reached.
 
 You may wish to be mindful of the number of concurrent requests you configure. If you configure too many concurrent requests, you may overwhelm your application or server, or hit rate limits and firewalls.
 
@@ -77,13 +77,12 @@ Sometimes you may wish to specify the HTTP method used for the stress test. To a
 ./vendor/bin/pest stress example.com/articles --post='{"name": "Nuno"}'
 # or
 ./vendor/bin/pest stress example.com/articles/1 --delete
-
 ```
 
 Once the stress test is completed, Pest will display a summary of the stress test result.
 
 <a name="the-stress-function"></a>
-## The Stress function
+## The Stress Function
 
 Once you understand how stress testing works, you may wish to start setting expectations on the stress test result. For example, you may want to verify that the average response time is *always* less than 100ms, and this is where the `stress()` function comes in.
 
@@ -113,7 +112,7 @@ In addition, the number of concurrent requests will be 1 by default. However, yo
 $result = stress('example.com')->concurrently(requests: 2)->for(5)->seconds();
 ```
 
-At any time, you may `dd` the stress test result to see its details, just as you would when using the `stress` command:
+At any time, you may `dd` the stress test result to see its details, as you would when using the `stress` command:
 
 ```php
 $result = stress('example.com')->dd();
@@ -121,9 +120,7 @@ $result = stress('example.com')->dd();
                              //->verbosely();
 ```
 
-Sometimes you may wish to specify the HTTP method used for the stress test. To accomplish this, you may use one of the provided `delete`, `get`, `head`, `options`, `patch`, `put`, or `post` methods.
-With the `options`, `patch`, and `put` methods, you may specify an optional payload argument to be used in the requests.
-With the `post` method, you are required to provide the payload argument:
+Sometimes you may wish to specify the HTTP method used for the stress test. To accomplish this, you may use one of the provided `delete`, `get`, `head`, `options`, `patch`, `put`, or `post` methods. With the `options`, `patch`, and `put` methods, you may specify an optional payload argument to be used in the requests. With the `post` method, you are required to provide the payload argument:
 
 ```php
 $result = stress('example.com/articles/1')->delete();
@@ -160,7 +157,7 @@ The `stress()` function returns the stress test result, which you may use to set
 <a name="the-stress-function-request-duration"></a>
 ### Request Duration
 
-Returns the overall request duration in milliseconds.
+Returns the overall request duration in milliseconds:
 
 ```php
 $result->requests()->duration()->med();
@@ -173,7 +170,7 @@ $result->requests()->duration()->med();
 <a name="the-stress-function-requests-count"></a>
 ### Requests Count
 
-Returns the number of requests made.
+Returns the number of requests made:
 
 ```php
 $result->requests()->count();
@@ -182,7 +179,7 @@ $result->requests()->count();
 <a name="the-stress-function-requests-rate"></a>
 ### Requests Rate
 
-Returns the number of requests made per second.
+Returns the number of requests made per second:
 
 ```php
 $result->requests()->rate();
@@ -191,7 +188,7 @@ $result->requests()->rate();
 <a name="the-stress-function-requests-failed-count"></a>
 ### Requests Failed Count
 
-Returns the number of requests that failed.
+Returns the number of requests that failed:
 
 ```php
 $result->requests()->failed()->count();
@@ -200,7 +197,7 @@ $result->requests()->failed()->count();
 <a name="the-stress-function-requests-failed-rate"></a>
 ### Requests Failed Rate
 
-Returns the number of requests that failed per second.
+Returns the number of requests that failed per second:
 
 ```php
 $result->requests()->failed()->rate();
@@ -209,7 +206,7 @@ $result->requests()->failed()->rate();
 <a name="the-stress-function-requests-ttfb-duration"></a>
 ### Requests Time To First Byte Duration / TTFB
 
-Returns the request time to first byte duration in milliseconds.
+Returns the request time to first byte duration in milliseconds:
 
 ```php
 $result->requests()->ttfb()->duration()->med();
@@ -222,9 +219,9 @@ $result->requests()->ttfb()->duration()->med();
 <a name="the-stress-function-requests-dns-lookup-duration"></a>
 ### Requests DNS Lookup Duration
 
-> This metric is affected by the network latency between the client and the DNS server.
+> **Note:** This metric is affected by the network latency between the client and the DNS server.
 
-Returns the request DNS lookup duration in milliseconds.
+Returns the request DNS lookup duration in milliseconds:
 
 ```php
 $result->requests()->dnsLookup()->duration()->med();
@@ -237,9 +234,9 @@ $result->requests()->dnsLookup()->duration()->med();
 <a name="the-stress-function-requests-tls-handshaking-duration"></a>
 ### Requests TLS Handshaking Duration
 
-> This metric is affected by the network latency between the client and the server.
+> **Note:** This metric is affected by the network latency between the client and the server.
 
-Returns the request TLS handshaking duration in milliseconds.
+Returns the request TLS handshaking duration in milliseconds:
 
 ```php
 $result->requests()->tlsHandshaking()->duration()->med();
@@ -252,9 +249,9 @@ $result->requests()->tlsHandshaking()->duration()->med();
 <a name="the-stress-function-requests-download-duration"></a>
 ### Requests Download Duration
 
-> This metric is affected by the network latency between the client and the server.
+> **Note:** This metric is affected by the network latency between the client and the server.
 
-Returns the request download duration in milliseconds.
+Returns the request download duration in milliseconds:
 
 ```php
 $result->requests()->download()->duration()->med();
@@ -265,9 +262,9 @@ $result->requests()->download()->duration()->med();
 ```
 
 <a name="the-stress-function-requests-download-data-count"></a>
-#### Requests Download Data Count
+### Requests Download Data Count
 
-Returns the request download data count in bytes.
+Returns the request download data count in bytes:
 
 ```php
 $result->requests()->download()->data()->count();
@@ -276,7 +273,7 @@ $result->requests()->download()->data()->count();
 <a name="the-stress-function-requests-download-data-rate"></a>
 ### Requests Download Data Rate
 
-Returns the request download data rate in bytes per second.
+Returns the request download data rate in bytes per second:
 
 ```php
 $result->requests()->download()->data()->rate();
@@ -285,9 +282,9 @@ $result->requests()->download()->data()->rate();
 <a name="the-stress-function-requests-upload-duration"></a>
 ### Requests Upload Duration
 
-> This metric is affected by the network latency between the client and the server.
+> **Note:** This metric is affected by the network latency between the client and the server.
 
-Returns the request upload duration in milliseconds.
+Returns the request upload duration in milliseconds:
 
 ```php
 $result->requests()->upload()->duration()->med();
@@ -300,7 +297,7 @@ $result->requests()->upload()->duration()->med();
 <a name="the-stress-function-requests-upload-data-count"></a>
 ### Requests Upload Data Count
 
-Returns the request upload data count in bytes.
+Returns the request upload data count in bytes:
 
 ```php
 $result->requests()->upload()->data()->count();
@@ -309,7 +306,7 @@ $result->requests()->upload()->data()->count();
 <a name="the-stress-function-requests-upload-data-rate"></a>
 ### Requests Upload Data Rate
 
-Returns the request upload data rate in bytes per second.
+Returns the request upload data rate in bytes per second:
 
 ```php
 $result->requests()->upload()->data()->rate();
@@ -318,7 +315,7 @@ $result->requests()->upload()->data()->rate();
 <a name="the-stress-function-test-run-count"></a>
 ### Test Run Concurrency
 
-Returns the number of concurrent requests made during the stress test, which is the value you set using the `--concurrency` option or the `concurrently` method.
+Returns the number of concurrent requests made during the stress test, which is the value you set using the `--concurrency` option or the `concurrently` method:
 
 ```php
 $result->testRun()->concurrency();
@@ -327,7 +324,7 @@ $result->testRun()->concurrency();
 <a name="the-stress-function-test-run-duration"></a>
 ### Test Run Duration
 
-Returns the duration of the stress test, which is the value you set using the `--duration` option or the `for()->seconds()` method.
+Returns the duration of the stress test, which is the value you set using the `--duration` option or the `for()->seconds()` method:
 
 ```php
 $result->testRun()->duration();
@@ -335,4 +332,4 @@ $result->testRun()->duration();
 
 ---
 
-In this chapter, we've seen how to use Pest's Stress Testing plugin (aka Stressless) to stress test a given URL and set expectations on the result. Next, let's explore how to evaluate the quality of LLM agents and AI-generated output directly from your test suite: [Evals](/docs/evals)
+In this chapter, we've seen how to use Pest's Stress Testing plugin (also known as Stressless) to stress test a given URL and set expectations on the result. Next, let's explore how to evaluate the quality of LLM agents and AI-generated output directly from your test suite: [Evals](/docs/evals)

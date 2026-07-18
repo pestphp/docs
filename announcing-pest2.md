@@ -7,7 +7,7 @@ description: The Pest team is thrilled to unveil the release of Pest 2.0 after a
 
 The Pest team is thrilled to unveil the release of Pest 2.0 after a development period of 18 months and over 500 commits. This release introduces several features that will improve your experience. Among the enhancements are robust new plugins, refined syntax, and powerful options that streamline testing, enhance usability, and boost productivity.
 
-Today we’re finally making the long-awaited release of Pest 2.0. Our creator is eager to showcase the new features this version has to offer. Tune in to the video below to learn more.
+Today, we're finally making the long-awaited release of Pest 2.0. Pest's creator, Nuno Maduro, is eager to showcase the new features this version has to offer. Tune in to the video below to learn more:
 
 <div class="content-center" markdown="0">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/9EGPo_enEc8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -21,7 +21,7 @@ Pest 2.0 marks a major milestone in our development, packed with powerful featur
 - **[--compact printer](/docs/optimizing-tests#content-compact-printer)**, a minimal printer that only outputs information about test failures
 - **[--retry option](/docs/filtering-tests#retry)**, for saving time by running only previously unsuccessful tests
 - **[--dirty option](/docs/filtering-tests#dirty)**, for only running tests with uncommitted changes
-- **[--bail option](/docs/filtering-tests#bail)**, to immediately terminate the test suite upon encountering an error or failure.
+- **[--bail option](/docs/filtering-tests#bail)**, to immediately terminate the test suite upon encountering an error or failure
 - **[todo()](/docs/skipping-tests#content-creating-todos)** method, for creating todos within your test suite
 - **[Expectation Interceptors and Pipes](/docs/custom-expectations#content-intercept-expectations)**, allowing you to tailor your expectations to fit your specific testing needs
 - **[Scoped Datasets](/docs/datasets#content-scoped-datasets)**, for creating datasets that pertain only to a specific feature or set of folders
