@@ -121,7 +121,7 @@ jobs:
       - run: composer install --no-interaction --prefer-dist
 
       - name: Run tests
-        run: ./vendor/bin/pest --parallel --tia --coverage
+        run: ./vendor/bin/pest --parallel --tia --coverage --fresh
 
       - name: Resolve TIA baseline path
         id: baseline
