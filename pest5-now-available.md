@@ -196,16 +196,22 @@ If you add new test files before updating the timings, your tests still run — 
 <a name="new-expectations"></a>
 ## New Expectations
 
-Pest 5 also brings a couple of new additions to the expectation API. Sometimes you may wish to assert that a value is a well-formed email address or a valid ULID — two checks common enough that writing them by hand quickly becomes tedious.
+Pest 5 also brings new additions to the expectation API. Sometimes you may wish to assert that a value is a well-formed email address, a valid IP address, or a ULID — checks common enough that writing them by hand quickly becomes tedious.
 
-Thankfully, Pest now provides `toBeEmail()` and `toBeUlid()` for exactly these cases:
+Thankfully, Pest now provides `toBeEmail()`, `toBeUlid()`, `toBeIpAddress()`, `toBeMacAddress()`, `toBeHostname()`, `toBeDomain()`, `toBeBase64()`, and `toBeHexadecimal()` for exactly these cases:
 
 ```php
 expect('nuno@pestphp.com')->toBeEmail();
 expect('01ARZ3NDEKTSV4RRFFQ69G5FAV')->toBeUlid();
+expect('192.168.1.1')->toBeIpAddress();
+expect('00:1a:2b:3c:4d:5e')->toBeMacAddress();
+expect('example.com')->toBeHostname();
+expect('example.co.uk')->toBeDomain();
+expect('Zm9vYmFy')->toBeBase64();
+expect('deadbeef')->toBeHexadecimal();
 ```
 
-Of course, both expectations may be negated with `not`. To explore the full set of available matchers, check out the [Expectations documentation](/docs/expectations).
+Of course, each of these expectations may be negated with `not`. To explore the full set of available matchers, check out the [Expectations documentation](/docs/expectations).
 
 <a name="on-top-of-php-84--phpunit-13"></a>
 ## On Top of PHP 8.4 & PHPUnit 13
