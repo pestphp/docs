@@ -38,9 +38,7 @@ test('sum', function () {
 
 After writing your test code, it is time to run your tests using Pest. When you execute the `./vendor/bin/pest` command, Pest will display a message indicating whether your tests passed or failed:
 
-<div class="code-snippet">
-    <img src="/assets/img/sum.webp?1" style="--lines: 5" />
-</div>
+<div class="terminal not-prose"><div class="l">&nbsp;&nbsp;<span class="chip pass">PASS</span>&nbsp;&nbsp;<span class="white">Tests\Unit\SumTest</span></div><div class="l">&nbsp;&nbsp;<span class="green">✓</span> sum</div><div class="l">&nbsp;</div><div class="l"><span class="gray">Tests:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="green b">1 passed</span> <span class="gray">(1 assertions)</span></div><div class="l"><span class="gray">Duration:</span>&nbsp;&nbsp;&nbsp;<span class="white">0.03s</span></div></div>
 
 As an alternative to the `test()` function, Pest provides the convenient `it()` function that prefixes the test description with the word "it", making your tests more readable:
 
@@ -54,9 +52,7 @@ it('performs sums', function () {
 
 In this case, when you run the `./vendor/bin/pest` command, the output will include the description "it performs sums", along with the result of the test:
 
-<div class="code-snippet">
-    <img src="/assets/img/itsum.webp?1" style="--lines: 5" />
-</div>
+<div class="terminal not-prose"><div class="l">&nbsp;&nbsp;<span class="chip pass">PASS</span>&nbsp;&nbsp;<span class="white">Tests\Unit\SumTest</span></div><div class="l">&nbsp;&nbsp;<span class="green">✓</span> it performs sums</div><div class="l">&nbsp;</div><div class="l"><span class="gray">Tests:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="green b">1 passed</span> <span class="gray">(1 assertions)</span></div><div class="l"><span class="gray">Duration:</span>&nbsp;&nbsp;&nbsp;<span class="white">0.05s</span></div></div>
 
 Finally, you may also use the `describe()` function to group related tests together. For instance, you may use the `describe()` function to group all your tests related to the `sum()` function:
 

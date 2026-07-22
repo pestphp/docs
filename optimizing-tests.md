@@ -43,9 +43,7 @@ To identify the slowest tests and optimize their execution, you may use Pest's `
 
 For example, imagine you run your test suite and see the following output:
 
-<div class="code-snippet">
-    <img src="/assets/img/profile.webp?1" style="--lines: 10" />
-</div>
+<div class="terminal not-prose"><div class="l"><span class="gray">Tests:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="green b">100 passed</span> <span class="gray">(153 assertions)</span></div><div class="l"><span class="gray">Duration:</span>&nbsp;&nbsp;&nbsp;<span class="white">11.68s</span></div><div class="l">&nbsp;</div><div class="l">&nbsp;</div><div class="l"><span class="white">Top 10 slowest tests:</span></div><div class="l row"><span><span class="dim">Tests\Feature\UserTest</span> <span class="dim">></span> <span class="white">create user</span></span><span class="lead"></span><span class="red b">6.27s</span></div><div class="l row"><span><span class="dim">Tests\Feature\OrderTest</span> <span class="dim">></span> <span class="white">create order</span></span><span class="lead"></span><span class="red b">4.91s</span></div><div class="l row"><span><span class="dim">Tests\Feature\ProductTest</span> <span class="dim">></span> <span class="white">create product</span></span><span class="lead"></span><span class="amber b">0.24s</span></div><div class="l"><span class="dim">...</span></div><div class="l" style="text-align:right"><span class="gray">(98.88% of 11.68s) 11.55s</span></div></div>
 
 As you can see, the `UserTest > create user` and `OrderTest > create order` tests are taking significantly longer than the others. By analyzing these tests, you may discover that they are executing several inefficient database queries or performing other expensive operations that could be optimized to reduce their execution time.
 
@@ -73,9 +71,7 @@ For more details on configuring sharding in CI, including GitHub Actions example
 
 If you are working with a large number of tests, it can be helpful to concentrate solely on the failing ones. You may use the `--compact` printer to instruct Pest to only display test failures, making it easier to pinpoint and resolve any problems without the noise of all your successful tests.
 
-<div class="code-snippet">
-    <img src="/assets/img/compact.webp?1" style="--lines: 11" />
-</div>
+<div class="terminal not-prose"><div class="l"><span class="green">→</span> <span class="white">./vendor/bin/pest --compact</span></div><div class="l">&nbsp;</div><div class="l"><span class="red">⨯</span><span class="dim">&nbsp;·············································································</span></div><div class="l"><span class="dim">·······································</span></div><div class="l">&nbsp;</div><hr class="hr hr-red"><div class="l">&nbsp;&nbsp;<span class="chip fail">FAILED</span>&nbsp;&nbsp;<span class="gray">Tests\Unit\ExampleTest</span> <span class="dim">></span> <span class="gray">that true is true</span></div><div class="l">&nbsp;&nbsp;<span class="gray">Failed asserting that true is false.</span></div><div class="l">&nbsp;</div><div class="l"><span class="dim">at</span> <span class="green">tests/Unit/ExampleTest.php:4</span></div><div class="cl"><span class="mk"></span><span class="ln">1</span><span class="src"> <span class="dim">&lt;?php</span></span></div></div>
 
 Furthermore, since the `--compact` printer produces simpler output, test speed may improve by a few milliseconds, as there is less input/output required for each test.
 

@@ -15,9 +15,7 @@ it('has home', function () {
 
 When running your tests, Pest will inform you about any tests that were skipped.
 
-<div class="code-snippet">
-    <img src="/assets/img/skip.webp?1" style="--lines: 2" />
-</div>
+<div class="terminal not-prose"><div class="l">&nbsp;&nbsp;<span class="chip warn">WARN</span>&nbsp;&nbsp;<span class="white">Tests\Feature\HomepageTest</span></div><div class="l">&nbsp;&nbsp;<span class="amber">-</span> it has home</div></div>
 
 You may also provide a reason for skipping the test, which Pest will display when running your suite:
 

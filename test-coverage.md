@@ -31,9 +31,7 @@ Once you have configured your code coverage settings and installed a coverage dr
 
 When you use the `--coverage` option, the test suite runs normally, but with the added benefit of displaying a list of your project files and their corresponding coverage results:
 
-<div class="code-snippet">
-    <img src="/assets/img/coverage.webp?1" style="--lines: 12" />
-</div>
+<div class="terminal not-prose"><div class="l"><span class="gray">Tests:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="green b">2 passed</span> <span class="gray">(2 assertions)</span></div><div class="l"><span class="gray">Duration:</span>&nbsp;&nbsp;&nbsp;<span class="white">0.12s</span></div><div class="l"><span class="gray">Coverage:</span>&nbsp;&nbsp;&nbsp;<span class="white">59.4%</span></div><div class="l">&nbsp;</div><div class="l">&nbsp;</div><div class="l row"><span class="white">Console/Kernel</span><span class="lead"></span><span><span class="amber">16</span> <span class="dim">/</span> <span class="amber">66.7%</span></span></div><div class="l row"><span class="white">Exceptions/Handler</span><span class="lead"></span><span class="green">100.0%</span></div><div class="l row"><span class="white">Http/Controllers/Controller</span><span class="lead"></span><span class="green">100.0%</span></div><div class="l row"><span class="white">Http/Kernel</span><span class="lead"></span><span class="green">100.0%</span></div><div class="l row"><span class="white">Http/Middleware/Authenticate</span><span class="lead"></span><span class="red">0.0%</span></div><div class="l row"><span class="white">Http/Middleware/EncryptCookies</span><span class="lead"></span><span class="green">100.0%</span></div><div class="l row"><span class="white">Http/Middleware/PreventRequestsDuringMaintenance</span><span class="lead"></span><span class="green">100.0%</span></div></div>
 
 If there are any uncovered lines in your current test suite, they will be highlighted in red and displayed using their respective line numbers. Multiple uncovered lines will be displayed with two dots (`..`) between them. For instance, if there is missing coverage between lines 52 and 60, you will see `52..60` in red, rather than a single line number.
 
@@ -45,9 +43,7 @@ To ensure comprehensive testing and maintain code quality, it is helpful to set 
 ./vendor/bin/pest --coverage --min=90
 ```
 
-<div class="code-snippet">
-    <img src="/assets/img/coverage-min.webp?1" style="--lines: 9" />
-</div>
+<div class="terminal not-prose"><div class="l row"><span class="white">Providers/AppServiceProvider</span><span class="lead"></span><span class="green">100.0%</span></div><div class="l row"><span class="white">Providers/AuthServiceProvider</span><span class="lead"></span><span class="green">100.0%</span></div><div class="l row"><span class="white">Providers/BroadcastServiceProvider</span><span class="lead"></span><span class="red">0.0%</span></div><div class="l row"><span class="white">Providers/EventServiceProvider</span><span class="lead"></span><span class="green">100.0%</span></div><div class="l row"><span class="white">Providers/RouteServiceProvider</span><span class="lead"></span><span><span class="amber">45</span> <span class="dim">/</span> <span class="amber">90.9%</span></span></div><hr class="hr"><div class="l" style="text-align:right"><span class="gray">Total: 59.4 %</span></div><div class="l">&nbsp;</div><div class="l">&nbsp;&nbsp;<span class="chip fail">FAIL</span>&nbsp;&nbsp;<span class="gray">Code coverage below expected:</span> <span class="red b">59.4 %</span><span class="gray">. Minimum: 90.0 %.</span></div></div>
 
 Alternatively, you may use the `--exactly` option to enforce that the coverage results match the specified value exactly:
 

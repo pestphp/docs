@@ -15,9 +15,7 @@ it('has emails', function (string $email) {
 
 When you run your tests, Pest will automatically add informative descriptions to any test that uses a dataset, outlining the parameters used in each case. This helps you understand the data at a glance and pinpoint the source if a test fails:
 
-<div class="code-snippet">
-    <img src="/assets/img/datasets-emails.webp?1" style="--lines: 3" />
-</div>
+<div class="terminal not-prose"><div class="l">&nbsp;&nbsp;<span class="chip pass">PASS</span>&nbsp;&nbsp;<span class="white">Tests\Unit\EmailTest</span></div><div class="l">&nbsp;&nbsp;<span class="green">✓</span> it has emails with ('enunomaduro@gmail.com')</div><div class="l">&nbsp;&nbsp;<span class="green">✓</span> it has emails with ('other@example.com')</div></div>
 
 Of course, you may supply multiple arguments by providing an array that contains arrays of arguments:
 
@@ -43,9 +41,7 @@ it('has emails', function (string $email) {
 
 When a key is present, Pest will use it when generating the test's description:
 
-<div class="code-snippet">
-    <img src="/assets/img/datasets-named.webp?1" style="--lines: 2" />
-</div>
+<div class="terminal not-prose"><div class="l">&nbsp;&nbsp;<span class="green">✓</span> it has emails with data set "james"</div><div class="l">&nbsp;&nbsp;<span class="green">✓</span> it has emails with data set "taylor"</div></div>
 
 If the test name includes `:dataset`, the description will be interpolated into the test name at that location:
 
@@ -201,9 +197,7 @@ test('business is closed on day', function(string $business, string $day) {
 
 When you run the example above, Pest's output will contain a description of each validated combination:
 
-<div class="code-snippet">
-    <img src="/assets/img/datasets-businesshours.webp?1" style="--lines: 10" />
-</div>
+<div class="terminal not-prose"><div class="l">&nbsp;&nbsp;<span class="chip pass">PASS</span>&nbsp;&nbsp;<span class="white">Tests\Feature\ExampleTest</span></div><div class="l">&nbsp;&nbsp;<span class="green">✓</span> business is closed on day with ('Office') / ('Saturday')</div><div class="l">&nbsp;&nbsp;<span class="green">✓</span> business is closed on day with ('Office') / ('Sunday')</div><div class="l">&nbsp;&nbsp;<span class="green">✓</span> business is closed on day with ('Bank') / ('Saturday')</div><div class="l">&nbsp;&nbsp;<span class="green">✓</span> business is closed on day with ('Bank') / ('Sunday')</div><div class="l">&nbsp;&nbsp;<span class="green">✓</span> business is closed on day with ('School') / ('Saturday')</div><div class="l">&nbsp;&nbsp;<span class="green">✓</span> business is closed on day with ('School') / ('Sunday')</div><div class="l">&nbsp;</div><div class="l"><span class="gray">Tests:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="green b">6 passed</span> <span class="gray">(6 assertions)</span></div><div class="l"><span class="gray">Duration:</span>&nbsp;&nbsp;&nbsp;<span class="white">0.11s</span></div></div>
 
 ## Describe Blocks With Datasets
 

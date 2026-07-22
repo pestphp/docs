@@ -30,9 +30,7 @@ Finally, you may run your tests by executing the `./vendor/bin/pest` command:
 
 Here is an example of the output displayed when running Pest in a fresh project:
 
-<div class="code-snippet">
-    <img src="/assets/img/pestinstall.webp?1" style="--lines: 10" />
-</div>
+<div class="terminal not-prose"><div class="l"><span class="green">→</span> <span class="white">./vendor/bin/pest</span></div><div class="l">&nbsp;</div><div class="l">&nbsp;&nbsp;<span class="chip pass">PASS</span>&nbsp;&nbsp;<span class="white">Tests\Unit\ExampleTest</span></div><div class="l">&nbsp;&nbsp;<span class="green">✓</span> that true is true</div><div class="l">&nbsp;</div><div class="l">&nbsp;&nbsp;<span class="chip pass">PASS</span>&nbsp;&nbsp;<span class="white">Tests\Feature\ExampleTest</span></div><div class="l">&nbsp;&nbsp;<span class="green">✓</span> it returns a successful response</div><div class="l">&nbsp;</div><div class="l"><span class="gray">Tests:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="green b">2 passed</span> <span class="gray">(2 assertions)</span></div><div class="l"><span class="gray">Duration:</span>&nbsp;&nbsp;&nbsp;<span class="white">0.09s</span></div></div>
 
 If you are planning on using browser testing, you may install the `pest-plugin-browser` package to get started with browser testing in Pest. For more information, check out the [Browser Testing](/docs/browser-testing) documentation.
 

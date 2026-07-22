@@ -29,9 +29,7 @@ it('has a contact page', function () {
 
 When running your tests, Pest will inform you about any tests that are todos, so you don't forget them and can see them in the test results:
 
-<div class="code-snippet">
-    <img src="/assets/img/todo.webp?1" style="--lines: 5" />
-</div>
+<div class="terminal not-prose"><div class="l">&nbsp;&nbsp;<span class="chip todo">TODO</span>&nbsp;&nbsp;<span class="white">Tests\Feature\HomepageTest</span> <span class="gray">- 1 todo</span></div><div class="l">&nbsp;&nbsp;<span class="green">↓</span> it has home</div><div class="l">&nbsp;</div><div class="l"><span class="gray">Tests:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="green b">1 todo</span> <span class="gray">(0 assertions)</span></div><div class="l"><span class="gray">Duration:</span>&nbsp;&nbsp;&nbsp;<span class="white">0.12s</span></div></div>
 
 If you have one or more todos, you may wish to view them separately from the rest of your test suite. To accomplish this, you may include the `--todos` option when running Pest:
 

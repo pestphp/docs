@@ -21,9 +21,7 @@ test('child', function () {
 
 In this example, the `child` test will be triggered once the `parent` test has successfully completed:
 
-<div class="code-snippet">
-    <img src="/assets/img/depends.webp?1" style="--lines: 6" />
-</div>
+<div class="terminal not-prose"><div class="l">&nbsp;&nbsp;<span class="chip pass">PASS</span>&nbsp;&nbsp;<span class="white">Tests\Unit\ExampleTest</span></div><div class="l">&nbsp;&nbsp;<span class="green">✓</span> parent</div><div class="l">&nbsp;&nbsp;<span class="green">✓</span> child</div><div class="l">&nbsp;</div><div class="l"><span class="gray">Tests:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="green b">2 passed</span> <span class="gray">(3 assertions)</span></div><div class="l"><span class="gray">Duration:</span>&nbsp;&nbsp;&nbsp;<span class="white">0.05s</span></div></div>
 
 If the `parent` test fails, the `child` test will be bypassed, and an informative message will be displayed in your test results:
 
@@ -39,9 +37,7 @@ test('child', function () {
 
 The example above will result in the following output:
 
-<div class="code-snippet">
-    <img src="/assets/img/depends-fail.webp?1" style="--lines: 3" />
-</div>
+<div class="terminal not-prose"><div class="l">&nbsp;&nbsp;<span class="chip fail">FAIL</span>&nbsp;&nbsp;<span class="white">Tests\Unit\ExampleTest</span></div><div class="l">&nbsp;&nbsp;<span class="red">⨯</span> parent</div><div class="l">&nbsp;&nbsp;<span class="amber">-</span> child <span class="gray">→</span> <span class="amber">This test depends on "parent" to pass</span></div></div>
 
 It is important to remember that the `it()` function prefixes the test with "it" by default. Thus, when referencing the test name via the `depends()` method, you should include the "it " prefix:
 
@@ -57,9 +53,7 @@ test('child', function () {
 
 This results in the following output:
 
-<div class="code-snippet">
-    <img src="/assets/img/depends-pass.webp?1" style="--lines: 6" />
-</div>
+<div class="terminal not-prose"><div class="l">&nbsp;&nbsp;<span class="chip pass">PASS</span>&nbsp;&nbsp;<span class="white">Tests\Unit\ExampleTest</span></div><div class="l">&nbsp;&nbsp;<span class="green">✓</span> it is the parent</div><div class="l">&nbsp;&nbsp;<span class="green">✓</span> child</div><div class="l">&nbsp;</div><div class="l"><span class="gray">Tests:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="green b">2 passed</span> <span class="gray">(2 assertions)</span></div><div class="l"><span class="gray">Duration:</span>&nbsp;&nbsp;&nbsp;<span class="white">0.03s</span></div></div>
 
 Parent tests may even provide return values that can be accessed as arguments in the `child` test:
 

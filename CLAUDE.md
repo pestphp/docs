@@ -90,7 +90,7 @@ Editorialize positively, but from a **small, controlled vocabulary**, and almost
 - **Reserve `---` horizontal rules for the end-of-page footer** that links onward ("Continue to our next section: [Expectations →](/docs/expectations)"). Never use them to separate sections mid-page — headings carry the structure.
 - **Use bold sparingly in prose.** A bold lead on a list item ("- **Full-stack verification.** …") is fine; mid-sentence bolding for emphasis should be rare — let sentence structure carry the stress.
 - **Use fenced code blocks with a language hint** (```php, ```bash, ```plain). Keep example code realistic, minimal, and focused on the one concept being taught.
-- **Terminal output is shown via the existing `<div class="code-snippet">` image convention,** not pasted as text — follow the surrounding pages.
+- **Terminal output is rendered as hand-authored HTML in a `<div class="terminal not-prose">` block** (styled by `.docs-main .terminal` in `resources/css/app.css`), not as an image or a fenced block — follow the surrounding pages. Each line is a `<div class="l">`; color spans use the palette classes (`pass`/`fail`/`warn`/`todo` chips, `green`/`red`/`amber`/`white`/`gray`/`dim`, etc.); keep the whole block on a single line with no blank lines inside it, or CommonMark will break the HTML block.
 - **Link generously to related pages** with the `/docs/{page}` convention so readers can explore adjacent topics.
 - Use **American English** spelling and conventions throughout.
 
