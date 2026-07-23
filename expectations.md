@@ -109,6 +109,12 @@ With the Pest expectation API, you have access to an extensive collection of ind
 - [`toBeUrl()`](#expect-toBeUrl)
 - [`toBeUuid()`](#expect-toBeUuid)
 - [`toBeUlid()`](#expect-toBeUlid)
+- [`toBeBase64()`](#expect-toBeBase64)
+- [`toBeDomain()`](#expect-toBeDomain)
+- [`toBeHexadecimal()`](#expect-toBeHexadecimal)
+- [`toBeHostname()`](#expect-toBeHostname)
+- [`toBeIpAddress()`](#expect-toBeIpAddress)
+- [`toBeMacAddress()`](#expect-toBeMacAddress)
 
 </div>
 
@@ -854,6 +860,60 @@ This expectation ensures that `$value` is a ULID:
 
 ```php
 expect('01ARZ3NDEKTSV4RRFFQ69G5FAV')->toBeUlid();
+```
+
+<a name="expect-toBeBase64"></a>
+### `toBeBase64()`
+
+This expectation ensures that `$value` is a valid base64-encoded string:
+
+```php
+expect('Zm9vYmFy')->toBeBase64();
+```
+
+<a name="expect-toBeDomain"></a>
+### `toBeDomain()`
+
+This expectation ensures that `$value` is a valid domain name:
+
+```php
+expect('example.com')->toBeDomain();
+```
+
+<a name="expect-toBeHexadecimal"></a>
+### `toBeHexadecimal()`
+
+This expectation ensures that `$value` is a valid hexadecimal string:
+
+```php
+expect('deadbeef')->toBeHexadecimal();
+```
+
+<a name="expect-toBeHostname"></a>
+### `toBeHostname()`
+
+This expectation ensures that `$value` is a valid hostname:
+
+```php
+expect('example.com')->toBeHostname();
+```
+
+<a name="expect-toBeIpAddress"></a>
+### `toBeIpAddress()`
+
+This expectation ensures that `$value` is a valid IP address:
+
+```php
+expect('192.168.1.1')->toBeIpAddress();
+```
+
+<a name="expect-toBeMacAddress"></a>
+### `toBeMacAddress()`
+
+This expectation ensures that `$value` is a valid MAC address:
+
+```php
+expect('00:1a:2b:3c:4d:5e')->toBeMacAddress();
 ```
 
 <a name="expect-and"></a>
