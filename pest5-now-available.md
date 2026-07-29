@@ -33,6 +33,8 @@ All other Pest maintained plugins should be updated to version `^5.0` as well. N
 
 This is the one we've been most excited to share. The **Tia Engine** — short for Test Impact Analysis — drastically reduces the time it takes to run your test suite by re-running only the tests affected by your latest changes.
 
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/9vt8hkAWLRM" title="the fastest testing engine in the world (pest 5, day 1/6)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 To get started, add the `--tia` flag to any Pest invocation:
 
 ```bash
@@ -54,6 +56,8 @@ For teams, you may have CI record the baseline once per merge to `main` so every
 ## The Agent Plugin
 
 AI coding agents are great at writing code, but they are terrible at knowing whether that code actually *works*. The **Agent** plugin closes that loop, giving your agent a single command to run a one-off verification against your application.
+
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/Z6878g7OSMo" title="10x better than vercel agent-browser (pest 5, day 2/6)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 To get started, install the plugin via Composer:
 

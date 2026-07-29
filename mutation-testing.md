@@ -148,7 +148,7 @@ To ensure comprehensive testing and maintain testing quality, you should set min
 ./vendor/bin/pest --mutate --min=40
 ```
 
-<img src="/assets/mutation-testing-min.png" style="width: 100%;" />
+<div class="terminal not-prose"><div class="l"><span class="gray">Mutations:</span>&nbsp;&nbsp;&nbsp;<span class="red b">88 untested</span><span class="gray">, </span><span class="green b">45 tested</span></div><div class="l"><span class="gray">Score:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="red b">33.83%</span></div><div class="l"><span class="gray">Duration:</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="white">7.23s</span></div><div class="l"><span class="gray">Parallel:</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="white">10 processes</span></div><div class="l">&nbsp;</div><div class="l">&nbsp;&nbsp;<span class="chip fail">FAIL</span>&nbsp;&nbsp;<span class="gray">Mutation score below expected:</span> <span class="red b">33.8 %</span><span class="gray">. Minimum:</span> <span class="white b">40.0 %</span><span class="gray">.</span></div></div>
 
 <a name="options-and-modifiers"></a>
 ## Options & Modifiers
