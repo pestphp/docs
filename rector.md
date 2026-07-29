@@ -18,13 +18,11 @@ composer require rector/rector --dev
 
 ## Rule Sets
 
-The plugin groups its rules into predefined sets, so that you may enable exactly the transformations you need. You may register these sets in your project's `rector.php` file, and combine as many of them as you wish.
-
-### Coding Style
+The plugin provides a predefined rule set: `PestSetList::CODING_STYLE`. You may register this set in your project's `rector.php` file.
 
 The `CODING_STYLE` set rewrites raw PHP assertions into Pest's expressive, built-in matchers, and simplifies redundant expectation patterns. For example, it converts `expect(count($array))->toBe(3)` into `expect($array)->toHaveCount(3)`.
 
-It also merges consecutive expectations on the same value into a single, fluent chain, and orders type checks first within each chain, so that your assertions read from the most general to the most specific:
+It also merges consecutive expectations on the same value into a single, fluent chain, and orders type checks first within each chain, so that your assertions read from the most general to the most specific. In addition, it includes rules to upgrade your test suite between major Pest versions:
 
 ```php
 use Pest\Rector\Set\PestSetList;
@@ -36,33 +34,6 @@ return RectorConfig::configure()
         PestSetList::CODING_STYLE,
     ]);
 ```
-
-### Pest Version Upgrades
-
-To upgrade your test suite between major Pest versions, you may reach for the level sets provided by `PestLevelSetList`. Unlike the sets above, a level set is cumulative: it applies every migration up to and including the version you target, so that a suite on an older version arrives fully up to date in a single pass:
-
-```php
-use Pest\Rector\Set\PestLevelSetList;
-use Rector\Config\RectorConfig;
-
-// Upgrade from Pest v2 to v3
-return RectorConfig::configure()
-    ->withPaths([__DIR__ . '/tests'])
-    ->withSets([PestLevelSetList::UP_TO_PEST_30]);
-```
-
-To upgrade to Pest v4, target `UP_TO_PEST_40` instead. As it is cumulative, it includes every transformation from `UP_TO_PEST_30` as well, so you may upgrade from either Pest v2 or v3 in one step:
-
-```php
-use Pest\Rector\Set\PestLevelSetList;
-use Rector\Config\RectorConfig;
-
-return RectorConfig::configure()
-    ->withPaths([__DIR__ . '/tests'])
-    ->withSets([PestLevelSetList::UP_TO_PEST_40]);
-```
-
-Of course, if you would rather apply the migration rules for a single version in isolation, the individual `PestSetList::PEST_30` and `PestSetList::PEST_40` sets remain available as well.
 
 ## Preview & Apply Changes
 
