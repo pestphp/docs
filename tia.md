@@ -9,6 +9,8 @@ The **Tia Engine** — short for Test Impact Analysis — is a convenient way to
 
 A typical Laravel suite that used to take 10 minutes now replays in around 4 seconds. Edits to a single Blade template re-run a handful of feature tests. Comment-only edits, formatter passes, and README touches re-run nothing at all.
 
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/9vt8hkAWLRM" title="the fastest testing engine in the world (pest 5, day 1/6)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 To get started, you may add the `--tia` flag to any Pest invocation:
 
 ```bash

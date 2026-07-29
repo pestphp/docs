@@ -9,6 +9,8 @@ description: The Agent plugin gives AI coding agents a single command to verify 
 
 AI coding agents excel at writing code, yet they often have no way to know whether that code actually works. After editing a controller, a Livewire component, a Blade template, or a bit of CSS, an agent cannot *see* the result — so it guesses, then moves on.
 
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/Z6878g7OSMo" title="10x better than vercel agent-browser (pest 5, day 2/6)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 Thankfully, the Agent plugin closes that loop. It gives your agent a single command to run a one-off verification against your application:
 
 ```bash
