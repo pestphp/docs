@@ -11,6 +11,8 @@ Testing software that talks to a Large Language Model is different from testing 
 
 Pest's Evals plugin lets you write these evaluations with the same expressive `expect()` API you already use for your tests. You may combine deterministic checks with AI-powered scorers such as LLM-as-judge, semantic similarity, and agent trajectory analysis.
 
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/rzqnm4Jpz3U" title="evals: testing agents like actual code (pest 5, day 3/6)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 To get started, require the plugin via Composer:
 
 ```bash

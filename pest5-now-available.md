@@ -86,6 +86,8 @@ To learn more, including how to teach your agent to use the plugin via [Laravel 
 
 Testing software that talks to a Large Language Model is different from testing ordinary code. The same prompt can produce a different response every time, so a plain equality assertion is rarely enough. Pest's **Evals** plugin lets you evaluate the *quality* of an AI's output with the same expressive `expect()` API you already use for your tests.
 
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/rzqnm4Jpz3U" title="evals: testing agents like actual code (pest 5, day 3/6)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 To get started, install the plugin via Composer:
 
 ```bash
