@@ -95,11 +95,39 @@ This rule chains multiple `expect()` calls on the same value into a single chain
 +    ->toBeInt();
 ```
 
+By default, the rule also joins expectations on different values with `->and()`:
+
 ```diff
 -expect($a)->toBe(10);
 -expect($b)->toBe(10);
 +expect($a)->toBe(10)
 +    ->and($b)->toBe(10);
+```
+
+#### Configuration
+
+Sometimes, you may wish to only merge expectations on the same value, leaving expectations on different values untouched. To accomplish this, you may set the `merge_different_variables` option to `false` in your project's `rector.php` file:
+
+```php
+use Pest\Rector\Rules\ChainExpectCallsRector;
+use Rector\Config\RectorConfig;
+
+return RectorConfig::configure()
+    ->withPaths([__DIR__ . '/tests'])
+    ->withConfiguredRule(ChainExpectCallsRector::class, [
+        'merge_different_variables' => false,
+    ]);
+```
+
+The option defaults to `true`, so expectations on different values will be joined with `->and()` unless you opt out. For example, with `merge_different_variables` set to `false`, only expectations on the same value will be merged:
+
+```diff
+-expect($a)->toBe(10);
+-expect($a)->toBeInt();
+-expect($b)->toBe(10);
++expect($a)->toBe(10)
++    ->toBeInt();
++expect($b)->toBe(10);
 ```
 
 ### ConvertAssertToExpectRector
