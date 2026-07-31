@@ -122,6 +122,8 @@ There's far more you can score: assert an agent resists prompt injection with `t
 
 One of the most requested features from the community: **first-party PHPStan support**. By default, PHPStan does not understand Pest's functional API — functions like `it()`, `test()`, `expect()`, and the `$this` available inside your test closures. Pest's PHPStan plugin teaches PHPStan about Pest.
 
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/MiJj66nLwrw" title="fully type-safe tests (pest 5, day 4/6)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 To get started, install the plugin via Composer along with PHPStan:
 
 ```bash

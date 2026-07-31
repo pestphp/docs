@@ -11,6 +11,8 @@ description: Pest's PHPStan plugin teaches PHPStan about Pest, providing accurat
 
 Thankfully, Pest's PHPStan plugin teaches PHPStan about Pest. It provides accurate type inference for your tests and expectations, and adds a set of Pest-specific rules that catch common mistakes before you run your suite.
 
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/MiJj66nLwrw" title="fully type-safe tests (pest 5, day 4/6)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 To get started, require the plugin via Composer:
 
 ```bash
