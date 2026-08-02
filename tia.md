@@ -21,6 +21,8 @@ To get started, you may add the `--tia` flag to any Pest invocation:
 
 The first run is the **baseline** — the engine enables a coverage driver (PCOV or Xdebug) and records the dependency graph as your tests execute. You may expect a small overhead on this run only.
 
+> **Warning:** The Tia Engine is built for local development, and you should not add `--tia` to the command that runs your test suite on CI. Your pipeline exists to verify every test against a clean checkout, so it should always execute the full suite — the single exception is the dedicated job that records the shared baseline, described in [Sharing The Baseline From CI](#sharing-the-baseline-from-ci).
+
 > **Note:** You don't have to pay this baseline cost on every machine. You may have CI record the baseline once and have every developer download it from GitHub Actions, so their very first `--tia` run replays immediately. See [Sharing The Baseline From CI](#sharing-the-baseline-from-ci) to set this up.
 
 Every subsequent run is a **replay**. The engine compares your working tree against the baseline and re-runs only the tests affected by your changes:
@@ -76,11 +78,11 @@ Pest supports a few flags alongside `--tia`:
 | Flag | Behavior |
 |---|---|
 | `--tia` | Replay if a baseline graph exists, otherwise record. |
-| `--no-tia` | Disable TIA for this run, even if `pest()->tia()->always()` is configured. |
+| `--no-tia` | Disable TIA for this run, even if `pest()->tia()->locally()` is configured. |
 | `--tia --fresh` | Discard any existing graph and re-record from scratch. Use this after large refactors or when the graph feels stale. |
 | `--tia --refetch` | Discard the local graph and force a fresh CI baseline fetch, bypassing the 24-hour cooldown that otherwise applies after a fetch found no baseline. |
 | `--tia --filtered` | Narrow PHPUnit to only the affected test files rather than loading all tests and replaying cached results for unaffected ones. Automatically disabled when you pass an explicit test path or a `--coverage` report; if no tests are affected, Pest stops and tells you so. |
-| `--tia --locally` | Equivalent to `pest()->tia()->always()->locally()` — run TIA automatically on local machines but skip on CI. |
+| `--tia --locally` | Equivalent to `pest()->tia()->locally()` — run TIA automatically on local machines but skip on CI. |
 | `--tia --baselined` | Opt in to fetching the shared baseline from CI when no local graph exists or the local graph drifts. |
 | `--baseline` | Print the absolute path of this project's TIA storage directory and exit. Designed for CI uploads — see [Sharing The Baseline From CI](#sharing-the-baseline-from-ci). |
 
@@ -99,6 +101,8 @@ Each enabling flag has an environment variable equivalent, useful for CI matrice
 ## Sharing The Baseline From CI
 
 Recording the baseline locally may take minutes on large suites. Instead, you may have CI record it once per merge to `main`, and every developer downloads the result.
+
+Recording the baseline is the one job where `--tia` belongs on CI. It should live in a workflow of its own — the pipeline that tests your pull requests and commits continues to run the full suite with `./vendor/bin/pest --ci`, without any TIA flags.
 
 Baseline fetching is opt-in. You may enable it with `--tia --baselined` on the command line, the `PEST_TIA_BASELINED=1` environment variable, or — preferred for teams — by calling `pest()->tia()->baselined()` in `tests/Pest.php`. Once enabled, when Pest detects no local graph (or the local graph is out of date) it uses GitHub's CLI to download the latest successful run of a `tia-baseline.yml` workflow's `pest-tia-baseline` artifact. Pest then validates the fetched graph against your project state — if it matches, it is adopted. Otherwise, it is discarded and a local rebuild proceeds.
 
@@ -154,13 +158,24 @@ You may configure TIA behavior in `tests/Pest.php` via `pest()->tia()`:
 
 ```php
 pest()->tia()
-    ->always()     // run TIA on every invocation, no --tia flag needed
-    ->locally()    // restrict always() to local environments only
+    ->locally()    // run TIA on every local invocation, no --tia flag needed
     ->baselined()  // fetch the shared baseline from CI when no local graph exists
     ->filtered();  // narrow PHPUnit to only affected test files
 ```
 
-**`always()`** activates TIA for every `pest` run without requiring the `--tia` flag. Pair it with **`locally()`** to restrict that behavior to local machines — when you pass the `--ci` flag, TIA is skipped automatically. An explicit `--tia` on the command line always takes effect regardless, and `--no-tia` will disable it for a single run.
+Typically, you should reach for **`locally()`**. It activates TIA for every `pest` run without requiring the `--tia` flag, and restricts that behavior to local machines — on CI, or whenever you pass the `--ci` flag, TIA is skipped automatically, so your pipeline keeps running the full suite:
+
+```php
+pest()->tia()->locally();
+```
+
+Alternatively, **`always()`** activates TIA everywhere, CI included. The two are alternatives rather than a pair, so there is no need to chain them — and because the Tia Engine is built for local development, `locally()` is the option you should prefer:
+
+```php
+pest()->tia()->always();
+```
+
+In either case, an explicit `--tia` on the command line always takes effect, and `--no-tia` will disable TIA for a single run.
 
 **`filtered()`** enables filtered mode, equivalent to `--tia --filtered`. In this mode, Pest narrows PHPUnit to only the affected test files rather than loading the full suite and replaying cached results for unaffected tests:
 

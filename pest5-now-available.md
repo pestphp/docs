@@ -50,7 +50,7 @@ Duration: 3.92s
 
 A replay isn't a shortcut that skips work — each cached test stores everything it produced, including the exact lines and branches it covered, so a replayed run reports the same code coverage as a full run. And the dependency tree understands your whole stack: a migration change re-runs only the tests that queried that table, editing a shared JS component walks Vite's module graph to find every Inertia page that imports it, and a comment-only edit or formatter pass re-runs nothing at all. Pest detects Laravel, Symfony, Livewire, Inertia, and browser assets automatically via Composer.
 
-For teams, you may have CI record the baseline once per merge to `main` so every developer downloads the result and starts replaying immediately. To learn more, check out the [Tia Engine documentation](/docs/tia).
+The Tia Engine is built for local development, so you should keep `--tia` out of the command that runs your test suite on CI — your pipeline should always execute the full suite against a clean checkout. The one exception is a dedicated workflow that records the baseline once per merge to `main`, so every developer downloads the result and starts replaying immediately. To learn more, check out the [Tia Engine documentation](/docs/tia).
 
 <a name="the-agent"></a>
 ## The Agent Plugin

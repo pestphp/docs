@@ -181,6 +181,26 @@ Of course, you may customize the scripts above according to your requirements. F
 
 Once you have created your `.chipperci.yml` file, commit and push the `.chipperci.yml` file so Chipper CI can run your tests. Keep in mind that once you make this commit, your test suite will execute on all new commits.
 
+## The Tia Engine And CI
+
+The [Tia Engine](/docs/tia) re-runs only the tests affected by your latest changes, which makes it a wonderful companion while you work locally. On CI, however, you should not pass the `--tia` flag to the command that runs your test suite:
+
+```bash
+./vendor/bin/pest --ci        # runs the full suite on every commit
+./vendor/bin/pest --ci --tia  # replays cached results — not what you want on CI
+```
+
+Your pipeline is the place where every test runs against a clean checkout, so it should always execute the full suite. There is one exception: the dedicated workflow that records the shared baseline your team downloads. That job is separate from your test pipeline, and it is the only place `--tia` belongs on CI:
+
+```yaml
+      - name: Run tests
+        run: ./vendor/bin/pest --parallel --tia --coverage --fresh
+```
+
+For the complete workflow, including how to upload the recorded baseline as an artifact, see [Sharing The Baseline From CI](/docs/tia#sharing-the-baseline-from-ci).
+
+> **Note:** If you enable TIA in your `tests/Pest.php` file, you should use `pest()->tia()->locally()` rather than `always()`, so that TIA is skipped whenever you run Pest with the `--ci` flag.
+
 ## Sharding Your Tests
 
 If you have a large test suite, you may wish to shard your tests across multiple CI jobs to speed up execution time. Pest supports test sharding out of the box, allowing you to split your tests into smaller groups that may be run in parallel.
