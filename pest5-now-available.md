@@ -151,6 +151,8 @@ On top of type inference, the plugin adds Pest-aware rules: static test closures
 
 Pest's **Rector** plugin provides automated refactoring rules powered by [Rector](https://getrector.org/). It helps simplify and modernize your test code — and upgrade between major Pest versions — automatically.
 
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/oNU41o3pz5M" title="rector rewrote 4000 tests while i got coffee (pest 5, day 5/6)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 To get started, install the plugin via Composer along with Rector:
 
 ```bash
@@ -186,6 +188,8 @@ You may preview the changes with `vendor/bin/rector process --dry-run` before ap
 ## Time-Balanced Sharding
 
 Pest 4 introduced test sharding — splitting your suite into chunks that run in parallel across multiple CI machines. Pest 5 refines it with **time-balanced sharding**: instead of splitting tests evenly by count (which can leave one shard running much longer than the others), Pest distributes tests based on their *actual execution time*, so every shard finishes at roughly the same moment.
+
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/bBXsr1ix_dQ" title="time-balanced sharding makes your ci super fast (pest 5, day 6/6)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 To get started, generate the timing data once:
 

@@ -51,6 +51,8 @@ As you can see, the `UserTest > create user` and `OrderTest > create order` test
 
 When running tests in CI, you may split your test suite across multiple jobs using the `--shard` option. Pest supports time-balanced sharding — instead of splitting tests evenly by count, which may leave one shard running much longer than the others, Pest can distribute tests based on actual execution time.
 
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/bBXsr1ix_dQ" title="time-balanced sharding makes your ci super fast (pest 5, day 6/6)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 To enable time-balanced sharding, generate a `tests/.pest/shards.json` file with timing data:
 
 ```bash

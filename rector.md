@@ -9,6 +9,8 @@ description: Pest's Rector plugin provides automated refactoring rules powered b
 
 Pest's Rector plugin provides automated refactoring rules powered by [Rector](https://getrector.org/). It helps you simplify and modernize your test code, as well as upgrade between major Pest versions.
 
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/oNU41o3pz5M" title="rector rewrote 4000 tests while i got coffee (pest 5, day 5/6)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 To get started, require the plugin via Composer and install Rector:
 
 ```bash
