@@ -152,6 +152,9 @@ Pest stores its state at `~/.pest/tia/<project-key>/`, where the project key is 
 
 Sharing state per remote URL means multiple worktrees of the same repository share one cache, while unrelated projects on the same machine stay isolated.
 
+If your setup cannot rely on a home directory — a container that discards it between runs, a monorepo where each package should keep its own cache, or a CI job that prefers a path inside the checkout — you may store the state anywhere you like with [`directory()`](#configuring-the-storage-directory).
+
+<a name="configuration"></a>
 ## Configuration
 
 You may configure TIA behavior in `tests/Pest.php` via `pest()->tia()`:
@@ -188,6 +191,27 @@ pest()->tia()->filtered();
 ```php
 pest()->tia()->baselined();
 ```
+
+<a name="configuring-the-storage-directory"></a>
+### Configuring The Storage Directory
+
+By default, the Tia Engine keeps its graph and cached results outside your project, at `~/.pest/tia/<project-key>/`. You may point it somewhere else with **`directory()`**:
+
+```php
+pest()->tia()->directory('.pest/tia');
+```
+
+Relative paths are resolved from your project root, so the example above stores the state in `.pest/tia/` inside the project. Absolute paths are used as given:
+
+```php
+pest()->tia()->directory('/var/cache/pest-tia');
+```
+
+The path you provide is used verbatim — Pest does not append the `<project-key>` segment it derives for the default location, so each configured directory holds the state of exactly one project. Two worktrees of the same repository using the same project-relative path therefore keep separate caches instead of sharing one.
+
+> **Note:** When the directory lives inside your repository, remember to add it to `.gitignore`. The graph and cached results are machine-specific, and are meant to be shared as a CI artifact rather than committed.
+
+Finally, `./vendor/bin/pest --baseline` always prints the effective storage path, configured or not, so the workflow in [Sharing The Baseline From CI](#sharing-the-baseline-from-ci) keeps working unchanged.
 
 <a name="custom-watch-patterns"></a>
 ## Custom Watch Patterns
