@@ -72,7 +72,11 @@ it('can update the profile', function () {
 });
 ```
 
-If a property is assigned in multiple hooks, its type will be the union of every assigned value. You may also guide the inference with a standard `@var` annotation on the assignment.
+If a property is assigned in multiple hooks, its type will be the union of every assigned value. You may also guide the inference with a standard `@var` annotation on the assignment. Arrow functions work exactly the same as closures:
+
+```php
+beforeEach(fn () => $this->user = User::factory()->create());
+```
 
 ### Expectation Chains
 
@@ -85,6 +89,28 @@ expect($value)   // Expectation<int|string>
 ```
 
 The value's type continues to flow through the entire expectation API, including `->and(...)` and `->not`, and matchers like `toBeInstanceOf()` narrow the value to the given class.
+
+### Narrowing The Enclosing Scope
+
+Type-checking matchers do not only narrow the value inside the chain — they narrow the asserted variable in the enclosing scope as well:
+
+```php
+/** @var int|string $value */
+expect($value)->toBeInt();
+
+$value; // int
+```
+
+This works across statements, for every argument passed to `and()`, and — within the same chain — for subjects used after the assertion:
+
+```php
+expect($components)->toHaveCount(1)
+    ->and($components[0])->toBeInstanceOf(TextInput::class);
+
+$components[0]->label(); // resolved on TextInput
+```
+
+Negated matchers remove types from the variable instead, `toBe()` narrows by identity, and `toEqual()` narrows by loose comparison. Chains the plugin cannot fully understand — such as value-transforming matchers like `json()` or higher order expectations — simply leave the surrounding types untouched.
 
 ### Higher Order Expectations
 
