@@ -23,7 +23,7 @@ The first run is the **baseline** — the engine enables a coverage driver (PCOV
 
 > **Warning:** The Tia Engine is built for local development, and you should not add `--tia` to the command that runs your test suite on CI. Your pipeline exists to verify every test against a clean checkout, so it should always execute the full suite — the single exception is the dedicated job that records the shared baseline, described in [Sharing The Baseline From CI](#sharing-the-baseline-from-ci).
 
-> **Note:** You don't have to pay this baseline cost on every machine. You may have CI record the baseline once and have every developer download it from GitHub Actions, so their very first `--tia` run replays immediately. See [Sharing The Baseline From CI](#sharing-the-baseline-from-ci) to set this up.
+> **Note:** You don't have to pay this baseline cost on every machine. You may have CI record the baseline once and have every developer download it from GitHub Actions or GitLab CI, so their very first `--tia` run replays immediately. See [Sharing The Baseline From CI](#sharing-the-baseline-from-ci) to set this up.
 
 Every subsequent run is a **replay**. The engine compares your working tree against the baseline and re-runs only the tests affected by your changes:
 
@@ -100,13 +100,20 @@ Each enabling flag has an environment variable equivalent, useful for CI matrice
 <a name="sharing-the-baseline-from-ci"></a>
 ## Sharing The Baseline From CI
 
-Recording the baseline locally may take minutes on large suites. Instead, you may have CI record it once per merge to `main`, and every developer downloads the result.
+Recording the baseline locally may take minutes on large suites. Instead, you may have CI record it once per merge to your default branch, and every developer downloads the result.
 
 Recording the baseline is the one job where `--tia` belongs on CI. It should live in a workflow of its own — the pipeline that tests your pull requests and commits continues to run the full suite with `./vendor/bin/pest --ci`, without any TIA flags.
 
-Baseline fetching is opt-in. You may enable it with `--tia --baselined` on the command line, the `PEST_TIA_BASELINED=1` environment variable, or — preferred for teams — by calling `pest()->tia()->baselined()` in `tests/Pest.php`. Once enabled, when Pest detects no local graph (or the local graph is out of date) it uses GitHub's CLI to download the latest successful run of a `tia-baseline.yml` workflow's `pest-tia-baseline` artifact. Pest then validates the fetched graph against your project state — if it matches, it is adopted. Otherwise, it is discarded and a local rebuild proceeds.
+Baseline fetching is opt-in. You may enable it with `--tia --baselined` on the command line, the `PEST_TIA_BASELINED=1` environment variable, or — preferred for teams — by calling `pest()->tia()->baselined()` in `tests/Pest.php`.
 
-> **Note:** Baseline fetching relies on the [GitHub CLI](https://cli.github.com/) (`gh`), so it is only available for repositories hosted on GitHub, and `gh` must be installed and authenticated (`gh auth login`) on the machine doing the fetch. When a fetch cannot proceed — missing CLI, no authentication, a network or rate-limit error, or no baseline artifact yet — Pest reports the reason and falls back to recording a local baseline.
+Once enabled, Pest detects whether your `origin` remote is hosted by GitHub or GitLab and downloads the latest successful baseline using the provider's CLI. Pest then validates the fetched graph against your project state; if it matches, it is adopted. Otherwise, it is discarded and a local rebuild proceeds.
+
+When a fetch cannot proceed because of a missing CLI, no authentication, a network or rate-limit error, or no baseline artifact yet, Pest reports the reason and falls back to recording a local baseline.
+
+<a name="github-actions"></a>
+### GitHub Actions
+
+For repositories hosted on GitHub, baseline fetching relies on the [GitHub CLI](https://cli.github.com/) (`gh`). Therefore, `gh` must be installed and authenticated using `gh auth login` on each machine that downloads the baseline.
 
 Here is a starter workflow you may drop into `.github/workflows/tia-baseline.yml`:
 
@@ -144,7 +151,57 @@ jobs:
 
 The `./vendor/bin/pest --baseline` command prints the absolute path to this project's TIA storage directory (typically `~/.pest/tia/<project-key>/`), which is exactly what `actions/upload-artifact` needs to bundle the recorded graph and coverage cache. Note that `include-hidden-files: true` is required because the baseline lives under a dot-prefixed directory.
 
-After CI runs, every developer with `baselined()` enabled who runs `./vendor/bin/pest --tia` for the first time on the repo will download this baseline and start replaying immediately, paying no record cost.
+By default, Pest looks for the latest successful run of the `tia-baseline.yml` workflow. If your workflow uses a different filename, you may provide it to `baselined()`:
+
+```php
+pest()->tia()->baselined(workflow: 'test-impact-analysis.yml');
+```
+
+<a name="gitlab-ci"></a>
+### GitLab CI
+
+For repositories hosted on GitLab, baseline fetching relies on the [GitLab CLI](https://gitlab.com/gitlab-org/cli) (`glab`). Therefore, `glab` must be installed and authenticated using `glab auth login` on each machine that downloads the baseline.
+
+Here is a starter job you may add to your `.gitlab-ci.yml` file:
+
+```yaml
+stages:
+  - test
+
+tia-baseline:
+  stage: test
+  image: php:8.4-cli
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  # You may omit this section if your CI image already provides these dependencies.
+  before_script:
+    - apt-get update -qq && apt-get install -yqq --no-install-recommends git unzip curl libzip-dev > /dev/null
+    - docker-php-ext-install zip > /dev/null
+    - pecl install xdebug > /dev/null && docker-php-ext-enable xdebug
+    - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+    - composer install --no-interaction --prefer-dist
+  script:
+    - XDEBUG_MODE=coverage ./vendor/bin/pest --parallel --tia --coverage --fresh
+    - BASELINE_PATH=$(./vendor/bin/pest --baseline)
+    - cp "$BASELINE_PATH"/graph.json "$BASELINE_PATH"/coverage.bin.gz .
+  artifacts:
+    paths:
+      - graph.json
+      - coverage.bin.gz
+    expire_in: 30 days
+```
+
+This rule records a baseline whenever a pipeline runs for your default branch, including [scheduled pipelines](https://docs.gitlab.com/ci/pipelines/schedules/) that target that branch.
+
+By default, Pest looks for the latest successful job named `tia-baseline` on your default branch. If your job uses a different name, you may provide it to `baselined()`:
+
+```php
+pest()->tia()->baselined(job: 'test-impact-analysis');
+```
+
+Private projects and self-hosted GitLab instances are supported as well. Once you have authenticated `glab` with a token that can access the project and read its API, Pest will detect the host from your `origin` remote and download the baseline from the corresponding project. For a self-hosted instance, you may select the host while running `glab auth login`.
+
+After CI runs, every developer with `baselined()` enabled who runs `./vendor/bin/pest --tia` for the first time on the repository will download the provider's baseline and start replaying immediately, paying no record cost.
 
 ## Storage
 
