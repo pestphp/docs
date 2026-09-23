@@ -163,6 +163,18 @@ expect(GreetingAgent::class)
 
 These scorers do their grading through the plugin's [drivers](#drivers): the LLM-as-judge scorers use the judge driver, while `toBeSimilar()` uses the embeddings driver. Both default to Laravel AI but can be swapped for any backend.
 
+Rather than asking the judge to invent a number, each judged scorer describes a small set of *levels*, ordered from worst to best, and asks the judge which one best describes the response. Each level maps to a fixed score, so the same verdict always produces the same result. For example, `toBeRelevant()`, `toBeSafe()`, and `toSatisfy()` each grade on five levels, worded for what they measure:
+
+| Level | Score |
+| --- | --- |
+| Completely fails | `0.0` |
+| Mostly fails | `0.25` |
+| Partially meets | `0.5` |
+| Mostly meets, with minor gaps | `0.75` |
+| Fully meets | `1.0` |
+
+With the default threshold of `0.7`, a response that "mostly meets" the scorer's bar passes. Keep in mind that a threshold above `0.75` effectively demands the top level.
+
 ### `toBeRelevant()`
 
 Asserts that the response is relevant to the prompt:
@@ -194,15 +206,15 @@ expect(CapitalCityAgent::class)
     ->toBeCorrect(expected: 'Tokyo');
 ```
 
-Rather than trusting the judge with arithmetic, this scorer asks it to *classify* the relationship between the response and the reference. Each category then maps to a fixed score, so the same classification always produces the same result:
+This scorer asks the judge to classify the factual relationship between the response and the reference, using its own set of levels:
 
-| Category | Meaning | Score |
+| Level | Meaning | Score |
 | --- | --- | --- |
-| `equal` | Same facts as the reference | `1.0` |
-| `approximately_equal` | Minor wording differences | `0.9` |
-| `superset` | All reference facts, plus additional correct ones | `0.8` |
-| `subset` | Some, but not all, reference facts | `0.6` |
-| `disagreement` | Contradicts the reference | `0.0` |
+| Equal | Same facts as the reference | `1.0` |
+| Approximately equal | Minor wording differences | `0.9` |
+| Superset | All reference facts, plus additional correct ones | `0.8` |
+| Subset | Some, but not all, reference facts | `0.6` |
+| Disagreement | Contradicts the reference | `0.0` |
 
 With the default threshold of `0.7`, a response containing extra correct information still passes, while an incomplete one fails. If partial answers are acceptable, you may lower the threshold: `->toBeCorrect(expected: 'Tokyo', threshold: 0.6)`.
 
@@ -305,17 +317,35 @@ expect(GreetingAgent::class)
 
 A scorer decides *what* to measure. If your scorer needs to reach an LLM or produce embeddings to do its measuring, it should go through the [drivers](#drivers) rather than calling a provider directly — that way it inherits whatever backend the project has configured.
 
-When it does, mark the scorer with the matching contract — `RequiresJudge`, `RequiresEmbeddings`, or both. Scorers without these markers are considered deterministic and always run, while marked scorers only run under `--evals` or when a custom driver has been configured — so a regular test run never triggers a real model call:
+When it does, mark the scorer with the matching contract — `RequiresJudge`, `RequiresEmbeddings`, or both. Scorers without these markers are considered deterministic and always run, while marked scorers only run under `--evals` — so a regular test run never triggers a real model call. The one exception is a [stub](#returning-a-fixed-result): a judge closure, or any custom embeddings driver, lets marked scorers run in a regular test run too.
+
+A judged scorer describes *what* to judge with an `Evaluation` — the state being judged, the question to ask, and the levels to choose from, ordered from worst to best — and hands it to `Judge::evaluate()`. The configured judge driver picks a level, and the plugin turns it into a `ScorerResult` for you:
 
 ```php
 use Pest\Evals\Contracts\RequiresJudge;
+use Pest\Evals\Eval\Evaluation;
 use Pest\Evals\Scorers\Scorer;
+use Pest\Evals\Scorers\ScorerResult;
+use Pest\Evals\Support\Judge;
 
 final class BrandVoiceScorer implements RequiresJudge, Scorer
 {
-    // ...
+    public function score(string $input, string $output, ?string $expected = null): ScorerResult
+    {
+        return Judge::evaluate(self::class, new Evaluation(
+            state: ['customer message' => $input, 'support reply' => $output],
+            question: 'Does the support reply match our brand voice: warm, concise, and free of jargon?',
+            levels: [
+                'Off-brand' => 0.0,
+                'Partially on-brand' => 0.5,
+                'On-brand' => 1.0,
+            ],
+        ));
+    }
 }
 ```
+
+Each key in `state` becomes a heading in the prompt the judge sees, so you should name them descriptively — `'reference answer'` reads better than `'expected'`. Level scores must be between `0.0` and `1.0` and ascending, and an evaluation needs at least two levels. Because the scorer never talks to a model directly, it works with every judge driver, including the [classifier](#classification).
 
 <a name="drivers"></a>
 ## Drivers
@@ -326,18 +356,18 @@ There are two driver contracts:
 
 | Contract | Method | Powers |
 | --- | --- | --- |
-| `Pest\Evals\Contracts\JudgeDriver` | `generate(string $instructions, string $prompt): string` | `toBeRelevant()`, `toBeSafe()`, `toBeCorrect()`, `toSatisfy()`, and any judge-based custom scorer |
+| `Pest\Evals\Contracts\JudgeDriver` | `judge(Evaluation $evaluation): Verdict` | `toBeRelevant()`, `toBeSafe()`, `toBeCorrect()`, `toSatisfy()`, and any judge-based custom scorer |
 | `Pest\Evals\Contracts\EmbeddingsDriver` | `embed(array $inputs): array` | `toBeSimilar()` and any embeddings-based custom scorer |
 
 The deterministic checks (`toContain()`, `toBe()`, `toHaveToolCalls()`, `toFollowTrajectory()`, …) use no driver at all — they inspect the output directly.
 
 ### The Default: Laravel AI
 
-By default, the plugin uses `LaravelAiJudge` and `LaravelAiEmbeddings`, which call OpenAI through Laravel AI. The simplest way to change the provider or model is through environment variables, which is convenient for switching providers between environments:
+By default, the plugin uses `LaravelAiJudge` and `LaravelAiEmbeddings`, which call OpenAI through Laravel AI 1.x. The judge asks a text model to pick a level and explain its choice through structured output. The simplest way to change the provider or model is through environment variables, which is convenient for switching providers between environments:
 
 ```ini
 PEST_EVALS_LARAVEL_SCORING_PROVIDER=openai
-PEST_EVALS_LARAVEL_SCORING_MODEL=gpt-5.4-nano
+PEST_EVALS_LARAVEL_SCORING_MODEL=gpt-6-luna
 PEST_EVALS_LARAVEL_EMBEDDING_PROVIDER=openai
 PEST_EVALS_LARAVEL_EMBEDDING_MODEL=text-embedding-3-small
 ```
@@ -349,20 +379,51 @@ use Pest\Evals\Drivers\LaravelAiEmbeddings;
 use Pest\Evals\Drivers\LaravelAiJudge;
 
 pest()->evals()
-    ->judgeUsing(new LaravelAiJudge(provider: 'openai', model: 'gpt-5.4-nano'))
+    ->judgeUsing(new LaravelAiJudge(provider: 'openai', model: 'gpt-6-luna'))
     ->embeddingsUsing(new LaravelAiEmbeddings(provider: 'openai', model: 'text-embedding-3-small'));
 ```
+
+<a name="classification"></a>
+### Classification
+
+Sometimes you may wish to judge faster and more cheaply than a text model allows. To accomplish this, you may switch the judge to Laravel AI's classification, which asks a classification model for the probability of every level at once:
+
+```php
+pest()->evals()->judgeUsingLaravelAiClassifier();
+```
+
+By default, the classifier uses the provider in your `ai.default_for_classification` configuration and its default model. However, you may pass a provider and model explicitly, or set them per environment:
+
+```php
+pest()->evals()->judgeUsingLaravelAiClassifier(provider: 'typesafe', model: 'jev-latest');
+```
+
+```ini
+PEST_EVALS_LARAVEL_CLASSIFICATION_PROVIDER=typesafe
+PEST_EVALS_LARAVEL_CLASSIFICATION_MODEL=jev-latest
+```
+
+The classifier scores differently from `LaravelAiJudge`. Instead of picking one level, it weights every level by its probability, so scores may fall between levels — such as `0.95`. A threshold tuned against one judge may not hold under the other, so you should re-check your thresholds after switching.
+
+In addition, the classifier reports the chosen level, its probability, and its confidence rather than written reasoning. A failure will tell you which level was chosen, but not why; switch back to `LaravelAiJudge` when you need to debug a failing eval.
+
+> **Note:** `judgeUsingLaravelAiClassifier()` is shorthand for `judgeUsing(new LaravelAiClassifier())`, so a later call to `judgeUsing()` replaces it.
 
 ### Bringing Your Own Driver: A Closure
 
 The fastest way to leave Laravel AI behind is to hand `pest()->evals()` a closure. When you do this, `laravel/ai` is never touched, so it does not even need to be installed:
 
 ```php
+use Pest\Evals\Eval\Evaluation;
+use Pest\Evals\Eval\Verdict;
+
 pest()->evals()
-    ->judgeUsing(function (string $instructions, string $prompt): string {
+    ->judgeUsing(function (Evaluation $evaluation): Verdict {
         // Call any model you like — an SDK, a raw HTTP client, anything —
-        // and return its raw text response. The plugin parses the score out of it.
-        return MyLlmClient::complete(system: $instructions, message: $prompt);
+        // and ask it which of the evaluation's levels best fits.
+        $level = MyLlmClient::chooseLevel($evaluation->question, $evaluation->state, $evaluation->labels());
+
+        return new Verdict($evaluation->levels[$level], 'Chosen by my model.', $level);
     })
     ->embeddingsUsing(function (array $inputs): array {
         // Return one vector per input, in the same order they were given.
@@ -370,33 +431,53 @@ pest()->evals()
     });
 ```
 
-A judge driver is a plain text-in, text-out function. It does not need to know about scoring: the scorers build a prompt that already asks the model to reply with `{"score": <float>, "reasoning": "..."}`, and the plugin decodes that JSON for you. Your driver's only job is to forward the instructions and prompt to a model and return whatever text comes back.
+A judge closure receives an `Evaluation` describing what to judge:
+
+- `$evaluation->state` — what is being judged, such as the input, output, and reference answer, keyed by descriptive names.
+- `$evaluation->question` — how to judge it.
+- `$evaluation->levels` — level descriptions mapped to their scores, ordered from worst to best. `$evaluation->labels()` returns the descriptions alone.
+
+The closure may return a `Verdict` — a score, the reasoning behind it, and optionally the chosen level — or a plain float score. The plugin clamps the score between `0.0` and `1.0` for you.
 
 An embeddings driver receives an array of strings and must return one numeric vector per string, in the same order.
 
+> **Warning:** A judge closure is treated as a [stub](#returning-a-fixed-result), so judged scorers will also run during a regular `./vendor/bin/pest` run. If your closure calls a real model, prefer a [driver class](#bringing-your-own-driver-a-class), which only runs under `--evals`.
+
+<a name="bringing-your-own-driver-a-class"></a>
 ### Bringing Your Own Driver: A Class
 
 For anything you wish to reuse or test, implement the contract as a dedicated class. For example, here is a judge backed by Anthropic:
 
 ```php
 use Pest\Evals\Contracts\JudgeDriver;
+use Pest\Evals\Eval\Evaluation;
+use Pest\Evals\Eval\Verdict;
 
 final class AnthropicJudge implements JudgeDriver
 {
-    public function generate(string $instructions, string $prompt): string
+    public function judge(Evaluation $evaluation): Verdict
     {
-        // `$instructions` is the system prompt; `$prompt` asks for a JSON score.
-        // Return the model's raw text — the plugin handles the parsing.
-        return Anthropic::messages()->create(
-            model: 'claude-sonnet-4-5',
-            system: $instructions,
-            messages: [['role' => 'user', 'content' => $prompt]],
-        )->text();
+        $labels = $evaluation->labels();
+
+        // Ask the model to pick one of the levels, ordered from worst to best,
+        // and reply with its index and a short explanation.
+        ['level' => $index, 'reasoning' => $reasoning] = Anthropic::chooseLevel(
+            model: 'claude-sonnet-5',
+            question: $evaluation->question,
+            state: $evaluation->state,
+            levels: $labels,
+        );
+
+        $level = $labels[$index];
+
+        return new Verdict($evaluation->levels[$level], $reasoning, $level);
     }
 }
 
 pest()->evals()->judgeUsing(new AnthropicJudge());
 ```
+
+When your driver cannot map the model's answer to a level, it should throw an exception rather than returning a score of `0.0` — that way a broken judge fails loudly instead of looking like a poor response. Every judge driver class, including your own, is assumed to call a model, so judged scorers only run under `--evals`.
 
 Similarly, you may back an embeddings driver with a local model:
 
@@ -421,14 +502,16 @@ final class LocalEmbeddings implements EmbeddingsDriver
 pest()->evals()->embeddingsUsing(new LocalEmbeddings());
 ```
 
+<a name="returning-a-fixed-result"></a>
 ### Returning a Fixed Result
 
-A closure body is arbitrary code — usually it calls your client, but nothing stops it from returning a fixed value instead. Because a judge is plain text-in / text-out and an embeddings driver is array-in / array-out, you may hand back a canned result to exercise the full scoring path — and your custom scorers — without spending money or hitting the network. This is convenient in local development or CI smoke tests:
+A closure body is arbitrary code — usually it calls your client, but nothing stops it from returning a fixed value instead. You may hand back a canned score to exercise the full scoring path — and your custom scorers — without spending money or hitting the network. This is convenient in local development or CI smoke tests:
 
 ```php
+use Pest\Evals\Eval\Evaluation;
+
 pest()->evals()
-    ->judgeUsing(fn (string $instructions, string $prompt): string =>
-        '{"score": 1.0, "reasoning": "stubbed"}')
+    ->judgeUsing(fn (Evaluation $evaluation): float => 1.0)
     ->embeddingsUsing(fn (array $inputs): array =>
         array_map(fn (): array => [1.0, 0.0, 0.0], $inputs));
 ```
