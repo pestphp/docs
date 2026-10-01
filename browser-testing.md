@@ -57,7 +57,7 @@ npm install playwright@latest
 npx playwright install
 ```
 
-Finally, you should add `tests/Browser/Screenshots` to your `.gitignore` file to avoid committing screenshots taken during browser tests.
+Finally, you should add `tests/Browser/Screenshots` and `tests/Browser/Traces` to your `.gitignore` file to avoid committing the screenshots and traces taken during browser tests.
 
 ### Running Browser Tests
 
@@ -377,6 +377,7 @@ $page->assertSee('Welcome to Some Subdomain');
 [screenshotElement](#screenshot-element)
 [tinker](#tinker)
 [headed](#headed)
+[trace](#trace)
 
 </div>
 
@@ -1252,6 +1253,30 @@ If you wish to run the tests in a headed mode by default, you may set it in your
 pest()->browser()->headed();
 ```
 
+<a name="trace"></a>
+When a test is flaky, pausing it is not always an option, as it may only fail once in a while, or only on CI. For these cases, you may run your tests with the `--trace` option, which records a [Playwright trace](https://playwright.dev/docs/trace-viewer) of each browser test:
+
+```bash
+./vendor/bin/pest --trace
+```
+
+The trace of each failed test will be saved in the `tests/Browser/Traces` directory, while the traces of passing tests are discarded. Once your test suite has finished, Pest will open the first trace in Playwright's trace viewer, where you may step through each action of your test — such as `click('Place order')` or `assertSee('Order placed!')` — and see a snapshot of the page, the network requests, the console logs, and the line of your test that performed it.
+
+You may also open any trace yourself using Playwright's CLI:
+
+```bash
+npx playwright show-trace tests/Browser/Traces/it_places_an_order.zip
+```
+
+If you wish to record traces by default, you may set it in your `Pest.php` configuration file. In addition, you may pass `open: false` if you prefer the trace viewer not to be opened once your test suite has finished:
+
+```php
+pest()->browser()->trace();
+pest()->browser()->trace(open: false);
+```
+
+> **Note:** When running on CI, the trace viewer is never opened. Instead, you may upload the traces as an artifact, as described in the [Continuous Integration](#continuous-integration) section.
+
 ## Continuous Integration
 
 You may refer to Pest's [Continuous Integration](https://pestphp.com/docs/continuous-integration) documentation for more information on how to run your browser tests in a CI environment.
@@ -1269,6 +1294,24 @@ However, if you are using GitHub Actions, you should add the following steps to 
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
 ```
+
+When a browser test fails on CI, the screenshots and [traces](#trace) of the failed tests are saved on the CI machine, out of your reach. To inspect them, you may run your tests with the `--trace` option and upload both directories as an artifact when the job fails:
+
+```yaml
+    - name: Run Browser Tests
+      run: ./vendor/bin/pest --ci --parallel --trace
+
+    - name: Upload Screenshots and Traces
+      uses: actions/upload-artifact@v4
+      if: failure()
+      with:
+        name: browser-tests
+        path: |
+          tests/Browser/Screenshots
+          tests/Browser/Traces
+```
+
+Pest will also list the traces of the failed tests on the job's summary page. Once you have downloaded the artifact, you may open a trace by dropping it on [trace.playwright.dev](https://trace.playwright.dev), right in your browser, without installing anything.
 
 ---
 

@@ -65,6 +65,22 @@ Sometimes you may wish to use [Browser Testing](/docs/browser-testing) with GitH
 
 > **Note:** Be sure to run your browser tests in parallel to speed up execution time. You may do this by adding the `--parallel` flag to the Pest command.
 
+When a browser test fails, you will likely want to see what happened on the page. To do so, you may add the `--trace` flag to the Pest command, and upload the [screenshots and traces](/docs/browser-testing#trace) of the failed tests as an artifact:
+
+```yaml
+    - name: Run Browser Tests
+      run: ./vendor/bin/pest --ci --parallel --trace
+
+    - name: Upload Screenshots and Traces
+      uses: actions/upload-artifact@v4
+      if: failure()
+      with:
+        name: browser-tests
+        path: |
+          tests/Browser/Screenshots
+          tests/Browser/Traces
+```
+
 ## Example With GitLab CI/CD Pipelines
 
 If your application uses [GitLab CI/CD Pipelines](https://docs.gitlab.com/ee/ci/pipelines/) as its CI platform, the following guidelines will help you configure Pest so that your application is automatically tested whenever someone pushes a commit to your GitLab repository.
